@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CMS管理 - 老年AI助手</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;}
+        body {font-family:"Microsoft YaHei";background:#f7f9fc;}
+        .header {background:#007aff;color:#fff;padding:15px;text-align:right;}
+        .header a {color:#fff;margin-left:20px;text-decoration:none;}
+        .container {width:1000px;margin:20px auto;display:flex;}
+        .left {width:200px;background:#fff;padding:20px;border-radius:10px;margin-right:20px;}
+        .right {flex:1;background:#fff;padding:20px;border-radius:10px;}
+        .menu-item {padding:10px;margin-bottom:10px;color:#333;cursor:pointer;border-radius:5px;}
+        .menu-item.active {background:#007aff;color:#fff;}
+        .tab {display:none;}
+        .tab.active {display:block;}
+        .form-item {margin-bottom:15px;}
+        .form-item label {display:block;margin-bottom:5px;color:#666;}
+        .form-item input, .form-item textarea, .form-item select {width:100%;padding:10px;border:1px solid #eee;border-radius:5px;font-size:16px;}
+        .btn {padding:10px 20px;background:#007aff;color:#fff;border:none;border-radius:5px;cursor:pointer;margin-right:10px;}
+        .btn-danger {background:#ff3b30;}
+        .table {width:100%;border-collapse:collapse;margin-top:20px;}
+        .table th, .table td {border:1px solid #eee;padding:10px;text-align:center;}
+        .table th {background:#f7f9fc;}
+    </style>
+</head>
+<body>
+<div class="header">
+    欢迎回来，管理员 | <a href="/admin/logout">退出登录</a>
+</div>
+<div class="container">
+    <div class="left">
+        <div class="menu-item active" onclick="switchTab('category')">分类管理</div>
+        <div class="menu-item" onclick="switchTab('tutorial')">教程管理</div>
+    </div>
+    <div class="right">
+        <!-- 分类管理标签 -->
+        <div class="tab active" id="category">
+            <h3>分类管理</h3>
+            <div class="form-item">
+                <label>分类名称</label>
+                <input type="text" id="categoryName" placeholder="请输入分类名称">
+            </div>
+            <div class="form-item">
+                <label>排序</label>
+                <input type="number" id="categorySort" placeholder="请输入排序号（数字越小越靠前）" value="0">
+            </div>
+            <button class="btn" onclick="addCategory()">添加分类</button>
+            <table class="table" id="categoryTable">
+                <thead>
+                <tr><th>ID</th><th>分类名称</th><th>排序</th><th>操作</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- 教程管理标签 -->
+        <div class="tab" id="tutorial">
+            <h3>教程管理</h3>
+            <div class="form-item">
+                <label>问题标题</label>
+                <input type="text" id="tutorialTitle" placeholder="请输入问题标题">
+            </div>
+            <div class="form-item">
+                <label>问题答案</label>
+                <textarea id="tutorialContent" rows="5" placeholder="请输入详细答案"></textarea>
+            </div>
+            <div class="form-item">
+                <label>所属分类</label>
+                <select id="tutorialCategoryId"></select>
+            </div>
+            <button class="btn" onclick="addTutorial()">添加教程</button>
+            <table class="table" id="tutorialTable">
+                <thead>
+                <tr><th>ID</th><th>标题</th><th>分类</th><th>操作</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 切换标签
+    function switchTab(tabName) {
+        // 切换菜单
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        // 切换内容
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.getElementById(tabName).classList.add('active');
+
+        // 加载对应数据
+        if (tabName === 'category') {
+            loadCategories();
+        } else if (tabName === 'tutorial') {
+            loadTutorials();
+            loadCategoryOptions();
+        }
+    }
+
+    // 加载分类列表
+    function loadCategories() {
+        fetch('/tutorial/categories')
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.querySelector('#categoryTable tbody');
+                tbody.innerHTML = '';
+                data.data.forEach(item => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${item.id}</td>
+                            <td>${item.name}</td>
+                            <td>${item.sort}</td>
+                            <td>
+                                <button class="btn btn-danger" onclick="deleteCategory(${item.id})">删除</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            });
+    }
+
+    // 添加分类
+    function addCategory() {
+        const name = document.getElementById('categoryName').value;
+        const sort = document.getElementById('categorySort').value;
+        if (!name) {
+            alert('分类名称不能为空');
+            return;
+        }
+        fetch('/admin/cms/category/add', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, sort})
+        }).then(res => res.json()).then(data => {
+            if (data.code === 200) {
+                alert('添加成功');
+                document.getElementById('categoryName').value = '';
+                document.getElementById('categorySort').value = 0;
+                loadCategories();
+            } else {
+                alert('添加失败：' + data.msg);
+            }
+        });
+    }
+
+    // 删除分类
+    function deleteCategory(id) {
+        if (!confirm('确定要删除该分类吗？')) {
+            return;
+        }
+        fetch(`/admin/cms/category/delete/${id}`, {
+            method: 'POST'
+        }).then(res => res.json()).then(data => {
+            if (data.code === 200) {
+                alert('删除成功');
+                loadCategories();
+            } else {
+                alert('删除失败：' + data.msg);
+            }
+        });
+    }
+
+    // 加载分类下拉框
+    function loadCategoryOptions() {
+        fetch('/tutorial/categories')
+            .then(res => res.json())
+            .then(data => {
+                const select = document.getElementById('tutorialCategoryId');
+                select.innerHTML = '';
+                data.data.forEach(item => {
+                    select.innerHTML += `<option value="${item.id}">${item.name}</option>`;
+                });
+            });
+    }
+
+    // 加载教程列表
+    function loadTutorials() {
+        // 简化：加载所有教程（实际可按分类筛选）
+        fetch('/tutorial/list?category=手机使用') // 临时取第一个分类
+            .then(res => res.text()) // 实际应提供专门的查询接口
+            .then(() => {
+                // 此处仅为示例，实际需对接专门的教程列表接口
+                const tbody = document.querySelector('#tutorialTable tbody');
+                tbody.innerHTML = '<tr><td colspan="4">请添加教程</td></tr>';
+            });
+    }
+
+    // 添加教程
+    function addTutorial() {
+        const title = document.getElementById('tutorialTitle').value;
+        const content = document.getElementById('tutorialContent').value;
+        const categoryId = document.getElementById('tutorialCategoryId').value;
+        if (!title || !content) {
+            alert('标题和内容不能为空');
+            return;
+        }
+        fetch('/admin/cms/tutorial/add', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({title, content, categoryId})
+        }).then(res => res.json()).then(data => {
+            if (data.code === 200) {
+                alert('添加成功');
+                document.getElementById('tutorialTitle').value = '';
+                document.getElementById('tutorialContent').value = '';
+                loadTutorials();
+            } else {
+                alert('添加失败：' + data.msg);
+            }
+        });
+    }
+
+    // 页面加载时默认加载分类列表
+    window.onload = function() {
+        loadCategories();
+    }
+</script>
+</body>
+</html>
