@@ -1,0 +1,194 @@
+[
+  {
+    "provinceEn": "Beijing",
+    "provinceZh": "北京",
+    "portsEn": "Beijing Capital Int'l Airport, Beijing Daxing Int'l Airport",
+    "portsZh": "北京首都国际机场口岸、北京大兴国际机场口岸",
+    "areaEn": "Beijing Municipality",
+    "areaZh": "北京市"
+  },
+  {
+    "provinceEn": "Tianjin",
+    "provinceZh": "天津",
+    "portsEn": "Tianjin Binhai Int'l Airport, Tianjin Port (Passenger)",
+    "portsZh": "天津滨海国际机场口岸、天津海港口岸（客运）",
+    "areaEn": "Tianjin Municipality",
+    "areaZh": "天津市"
+  },
+  {
+    "provinceEn": "Hebei",
+    "provinceZh": "河北",
+    "portsEn": "Shijiazhuang Zhengding Int'l Airport, Qinhuangdao Port (Passenger)",
+    "portsZh": "石家庄正定国际机场口岸、秦皇岛海港口岸（客运）",
+    "areaEn": "Hebei Province",
+    "areaZh": "河北省"
+  },
+  {
+    "provinceEn": "Liaoning",
+    "provinceZh": "辽宁",
+    "portsEn": "Shenyang Taoxian Int'l Airport, Dalian Zhoushuizi Int'l Airport, Dalian Port (Passenger)",
+    "portsZh": "沈阳桃仙国际机场口岸、大连周水子国际机场口岸、大连海港口岸（客运）",
+    "areaEn": "Liaoning Province",
+    "areaZh": "辽宁省"
+  },
+  {
+    "provinceEn": "Shanghai",
+    "provinceZh": "上海",
+    "portsEn": "Shanghai Hongqiao Int'l Airport, Shanghai Pudong Int'l Airport, Shanghai Port (Passenger)",
+    "portsZh": "上海虹桥国际机场口岸、上海浦东国际机场口岸、上海海港口岸（客运）",
+    "areaEn": "Shanghai Municipality",
+    "areaZh": "上海市"
+  },
+  {
+    "provinceEn": "Jiangsu",
+    "provinceZh": "江苏",
+    "portsEn": "Nanjing Lukou Int'l Airport, Sunan Shuofang Int'l Airport, Yangzhou Taizhou Int'l Airport, Lianyungang Port (Passenger)",
+    "portsZh": "南京禄口国际机场口岸、苏南硕放国际机场口岸、扬州泰州国际机场口岸、连云港海港口岸（客运）",
+    "areaEn": "Jiangsu Province",
+    "areaZh": "江苏省"
+  },
+  {
+    "provinceEn": "Zhejiang",
+    "provinceZh": "浙江",
+    "portsEn": "Hangzhou Xiaoshan Int'l Airport, Ningbo Lishe Int'l Airport, Wenzhou Longwan Int'l Airport, Yiwu Airport, Wenzhou Port (Passenger), Zhoushan Port (Passenger)",
+    "portsZh": "杭州萧山国际机场口岸、宁波栎社国际机场口岸、温州龙湾国际机场口岸、义乌机场口岸、温州港口岸（客运）、舟山港口岸（客运）",
+    "areaEn": "Zhejiang Province",
+    "areaZh": "浙江省"
+  },
+  {
+    "provinceEn": "Anhui",
+    "provinceZh": "安徽",
+    "portsEn": "Hefei Xinqiao Int'l Airport, Huangshan Tunxi Int'l Airport",
+    "portsZh": "合肥新桥国际机场口岸、黄山屯溪国际机场口岸",
+    "areaEn": "Anhui Province",
+    "areaZh": "安徽省"
+  },
+  {
+    "provinceEn": "Fujian",
+    "provinceZh": "福建",
+    "portsEn": "Fuzhou Changle Int'l Airport, Xiamen Gaoqi Int'l Airport, Quanzhou Jinjiang Int'l Airport, Wuyishan Airport, Xiamen Port (Passenger)",
+    "portsZh": "福州长乐国际机场口岸、厦门高崎国际机场口岸、泉州晋江国际机场口岸、武夷山机场口岸、厦门海港口岸（客运）",
+    "areaEn": "Fujian Province",
+    "areaZh": "福建省"
+  },
+  {
+    "provinceEn": "Shandong",
+    "provinceZh": "山东",
+    "portsEn": "Jinan Yaoqiang Int'l Airport, Qingdao Jiaodong Int'l Airport, Yantai Penglai Int'l Airport, Weihai Dashuibo Int'l Airport, Qingdao Port (Passenger)",
+    "portsZh": "济南遥墙国际机场口岸、青岛胶东国际机场口岸、烟台蓬莱国际机场口岸、威海大水泊国际机场口岸、青岛海港口岸（客运）",
+    "areaEn": "Shandong Province",
+    "areaZh": "山东省"
+  },
+  {
+    "provinceEn": "Henan",
+    "provinceZh": "河南",
+    "portsEn": "Zhengzhou Xinzheng Int'l Airport",
+    "portsZh": "郑州新郑国际机场口岸",
+    "areaEn": "Henan Province",
+    "areaZh": "河南省"
+  },
+  {
+    "provinceEn": "Hubei",
+    "provinceZh": "湖北",
+    "portsEn": "Wuhan Tianhe Int'l Airport",
+    "portsZh": "武汉天河国际机场口岸",
+    "areaEn": "Hubei Province",
+    "areaZh": "湖北省"
+  },
+  {
+    "provinceEn": "Hunan",
+    "provinceZh": "湖南",
+    "portsEn": "Changsha Huanghua Int'l Airport, Zhangjiajie Hehua Int'l Airport",
+    "portsZh": "长沙黄花国际机场口岸、张家界荷花国际机场口岸",
+    "areaEn": "Hunan Province",
+    "areaZh": "湖南省"
+  },
+  {
+    "provinceEn": "Guangdong",
+    "provinceZh": "广东",
+    "portsEn": "Guangzhou Baiyun Int'l Airport, Shenzhen Bao'an Int'l Airport, Jieyang Chaoshan Int'l Airport, Nansha Port (Passenger), Shekou Port (Passenger), Guangzhou Port Pazhou Ferry Terminal, Zhongshan Port, Hengqin Port, Hong Kong-Zhuhai-Macao Bridge Zhuhai Port, West Kowloon Station Port",
+    "portsZh": "广州白云国际机场口岸、深圳宝安国际机场口岸、揭阳潮汕国际机场口岸、南沙港口岸（客运）、蛇口港口岸（客运）、广州港口岸琶洲港澳客运码头、中山港口岸、横琴口岸、港珠澳大桥珠海公路口岸、广深港高铁西九龙站口岸",
+    "areaEn": "Guangdong Province (may exit from all open ports in the province)",
+    "areaZh": "广东省（可从全省所有对外开放口岸出境）"
+  },
+  {
+    "provinceEn": "Hainan",
+    "provinceZh": "海南",
+    "portsEn": "Haikou Meilan Int'l Airport, Sanya Phoenix Int'l Airport",
+    "portsZh": "海口美兰国际机场口岸、三亚凤凰国际机场口岸",
+    "areaEn": "Hainan Province",
+    "areaZh": "海南省"
+  },
+  {
+    "provinceEn": "Chongqing",
+    "provinceZh": "重庆",
+    "portsEn": "Chongqing Jiangbei Int'l Airport",
+    "portsZh": "重庆江北国际机场口岸",
+    "areaEn": "Chongqing Municipality",
+    "areaZh": "重庆市"
+  },
+  {
+    "provinceEn": "Guizhou",
+    "provinceZh": "贵州",
+    "portsEn": "Guiyang Longdongbao Int'l Airport",
+    "portsZh": "贵阳龙洞堡国际机场口岸",
+    "areaEn": "Guizhou Province",
+    "areaZh": "贵州省"
+  },
+  {
+    "provinceEn": "Shaanxi",
+    "provinceZh": "陕西",
+    "portsEn": "Xi'an Xianyang Int'l Airport",
+    "portsZh": "西安咸阳国际机场口岸",
+    "areaEn": "Shaanxi Province",
+    "areaZh": "陕西省"
+  },
+  {
+    "provinceEn": "Shanxi",
+    "provinceZh": "山西",
+    "portsEn": "Taiyuan Wusu Int'l Airport",
+    "portsZh": "太原武宿国际机场口岸",
+    "areaEn": "Taiyuan, Datong",
+    "areaZh": "太原市、大同市"
+  },
+  {
+    "provinceEn": "Heilongjiang",
+    "provinceZh": "黑龙江",
+    "portsEn": "Harbin Taiping Int'l Airport",
+    "portsZh": "哈尔滨太平国际机场口岸",
+    "areaEn": "Harbin",
+    "areaZh": "哈尔滨市"
+  },
+  {
+    "provinceEn": "Jiangxi",
+    "provinceZh": "江西",
+    "portsEn": "Nanchang Changbei Int'l Airport",
+    "portsZh": "南昌昌北国际机场口岸",
+    "areaEn": "Nanchang, Jingdezhen",
+    "areaZh": "南昌市、景德镇市"
+  },
+  {
+    "provinceEn": "Guangxi",
+    "provinceZh": "广西",
+    "portsEn": "Nanning Wuxu Int'l Airport, Guilin Liangjiang Int'l Airport, Beihai Fucheng Airport, Beihai Port (Passenger)",
+    "portsZh": "南宁吴圩国际机场口岸、桂林两江国际机场口岸、北海福成机场口岸、北海海港口岸（客运）",
+    "areaEn": "12 cities: Nanning, Liuzhou, Guilin, Wuzhou, Beihai, Fangchenggang, Qinzhou, Guigang, Yulin, Hezhou, Hechi, Laibin",
+    "areaZh": "南宁、柳州、桂林、梧州、北海、防城港、钦州、贵港、玉林、贺州、河池、来宾12市"
+  },
+  {
+    "provinceEn": "Sichuan",
+    "provinceZh": "四川",
+    "portsEn": "Chengdu Shuangliu Int'l Airport, Chengdu Tianfu Int'l Airport",
+    "portsZh": "成都双流国际机场口岸、成都天府国际机场口岸",
+    "areaEn": "11 cities: Chengdu, Zigong, Luzhou, Deyang, Suining, Neijiang, Leshan, Yibin, Ya'an, Meishan, Ziyang",
+    "areaZh": "成都、自贡、泸州、德阳、遂宁、内江、乐山、宜宾、雅安、眉山、资阳11市"
+  },
+  {
+    "provinceEn": "Yunnan",
+    "provinceZh": "云南",
+    "portsEn": "Kunming Changshui Int'l Airport, Lijiang Sanyi Int'l Airport, Mohan Railway Port",
+    "portsZh": "昆明长水国际机场口岸、丽江三义国际机场口岸、磨憨铁路口岸",
+    "areaEn": "9 cities/prefectures: Kunming, Yuxi, Chuxiong, Honghe, Wenshan, Pu'er, Xishuangbanna, Dali, Lijiang",
+    "areaZh": "昆明、玉溪、楚雄、红河、文山、普洱、西双版纳、大理、丽江9市州"
+  }
+]

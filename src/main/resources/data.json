@@ -1,0 +1,908 @@
+{
+  "siteName": "China Visa Free Guide 2026",
+  "siteTitle": "China Visa-Free Policy 2026 | 50 Unilateral & 29 Mutual & 240H Transit",
+  "siteTitleZh": "2026中国免签政策指南 | 单方面50国·互免29国·240小时过境",
+  "siteDesc": "Official 2026 China visa-free guide: 50 unilateral 30-day visa-free, 29 mutual visa exemption, 240-hour transit visa-free for 57 countries at 65 ports across 24 provinces.",
+  "siteDescZh": "2026中国官方免签政策：50国单方面30天免签、29国互免签证、57国240小时过境免签，覆盖24省份65个口岸。",
+  "lastUpdate": "Last Updated: August 29, 2026 | CHINA NIA Official",
+  "lastUpdateZh": "最后更新：2026年08月29日 | 国家移民管理局权威",
+  "heroTitle": "China Visa-Free Policies 2026",
+  "heroTitleZh": "中国免签政策 2026",
+  "heroDesc": "Official 2026 update: 50 Unilateral 30-day visa-free, 29 mutual visa exemption, 240-hour transit visa-free for 57 countries, and 24-hour transit visa-free for all nationalities. Data source: National Immigration Administration.",
+  "heroDescZh": "2026权威更新：单方面免签50国、互免签证29国、240小时过境免签57国，以及面向所有国家的24小时过境免签，一站式查询。数据来源：国家移民管理局。",
+  "unilateralTitle": "Unilateral 30-Day Visa-Free (50 Countries)",
+  "unilateralTitleZh": "单方面免签（50国）",
+  "unilateralDesc": "Citizens from 50 eligible countries may enter China visa-free for up to 30 days. Source: NIA official policy.",
+  "unilateralDescZh": "50国公民可免签入境中国，最长停留30天。信息来源：国家移民管理局。",
+  "mutualTitle": "Mutual Visa Exemption (29 Countries)",
+  "mutualTitleZh": "互免签证协定（29国）",
+  "mutualDesc": "Official bilateral agreements: citizens of both sides enjoy visa-free entry. Subject to latest government announcements.",
+  "mutualDescZh": "依据双边协议，双方公民互相免签入境。最终以官方公告为准。",
+  "transitTitle": "240-Hour Transit Visa-Free (57 Countries)",
+  "transitTitleZh": "240小时过境免签（57国）",
+  "transitDesc": "10-day transit stay, 65 ports in 24 provinces, cross-region travel permitted. Policies subject to official updates.",
+  "transitDescZh": "停留10天，覆盖24省份65个口岸，允许规定区域内跨省活动。政策如有变动以官方为准。",
+  "continents": [
+    {
+      "name": "Europe",
+      "nameZh": "欧洲",
+      "countries": [
+        {
+          "code": "france",
+          "name": "France",
+          "nameZh": "法国"
+        },
+        {
+          "code": "germany",
+          "name": "Germany",
+          "nameZh": "德国"
+        },
+        {
+          "code": "italy",
+          "name": "Italy",
+          "nameZh": "意大利"
+        },
+        {
+          "code": "netherlands",
+          "name": "Netherlands",
+          "nameZh": "荷兰"
+        },
+        {
+          "code": "spain",
+          "name": "Spain",
+          "nameZh": "西班牙"
+        },
+        {
+          "code": "switzerland",
+          "name": "Switzerland",
+          "nameZh": "瑞士"
+        },
+        {
+          "code": "ireland",
+          "name": "Ireland",
+          "nameZh": "爱尔兰"
+        },
+        {
+          "code": "hungary",
+          "name": "Hungary",
+          "nameZh": "匈牙利"
+        },
+        {
+          "code": "austria",
+          "name": "Austria",
+          "nameZh": "奥地利"
+        },
+        {
+          "code": "belgium",
+          "name": "Belgium",
+          "nameZh": "比利时"
+        },
+        {
+          "code": "luxembourg",
+          "name": "Luxembourg",
+          "nameZh": "卢森堡"
+        },
+        {
+          "code": "poland",
+          "name": "Poland",
+          "nameZh": "波兰"
+        },
+        {
+          "code": "slovenia",
+          "name": "Slovenia",
+          "nameZh": "斯洛文尼亚"
+        },
+        {
+          "code": "portugal",
+          "name": "Portugal",
+          "nameZh": "葡萄牙"
+        },
+        {
+          "code": "greece",
+          "name": "Greece",
+          "nameZh": "希腊"
+        },
+        {
+          "code": "cyprus",
+          "name": "Cyprus",
+          "nameZh": "塞浦路斯"
+        },
+        {
+          "code": "slovakia",
+          "name": "Slovakia",
+          "nameZh": "斯洛伐克"
+        },
+        {
+          "code": "norway",
+          "name": "Norway",
+          "nameZh": "挪威"
+        },
+        {
+          "code": "finland",
+          "name": "Finland",
+          "nameZh": "芬兰"
+        },
+        {
+          "code": "denmark",
+          "name": "Denmark",
+          "nameZh": "丹麦"
+        },
+        {
+          "code": "iceland",
+          "name": "Iceland",
+          "nameZh": "冰岛"
+        },
+        {
+          "code": "andorra",
+          "name": "Andorra",
+          "nameZh": "安道尔"
+        },
+        {
+          "code": "monaco",
+          "name": "Monaco",
+          "nameZh": "摩纳哥"
+        },
+        {
+          "code": "liechtenstein",
+          "name": "Liechtenstein",
+          "nameZh": "列支敦士登"
+        },
+        {
+          "code": "bulgaria",
+          "name": "Bulgaria",
+          "nameZh": "保加利亚"
+        },
+        {
+          "code": "romania",
+          "name": "Romania",
+          "nameZh": "罗马尼亚"
+        },
+        {
+          "code": "croatia",
+          "name": "Croatia",
+          "nameZh": "克罗地亚"
+        },
+        {
+          "code": "montenegro",
+          "name": "Montenegro",
+          "nameZh": "黑山"
+        },
+        {
+          "code": "northmacedonia",
+          "name": "North Macedonia",
+          "nameZh": "北马其顿"
+        },
+        {
+          "code": "malta",
+          "name": "Malta",
+          "nameZh": "马耳他"
+        },
+        {
+          "code": "estonia",
+          "name": "Estonia",
+          "nameZh": "爱沙尼亚"
+        },
+        {
+          "code": "latvia",
+          "name": "Latvia",
+          "nameZh": "拉脱维亚"
+        },
+        {
+          "code": "russia",
+          "name": "Russia",
+          "nameZh": "俄罗斯"
+        },
+        {
+          "code": "sweden",
+          "name": "Sweden",
+          "nameZh": "瑞典"
+        },
+        {
+          "code": "uk",
+          "name": "United Kingdom",
+          "nameZh": "英国"
+        }
+      ]
+    },
+    {
+      "name": "Asia",
+      "nameZh": "亚洲",
+      "countries": [
+        {
+          "code": "brunei",
+          "name": "Brunei",
+          "nameZh": "文莱"
+        },
+        {
+          "code": "korea",
+          "name": "South Korea",
+          "nameZh": "韩国"
+        },
+        {
+          "code": "japan",
+          "name": "Japan",
+          "nameZh": "日本"
+        },
+        {
+          "code": "saudi",
+          "name": "Saudi Arabia",
+          "nameZh": "沙特"
+        },
+        {
+          "code": "oman",
+          "name": "Oman",
+          "nameZh": "阿曼"
+        },
+        {
+          "code": "kuwait",
+          "name": "Kuwait",
+          "nameZh": "科威特"
+        },
+        {
+          "code": "bahrain",
+          "name": "Bahrain",
+          "nameZh": "巴林"
+        }
+      ]
+    },
+    {
+      "name": "Americas",
+      "nameZh": "美洲",
+      "countries": [
+        {
+          "code": "brazil",
+          "name": "Brazil",
+          "nameZh": "巴西"
+        },
+        {
+          "code": "argentina",
+          "name": "Argentina",
+          "nameZh": "阿根廷"
+        },
+        {
+          "code": "chile",
+          "name": "Chile",
+          "nameZh": "智利"
+        },
+        {
+          "code": "peru",
+          "name": "Peru",
+          "nameZh": "秘鲁"
+        },
+        {
+          "code": "uruguay",
+          "name": "Uruguay",
+          "nameZh": "乌拉圭"
+        },
+        {
+          "code": "canada",
+          "name": "Canada",
+          "nameZh": "加拿大"
+        }
+      ]
+    },
+    {
+      "name": "Oceania",
+      "nameZh": "大洋洲",
+      "countries": [
+        {
+          "code": "australia",
+          "name": "Australia",
+          "nameZh": "澳大利亚"
+        },
+        {
+          "code": "newzealand",
+          "name": "New Zealand",
+          "nameZh": "新西兰"
+        }
+      ]
+    }
+  ],
+  "mutualContinents": [
+    {
+      "name": "Asia",
+      "nameZh": "亚洲",
+      "countries": [
+        {
+          "code": "uae",
+          "name": "United Arab Emirates",
+          "nameZh": "阿联酋",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "azerbaijan",
+          "name": "Azerbaijan",
+          "nameZh": "阿塞拜疆",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "georgia",
+          "name": "Georgia",
+          "nameZh": "格鲁吉亚",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "kazakhstan",
+          "name": "Kazakhstan",
+          "nameZh": "哈萨克斯坦",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "qatar",
+          "name": "Qatar",
+          "nameZh": "卡塔尔",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "maldives",
+          "name": "Maldives",
+          "nameZh": "马尔代夫",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "malaysia",
+          "name": "Malaysia",
+          "nameZh": "马来西亚",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "thailand",
+          "name": "Thailand",
+          "nameZh": "泰国",
+          "days": "60",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "singapore",
+          "name": "Singapore",
+          "nameZh": "新加坡",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "armenia",
+          "name": "Armenia",
+          "nameZh": "亚美尼亚",
+          "days": "90",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "uzbekistan",
+          "name": "Uzbekistan",
+          "nameZh": "乌兹别克斯坦",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        }
+      ]
+    },
+    {
+      "name": "Europe",
+      "nameZh": "欧洲",
+      "countries": [
+        {
+          "code": "albania",
+          "name": "Albania",
+          "nameZh": "阿尔巴尼亚",
+          "days": "90",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "belarus",
+          "name": "Belarus",
+          "nameZh": "白俄罗斯",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "bosnia",
+          "name": "Bosnia and Herzegovina",
+          "nameZh": "波黑",
+          "days": "90",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "serbia",
+          "name": "Serbia",
+          "nameZh": "塞尔维亚",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "sanmarino",
+          "name": "San Marino",
+          "nameZh": "圣马力诺",
+          "days": "90",
+          "passport": "Ordinary Passport"
+        }
+      ]
+    },
+    {
+      "name": "Americas",
+      "nameZh": "美洲",
+      "countries": [
+        {
+          "code": "antigua",
+          "name": "Antigua and Barbuda",
+          "nameZh": "安提瓜和巴布达",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "barbados",
+          "name": "Barbados",
+          "nameZh": "巴巴多斯",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "bahamas",
+          "name": "Bahamas",
+          "nameZh": "巴哈马",
+          "days": "90",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "dominica",
+          "name": "Dominica",
+          "nameZh": "多米尼克",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "ecuador",
+          "name": "Ecuador",
+          "nameZh": "厄瓜多尔",
+          "days": "90",
+          "passport": "Ordinary Passport",
+          "note": "China passport holders need visa temporarily"
+        },
+        {
+          "code": "grenada",
+          "name": "Grenada",
+          "nameZh": "格林纳达",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "suriname",
+          "name": "Suriname",
+          "nameZh": "苏里南",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        }
+      ]
+    },
+    {
+      "name": "Oceania",
+      "nameZh": "大洋洲",
+      "countries": [
+        {
+          "code": "fiji",
+          "name": "Fiji",
+          "nameZh": "斐济",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "mauritius",
+          "name": "Mauritius",
+          "nameZh": "毛里求斯",
+          "days": "60",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "samoa",
+          "name": "Samoa",
+          "nameZh": "萨摩亚",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "seychelles",
+          "name": "Seychelles",
+          "nameZh": "塞舌尔",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "solomon",
+          "name": "Solomon Islands",
+          "nameZh": "所罗门群岛",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "tonga",
+          "name": "Tonga",
+          "nameZh": "汤加",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        }
+      ]
+    }
+  ],
+  "transitContinents": [
+    {
+      "name": "Europe",
+      "nameZh": "欧洲",
+      "countries": [
+        {
+          "code": "albania",
+          "name": "Albania",
+          "nameZh": "阿尔巴尼亚"
+        },
+        {
+          "code": "austria",
+          "name": "Austria",
+          "nameZh": "奥地利"
+        },
+        {
+          "code": "belgium",
+          "name": "Belgium",
+          "nameZh": "比利时"
+        },
+        {
+          "code": "bosnia",
+          "name": "Bosnia and Herzegovina",
+          "nameZh": "波黑"
+        },
+        {
+          "code": "bulgaria",
+          "name": "Bulgaria",
+          "nameZh": "保加利亚"
+        },
+        {
+          "code": "croatia",
+          "name": "Croatia",
+          "nameZh": "克罗地亚"
+        },
+        {
+          "code": "cyprus",
+          "name": "Cyprus",
+          "nameZh": "塞浦路斯"
+        },
+        {
+          "code": "czechia",
+          "name": "Czech Republic",
+          "nameZh": "捷克"
+        },
+        {
+          "code": "denmark",
+          "name": "Denmark",
+          "nameZh": "丹麦"
+        },
+        {
+          "code": "estonia",
+          "name": "Estonia",
+          "nameZh": "爱沙尼亚"
+        },
+        {
+          "code": "finland",
+          "name": "Finland",
+          "nameZh": "芬兰"
+        },
+        {
+          "code": "france",
+          "name": "France",
+          "nameZh": "法国"
+        },
+        {
+          "code": "germany",
+          "name": "Germany",
+          "nameZh": "德国"
+        },
+        {
+          "code": "greece",
+          "name": "Greece",
+          "nameZh": "希腊"
+        },
+        {
+          "code": "hungary",
+          "name": "Hungary",
+          "nameZh": "匈牙利"
+        },
+        {
+          "code": "iceland",
+          "name": "Iceland",
+          "nameZh": "冰岛"
+        },
+        {
+          "code": "ireland",
+          "name": "Ireland",
+          "nameZh": "爱尔兰"
+        },
+        {
+          "code": "italy",
+          "name": "Italy",
+          "nameZh": "意大利"
+        },
+        {
+          "code": "latvia",
+          "name": "Latvia",
+          "nameZh": "拉脱维亚"
+        },
+        {
+          "code": "lithuania",
+          "name": "Lithuania",
+          "nameZh": "立陶宛"
+        },
+        {
+          "code": "luxembourg",
+          "name": "Luxembourg",
+          "nameZh": "卢森堡"
+        },
+        {
+          "code": "malta",
+          "name": "Malta",
+          "nameZh": "马耳他"
+        },
+        {
+          "code": "monaco",
+          "name": "Monaco",
+          "nameZh": "摩纳哥"
+        },
+        {
+          "code": "montenegro",
+          "name": "Montenegro",
+          "nameZh": "黑山"
+        },
+        {
+          "code": "netherlands",
+          "name": "Netherlands",
+          "nameZh": "荷兰"
+        },
+        {
+          "code": "northmacedonia",
+          "name": "North Macedonia",
+          "nameZh": "北马其顿"
+        },
+        {
+          "code": "norway",
+          "name": "Norway",
+          "nameZh": "挪威"
+        },
+        {
+          "code": "poland",
+          "name": "Poland",
+          "nameZh": "波兰"
+        },
+        {
+          "code": "portugal",
+          "name": "Portugal",
+          "nameZh": "葡萄牙"
+        },
+        {
+          "code": "romania",
+          "name": "Romania",
+          "nameZh": "罗马尼亚"
+        },
+        {
+          "code": "serbia",
+          "name": "Serbia",
+          "nameZh": "塞尔维亚"
+        },
+        {
+          "code": "slovakia",
+          "name": "Slovakia",
+          "nameZh": "斯洛伐克"
+        },
+        {
+          "code": "slovenia",
+          "name": "Slovenia",
+          "nameZh": "斯洛文尼亚"
+        },
+        {
+          "code": "spain",
+          "name": "Spain",
+          "nameZh": "西班牙"
+        },
+        {
+          "code": "sweden",
+          "name": "Sweden",
+          "nameZh": "瑞典"
+        },
+        {
+          "code": "switzerland",
+          "name": "Switzerland",
+          "nameZh": "瑞士"
+        },
+        {
+          "code": "uk",
+          "name": "United Kingdom",
+          "nameZh": "英国"
+        },
+        {
+          "code": "russia",
+          "name": "Russia",
+          "nameZh": "俄罗斯"
+        },
+        {
+          "code": "ukraine",
+          "name": "Ukraine",
+          "nameZh": "乌克兰"
+        },
+        {
+          "code": "belarus",
+          "name": "Belarus",
+          "nameZh": "白俄罗斯"
+        }
+      ]
+    },
+    {
+      "name": "Americas",
+      "nameZh": "美洲",
+      "countries": [
+        {
+          "code": "argentina",
+          "name": "Argentina",
+          "nameZh": "阿根廷"
+        },
+        {
+          "code": "brazil",
+          "name": "Brazil",
+          "nameZh": "巴西"
+        },
+        {
+          "code": "canada",
+          "name": "Canada",
+          "nameZh": "加拿大"
+        },
+        {
+          "code": "chile",
+          "name": "Chile",
+          "nameZh": "智利"
+        },
+        {
+          "code": "mexico",
+          "name": "Mexico",
+          "nameZh": "墨西哥"
+        },
+        {
+          "code": "usa",
+          "name": "United States",
+          "nameZh": "美国"
+        }
+      ]
+    },
+    {
+      "name": "Asia",
+      "nameZh": "亚洲",
+      "countries": [
+        {
+          "code": "japan",
+          "name": "Japan",
+          "nameZh": "日本"
+        },
+        {
+          "code": "korea",
+          "name": "South Korea",
+          "nameZh": "韩国"
+        },
+        {
+          "code": "singapore",
+          "name": "Singapore",
+          "nameZh": "新加坡"
+        },
+        {
+          "code": "brunei",
+          "name": "Brunei",
+          "nameZh": "文莱"
+        },
+        {
+          "code": "uae",
+          "name": "United Arab Emirates",
+          "nameZh": "阿联酋"
+        },
+        {
+          "code": "qatar",
+          "name": "Qatar",
+          "nameZh": "卡塔尔"
+        },
+        {
+          "code": "indonesia",
+          "name": "Indonesia",
+          "nameZh": "印度尼西亚"
+        },
+        {
+          "code": "vietnam",
+          "name": "Vietnam",
+          "nameZh": "越南"
+        },
+        {
+          "code": "kyrgyzstan",
+          "name": "Kyrgyzstan",
+          "nameZh": "吉尔吉斯斯坦"
+        }
+      ]
+    },
+    {
+      "name": "Oceania",
+      "nameZh": "大洋洲",
+      "countries": [
+        {
+          "code": "australia",
+          "name": "Australia",
+          "nameZh": "澳大利亚"
+        },
+        {
+          "code": "newzealand",
+          "name": "New Zealand",
+          "nameZh": "新西兰"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "title": "240-Hour Transit Visa-Free (Official)",
+      "titleZh": "240小时过境免签（官方）",
+      "content": "57 countries, 10-day stay, 65 ports in 24 provinces, cross-region travel allowed.",
+      "contentZh": "适用57国，停留10天，24省份65个口岸，允许在规定区域内跨省活动。"
+    },
+    {
+      "title": "Major Ports",
+      "titleZh": "主要口岸",
+      "content": "Beijing, Shanghai, Guangzhou, Chengdu, Xi'an, Shenzhen, Chongqing, Kunming, Changsha, Zhangjiajie, Sanya.",
+      "contentZh": "北京、上海、广州、成都、西安、深圳、重庆、昆明、长沙、张家界、三亚。"
+    }
+  ],
+  "popularCities": [
+    {
+      "code": "beijing",
+      "name": "Beijing",
+      "nameZh": "北京"
+    },
+    {
+      "code": "shanghai",
+      "name": "Shanghai",
+      "nameZh": "上海"
+    },
+    {
+      "code": "guangzhou",
+      "name": "Guangzhou",
+      "nameZh": "广州"
+    },
+    {
+      "code": "shenzhen",
+      "name": "Shenzhen",
+      "nameZh": "深圳"
+    },
+    {
+      "code": "chengdu",
+      "name": "Chengdu",
+      "nameZh": "成都"
+    },
+    {
+      "code": "xian",
+      "name": "Xi’an",
+      "nameZh": "西安"
+    },
+    {
+      "code": "hangzhou",
+      "name": "Hangzhou",
+      "nameZh": "杭州"
+    },
+    {
+      "code": "changsha",
+      "name": "Changsha",
+      "nameZh": "长沙"
+    },
+    {
+      "code": "zhangjiajie",
+      "name": "Zhangjiajie",
+      "nameZh": "张家界"
+    },
+    {
+      "code": "sanya",
+      "name": "Sanya",
+      "nameZh": "三亚"
+    }
+  ]
+}

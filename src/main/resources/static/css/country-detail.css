@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+    background: #F7FCFA;
+    color: #2D3436;
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+
+.back {
+    margin-bottom: 20px;
+}
+.back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #ECFDF5;
+    color: #059669;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 15px;
+    border: 1px solid #A7F3D0;
+    transition: all 0.2s ease;
+}
+.back a:hover {
+    background: #D1FAE5;
+    color: #047857;
+    border-color: #6EE7B7;
+}
+.back a::before {
+    content: "←";
+    font-weight: 600;
+}
+
+/* 卡片样式 */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 10px rgba(34, 197, 94, .05);
+}
+
+.policy-tag {
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.uni {
+    background: #0D9488;
+}
+
+.mut {
+    background: #2563EB;
+}
+
+.tra {
+    background: #F59E0B;
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-bottom: 16px;
+}
+
+.label {
+    font-weight: 600;
+    color: #374151;
+    width: 130px;
+    display: inline-block;
+}
+
+.value {
+    color: #111827;
+}
+
+.footer {
+    padding: 45px 0;
+    text-align: center;
+    color: #9CA3AF;
+    border-top: 1px solid #ECFDF5;
+}
+
+.faq-item {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.faq-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.faq-question {
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 6px 0;
+    font-size: 15px;
+}
+.faq-answer {
+    color: #4b5563;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 14px;
+}
+.doc-item {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+#transit-ports-list {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+#transit-ports-list p {
+  margin: 0 0 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+#transit-ports-list p:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+#transit-ports-list strong {
+  color: #111;
+  font-weight: 600;
+  min-width: 70px;
+  display: inline-block;
+}

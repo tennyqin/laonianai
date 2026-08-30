@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 中英双语自动切换 SEO Title -->
+    <title th:text="${lang == 'en' ? detail.seoTitle : detail.seoTitleZh}"></title>
+
+    <!-- 中英双语自动切换 SEO Description -->
+    <meta th:content="${lang == 'en' ? detail.seoDesc : detail.seoDescZh}" name="description">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/country-detail.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- Google 埋点 -->
+    <div th:replace="~{common/ga :: google-analytics}"></div>
+</head>
+<body>
+
+<div class="container">
+    <div class="back">
+        <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Back' : '返回'}"></a>
+    </div>
+
+    <div class="card">
+        <div class="policy-tag"
+             th:classappend="${type == 'unilateral' ? 'uni' : type == 'mutual' ? 'mut' : 'tra'}"
+             th:text="${lang == 'en' ? detail.policyType : detail.policyTypeZh}">
+        </div>
+
+        <h1 class="title" th:text="${lang == 'en' ? detail.name : detail.nameZh}"></h1>
+
+        <div class="row">
+            <span class="label" th:text="${lang == 'en' ? 'Continent:' : '所属大洲:'}"></span>
+            <span class="value" th:text="${lang == 'en' ? detail.continent : detail.continentZh}"></span>
+        </div>
+        <div class="row">
+            <span class="label" th:text="${lang == 'en' ? 'Stay Days:' : '允许停留:'}"></span>
+            <span class="value" th:text="${lang == 'en' ? detail.stayDays + ' days' : detail.stayDays + ' 天'}"></span>
+        </div>
+        <div class="row">
+            <span class="label" th:text="${lang == 'en' ? 'Valid From:' : '生效日期:'}"></span>
+            <span class="value" th:text="${detail.validFrom}"></span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-bottom:12px;" th:text="${lang == 'en' ? 'Purpose' : '入境目的'}"></h3>
+        <p th:text="${lang == 'en' ? detail.purpose : detail.purposeZh}"></p>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-bottom:12px;" th:text="${lang == 'en' ? 'Rules' : '规定'}"></h3>
+        <p th:text="${lang == 'en' ? detail.rule : detail.ruleZh}"></p>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-bottom:12px;" th:text="${lang == 'en' ? 'Notes' : '注意事项'}"></h3>
+        <p th:text="${lang == 'en' ? detail.notes : detail.notesZh}"></p>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-bottom:12px;" th:text="${lang == 'en' ? 'Entry Ports' : '入境口岸'}"></h3>
+        <p th:text="${lang == 'en' ? detail.ports : detail.portsZh}"></p>
+    </div>
+
+    <!-- ====================== 免签 / 互免 / 过境  ====================== -->
+    <div class="card">
+        <h3 style="margin-bottom:16px;" th:text="${lang == 'en' ? 'Required Documents' : '必备入境材料'}"></h3>
+
+        <!-- 单方面免签材料 -->
+        <div th:if="${type == 'unilateral'}">
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Valid ordinary passport (valid for at least 6 months)' :
+            '• 有效普通护照（有效期不少于6个月）'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• No adverse immigration records in China' :
+            '• 无中国不良出入境记录'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Round-trip / onward ticket (recommended)' :
+            '• 往返机票/联程机票（建议准备）'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Hotel booking & financial proof (recommended)' :
+            '• 酒店订单与资金证明（建议准备）'}"></div>
+        </div>
+
+        <!-- 互免签证材料 -->
+        <div th:if="${type == 'mutual'}">
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Valid passport as specified in bilateral agreement' :
+            '• 符合双边协定规定的有效护照'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Passport valid for at least 6 months' :
+            '• 护照有效期不少于6个月'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Stay within the number of days agreed' :
+            '• 停留不超过协定规定天数'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Round-trip ticket & travel itinerary (recommended)' :
+            '• 往返机票与行程单（建议准备）'}"></div>
+        </div>
+
+        <!-- 过境免签材料 -->
+        <div th:if="${type == 'transit'}">
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Valid passport (valid for at least 3 months)' :
+            '• 有效护照（有效期不少于3个月）'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Confirmed onward ticket within 240 hours' :
+            '• 240小时内已确定的联程机票'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• Transit to a third country or region' :
+            '• 须过境前往第三国或地区'}"></div>
+            <div class="doc-item" th:text="${lang == 'en' ?
+            '• No adverse immigration records' :
+            '• 无不良出入境记录'}"></div>
+        </div>
+    </div>
+
+    <!-- ====================== 单方面免签 FAQ（自动显示） ====================== -->
+    <div class="card" th:if="${type == 'unilateral'}">
+        <h3 style="margin-bottom:16px;" th:text="${lang == 'en' ? 'Frequently Asked Questions (FAQ)' : '常见问题解答'}"></h3>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q1: What is the validity period of this policy?' : 'Q1：政策有效期到什么时候？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Brunei has no expiration date. Russia is valid until 14 Sep 2026. All other 48 countries are valid until 31 Dec 2026.' : 'A：文莱无期限；俄罗斯至2026年9月14日；其余48国至2026年12月31日。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q2: How to calculate the stay period?' : 'Q2：停留期限如何计算？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: The stay period starts from the day after entry.' : 'A：停留期限自入境次日起计算。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q3: Can I extend my stay beyond the allowed days?' : 'Q3：可以延期停留吗？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: You must apply for a visa in advance. If you need extension after entry, apply to local immigration authorities.' : 'A：需提前办理签证；入境后有正当理由可向公安机关出入境管理机构申请延期。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q4: What documents are required for entry?' : 'Q4：入境需要准备哪些材料？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Valid ordinary passport. It is recommended to prepare flight tickets, hotel bookings, invitation letters if applicable.' : 'A：持有效普通护照，建议准备机票、酒店订单、邀请函等。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q5: Can I enter multiple times?' : 'Q5：可以多次免签入境吗？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Yes, there is no limit on entry times or total stay days for now.' : 'A：可以，目前无入境次数、总停留天数限制。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q6: Do I need to declare in advance?' : 'Q6：需要提前申报吗？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: No advance declaration or application is required.' : 'A：无需提前向使领馆申报或申请。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q7: What activities are NOT allowed?' : 'Q7：哪些行为不允许？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Work, study, long-term residence, media reporting are NOT allowed.' : 'A：禁止工作、就业、长期居留、学习、记者采访等活动。'}"></p>
+        </div>
+    </div>
+
+    <!-- ====================== 互免签证官方FAQ ====================== -->
+    <div class="card" th:if="${type == 'mutual'}">
+        <h3 style="margin-bottom:16px;" th:text="${lang == 'en' ? 'Mutual Visa Exemption - FAQ' : '互免签证协定 - 常见问题解答'}"></h3>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q1: How to calculate the 30-day stay and 90 days within 180 days?' : 'Q1：如何计算单次30日、180日内累计90日？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: The 180-day period is counted backward from the date of entry. The 90-day limit does not include days under visa, residence permit or APEC card. If you have accumulated 90 days in the past 180 days, you cannot enter visa-free.' : 'A：180日从入境当日向前追溯；90日不含持签证、居留证件、APEC卡停留天数。180日内累计满90日则不可免签入境。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q2: What should I do if my passport is lost after entry?' : 'Q2：入境后护照遗失怎么办？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: You may exit with an emergency travel document issued by your embassy after verification of identity and no overstay.' : 'A：可持本国驻华使领馆签发的紧急旅行证件出境，需核实身份且无逾期停留。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q3: Can I extend my stay beyond 30 days?' : 'Q3：停留超过30日可以延期吗？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: You must leave before expiration. For emergency reasons, apply for a stay permit at local immigration before expiry.' : 'A：应在期满前出境；确有紧急事由，可在期满前向公安机关出入境管理部门申请停留证件。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q4: Do I need to complete accommodation registration?' : 'Q4：是否需要办理住宿登记？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Yes. Registration shall be completed within 24 hours at hotel or local police station.' : 'A：需要。应在入境后24小时内，在酒店或居住地公安机关办理住宿登记。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q5: What passports are eligible?' : 'Q5：哪些护照可享受互免签证？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Only valid passports specified in the bilateral agreement are eligible.' : 'A：仅限双边协定规定的有效护照种类。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q6: What activities are NOT allowed?' : 'Q6：哪些活动不允许？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Work, employment, study, media reporting, long-term residence are prohibited.' : 'A：禁止工作、就业、学习、记者采访、长期居留等活动。'}"></p>
+        </div>
+    </div>
+
+    <!-- ====================== 过境免签官方FAQ ====================== -->
+    <div class="card" th:if="${type == 'transit'}">
+        <h3 style="margin-bottom:16px;" th:text="${lang == 'en' ? 'Transit Visa Exemption - FAQ' : '过境免签政策 - 常见问题解答'}"></h3>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q1: What is 24-hour transit visa exemption?' : 'Q1：什么是24小时过境免签？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: All foreign nationals with valid travel document and confirmed onward ticket can transit visa-free for up to 24 hours without leaving the port area. Leaving the port requires a temporary entry permit.' : 'A：所有国家人员持有效证件+联程客票，可在口岸限定区域内免签停留不超过24小时；离开口岸需申请临时入境许可。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q2: Who qualifies for 240-hour transit visa exemption?' : 'Q2：哪些人可享受240小时过境免签？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Nationals of 57 eligible countries, holding valid passport and confirmed onward ticket within 240 hours, transiting to a third country/region.' : 'A：57个指定国家公民，持有效护照+240小时内确定行程的联程客票，从中国过境前往第三国/地区。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q3: How is the 240-hour period calculated?' : 'Q3：240小时如何计算？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Counted from 00:00 on the day after entry. No extension allowed.' : 'A：自入境次日零时起算，共10天，不可延期。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q4: Which ports and regions are allowed?' : 'Q4：可从哪些口岸入境、在哪些区域活动？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: 60+ open ports in 24 provinces. You may travel across these permitted areas.' : 'A：可从24个省份60余个开放口岸入境，在规定区域内跨省活动。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q5: What activities are allowed?' : 'Q5：可从事哪些活动？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Tourism, business, family visit, transit. Work, study, media reporting, long-term residence are prohibited.' : 'A：仅限旅游、商务、探亲、过境；禁止工作、就业、学习、记者采访、长期居留。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q6: Do I need accommodation registration?' : 'Q6：是否需要办理住宿登记？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Yes. Register at hotel or local police within 24 hours of entry.' : 'A：需要。入境后24小时内，在酒店或居住地公安机关办理住宿登记。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q7: What documents are required?' : 'Q7：需要准备哪些材料？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Valid passport (valid for ≥3 months), confirmed onward ticket within 240 hours, no adverse immigration records.' : 'A：有效期不少于3个月的护照、240小时内联程客票、无不良出入境记录。'}"></p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question" th:text="${lang == 'en' ? 'Q8: Can I change my itinerary?' : 'Q8：可以变更行程吗？'}"></p>
+            <p class="faq-answer" th:text="${lang == 'en' ? 'A: Minor changes allowed, but you must depart within 240 hours and maintain transit to a third country.' : 'A：可小幅调整，但必须在240小时内离境，且保持过境第三国的目的。'}"></p>
+        </div>
+    </div>
+
+    <!-- 过境免签口岸列表 -->
+    <div class="card" th:if="${type == 'transit'}">
+        <h3 th:text="${lang == 'en' ? 'Eligible Ports & Stay Areas' : '适用口岸与停留区域'}"></h3>
+        <div id="transit-ports-list"></div>
+    </div>
+
+    <script>
+        // 从 Thymeleaf 获取当前语言
+        const currentLang = "[[${lang}]]";
+
+        fetch('/ports-transit.json')
+          .then(res => res.json())
+          .then(list => {
+            const html = list.map(item => `
+              <p>
+                <strong>${currentLang === 'en' ? item.provinceEn : item.provinceZh}：</strong>
+                ${currentLang === 'en' ? item.portsEn : item.portsZh} |
+                ${currentLang === 'en' ? item.areaEn : item.areaZh}
+              </p>
+            `).join('');
+            document.getElementById('transit-ports-list').innerHTML = html;
+          });
+    </script>
+
+</div>
+
+<!-- 公共尾部 -->
+<div th:replace="~{common/footer :: footer}"></div>
+</body>
+</html>

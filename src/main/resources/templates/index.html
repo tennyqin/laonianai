@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${lang == 'en' ? siteTitle : siteTitleZh}">China Visa Free Guide</title>
+    <meta th:content="${lang == 'en' ? siteDesc : siteDescZh}" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- Google 埋点 -->
+    <div th:replace="~{common/ga :: google-analytics}"></div>
+</head>
+<body>
+
+<div class="last-update" th:text="${lang == 'en' ? lastUpdate : lastUpdateZh}"></div>
+
+<div class="header">
+    <div class="container header-inner">
+        <a href="/" class="logo" th:text="${siteName}"></a>
+        <div class="nav">
+            <a href="#unilateral" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
+            <a href="#mutual" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
+            <a href="#transit" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
+            <span class="lang">
+                <a href="?lang=en" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
+                <a href="?lang=zh" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1 th:text="${lang == 'en' ? heroTitle : heroTitleZh}"></h1>
+        <p th:text="${lang == 'en' ? heroDesc : heroDescZh}"></p>
+    </div>
+
+    <form method="get" class="search-box">
+        <input type="hidden" name="lang" th:value="${lang}">
+        <input type="text" name="keyword" class="search-input"
+               th:placeholder="${lang == 'en' ? 'Search country...' : '搜索国家名称或代码...'}"
+               th:value="${keyword}">
+        <button class="search-btn" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button>
+    </form>
+
+    <!-- 搜索结果：全部带 policyType 跳转 -->
+    <div th:if="${searched}">
+        <h2 style="text-align:center; margin-bottom:30px;" th:text="${lang == 'en' ? 'Search Results' : '搜索结果'}"></h2>
+
+        <div class="section" th:if="${!unilateralResult.isEmpty()}">
+            <h3 class="title" th:text="${lang == 'en' ? 'Unilateral Visa Free' : '单方面免签'}"></h3>
+            <div class="grid">
+                <div class="card" th:each="country : ${unilateralResult}">
+                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='unilateral')}"
+                       th:text="${lang == 'en' ? country.name : country.nameZh}"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" th:if="${!mutualResult.isEmpty()}">
+            <h3 class="title" th:text="${lang == 'en' ? 'Mutual Visa Exemption' : '互免签证'}"></h3>
+            <div class="grid">
+                <div class="card" th:each="country : ${mutualResult}">
+                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='mutual')}">
+                        <span th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
+                        <span style="font-size:12px;color:#6B7280;">[[${country.days}]]d</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" th:if="${!transitResult.isEmpty()}">
+            <h3 class="title" th:text="${lang == 'en' ? 'Transit Visa Free' : '过境免签'}"></h3>
+            <div class="grid">
+                <div class="card" th:each="country : ${transitResult}">
+                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='transit')}"
+                       th:text="${lang == 'en' ? country.name : country.nameZh}"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" th:if="${unilateralResult.isEmpty() && mutualResult.isEmpty() && transitResult.isEmpty()}">
+            <p style="text-align:center;color:#666;">
+                [[${lang == 'en' ? 'No results found.' : '未找到相关国家。'}]]
+            </p>
+        </div>
+    </div>
+
+    <!-- 正常页面：全部带 type -->
+    <div id="unilateral" class="section" th:if="${!searched}">
+        <h2 class="title" th:text="${lang == 'en' ? unilateralTitle : unilateralTitleZh}"></h2>
+        <p class="subtitle" th:text="${lang == 'en' ? unilateralDesc : unilateralDescZh}"></p>
+        <div th:each="c : ${continents}">
+            <h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? c.name : c.nameZh}"></h3>
+            <div class="grid">
+                <div class="card" th:each="country : ${c.countries}">
+                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='unilateral')}"
+                       th:text="${lang == 'en' ? country.name : country.nameZh}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mutual" class="section" th:if="${!searched}">
+        <h2 class="title" th:text="${lang == 'en' ? mutualTitle : mutualTitleZh}"></h2>
+        <p class="subtitle" th:text="${lang == 'en' ? mutualDesc : mutualDescZh}"></p>
+        <div th:each="cont : ${mutualContinents}">
+            <h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3>
+            <div class="grid">
+                <div class="card" th:each="c : ${cont.countries}">
+                    <a th:href="@{/country/{code}(code=${c.code}, lang=${lang}, type='mutual')}">
+                        <span th:text="${lang == 'en' ? c.name : c.nameZh}"></span>
+                        <span style="font-size:12px;color:#6B7280;">[[${c.days}]]d</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="transit" class="section" th:if="${!searched}">
+        <h2 class="title" th:text="${lang == 'en' ? transitTitle : transitTitleZh}"></h2>
+        <p class="subtitle" th:text="${lang == 'en' ? transitDesc : transitDescZh}"></p>
+        <div th:each="cont : ${transitContinents}">
+            <h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3>
+            <div class="grid">
+                <div class="card" th:each="c : ${cont.countries}">
+                    <a th:href="@{/country/{code}(code=${c.code}, lang=${lang}, type='transit')}"
+                       th:text="${lang == 'en' ? c.name : c.nameZh}"></a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:30px">
+            <div class="policy" th:each="p : ${policies}">
+                <h3 th:text="${lang == 'en' ? p.title : p.titleZh}"></h3>
+                <p th:text="${lang == 'en' ? p.content : p.contentZh}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- footer -->
+ <div th:replace="~{common/footer :: footer}"></div>
+
+</body>
+</html>
