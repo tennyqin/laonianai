@@ -266,3 +266,77 @@ h3 {
   margin-top: 40px;
   line-height: 1.5;
 }
+
+
+/* ========== 首页新增模块样式（增量，不改动原有样式） ========== */
+.intro-block {
+  margin-bottom:24px;
+}
+.intro-block p {
+  margin-bottom:12px;
+  font-size:16px;
+  color:#1f2937;
+  line-height:1.7;
+}
+
+.alert-block {
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:24px;
+  font-size:14px;
+  line-height:1.6;
+}
+.expiry-block {
+  background:#fffbeb;
+  border:1px solid #fcd34d;
+  color:#92400e;
+}
+.disclaimer-block {
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  color:#4b5563;
+}
+
+/* 响应式表格容器 */
+.table-wrap {
+  overflow-x:auto;
+}
+.policy-table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:640px;
+}
+.policy-table th,
+.policy-table td {
+  border:1px solid #e5e7eb;
+  padding:12px 14px;
+  font-size:14px;
+}
+.policy-table th {
+  background:#f9fafb;
+  font-weight:600;
+  text-align:left;
+}
+
+/* FAQ */
+.faq-section {
+  margin-bottom:48px;
+}
+.faq-item {
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:14px;
+}
+.faq-q {
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:8px;
+  color:#111827;
+}
+.faq-a {
+  font-size:14px;
+  color:#4b5563;
+  line-height:1.65;
+}

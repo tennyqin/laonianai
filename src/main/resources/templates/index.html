@@ -6,15 +6,41 @@
     <meta th:content="${lang == 'en' ? siteDesc : siteDescZh}" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
+    <!-- Canonical & Hreflang SEO -->
+    <link rel="canonical" th:href="${#request.requestURL}">
+    <link rel="alternate" hreflang="en" th:href="${#request.requestURL} + '?lang=en'">
+    <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
+    <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
+
     <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Google 埋点 -->
     <div th:replace="~{common/ga :: google-analytics}"></div>
+
+    <!-- FAQ JSON‑LD Schema (Google Featured Snippet) -->
+    <script type="application/ld+json">
+        [
+            {
+                "@context":"https://schema.org",
+                "@type":"FAQPage",
+                "mainEntity": [
+                    <th:"block" th:each="item,stat:${faqs}">
+                    {
+                        "@type":"Question",
+                        "name":[[${lang == 'en' ? item.q : item.qZh}]],
+                        "acceptedAnswer":{
+                            "@type":"Answer",
+                            "text":[[${lang == 'en' ? item.a : item.aZh}]]
+                        }
+                    }<th:block th:if="${!stat.last}">,</th:block>
+                    </th:block>
+                ]
+            }
+        ]
+    </script>
 </head>
 <body>
-
 <div class="last-update" th:text="${lang == 'en' ? lastUpdate : lastUpdateZh}"></div>
-
 <div class="header">
     <div class="container header-inner">
         <a href="/" class="logo" th:text="${siteName}"></a>
@@ -22,20 +48,24 @@
             <a href="#unilateral" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
             <a href="#mutual" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
             <a href="#transit" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
+            <!-- 新增专题导航，后续替换为真实URL -->
+            <a href="#faq-section" th:text="${lang == 'en' ? navFaq : navFaqZh}"></a>
+            <!-- 签证指南页面：跳转到/visa‑guide，带上当前页面的lang变量 -->
+            <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang == 'en' ? navVisaGuide : navVisaGuideZh}"></a>
+
             <span class="lang">
-                <a href="?lang=en" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
-                <a href="?lang=zh" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
+                <!-- 语言切换：留在【当前页面】，仅切换lang参数，不跳转别的页面 -->
+                <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
+                <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
             </span>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="hero">
         <h1 th:text="${lang == 'en' ? heroTitle : heroTitleZh}"></h1>
         <p th:text="${lang == 'en' ? heroDesc : heroDescZh}"></p>
     </div>
-
     <form method="get" class="search-box">
         <input type="hidden" name="lang" th:value="${lang}">
         <input type="text" name="keyword" class="search-input"
@@ -47,7 +77,6 @@
     <!-- 搜索结果：全部带 policyType 跳转 -->
     <div th:if="${searched}">
         <h2 style="text-align:center; margin-bottom:30px;" th:text="${lang == 'en' ? 'Search Results' : '搜索结果'}"></h2>
-
         <div class="section" th:if="${!unilateralResult.isEmpty()}">
             <h3 class="title" th:text="${lang == 'en' ? 'Unilateral Visa Free' : '单方面免签'}"></h3>
             <div class="grid">
@@ -57,7 +86,6 @@
                 </div>
             </div>
         </div>
-
         <div class="section" th:if="${!mutualResult.isEmpty()}">
             <h3 class="title" th:text="${lang == 'en' ? 'Mutual Visa Exemption' : '互免签证'}"></h3>
             <div class="grid">
@@ -69,7 +97,6 @@
                 </div>
             </div>
         </div>
-
         <div class="section" th:if="${!transitResult.isEmpty()}">
             <h3 class="title" th:text="${lang == 'en' ? 'Transit Visa Free' : '过境免签'}"></h3>
             <div class="grid">
@@ -79,13 +106,68 @@
                 </div>
             </div>
         </div>
-
         <div class="section" th:if="${unilateralResult.isEmpty() && mutualResult.isEmpty() && transitResult.isEmpty()}">
             <p style="text-align:center;color:#666;">
                 [[${lang == 'en' ? 'No results found.' : '未找到相关国家。'}]]
             </p>
         </div>
     </div>
+
+    <!-- ====================== 首页新增深度内容模块：仅非搜索模式显示 ====================== -->
+    <div th:if="${!searched}">
+        <div class="intro-block">
+            <p th:text="${lang == 'en' ? introPara1 : introPara1Zh}"></p>
+            <p th:text="${lang == 'en' ? introPara2 : introPara2Zh}"></p>
+        </div>
+
+        <!-- 政策到期提醒块 -->
+        <div class="alert-block expiry-block">
+            <strong th:text="${lang == 'en' ? '⚠️ Policy Expiry Reminder' : '⚠️ 政策到期提醒'}"></strong>
+            <p th:text="${lang == 'en' ? expiryNote : expiryNoteZh}"></p>
+        </div>
+
+        <!-- 免责声明块 -->
+        <div class="alert-block disclaimer-block">
+            <p th:text="${lang == 'en' ? disclaimer : disclaimerZh}"></p>
+        </div>
+
+        <!-- 三类免签对比表格 -->
+        <div class="section compare-section">
+            <h2 class="title" th:text="${lang == 'en' ? compareTableTitle : compareTableTitleZh}"></h2>
+            <div class="table-wrap">
+                <table class="policy-table">
+                    <thead>
+                    <tr th:each="row : ${compareRows}" th:if="${row.label == 'Policy Type'}">
+                        <th th:text="${lang == 'en' ? row.label : row.labelZh}"></th>
+                        <th th:text="${lang == 'en' ? row.col1 : row.col1Zh}"></th>
+                        <th th:text="${lang == 'en' ? row.col2 : row.col2Zh}"></th>
+                        <th th:text="${lang == 'en' ? row.col3 : row.col3Zh}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="row : ${compareRows}" th:if="${row.label != 'Policy Type'}">
+                        <td th:text="${lang == 'en' ? row.label : row.labelZh}"></td>
+                        <td th:text="${lang == 'en' ? row.col1 : row.col1Zh}"></td>
+                        <td th:text="${lang == 'en' ? row.col2 : row.col2Zh}"></td>
+                        <td th:text="${lang == 'en' ? row.col3 : row.col3Zh}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FAQ模块 锚点#faq-section -->
+        <div id="faq-section" class="section faq-section">
+            <h2 class="title" th:text="${lang == 'en' ? 'Frequently Asked Questions' : '常见问题'}"></h2>
+            <div class="faq-items">
+                <div class="faq-item" th:each="item : ${faqs}">
+                    <h3 class="faq-q" th:text="${lang == 'en' ? item.q : item.qZh}"></h3>
+                    <div class="faq-a" th:text="${lang == 'en' ? item.a : item.aZh}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ====================== 新增模块结束 ====================== -->
 
     <!-- 正常页面：全部带 type -->
     <div id="unilateral" class="section" th:if="${!searched}">
@@ -101,7 +183,6 @@
             </div>
         </div>
     </div>
-
     <div id="mutual" class="section" th:if="${!searched}">
         <h2 class="title" th:text="${lang == 'en' ? mutualTitle : mutualTitleZh}"></h2>
         <p class="subtitle" th:text="${lang == 'en' ? mutualDesc : mutualDescZh}"></p>
@@ -117,7 +198,6 @@
             </div>
         </div>
     </div>
-
     <div id="transit" class="section" th:if="${!searched}">
         <h2 class="title" th:text="${lang == 'en' ? transitTitle : transitTitleZh}"></h2>
         <p class="subtitle" th:text="${lang == 'en' ? transitDesc : transitDescZh}"></p>
@@ -130,7 +210,6 @@
                 </div>
             </div>
         </div>
-
         <div style="margin-top:30px">
             <div class="policy" th:each="p : ${policies}">
                 <h3 th:text="${lang == 'en' ? p.title : p.titleZh}"></h3>
@@ -139,9 +218,7 @@
         </div>
     </div>
 </div>
-
- <!-- footer -->
- <div th:replace="~{common/footer :: footer}"></div>
-
+<!-- footer -->
+<div th:replace="~{common/footer :: footer}"></div>
 </body>
 </html>
