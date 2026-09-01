@@ -905,29 +905,29 @@
       "nameZh": "三亚"
     }
   ],
-  "siteDescExtended":"Check eligibility for China visa‑free entry: unilateral 30‑day, mutual visa exemption, 240‑hour transit visa‑free. Requirements, expiry dates and FAQ for foreign visitors travelling to China.",
+  "siteDescExtended":"Check eligibility for China visa-free entry: unilateral 30-day, mutual visa exemption, 240-hour transit visa-free. Requirements, expiry dates and FAQ for foreign visitors travelling to China.",
   "siteDescExtendedZh":"来华外国人免签资格查询：单方面免签、互免协定、240小时过境免签；入境材料、政策到期时间、常见问题。",
-  "introPara1":"This reference website summarizes China’s official visa‑free entry policies published by the National Immigration Administration (NIA). Three major visa‑free schemes apply to foreign nationals visiting China for tourism, business visits, family reunions or transit purposes. Always verify against official NIA announcements before departure, as policies carry expiration dates and may be adjusted.",
+  "introPara1":"This reference website summarizes China’s official visa-free entry policies published by the National Immigration Administration (NIA). Three major visa-free schemes apply to foreign nationals visiting China for tourism, business visits, family reunions or transit purposes. Always verify against official NIA announcements before departure, as policies carry expiration dates and may be adjusted.",
   "introPara1Zh":"本站汇总国家移民管理局发布的中国免签入境官方政策。外国人赴华旅游、商务、探亲或过境可适用三类免签制度。所有免签政策存在有效期，出行前请务必核对国家移民管理局最新公告。",
-  "introPara2":"Unilateral visa‑free, mutual visa exemption and 240‑hour transit visa‑free have different stay‑lengths, eligibility rules and permitted activities. Use the search box or country list below to look up rules for your nationality. If your country is not covered by any visa‑free arrangement, you will need to apply for a Chinese visa in advance.",
+  "introPara2":"Unilateral visa-free, mutual visa exemption and 240-hour transit visa-free have different stay-lengths, eligibility rules and permitted activities. Use the search box or country list below to look up rules for your nationality. If your country is not covered by any visa-free arrangement, you will need to apply for a Chinese visa in advance.",
   "introPara2Zh":"单方面免签、互免签证、240小时过境免签在停留时长、适用条件、允许活动上有明确区别。使用搜索框或下方国家列表查询本国入境规则；若你的国家不在免签范围内，则需要提前申请中国签证。",
   "disclaimer":"Disclaimer: This site is an independent informational reference, NOT an official government website. All information is compiled from NIA public releases. Confirm entry rules with official sources before travel.",
   "disclaimerZh":"免责声明：本站仅为独立资讯参考网站，并非政府官方站点。全部信息整理自国家移民管理局公开公告，出行前请以官方渠道核实入境规则。",
-  "expiryNote":"Policy Expiry Reminder: Most unilateral 30‑day visa‑free policies expire on 31‑Dec‑2026. Russian citizens’ unilateral visa‑free is valid until 31‑Dec‑2027. Brunei holds unlimited unilateral visa‑free access. Mutual agreements follow bilateral treaty terms.",
-  "expiryNoteZh":"政策到期提醒：绝大多数单方面30天免签政策将于2026‑12‑31到期；俄罗斯单方面免签有效期至2027‑12‑31；文莱单方面免签无截止期限；互免签证按双边协定有效期执行。",
-  "compareTableTitle":"Overview of Three China Visa‑Free Schemes",
+  "expiryNote":"Policy Expiry Reminder: Most unilateral 30-day visa-free policies expire on 31-Dec-2026. Russian citizens’ unilateral visa-free is valid until 31-Dec-2027. Brunei holds unlimited unilateral visa-free access. Mutual agreements follow bilateral treaty terms.",
+  "expiryNoteZh":"政策到期提醒：绝大多数单方面30天免签政策将于2026-12-31到期；俄罗斯单方面免签有效期至2027-12-31；文莱单方面免签无截止期限；互免签证按双边协定有效期执行。",
+  "compareTableTitle":"Overview of Three China Visa-Free Schemes",
   "compareTableTitleZh":"三类中国免签制度对比总览",
   "compareRows":[
     {
       "label":"Policy Type","labelZh":"政策类型",
-      "col1":"Unilateral 30‑Day Visa‑Free","col1Zh":"单方面30天免签",
+      "col1":"Unilateral 30-Day Visa-Free","col1Zh":"单方面30天免签",
       "col2":"Mutual Visa Exemption","col2Zh":"互免签证协定",
-      "col3":"240‑Hour Transit Visa‑Free","col3Zh":"240小时过境免签"
+      "col3":"240-Hour Transit Visa-Free","col3Zh":"240小时过境免签"
     },
     {
       "label":"Max Stay","labelZh":"最长停留",
       "col1":"Up to 30 days","col1Zh":"最长30天",
-      "col2":"30‑90 days (varies by country)","col2Zh":"30‑90天（各国不同）",
+      "col2":"30-90 days (varies by country)","col2Zh":"30-90天（各国不同）",
       "col3":"Up to 10 days (transit only)","col3Zh":"最长10天（仅限过境）"
     },
     {
@@ -940,38 +940,38 @@
       "label":"Policy Nature","labelZh":"政策性质",
       "col1":"China unilateral policy (expiring)","col1Zh":"中国单方面政策（有到期日）",
       "col2":"Bilateral government agreement","col2Zh":"双边政府协定",
-      "col3":"Transit‑specific entry facilitation","col3Zh":"专门过境便利政策"
+      "col3":"Transit-specific entry facilitation","col3Zh":"专门过境便利政策"
     }
   ],
   "faqs":[
     {
-      "q":"What documents do I need for visa‑free entry into China?",
+      "q":"What documents do I need for visa-free entry into China?",
       "qZh":"免签入境中国我需要准备哪些材料？",
-      "a":"Valid passport with ≥6‑month validity, sufficient blank pages. It is strongly recommended to carry onward/return flight tickets and proof of accommodation. Visa‑free entry does not guarantee admission; final decision rests with border inspection.",
+      "a":"Valid passport with ≥6-month validity, sufficient blank pages. It is strongly recommended to carry onward/return flight tickets and proof of accommodation. Visa-free entry does not guarantee admission; final decision rests with border inspection.",
       "aZh":"有效期≥6个月的护照并留有足够空白签证页；建议备好离境机票、住宿预订单。免签资格不等于一定允许入境，最终由边检确定。"
     },
     {
-      "q":"Can I work or study under visa‑free status?",
+      "q":"Can I work or study under visa-free status?",
       "qZh":"免签入境可以工作或者读书吗？",
-      "a":"No. Visa‑free entry cannot be used for paid work, employment, internships or formal study. You must apply for the corresponding Chinese visa before arrival for these activities.",
+      "a":"No. Visa-free entry cannot be used for paid work, employment, internships or formal study. You must apply for the corresponding Chinese visa before arrival for these activities.",
       "aZh":"不可以。免签入境禁止务工、受雇、实习、正式留学；从事以上活动必须提前办理对应类型中国签证。"
     },
     {
-      "q":"Can I extend my visa‑free stay after arriving in China?",
+      "q":"Can I extend my visa-free stay after arriving in China?",
       "qZh":"免签入境后可以在中国境内延期停留吗？",
-      "a":"Visa‑free status generally cannot be extended inside mainland China. If you need longer stay, apply for a proper visa before travelling to China.",
+      "a":"Visa-free status generally cannot be extended inside mainland China. If you need longer stay, apply for a proper visa before travelling to China.",
       "aZh":"免签入境一般无法在中国境内申请延期。如需更长停留时间，请出发前申请对应签证。"
     },
     {
-      "q":"What if my country is not on any visa‑free list?",
+      "q":"What if my country is not on any visa-free list?",
       "qZh":"我的国家不在任何免签清单该怎么办？",
       "a":"You must apply for a Chinese tourist/business visa from Chinese embassies or consulates before travelling to China.",
       "aZh":"你必须出行前在中国驻外使领馆申请中国旅游或商务类签证。"
     },
     {
-      "q":"What is the difference between unilateral and mutual visa‑free?",
+      "q":"What is the difference between unilateral and mutual visa-free?",
       "qZh":"单方面免签与互免签证有什么区别？",
-      "a":"Unilateral visa‑free: China allows foreign citizens entry visa‑free, without reciprocal treatment for Chinese passport holders. Mutual visa‑free: both countries grant visa‑free access to each‑other’s ordinary passport holders under bilateral treaties.",
+      "a":"Unilateral visa-free: China allows foreign citizens entry visa-free, without reciprocal treatment for Chinese passport holders. Mutual visa-free: both countries grant visa-free access to each-other’s ordinary passport holders under bilateral treaties.",
       "aZh":"单方面免签：中国单方面给予对方公民免签，中国护照持有人不一定享受对方免签；互免签证：两国通过双边协定互相给予普通护照持有人免签待遇。"
     }
   ],

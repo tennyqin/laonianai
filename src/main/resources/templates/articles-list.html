@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${lang == 'en' ? 'Travel Pitfall Guides | China Visa-Free Tips' : '出行避坑指南｜中国免签旅行提示'}"></title>
+    <meta name="description" th:content="${lang == 'en' ? 'Practical travel pitfall guides for foreigners travelling to China visa-free. Articles covering visa-free rules, entry, stay and exit tips.' : '面向来华外籍游客的出行避坑指南，包含免签政策、入境停留出境各类实用文章'}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" th:href="${#request.requestURL}">
+    <link rel="alternate" hreflang="en" th:href="${#request.requestURL} + '?lang=en'">
+    <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
+    <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
+    <link rel="stylesheet" href="/css/index.css?20260901">
+    <link rel="stylesheet" href="/css/footer.css?20260901">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <div th:replace="~{common/ga :: google-analytics}"></div>
+    <style>
+        /* 局部分页增强样式，复用网站主题 */
+        .pagination-wrap{
+            margin-top:40px;
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:8px;
+        }
+        .pagination-item{
+            padding:8px 14px;
+            border-radius:12px;
+            border:1px solid #E5E7EB;
+            background:#fff;
+            min-width:40px;
+            text-align:center;
+            text-decoration:none;
+            font-size:14px;
+            transition: all 0.2s ease;
+        }
+        .pagination-item:hover{
+            border-color:#10b981;
+            box-shadow:0 2px 8px rgba(16,185,129,0.08);
+        }
+        .pagination-item.active{
+            background:#059669;
+            color:#fff;
+            border-color:#059669;
+        }
+        .pagination-item.disabled{
+            color:#9CA3AF;
+            cursor:not-allowed;
+            pointer-events:none;
+        }
+        .pagination-ellipsis{
+            padding:8px 6px;
+            color:#6B7280;
+        }
+        .article-card{
+            padding:20px;
+            margin-bottom:20px;
+        }
+        .article-date{
+            font-size:13px;
+            color:#888;
+            margin:6px 0 10px;
+        }
+        /* hero标题居中，解决标题靠左 */
+        .hero h1{
+            text-align:center;
+        }
+        .hero p{
+            text-align:center;
+            max-width:720px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="container header-inner">
+        <a th:href="|/?lang=${lang}|" class="logo">China Visa Free Guide 2026</a>
+        <div class="nav">
+            <a th:href="|/?lang=${lang}|" th:text="${lang=='en'?'Home':'首页'}"></a>
+            <a th:href="|/?lang=${lang}#unilateral|" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
+            <a th:href="|/?lang=${lang}#mutual|" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
+            <a th:href="|/?lang=${lang}#transit|" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
+            <a th:href="|/articles?lang=${lang}|" style="color:#059669;font-weight:bold;" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></a>
+            <a th:href="|/visa-guide?lang=${lang}|" th:text="${lang == 'en' ? 'Apply for Visa' : '签证申请指南'}"></a>
+            <span class="lang">
+                <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
+                <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Home' : '首页'}"></a>
+            <span class="sep">/</span>
+            <span class="current" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></span>
+        </div>
+    </div>
+
+    <div class="hero" style="padding:24px 0 12px;">
+        <h1 th:text="${lang == 'en' ? 'Travel Pitfall Guides' : '出行避坑指南'}"></h1>
+        <p th:text="${lang == 'en' ? 'Practical articles for foreign visitors to understand China visa-free travel rules and avoid common mistakes.' : '帮助外籍来华游客读懂中国免签旅行规则，避开高频踩坑的实用文章'}"></p>
+    </div>
+
+    <!-- 搜索框：增大上下边距，优化留白 -->
+    <form method="get" class="search-box" style="margin:24px 0 32px;">
+        <input type="hidden" name="lang" th:value="${lang}">
+        <input type="text" name="keyword" class="search-input"
+               th:placeholder="${lang == 'en' ? 'Search articles...' : '搜索文章标题/摘要...'}"
+               th:value="${keyword}">
+        <button class="search-btn" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button>
+    </form>
+
+    <div th:if="${articlePageList.isEmpty()}">
+        <p style="text-align:center;color:#666;font-size:16px;margin:50px 0;"
+           th:text="${lang == 'en' ? 'No matching articles found.' : '没有找到匹配的文章'}"></p>
+    </div>
+
+    <div class="list-container">
+        <div th:each="art : ${articlePageList}" class="card article-card">
+            <a th:href="@{/articles/{id}(id=${art.id}, lang=${lang})}" style="display:block;">
+                <h3 style="margin-bottom:4px;" th:text="${lang=='en' ? art.titleEn : art.titleZh}"></h3>
+                <div class="article-date" th:text="${art['displayPublishDate']}"></div>
+                <p style="color:#4B5563;font-size:15px;line-height:1.7;" th:text="${lang=='en' ? art.summaryEn : art.summaryZh}"></p>
+            </a>
+        </div>
+    </div>
+
+    <!-- 【关键】只有总页数>1，才渲染分页组件，单页完全隐藏 -->
+    <div class="pagination-wrap" th:if="${totalPages > 1}">
+        <!-- 首页 -->
+        <a th:if="${page > 1}" class="pagination-item"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},page=1,size=${size})}"
+           th:text="${lang=='en'?'First':'首页'}"></a>
+        <span th:unless="${page > 1}" class="pagination-item disabled" th:text="${lang=='en'?'First':'首页'}"></span>
+
+        <!-- 上一页 -->
+        <a th:if="${page >1}" class="pagination-item"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},page=${page-1},size=${size})}"
+           th:text="${lang=='en'?'Prev':'上一页'}"></a>
+        <span th:unless="${page >1}" class="pagination-item disabled" th:text="${lang=='en'?'Prev':'上一页'}"></span>
+
+        <!-- 页码数字，只渲染前后2页，超出显示省略号 -->
+        <th:block th:with="startPage=${page - 2},endPage=${page +2}">
+            <span th:if="${startPage >2}" class="pagination-ellipsis">…</span>
+            <th:block th:each="i : ${#numbers.sequence(1,totalPages)}">
+                <span th:if="${i >= startPage and i <= endPage}">
+                    <a th:if="${i != page}" class="pagination-item"
+                       th:href="@{/articles(lang=${lang},keyword=${keyword},page=${i},size=${size})}"
+                       th:text="${i}"></a>
+                    <span th:if="${i == page}" class="pagination-item active" th:text="${i}"></span>
+                </span>
+            </th:block>
+            <span th:if="${endPage < (totalPages -1)}" class="pagination-ellipsis">…</span>
+        </th:block>
+
+        <!-- 下一页 -->
+        <a th:if="${page < totalPages}" class="pagination-item"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},page=${page+1},size=${size})}"
+           th:text="${lang=='en'?'Next':'下一页'}"></a>
+        <span th:unless="${page < totalPages}" class="pagination-item disabled" th:text="${lang=='en'?'Next':'下一页'}"></span>
+
+        <!-- 尾页 -->
+        <a th:if="${page < totalPages}" class="pagination-item"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},page=${totalPages},size=${size})}"
+           th:text="${lang=='en'?'Last':'尾页'}"></a>
+        <span th:unless="${page < totalPages}" class="pagination-item disabled" th:text="${lang=='en'?'Last':'尾页'}"></span>
+    </div>
+</div>
+<div th:replace="~{common/footer :: footer}"></div>
+</body>
+</html>

@@ -87,7 +87,7 @@
             '• No adverse immigration records in China' :
             '• 无中国不良出入境记录'}"></div>
             <div class="doc-item" th:text="${lang == 'en' ?
-            '• Round‑trip / onward ticket (recommended)' :
+            '• Round-trip / onward ticket (recommended)' :
             '• 往返机票/联程机票（建议准备）'}"></div>
             <div class="doc-item" th:text="${lang == 'en' ?
             '• Hotel booking & financial proof (recommended)' :
@@ -104,7 +104,7 @@
             '• Stay within the number of days agreed' :
             '• 停留不超过协定规定天数'}"></div>
             <div class="doc-item" th:text="${lang == 'en' ?
-            '• Round‑trip ticket & travel itinerary (recommended)' :
+            '• Round-trip ticket & travel itinerary (recommended)' :
             '• 往返机票与行程单（建议准备）'}"></div>
         </div>
         <div th:if="${type == 'transit'}">
@@ -126,14 +126,14 @@
     <div th:if="${countryExtra != null and (lang == 'en' ? countryExtra.policyExplainEn : countryExtra.policyExplainZh) != null and (lang == 'en' ? countryExtra.policyExplainEn : countryExtra.policyExplainZh) != ''}"
          th:with="explainText=${lang == 'en' ? countryExtra.policyExplainEn : countryExtra.policyExplainZh}"
          class="card">
-        <h3 th:text="${lang == 'en' ? 'Policy In‑depth Explanation' : '政策深度解读'}"></h3>
+        <h3 th:text="${lang == 'en' ? 'Policy In-depth Explanation' : '政策深度解读'}"></h3>
         <p th:text="${explainText}"></p>
     </div>
     <!-- 出行前自查清单 -->
     <div th:if="${countryExtra != null and (lang == 'en' ? countryExtra.checklistEn : countryExtra.checklistZh) != null and not #lists.isEmpty(lang == 'en' ? countryExtra.checklistEn : countryExtra.checklistZh)}"
          th:with="checkList=${lang == 'en' ? countryExtra.checklistEn : countryExtra.checklistZh}"
          class="card">
-        <h3 th:text="${lang == 'en' ? 'Pre‑departure Checklist' : '出行前自查清单'}"></h3>
+        <h3 th:text="${lang == 'en' ? 'Pre-departure Checklist' : '出行前自查清单'}"></h3>
         <div th:each="item : ${checkList}" class="doc-item">[[${item}]]</div>
     </div>
     <!-- 高频误区避坑 -->
@@ -157,7 +157,7 @@
         <h3 th:text="${lang == 'en' ? 'Practical Entry Tips' : '入境实操建议'}"></h3>
         <div th:each="tip : ${tipsList}" class="doc-item">• [[${tip}]]</div>
         <p style="margin-top:12px;font-size:14px;color:#666;">
-            <span th:text="${lang=='en'?'*Tips are for reference only, subject to on‑site border inspection':'*以上提示仅供出行参考，入境以边检现场执行为准'}"></span>
+            <span th:text="${lang=='en'?'*Tips are for reference only, subject to on-site border inspection':'*以上提示仅供出行参考，入境以边检现场执行为准'}"></span>
         </p>
     </div>
     <!-- ===================== 通用FAQ（重构折叠样式）===================== -->
@@ -223,19 +223,19 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Work, study, long‑term residence, media reporting are NOT allowed.' : 'A：禁止工作、就业、长期居留、学习、记者采访等活动。'}"></div>
+                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Work, study, long-term residence, media reporting are NOT allowed.' : 'A：禁止工作、就业、长期居留、学习、记者采访等活动。'}"></div>
             </div>
         </div>
     </div>
     <div class="card faq-section-wrap" th:if="${type == 'mutual'}">
-        <h3 th:text="${lang == 'en' ? 'Mutual Visa Exemption ‑ FAQ' : '互免签证协定 ‑ 常见问题解答'}"></h3>
+        <h3 th:text="${lang == 'en' ? 'Mutual Visa Exemption - FAQ' : '互免签证协定 - 常见问题解答'}"></h3>
         <div class="faq-item">
             <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: How to calculate the 30‑day stay and 90 days within 180 days?' : 'Q1：如何计算单次30日、180日内累计90日？'}"></p>
+                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: How to calculate the 30-day stay and 90 days within 180 days?' : 'Q1：如何计算单次30日、180日内累计90日？'}"></p>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: The 180‑day period is counted backward from the date of entry. The 90‑day limit does not include days under visa, residence permit or APEC card. If you have accumulated 90 days in the past 180 days, you cannot enter visa‑free.' : 'A：180日从入境当日向前追溯；90日不含持签证、居留证件、APEC卡停留天数。180日内累计满90日则不可免签入境。'}"></div>
+                <div class="faq-answer" th:text="${lang == 'en' ? 'A: The 180-day period is counted backward from the date of entry. The 90-day limit does not include days under visa, residence permit or APEC card. If you have accumulated 90 days in the past 180 days, you cannot enter visa-free.' : 'A：180日从入境当日向前追溯；90日不含持签证、居留证件、APEC卡停留天数。180日内累计满90日则不可免签入境。'}"></div>
             </div>
         </div>
         <div class="faq-item">
@@ -280,24 +280,24 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Work, employment, study, media reporting, long‑term residence are prohibited.' : 'A：禁止工作、就业、学习、记者采访、长期居留等活动。'}"></div>
+                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Work, employment, study, media reporting, long-term residence are prohibited.' : 'A：禁止工作、就业、学习、记者采访、长期居留等活动。'}"></div>
             </div>
         </div>
     </div>
     <div class="card faq-section-wrap" th:if="${type == 'transit'}">
-        <h3 th:text="${lang == 'en' ? 'Transit Visa Exemption ‑ FAQ' : '过境免签政策 ‑ 常见问题解答'}"></h3>
+        <h3 th:text="${lang == 'en' ? 'Transit Visa Exemption - FAQ' : '过境免签政策 - 常见问题解答'}"></h3>
         <div class="faq-item">
             <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: What is the 240‑hour transit visa‑free policy?' : 'Q1：什么是240小时过境免签政策？'}"></p>
+                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: What is the 240-hour transit visa-free policy?' : 'Q1：什么是240小时过境免签政策？'}"></p>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Eligible citizens from 57 countries may enjoy up to 10‑day transit stay under 240‑hour transit visa‑free. Cross‑regional travel is allowed within designated regions of 24 provinces across 65 ports. This policy is only for transit passengers heading to a third country or region.' : 'A：57个符合条件国家的公民可享受240小时过境免签，最长可停留10天；可在24个省份共65个指定口岸对应的允许区域内跨省活动。该政策仅适用于前往第三国/地区的过境旅客。'}"></div>
+                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Eligible citizens from 57 countries may enjoy up to 10-day transit stay under 240-hour transit visa-free. Cross-regional travel is allowed within designated regions of 24 provinces across 65 ports. This policy is only for transit passengers heading to a third country or region.' : 'A：57个符合条件国家的公民可享受240小时过境免签，最长可停留10天；可在24个省份共65个指定口岸对应的允许区域内跨省活动。该政策仅适用于前往第三国/地区的过境旅客。'}"></div>
             </div>
         </div>
         <div class="faq-item">
             <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q2: Who qualifies for 240‑hour transit visa exemption?' : 'Q2：哪些人可享受240小时过境免签？'}"></p>
+                <p class="faq-question" th:text="${lang == 'en' ? 'Q2: Who qualifies for 240-hour transit visa exemption?' : 'Q2：哪些人可享受240小时过境免签？'}"></p>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
@@ -306,7 +306,7 @@
         </div>
         <div class="faq-item">
             <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q3: How is the 240‑hour period calculated?' : 'Q3：240小时如何计算？'}"></p>
+                <p class="faq-question" th:text="${lang == 'en' ? 'Q3: How is the 240-hour period calculated?' : 'Q3：240小时如何计算？'}"></p>
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
@@ -328,7 +328,7 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Tourism, business, family visit, transit. Work, study, media reporting, long‑term residence are prohibited.' : 'A：仅限旅游、商务、探亲、过境；禁止工作、就业、学习、记者采访、长期居留。'}"></div>
+                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Tourism, business, family visit, transit. Work, study, media reporting, long-term residence are prohibited.' : 'A：仅限旅游、商务、探亲、过境；禁止工作、就业、学习、记者采访、长期居留。'}"></div>
             </div>
         </div>
         <div class="faq-item">
@@ -363,7 +363,7 @@
     <div th:if="${countryExtra != null and (lang == 'en' ? countryExtra.customFaqsEn : countryExtra.customFaqsZh) != null and not #lists.isEmpty(lang == 'en' ? countryExtra.customFaqsEn : countryExtra.customFaqsZh)}"
          th:with="customFaqList=${lang == 'en' ? countryExtra.customFaqsEn : countryExtra.customFaqsZh}"
          class="card faq-section-wrap">
-        <h3 th:text="${lang == 'en' ? 'Country‑Specific FAQ' : '该国专属常见问题'}"></h3>
+        <h3 th:text="${lang == 'en' ? 'Country-Specific FAQ' : '该国专属常见问题'}"></h3>
         <div th:each="faq : ${customFaqList}" class="faq-item">
             <div class="faq-q-wrap" tabindex="0" role="button">
                 <p class="faq-question" th:text="${faq.q}"></p>
@@ -374,7 +374,7 @@
             </div>
         </div>
         <p style="margin-top:14px;font-size:13px;color:#666;">
-            <span th:text="${lang=='en'?'*Country‑specific supplementary questions for reference only':'*该国专属补充问答仅供出行参考'}"></span>
+            <span th:text="${lang=='en'?'*Country-specific supplementary questions for reference only':'*该国专属补充问答仅供出行参考'}"></span>
         </p>
     </div>
     <!-- 不适用场景与限制 -->
@@ -417,7 +417,7 @@
             document.getElementById('transit-ports-list').innerHTML = html;
           })
           .catch(err=>{
-              console.error('ports‑transit.json load error',err);
+              console.error('ports-transit.json load error',err);
               const el = document.getElementById('transit-ports-list');
               if(el){
                 el.innerHTML = currentLang === 'en'

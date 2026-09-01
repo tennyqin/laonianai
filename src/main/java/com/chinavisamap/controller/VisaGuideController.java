@@ -20,7 +20,7 @@ public class VisaGuideController {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             temp = objectMapper.readValue(
-                    new ClassPathResource("visa‑guide.json").getInputStream(),
+                    new ClassPathResource("visa-guide.json").getInputStream(),
                     new TypeReference<Map<String, Object>>() {}
             );
         } catch (Exception ignored) {

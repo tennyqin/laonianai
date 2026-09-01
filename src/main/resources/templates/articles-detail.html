@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${lang == 'en' ? article.titleEn : article.titleZh}"></title>
+    <meta name="description" th:content="${lang == 'en' ? article.summaryEn : article.summaryZh}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" th:href="${#request.requestURL}">
+    <link rel="alternate" hreflang="en" th:href="@{/articles/{id}(id=${article.id}, lang='en')}">
+    <link rel="alternate" hreflang="zh" th:href="@{/articles/{id}(id=${article.id}, lang='zh')}">
+    <link rel="alternate" hreflang="x-default" th:href="@{/articles/{id}(id=${article.id}, lang='en')}">
+    <link rel="stylesheet" href="/css/index.css?20260901">
+    <link rel="stylesheet" href="/css/country-detail.css?20260901">
+    <link rel="stylesheet" href="/css/footer.css?20260901">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <div th:replace="~{common/ga :: google-analytics}"></div>
+    <style>
+        .article-content h3 {
+            margin-top:24px;
+            margin-bottom:10px;
+            font-size:18px;
+            font-weight:600;
+            color:#111827;
+        }
+        .article-content p,
+        .article-content li {
+            font-size:15px;
+            line-height:1.75;
+            color:#2D3436;
+            margin-bottom:10px;
+        }
+        .article-content ul,
+        .article-content ol {
+            padding-left:22px;
+            margin-bottom:14px;
+        }
+        .article-meta {
+            font-size:14px;
+            color:#777;
+            margin-bottom:24px;
+            padding-bottom:12px;
+            border-bottom:1px solid #F3F4F6;
+        }
+        .related-links-block h3 {
+            margin-bottom:14px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="container header-inner">
+        <a th:href="|/?lang=${lang}|" class="logo">China Visa Free Guide 2026</a>
+        <div class="nav">
+            <a th:href="|/?lang=${lang}|" th:text="${lang=='en'?'Home':'首页'}"></a>
+            <a th:href="|/?lang=${lang}#unilateral|" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
+            <a th:href="|/?lang=${lang}#mutual|" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
+            <a th:href="|/?lang=${lang}#transit|" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
+            <a th:href="|/articles?lang=${lang}|" style="color:#059669;font-weight:bold;" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></a>
+            <a th:href="|/visa-guide?lang=${lang}|" th:text="${lang == 'en' ? 'Apply for Visa' : '签证申请指南'}"></a>
+            <span class="lang">
+                <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
+                <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Home' : '首页'}"></a>
+            <span class="sep">/</span>
+            <a th:href="@{/articles(lang=${lang})}" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></a>
+            <span class="sep">/</span>
+            <span class="current" th:text="${lang=='en' ? article.titleEn : article.titleZh}"></span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h1 class="title" th:text="${lang=='en' ? article.titleEn : article.titleZh}"></h1>
+        <div class="article-meta">
+            <span th:text="${lang == 'en' ? 'Published: ' : '发布时间：'}"></span>
+            <span th:text="${article['displayPublishDate']}"></span>
+        </div>
+        <div class="article-content" th:utext="${lang == 'en' ? article.contentEn : article.contentZh}"></div>
+    </div>
+
+    <div class="card related-links-block">
+        <h3 th:text="${lang == 'en' ? 'Related links' : '相关跳转'}"></h3>
+        <div class="doc-item">
+            <a th:href="@{/articles(lang=${lang})}" th:text="${lang == 'en' ? '← Back to all articles' : '← 返回全部避坑指南'}"></a>
+        </div>
+        <div class="doc-item">
+            <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? '← Return home page' : '← 返回网站首页'}"></a>
+        </div>
+        <!-- 关联国家跳转，循环relatedCountryCodes -->
+        <th:block th:if="${article.relatedCountryCodes != null and not #lists.isEmpty(article.relatedCountryCodes)}">
+            <p style="margin-top:14px;font-size:14px;color:#555;" th:text="${lang == 'en' ? 'Related country policy pages:' : '关联国家政策页面：'}"></p>
+            <div th:each="code : ${article.relatedCountryCodes}" class="doc-item">
+                <a th:href="@{/country/{code}(code=${code}, lang=${lang})}" th:text="${code}"></a>
+            </div>
+        </th:block>
+    </div>
+</div>
+<div th:replace="~{common/footer :: footer}"></div>
+</body>
+</html>

@@ -22,7 +22,7 @@ public class CountryController {
     private Map<String, CountryDetail> mutualMap;
     private Map<String, CountryDetail> transitMap;
 
-    // 新增：国家个性化扩展配置 country‑extra.json
+    // 新增：国家个性化扩展配置 country-extra.json
     private Map<String, Map<String, Object>> countryExtraMap;
 
     public CountryController(ObjectMapper objectMapper) {
@@ -43,11 +43,11 @@ public class CountryController {
         } catch (Exception ignored) {
         }
 
-        // 加载新增 country‑extra.json
+        // 加载新增 country-extra.json
         try {
             countryExtraMap = objectMapper.readValue(
 
-                    new ClassPathResource("country‑extra.json").getInputStream(),
+                    new ClassPathResource("country-extra.json").getInputStream(),
                     new TypeReference<Map<String, Map<String, Object>>>() {}
             );
         } catch (Exception ignored) {
@@ -67,7 +67,7 @@ public class CountryController {
             @RequestParam(defaultValue = "zh") String lang,
             Model model
     ) {
-        // type参数存在，走详情页面（旧query‑param地址）
+        // type参数存在，走详情页面（旧query-param地址）
         if (StringUtils.isNotBlank(type)) {
             CountryDetail detail = getCountryDetail(code, type);
             if (detail == null) {
@@ -85,7 +85,7 @@ public class CountryController {
             model.addAttribute("countryExtra", countryExtra);
             return "country-detail";
         } else {
-            // type为空，进入【国家聚合总页 country‑home】
+            // type为空，进入【国家聚合总页 country-home】
             List<String> availableTypes = detectAvailableTypes(code);
             if (availableTypes.isEmpty()) {
                 return "redirect:/";
@@ -99,7 +99,7 @@ public class CountryController {
             model.addAttribute("detailCountry", detailCountry);
             model.addAttribute("availableTypes", availableTypes);
             model.addAttribute("countryExtraRoot", countryExtraRoot);
-            return "country‑home";
+            return "country-home";
         }
     }
 

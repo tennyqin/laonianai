@@ -30,6 +30,7 @@
             <a th:href="|/?lang=${lang}#transit|" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
             <a th:href="|/?lang=${lang}#faq-section|" th:text="${lang == 'en' ? 'FAQ' : '常见问题'}"></a>
             <a th:href="|/visa-guide?lang=${lang}|" th:text="${lang == 'en' ? 'Apply for Visa' : '签证申请指南'}" style="color:#059669;font-weight:bold;"></a>
+            <a th:href="|/articles?lang=${lang}|" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></a>
             <span class="lang">
                 <!--语言切换按钮，保留@{表达式，当前页面切换语言，不跳转页面 -->
                 <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
@@ -91,7 +92,7 @@
             <div class="faq-item" th:each="item : ${vg.visaFaqs}">
                 <div class="faq-q">
                     <span th:text="${lang == 'en' ? item.qEn : item.qZh}"></span>
-                    <span class="faq‑toggle">+</span>
+                    <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-a">
                     <div th:text="${lang == 'en' ? item.aEn : item.aZh}"></div>
@@ -101,7 +102,7 @@
     </div>
 
     <div style="text-align:center;margin:30px 0;">
-        <a th:href="|/?lang=${lang}|" style="color:#059669;font-weight:600;">← <span th:text="${lang=='en'?'Back to homepage to check visa‑free eligibility':'返回首页查询免签资格'}"></span></a>
+        <a th:href="|/?lang=${lang}|" style="color:#059669;font-weight:600;">← <span th:text="${lang=='en'?'Back to homepage to check visa-free eligibility':'返回首页查询免签资格'}"></span></a>
     </div>
 
 </div>
@@ -115,7 +116,7 @@
         q.addEventListener('click', function(){
           const parent = this.closest('.faq-item');
           parent.classList.toggle('open');
-          const toggle = this.querySelector('.faq‑toggle');
+          const toggle = this.querySelector('.faq-toggle');
           toggle.textContent = parent.classList.contains('open') ? '−' : '+';
         });
       });
