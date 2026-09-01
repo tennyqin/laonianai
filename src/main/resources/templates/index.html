@@ -12,32 +12,10 @@
     <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
     <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
 
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css?20260830">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Google 埋点 -->
     <div th:replace="~{common/ga :: google-analytics}"></div>
-
-    <!-- FAQ JSON‑LD Schema (Google Featured Snippet) -->
-    <script type="application/ld+json">
-        [
-            {
-                "@context":"https://schema.org",
-                "@type":"FAQPage",
-                "mainEntity": [
-                    <th:"block" th:each="item,stat:${faqs}">
-                    {
-                        "@type":"Question",
-                        "name":[[${lang == 'en' ? item.q : item.qZh}]],
-                        "acceptedAnswer":{
-                            "@type":"Answer",
-                            "text":[[${lang == 'en' ? item.a : item.aZh}]]
-                        }
-                    }<th:block th:if="${!stat.last}">,</th:block>
-                    </th:block>
-                ]
-            }
-        ]
-    </script>
 </head>
 <body>
 <div class="last-update" th:text="${lang == 'en' ? lastUpdate : lastUpdateZh}"></div>
@@ -127,9 +105,9 @@
         </div>
 
         <!-- 免责声明块 -->
-        <div class="alert-block disclaimer-block">
+       <!-- <div class="alert-block disclaimer-block">
             <p th:text="${lang == 'en' ? disclaimer : disclaimerZh}"></p>
-        </div>
+        </div> -->
 
         <!-- 三类免签对比表格 -->
         <div class="section compare-section">

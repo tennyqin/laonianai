@@ -12,30 +12,9 @@
     <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
     <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
 
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css?20260830">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <div th:replace="~{common/ga :: google-analytics}"></div>
-
-    <script type="application/ld+json">
-        [
-            {
-                "@context":"https://schema.org",
-                "@type":"FAQPage",
-                "mainEntity": [
-                    <th:block th:each="item,stat:${vg.visaFaqs}">
-                    {
-                        "@type":"Question",
-                        "name":[[${lang == 'en' ? item.qEn : item.qZh}]],
-                        "acceptedAnswer":{
-                            "@type":"Answer",
-                            "text":[[${lang == 'en' ? item.aEn : item.aZh}]]
-                        }
-                    }<th:block th:if="${!stat.last}">,</th:block>
-                    </th:block>
-                ]
-            }
-        ]
-    </script>
 </head>
 <body>
 <div class="last-update" th:text="${lang=='en' ? vg.meta.lastUpdateHintEn : vg.meta.lastUpdateHintZh}"></div>
