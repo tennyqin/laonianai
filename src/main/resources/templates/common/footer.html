@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<!-- 全局公共底部 · 带非空判断 + 默认值 -->
+<!-- 全局公共底部 fragment -->
 <div th:fragment="footer" class="footer">
     <!-- 站点名称：为空则显示默认名称 -->
     <span th:text="${siteName != null ? siteName : 'China Visa Free Guide 2026'}"></span> © 2026<br>
@@ -14,20 +13,24 @@
         [[${lastUpdateZh != null ? lastUpdateZh : '最后更新：2026年08月30日 | 国家移民管理局权威'}]]
     </span>
 
-    <!-- 联系站长：JS动态拼接邮箱，防止爬虫抓取 -->
-    <span style="margin-left: 8px;">|</span>
-    <a href="#" id="contact-link" style="color: inherit; text-decoration: none; cursor: pointer;">
+    <span class="footer-divider">|</span>
+    <a href="#" id="contact-link" class="footer-contact-link">
+        <!-- 内置SVG邮件图标，无需外部字体库 -->
+        <svg class="footer-email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
         <span th:if="${lang == 'en'}">Contact Webmaster</span>
         <span th:if="${lang != 'en'}">联系站长</span>
     </a>
 
-    <script>
+    <script th:inline="javascript">
         (function() {
             var link = document.getElementById('contact-link');
             if (link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // 动态拼接，避免明文暴露
+                    // 动态拼接，避免明文暴露邮箱
                     var u = 'tennyqin1988';
                     var d = 'gmail.com';
                     window.location.href = 'mailto:' + u + '@' + d;
@@ -36,5 +39,4 @@
         })();
     </script>
 </div>
-
 </html>
