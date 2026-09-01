@@ -1,0 +1,163 @@
+{
+  "russia": {
+    "homeSeoTitleZh":"俄罗斯公民来华签证政策｜免签、过境免签总览 2026",
+    "homeSeoTitleEn":"Russia citizens travel to China: visa & visa‑free overview 2026",
+    "homeSeoDescZh":"俄罗斯公民前往中国可以享受单方面30天免签以及240小时过境免签，查看全部来华入境规则，材料、有效期、出行避坑与常见问题。",
+    "homeSeoDescEn":"Guide for Russian citizens travelling to China including unilateral visa‑free and 240‑hour transit visa‑free, documents, expiry, pitfalls and FAQs.",
+    "homeAlertZh":"",
+    "homeAlertEn":"",
+    "homeIntroZh":"俄罗斯公民前往中国可以享受两套免签入境通道：单方面30天免签入境，适用于旅游、商务、探亲；同时支持240小时过境免签用于中转前往第三国。出行前请确认对应政策有效期，备好符合要求的护照与出行材料。",
+    "homeIntroEn":"Russian citizens have two visa‑free entry options for travelling to China: unilateral 30‑day visa‑free entry for tourism, business and family‑visit; and 240‑hour transit visa‑free for onward travel to third countries. Please check policy expiry and prepare valid travel documents before departure.",
+    "homeImportantNotesZh":[
+      "无论使用哪一种免签政策，护照建议预留6个月以上有效期以及足够空白签证页。",
+      "免签入境不允许从事工作、实习、留学、媒体采访等活动，此类情况需要提前申请签证。",
+      "抵达中国后，需要在24小时完成住宿登记，酒店一般会代办。"
+    ],
+    "homeImportantNotesEn":[
+      "Whichever visa‑free scheme you use, your passport is recommended to have more than 6‑month validity and enough blank pages.",
+      "Visa‑free entry cannot be used for work, internship, formal study or media reporting; a proper visa must be applied in advance for these purposes.",
+      "Accommodation registration must be completed within 24 hours after arriving in China, usually handled by hotels."
+    ],
+    "homeCustomFaqsZh":[
+      {
+        "q":"Q：俄罗斯公民去中国可以不用签证吗？",
+        "a":"A：可以，普通护照可以享受单方面30天免签；中转过境还可以使用240小时过境免签。"
+      }
+    ],
+    "homeCustomFaqsEn":[
+      {
+        "q":"Q: Do Russian citizens need a visa for China?",
+        "a":"A: Ordinary passport holders can enjoy unilateral 30‑day visa‑free entry; you may also use 240‑hour transit visa‑free for connecting travel."
+      }
+    ],
+    "relatedCountryCodes":["france","germany","kazakhstan"],
+
+    "unilateral": {
+      "customAlertZh":"⚠️政策有效期提醒：俄罗斯单方面免签政策有效期至2027‑12‑31，请留意政策到期更新。",
+      "customAlertEn":"⚠️Policy expiry reminder: Russia unilateral visa‑free policy is valid until 31‑Dec‑2027. Please monitor official policy updates.",
+      "extraIntroZh":"俄罗斯公民可享受中国单方面30天免签入境，仅限旅游、商务、探亲、过境。",
+      "extraIntroEn":"Russian citizens are eligible for China's unilateral 30‑day visa‑free entry for tourism, business, family‑visit and transit purposes.",
+      "policyExplainZh":"中国对俄罗斯实施单方面免签政策，该政策由中国单方面给予俄方公民入境便利，并非双边互免协定。每次入境最长停留30天，停留时间从入境次日零时起算，目前无入境次数限制。政策存在有效期，到期后规则存在调整可能性。",
+      "policyExplainEn":"China implements unilateral visa‑free treatment for Russian citizens. This policy is offered unilaterally by China rather than a bilateral reciprocal agreement. Maximum stay is 30 days per entry counted from 00:00 next day of arrival. There is currently no entry‑count limit. The policy has an expiry date and may be adjusted in future.",
+      "tipsZh": [
+        "护照有效期建议大于6个月，备好往返机票预订单。",
+        "停留时间自入境次日零时起计算。"
+      ],
+      "tipsEn": [
+        "Passport validity is recommended to exceed 6 months; prepare round‑trip flight bookings.",
+        "The stay period counts from 00:00 the day after entry."
+      ],
+      "checklistZh":[
+        "✅确认护照有效期大于6个月，至少留有2页以上空白签证页",
+        "✅准备好往返或者后续离境的机票出票记录",
+        "✅完整覆盖全程的酒店预订单",
+        "✅准备少量资金证明以备边检抽查"
+      ],
+      "checklistEn":[
+        "✅ Confirm passport validity >6 months with at least 2 blank visa pages",
+        "✅ Prepare confirmed round‑trip or onward flight tickets",
+        "✅ Complete hotel bookings covering your whole stay",
+        "✅ Prepare proof of funds for possible border inspection"
+      ],
+      "pitfallsZh":[
+        "⚠️误区：拿到免签资格就一定可以入境。边检拥有最终入境审批权，材料不全有可能拒绝入境。",
+        "⚠️误区：免签入境不可以打工、做兼职或者参加付费实习，会造成违法滞留风险。"
+      ],
+      "pitfallsEn":[
+        "⚠️Myth: Visa‑free eligibility guarantees entry. Border officials hold final decision‑making authority; incomplete documents may lead to refusal of entry.",
+        "⚠️Myth: You cannot take paid work, part‑time jobs or internships under visa‑free status, this will cause illegal‑stay risk."
+      ],
+      "afterEntryZh":[
+        "抵达之后24小时内完成住宿登记；入住酒店一般会自动代办；住民宿、私人住所需要本人前往辖区派出所办理。",
+        "免签一般不能境内延期；遇到重病等极端紧急情况，可以向当地出入境管理部门咨询停留证件申请。"
+      ],
+      "afterEntryEn":[
+        "Complete accommodation registration within 24 hours. Hotels usually handle it automatically; for private homestays you need to visit local police station in‑person.",
+        "Visa‑free stay normally cannot be extended inside China. In extreme emergency such as serious illness you may consult local immigration authority for stay permit."
+      ],
+      "customFaqsZh": [
+        {
+          "q":"Q：俄罗斯公民单方面免签入境中国可以多次入境吗？",
+          "a":"A：可以，目前没有入境次数限制，但每次入境停留不能超过30天。"
+        }
+      ],
+      "customFaqsEn": [
+        {
+          "q":"Q: Can Russian citizens enter China multiple times under unilateral visa‑free policy?",
+          "a":"A: Yes. There is currently no entry‑count limit, but each stay cannot exceed 30 days."
+        }
+      ],
+      "exclusionNoteZh":"单方面免签仅适用于普通护照；外交公务护照执行另外制度。",
+      "exclusionNoteEn":"Unilateral visa‑free applies only to ordinary passports; diplomatic / official passports follow separate regulations.",
+      "furtherReadingZh":[
+        {"title":"国家移民管理局官方公告","url":"https://www.nia.gov.cn"}
+      ],
+      "furtherReadingEn":[
+        {"title":"National Immigration Administration official site","url":"https://www.nia.gov.cn"}
+      ]
+    },
+    "transit": {
+      "customAlertZh":"⚠️过境免签提示：选择240小时过境免签，必须真正前往第三国，不能以单纯旅游作为入境目的。",
+      "customAlertEn":"⚠️Transit visa‑free reminder: Under 240‑hour transit visa‑free scheme, you must actually travel onward to a third country; pure tourism is not accepted as entry purpose.",
+      "extraIntroZh":"俄罗斯公民同时可适用240小时过境免签政策，最长停留10天。",
+      "extraIntroEn":"Russian citizens are also covered by the 240‑hour transit visa‑free scheme for maximum 10‑day stay.",
+      "policyExplainZh":"240小时过境免签专为中转旅客设计，核心前提是必须持有已经确认的前往第三国/地区的联程机票，不适合纯粹来华旅游。允许在24个指定省份的开放口岸入境，并且在许可区域内跨省出行。",
+      "policyExplainEn":"The 240‑hour transit visa‑free scheme is designed for connecting transit passengers. Core requirement: you must hold confirmed onward ticket to a third country or region; it is not for pure tourism. You may enter via designated ports across 24 provinces and travel cross‑province within permitted zones.",
+      "tipsZh":[],
+      "tipsEn":[],
+      "checklistZh":[],
+      "checklistEn":[],
+      "pitfallsZh":[],
+      "pitfallsEn":[],
+      "afterEntryZh":[],
+      "afterEntryEn":[],
+      "customFaqsZh":[],
+      "customFaqsEn":[],
+      "exclusionNoteZh":"",
+      "exclusionNoteEn":"",
+      "furtherReadingZh":[],
+      "furtherReadingEn":[]
+    }
+  },
+  "ecuador":{
+    "mutual":{
+      "customAlertZh":"⚠️重要特殊说明：根据双边协定，厄瓜多尔公民来华互免，但中国普通护照持有人暂不享受厄瓜多尔免签入境待遇。出行前请再次核实官方信息。",
+      "customAlertEn":"⚠️Important special note: Under bilateral agreement, Ecuadorian citizens enjoy visa‑free entry to China, but Chinese ordinary passport holders do NOT currently receive reciprocal visa‑free treatment. Please verify official information before travel.",
+      "extraIntroZh":"",
+      "extraIntroEn":"",
+      "policyExplainZh":"",
+      "policyExplainEn":"",
+      "tipsZh":[],
+      "tipsEn":[],
+      "checklistZh":[],
+      "checklistEn":[],
+      "pitfallsZh":[],
+      "pitfallsEn":[],
+      "afterEntryZh":[],
+      "afterEntryEn":[],
+      "customFaqsZh":[],
+      "customFaqsEn":[],
+      "exclusionNoteZh":"",
+      "exclusionNoteEn":"",
+      "furtherReadingZh":[],
+      "furtherReadingEn":[]
+    }
+  },
+  "france":{
+    "homeSeoTitleZh":"法国公民来华签证｜免签政策总览",
+    "homeSeoTitleEn":"French citizens travelling to China visa‑free overview",
+    "homeSeoDescZh":"法国公民来华单方面30天免签政策，查看入境材料、停留规则、出行提示。",
+    "homeSeoDescEn":"Unilateral 30‑day visa‑free entry for French citizens to China, documents, stay rules and travel tips.",
+    "homeAlertZh":"",
+    "homeAlertEn":"",
+    "homeIntroZh":"",
+    "homeIntroEn":"",
+    "homeImportantNotesZh":[],
+    "homeImportantNotesEn":[],
+    "homeCustomFaqsZh":[],
+    "homeCustomFaqsEn":[],
+    "relatedCountryCodes":["germany","italy"],
+    "unilateral":{},
+    "transit":{}
+  }
+}

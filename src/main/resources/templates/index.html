@@ -11,8 +11,7 @@
     <link rel="alternate" hreflang="en" th:href="${#request.requestURL} + '?lang=en'">
     <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
     <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
-
-    <link rel="stylesheet" href="/css/index.css?20260830">
+    <link rel="stylesheet" href="/css/index.css?20260901">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Google 埋点 -->
     <div th:replace="~{common/ga :: google-analytics}"></div>
@@ -26,13 +25,9 @@
             <a href="#unilateral" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
             <a href="#mutual" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
             <a href="#transit" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
-            <!-- 新增专题导航，后续替换为真实URL -->
             <a href="#faq-section" th:text="${lang == 'en' ? navFaq : navFaqZh}"></a>
-            <!-- 签证指南页面：跳转到/visa‑guide，带上当前页面的lang变量 -->
             <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang == 'en' ? navVisaGuide : navVisaGuideZh}"></a>
-
             <span class="lang">
-                <!-- 语言切换：留在【当前页面】，仅切换lang参数，不跳转别的页面 -->
                 <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
                 <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
             </span>
@@ -51,15 +46,13 @@
                th:value="${keyword}">
         <button class="search-btn" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button>
     </form>
-
-    <!-- 搜索结果：全部带 policyType 跳转 -->
     <div th:if="${searched}">
         <h2 style="text-align:center; margin-bottom:30px;" th:text="${lang == 'en' ? 'Search Results' : '搜索结果'}"></h2>
         <div class="section" th:if="${!unilateralResult.isEmpty()}">
             <h3 class="title" th:text="${lang == 'en' ? 'Unilateral Visa Free' : '单方面免签'}"></h3>
             <div class="grid">
                 <div class="card" th:each="country : ${unilateralResult}">
-                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='unilateral')}"
+                    <a th:href="@{/country/{code}/{type}(code=${country.code}, type='unilateral', lang=${lang})}"
                        th:text="${lang == 'en' ? country.name : country.nameZh}"></a>
                 </div>
             </div>
@@ -68,7 +61,7 @@
             <h3 class="title" th:text="${lang == 'en' ? 'Mutual Visa Exemption' : '互免签证'}"></h3>
             <div class="grid">
                 <div class="card" th:each="country : ${mutualResult}">
-                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='mutual')}">
+                    <a th:href="@{/country/{code}/{type}(code=${country.code}, type='mutual', lang=${lang})}">
                         <span th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
                         <span style="font-size:12px;color:#6B7280;">[[${country.days}]]d</span>
                     </a>
@@ -79,7 +72,7 @@
             <h3 class="title" th:text="${lang == 'en' ? 'Transit Visa Free' : '过境免签'}"></h3>
             <div class="grid">
                 <div class="card" th:each="country : ${transitResult}">
-                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='transit')}"
+                    <a th:href="@{/country/{code}/{type}(code=${country.code}, type='transit', lang=${lang})}"
                        th:text="${lang == 'en' ? country.name : country.nameZh}"></a>
                 </div>
             </div>
@@ -91,25 +84,18 @@
         </div>
     </div>
 
-    <!-- ====================== 首页新增深度内容模块：仅非搜索模式显示 ====================== -->
     <div th:if="${!searched}">
         <div class="intro-block">
             <p th:text="${lang == 'en' ? introPara1 : introPara1Zh}"></p>
             <p th:text="${lang == 'en' ? introPara2 : introPara2Zh}"></p>
         </div>
-
-        <!-- 政策到期提醒块 -->
         <div class="alert-block expiry-block">
             <strong th:text="${lang == 'en' ? '⚠️ Policy Expiry Reminder' : '⚠️ 政策到期提醒'}"></strong>
             <p th:text="${lang == 'en' ? expiryNote : expiryNoteZh}"></p>
         </div>
 
-        <!-- 免责声明块 -->
-       <!-- <div class="alert-block disclaimer-block">
-            <p th:text="${lang == 'en' ? disclaimer : disclaimerZh}"></p>
-        </div> -->
-
-        <!-- 三类免签对比表格 -->
+        <!-- 锚点占位，解决sticky导航遮挡 -->
+        <div id="compare-section"></div>
         <div class="section compare-section">
             <h2 class="title" th:text="${lang == 'en' ? compareTableTitle : compareTableTitleZh}"></h2>
             <div class="table-wrap">
@@ -134,20 +120,22 @@
             </div>
         </div>
 
-        <!-- FAQ模块 锚点#faq-section -->
         <div id="faq-section" class="section faq-section">
             <h2 class="title" th:text="${lang == 'en' ? 'Frequently Asked Questions' : '常见问题'}"></h2>
             <div class="faq-items">
                 <div class="faq-item" th:each="item : ${faqs}">
-                    <h3 class="faq-q" th:text="${lang == 'en' ? item.q : item.qZh}"></h3>
-                    <div class="faq-a" th:text="${lang == 'en' ? item.a : item.aZh}"></div>
+                    <div class="faq-q" tabindex="0" role="button">
+                        <span th:text="${lang == 'en' ? item.q : item.qZh}"></span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        <div th:text="${lang == 'en' ? item.a : item.aZh}"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ====================== 新增模块结束 ====================== -->
 
-    <!-- 正常页面：全部带 type -->
     <div id="unilateral" class="section" th:if="${!searched}">
         <h2 class="title" th:text="${lang == 'en' ? unilateralTitle : unilateralTitleZh}"></h2>
         <p class="subtitle" th:text="${lang == 'en' ? unilateralDesc : unilateralDescZh}"></p>
@@ -155,7 +143,7 @@
             <h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? c.name : c.nameZh}"></h3>
             <div class="grid">
                 <div class="card" th:each="country : ${c.countries}">
-                    <a th:href="@{/country/{code}(code=${country.code}, lang=${lang}, type='unilateral')}"
+                    <a th:href="@{/country/{code}/{type}(code=${country.code}, type='unilateral', lang=${lang})}"
                        th:text="${lang == 'en' ? country.name : country.nameZh}"></a>
                 </div>
             </div>
@@ -168,7 +156,7 @@
             <h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3>
             <div class="grid">
                 <div class="card" th:each="c : ${cont.countries}">
-                    <a th:href="@{/country/{code}(code=${c.code}, lang=${lang}, type='mutual')}">
+                    <a th:href="@{/country/{code}/{type}(code=${c.code}, type='mutual', lang=${lang})}">
                         <span th:text="${lang == 'en' ? c.name : c.nameZh}"></span>
                         <span style="font-size:12px;color:#6B7280;">[[${c.days}]]d</span>
                     </a>
@@ -183,7 +171,7 @@
             <h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3>
             <div class="grid">
                 <div class="card" th:each="c : ${cont.countries}">
-                    <a th:href="@{/country/{code}(code=${c.code}, lang=${lang}, type='transit')}"
+                    <a th:href="@{/country/{code}/{type}(code=${c.code}, type='transit', lang=${lang})}"
                        th:text="${lang == 'en' ? c.name : c.nameZh}"></a>
                 </div>
             </div>
@@ -196,7 +184,48 @@
         </div>
     </div>
 </div>
-<!-- footer -->
 <div th:replace="~{common/footer :: footer}"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const faqQuestions = document.querySelectorAll('.faq-q');
+        faqQuestions.forEach(q => {
+            q.removeEventListener('click', toggleFaq);
+            q.addEventListener('click', toggleFaq);
+            q.removeEventListener('keydown', toggleKey);
+            q.addEventListener('keydown', toggleKey);
+        });
+
+        function toggleFaq(){
+            const parent = this.closest('.faq-item');
+            parent.classList.toggle('open');
+            const toggle = this.querySelector('.faq-toggle');
+            toggle.textContent = parent.classList.contains('open') ? '−' : '+';
+        }
+        function toggleKey(e){
+            if(e.key === 'Enter' || e.key === ' '){
+                e.preventDefault();
+                this.click();
+            }
+        }
+
+        adjustHashScroll();
+    });
+
+    window.addEventListener('hashchange', adjustHashScroll);
+
+    function adjustHashScroll(){
+        if(!window.location.hash) return;
+        const targetId = window.location.hash.replace('#','');
+        const targetEl = document.getElementById(targetId);
+        if(!targetEl) return;
+        const headerEl = document.querySelector('.header');
+        const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+        const rect = targetEl.getBoundingClientRect();
+        window.scrollTo({
+            top: rect.top + window.scrollY - headerHeight - 12,
+            behavior: 'smooth'
+        });
+    }
+</script>
 </body>
 </html>

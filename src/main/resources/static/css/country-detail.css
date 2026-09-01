@@ -1,156 +1,244 @@
+/** country‑detail.css 优化版，对齐首页绿色高端极简风格 修复非法软连字符、移动端、a11y、动画 **/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
     background: #F7FCFA;
     color: #2D3436;
     line-height: 1.7;
 }
-
 .container {
-    max-width: 900px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 32px 16px;
 }
-
-
-.back {
-    margin-bottom: 20px;
+/* ==========面包屑导航【重点优化】========== */
+.breadcrumb-wrap {
+    margin-bottom: 28px;
 }
-.back a {
-    display: inline-flex;
-    align-items: center;
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
     gap: 6px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    background: #ECFDF5;
+    align-items: center;
+    font-size: 14px;
+    color: #6B7280;
+}
+.breadcrumb a {
     color: #059669;
-    font-weight: 500;
     text-decoration: none;
-    font-size: 15px;
-    border: 1px solid #A7F3D0;
-    transition: all 0.2s ease;
+    transition: color .2s ease;
 }
-.back a:hover {
-    background: #D1FAE5;
+.breadcrumb a:hover {
     color: #047857;
-    border-color: #6EE7B7;
+    text-decoration: underline;
 }
-.back a::before {
-    content: "←";
-    font-weight: 600;
+.breadcrumb .sep {
+    color: #D1D5DB;
+    user-select: none;
 }
-
-/* 卡片样式 */
-.card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 30px;
-    margin-bottom: 24px;
-    box-shadow: 0 3px 10px rgba(34, 197, 94, .05);
+.breadcrumb .current {
+    color: #1F2937;
+    font-weight: 500;
 }
-
+/* ==========政策标签tag 优化 ========== */
 .policy-tag {
-    padding: 8px 14px;
-    border-radius: 8px;
-    color: white;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 10px;
+    color: #fff;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 20px;
-    display: inline-block;
 }
-
 .uni {
-    background: #0D9488;
+    background-color: #0D9488;
 }
-
 .mut {
-    background: #2563EB;
+    background-color: #2563EB;
 }
-
 .tra {
-    background: #F59E0B;
+    background-color: #F59E0B;
 }
-
+/* ==========卡片全局样式【品质升级】 ========== */
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 14px rgba(5, 150, 105, 0.06);
+    border: 1px solid #ECFDF5;
+}
+.card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 14px;
+}
 .title {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.row {
+    font-size: clamp(24px,4vw,32px);
+    font-weight: 700;
     margin-bottom: 16px;
+    color: #111827;
+    line-height:1.3;
 }
-
+.row {
+    margin-bottom: 18px;
+}
+.row:last-child{
+    margin-bottom:0;
+}
 .label {
     font-weight: 600;
     color: #374151;
-    width: 130px;
+    min-width: 130px;
     display: inline-block;
 }
-
 .value {
     color: #111827;
 }
-
-.footer {
-    padding: 45px 0;
-    text-align: center;
-    color: #9CA3AF;
-    border-top: 1px solid #ECFDF5;
+/* ==========告警提示块，复用首页alert-block风格 ========== */
+.alert-block {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height:1.65;
 }
-
+.expiry-block {
+    background: #FFFBEB;
+    border:1px solid #FCD34D;
+    color:#92400E;
+}
+/* ==========文档条目（材料清单） ========== */
+.doc-item {
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom: 10px;
+    color:#1F2937;
+}
+.doc-item:last-child{
+    margin-bottom:0;
+}
+/* ==========FAQ 全新折叠组件【高品质交互 + a11y + 触摸优化】 ========== */
+.faq-section-wrap{}
 .faq-item {
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #f0f0f0;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    margin-bottom:14px;
+    overflow:hidden;
+    transition: all .24s ease;
+    background:#fff;
+}
+.faq-item:hover{
+    border-color:#A7F3D0;
 }
 .faq-item:last-child {
     margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
+}
+.faq-q-wrap {
+    cursor: pointer;
+    padding:18px 20px;
+    min-height:48px; /* 触摸最小点击尺寸 */
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:12px;
 }
 .faq-question {
-    font-weight: 600;
-    color: #111827;
-    margin: 0 0 6px 0;
-    font-size: 15px;
+    font-size:16px;
+    font-weight:600;
+    color:#111827;
+    margin:0;
+    flex-grow:1;
+}
+.faq-toggle {
+    font-size: 20px;
+    color:#059669;
+    font-weight:bold;
+    line-height:1;
+    user-select:none;
+    transform-origin: center;
+    transition: transform 0.24s ease;
+}
+.faq-answer-wrap {
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 0.35s ease;
+}
+.faq-item.open .faq-answer-wrap{
+    max-height: 1200px; /* 增大上限适配长文本 */
+}
+.faq-item.open .faq-toggle{
+    transform: rotate(45deg);
 }
 .faq-answer {
-    color: #4b5563;
-    margin: 0;
-    line-height: 1.6;
-    font-size: 14px;
+    padding:0 20px 18px 20px;
+    font-size:15px;
+    color:#4B5563;
+    line-height:1.7;
 }
-.doc-item {
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 6px;
-    color: #222;
-}
-
+/* ==========过境口岸列表 ========== */
 #transit-ports-list {
   margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
 }
 #transit-ports-list p {
-  margin: 0 0 10px 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #333;
+  margin: 0 0 14px 0;
+  padding-bottom:14px;
+  border-bottom:1px solid #F3F4F6;
+  color:#333;
 }
 #transit-ports-list p:last-child {
   margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
+  padding-bottom:0;
+  border-bottom:none;
 }
 #transit-ports-list strong {
-  color: #111;
-  font-weight: 600;
-  min-width: 70px;
-  display: inline-block;
+  color:#111;
+  font-weight:600;
+  min-width:80px;
+  display:inline-block;
+}
+/* ==========页脚 ========== */
+.footer {
+    padding: 48px 0;
+    text-align:center;
+    color:#9CA3AF;
+    border-top:1px solid #ECFDF5;
+    margin-top:40px;
+    font-size:13px;
+}
+/* ==========响应式适配移动端 ========== */
+@media (max-width: 640px) {
+    .container {
+        padding:20px 14px;
+    }
+    .card {
+        padding: 20px 16px;
+    }
+    .label {
+        display:block;
+        min-width:auto;
+        margin-bottom:4px;
+    }
+    .row {
+        margin-bottom:16px;
+    }
+    .faq-q-wrap {
+        padding:14px 16px;
+    }
+    .faq-answer {
+        padding:0 16px 14px 16px;
+    }
+    .breadcrumb {
+        font-size:13px;
+    }
+    .title {
+        font-size: clamp(22px,6vw,28px);
+    }
 }

@@ -1,33 +1,29 @@
 /* ———————————————————————————————
    欧美极简高端风 · chinavisamap.com 2026
-   完美适配 iPhone SE 等小屏设备
+   完美适配 iPhone SE 等小屏设备；修复非法软连字符；触摸点击尺寸；A11Y无障碍增强
 ————————————————————————————————— */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #fcfdfb;
   color: #111827;
   line-height: 1.6;
 }
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 .container {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 16px; /* 缩小内边距，适配小屏 */
+  padding: 0 16px;
 }
 
 /* 顶部权威更新条 */
@@ -36,7 +32,7 @@ a {
   color: white;
   text-align: center;
   padding: 8px 12px;
-  font-size: 12px; /* 缩小字体，避免换行 */
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -51,54 +47,47 @@ a {
   top: 0;
   z-index: 999;
 }
-
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 0; /* 缩小上下内边距 */
-  flex-wrap: wrap; /* 允许换行，避免溢出 */
-  gap: 12px; /* 增加间距，防止挤压 */
+  padding: 14px 0;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-
 .logo {
-  font-size: 18px; /* 缩小Logo字体，适配小屏 */
+  font-size: 18px;
   font-weight: 700;
   color: #059669;
-  white-space: nowrap; /* 强制不换行 */
+  white-space: nowrap;
 }
-
 .nav {
   display: flex;
   align-items: center;
-  gap: 16px; /* 缩小导航间距 */
-  font-size: 14px; /* 缩小导航字体 */
+  gap: 16px;
+  font-size: 14px;
   font-weight: 500;
-  flex-wrap: wrap; /* 允许换行 */
+  flex-wrap: wrap;
 }
-
 .nav a {
   color: #374151;
   transition: color 0.2s ease;
-  white-space: nowrap; /* 强制不换行 */
+  white-space: nowrap;
+  padding: 6px 2px; /* 扩大点击热区 */
 }
-
 .nav a:hover {
   color: #059669;
 }
-
 .lang {
   margin-left: 8px;
 }
-
 .lang a {
-  padding: 4px 8px;
+  padding: 6px 10px;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 13px; /* 缩小语言按钮字体 */
+  font-size: 13px;
   white-space: nowrap;
 }
-
 .lang a.active {
   background: #ecfdf5;
   color: #047857;
@@ -109,22 +98,20 @@ a {
 ————————————————————————————————— */
 .hero {
   text-align: center;
-  padding: 40px 0 30px; /* 缩小上下内边距 */
-  max-width: 100%; /* 取消最大宽度限制 */
+  padding: 40px 0 30px;
+  max-width: 100%;
   margin: 0 auto;
 }
-
 .hero h1 {
-  font-size: clamp(28px, 8vw, 44px); /* 响应式字体，小屏自动缩小 */
+  font-size: clamp(28px, 8vw, 44px);
   font-weight: 700;
   color: #111827;
   margin-bottom: 16px;
   line-height: 1.2;
-  word-wrap: break-word; /* 允许换行 */
+  word-wrap: break-word;
 }
-
 .hero p {
-  font-size: clamp(14px, 4vw, 18px); /* 响应式字体 */
+  font-size: clamp(14px, 4vw, 18px);
   color: #4b5563;
   max-width: 100%;
   margin: 0 auto;
@@ -136,28 +123,25 @@ a {
 ————————————————————————————————— */
 .search-box {
   display: flex;
-  gap: 8px; /* 缩小间距 */
-  max-width: 100%; /* 取消最大宽度限制 */
+  gap: 8px;
+  max-width: 100%;
   margin: 0 auto 40px;
-  flex-wrap: wrap; /* 允许换行，小屏自动堆叠 */
+  flex-wrap: wrap;
 }
-
 .search-input {
   flex: 1;
-  min-width: 200px; /* 最小宽度，避免挤压 */
+  min-width: 200px;
   padding: 14px 16px;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  font-size: 16px; /* 保持16px，避免iOS缩放 */
+  font-size: 16px; /* iOS禁止缩放关键 */
   background: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
-
 .search-input:focus {
   outline: none;
   border-color: #10b981;
 }
-
 .search-btn {
   padding: 14px 20px;
   background: #059669;
@@ -169,8 +153,8 @@ a {
   cursor: pointer;
   transition: background 0.2s ease;
   white-space: nowrap;
+  min-height: 48px; /* 触摸最小点击高度 */
 }
-
 .search-btn:hover {
   background: #047857;
 }
@@ -181,22 +165,19 @@ a {
 .section {
   margin-bottom: 40px;
 }
-
 .title {
-  font-size: clamp(22px, 6vw, 27px); /* 响应式字体 */
+  font-size: clamp(22px, 6vw, 27px);
   font-weight: 700;
   color: #111827;
   margin-bottom: 10px;
 }
-
 .subtitle {
   color: #4b5563;
-  font-size: 14px; /* 缩小字体 */
+  font-size: 14px;
   margin-bottom: 20px;
 }
-
 h3 {
-  font-size: clamp(16px, 4vw, 18px); /* 响应式字体 */
+  font-size: clamp(16px, 4vw, 18px);
   font-weight: 600;
   color: #111827;
 }
@@ -206,28 +187,26 @@ h3 {
 ————————————————————————————————— */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* 缩小卡片最小宽度 */
-  gap: 12px; /* 缩小间距 */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
   margin-bottom: 20px;
 }
-
 .card {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 14px; /* 缩小内边距 */
+  padding: 14px;
   transition: all 0.22s ease;
 }
-
 .card a {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
   color: #1f2937;
-  font-size: 14px; /* 缩小字体 */
+  font-size: 14px;
+  min-height: 36px;
 }
-
 .card:hover {
   border-color: #10b981;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
@@ -240,18 +219,16 @@ h3 {
 .policy {
   background: white;
   border-radius: 12px;
-  padding: 18px; /* 缩小内边距 */
+  padding: 18px;
   margin-bottom: 16px;
   border: 1px solid #e5e7eb;
 }
-
 .policy h3 {
   margin-bottom: 6px;
 }
-
 .policy p {
   color: #4b5563;
-  font-size: 14px; /* 缩小字体 */
+  font-size: 14px;
 }
 
 /* ———————————————————————————————
@@ -261,82 +238,117 @@ h3 {
   padding: 40px 0;
   text-align: center;
   color: #6b7280;
-  font-size: 13px; /* 缩小字体 */
+  font-size: 13px;
   border-top: 1px solid #e5e7eb;
   margin-top: 40px;
   line-height: 1.5;
 }
 
-
-/* ========== 首页新增模块样式（增量，不改动原有样式） ========== */
+/* ========== 首页新增模块样式 ========== */
 .intro-block {
-  margin-bottom:24px;
+  margin-bottom: 24px;
 }
 .intro-block p {
-  margin-bottom:12px;
-  font-size:16px;
-  color:#1f2937;
-  line-height:1.7;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #1f2937;
+  line-height: 1.7;
 }
-
 .alert-block {
-  border-radius:10px;
-  padding:14px 16px;
-  margin-bottom:24px;
-  font-size:14px;
-  line-height:1.6;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 .expiry-block {
-  background:#fffbeb;
-  border:1px solid #fcd34d;
-  color:#92400e;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  color: #92400e;
 }
 .disclaimer-block {
-  background:#f9fafb;
-  border:1px solid #e5e7eb;
-  color:#4b5563;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
 }
 
 /* 响应式表格容器 */
 .table-wrap {
-  overflow-x:auto;
+  overflow-x: auto;
 }
 .policy-table {
-  width:100%;
-  border-collapse:collapse;
-  min-width:640px;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
 }
 .policy-table th,
 .policy-table td {
-  border:1px solid #e5e7eb;
-  padding:12px 14px;
-  font-size:14px;
+  border: 1px solid #e5e7eb;
+  padding: 12px 14px;
+  font-size: 14px;
 }
 .policy-table th {
-  background:#f9fafb;
-  font-weight:600;
-  text-align:left;
+  background: #f9fafb;
+  font-weight: 600;
+  text-align: left;
 }
 
-/* FAQ */
+/* FAQ首页折叠组件【增加展开/收起动画，A11Y支持】 */
 .faq-section {
-  margin-bottom:48px;
+  margin-bottom: 48px;
 }
 .faq-item {
-  background:#ffffff;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:18px;
-  margin-bottom:14px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  overflow: hidden;
 }
 .faq-q {
-  font-size:16px;
-  font-weight:600;
-  margin-bottom:8px;
-  color:#111827;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+}
+.faq-toggle {
+  font-size: 20px;
+  color: #059669;
+  font-weight: bold;
+  user-select: none;
+  transition: transform 0.24s ease;
+  transform-origin: center;
 }
 .faq-a {
-  font-size:14px;
-  color:#4b5563;
-  line-height:1.65;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.faq-item.open .faq-a {
+  max-height: 1000px;
+}
+.faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+}
+.faq-a div {
+  padding: 0 18px 18px 18px;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.65;
+}
+
+/* 小屏适配 */
+@media (max-width: 640px) {
+  .faq-q {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  .faq-a div {
+    padding: 0 16px 14px 16px;
+  }
 }
