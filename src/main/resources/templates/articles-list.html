@@ -12,90 +12,9 @@
     <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
     <link rel="stylesheet" href="/css/index.css?20260901">
     <link rel="stylesheet" href="/css/footer.css?20260901">
+    <link rel="stylesheet" href="/css/art-list.css?20260901">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <div th:replace="~{common/ga :: google-analytics}"></div>
-    <style>
-        .pagination-wrap{
-            margin-top:40px;
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:8px;
-        }
-        .pagination-item{
-            padding:8px 14px;
-            border-radius:12px;
-            border:1px solid #E5E7EB;
-            background:#fff;
-            min-width:40px;
-            text-align:center;
-            text-decoration:none;
-            font-size:14px;
-            transition: all 0.2s ease;
-        }
-        .pagination-item:hover{
-            border-color:#10b981;
-            box-shadow:0 2px 8px rgba(16,185,129,0.08);
-        }
-        .pagination-item.active{
-            background:#059669;
-            color:#fff;
-            border-color:#059669;
-        }
-        .pagination-item.disabled{
-            color:#9CA3AF;
-            cursor:not-allowed;
-            pointer-events:none;
-        }
-        .pagination-ellipsis{
-            padding:8px 6px;
-            color:#6B7280;
-        }
-        .article-card{
-            padding:20px;
-            margin-bottom:20px;
-        }
-        .article-date{
-            font-size:13px;
-            color:#888;
-            margin:6px 0 10px;
-        }
-        .hero h1{
-            text-align:center;
-        }
-        .hero p{
-            text-align:center;
-            max-width:720px;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        /* =========新增分类标签样式========= */
-        .category-tags-wrap{
-            margin:16px 0 28px;
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
-        }
-        .cat-tag{
-            padding:7px 14px;
-            border-radius:20px;
-            border:1px solid #d1d5db;
-            background:#ffffff;
-            font-size:14px;
-            cursor:pointer;
-            transition:0.22s;
-            text-decoration:none;
-            color:#333;
-        }
-        .cat-tag:hover{
-            border-color:#059669;
-        }
-        .cat-tag.active{
-            background:#059669;
-            color:#ffffff;
-            border-color:#059669;
-        }
-    </style>
 </head>
 <body>
 <div class="header">

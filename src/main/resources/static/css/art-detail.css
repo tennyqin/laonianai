@@ -1,0 +1,55 @@
+
+        .article-content h3 {
+            margin-top:24px;
+            margin-bottom:10px;
+            font-size:18px;
+            font-weight:600;
+            color:#111827;
+        }
+        .article-content p,
+        .article-content li {
+            font-size:15px;
+            line-height:1.75;
+            color:#2D3436;
+            margin-bottom:10px;
+        }
+        .article-content ul,
+        .article-content ol {
+            padding-left:22px;
+            margin-bottom:14px;
+        }
+        /* ==========新增表格样式========== */
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .article-content th,
+        .article-content td {
+            border: 1px solid #d1d5db;
+            padding: 9px 12px;
+            font-size:14.5px;
+            line-height:1.6;
+        }
+        .article-content th {
+            background-color: #f3f4f6;
+            font-weight:600;
+        }
+        /* ==========新增blockquote引用块样式========== */
+        .article-content blockquote {
+            border-left:4px solid #3b82f6;
+            background:#f8fafc;
+            padding:0.7rem 1rem;
+            margin:1rem 0;
+            border-radius:0 6px 6px 0;
+        }
+        .article-meta {
+            font-size:14px;
+            color:#777;
+            margin-bottom:24px;
+            padding-bottom:12px;
+            border-bottom:1px solid #F3F4F6;
+        }
+        .related-links-block h3 {
+            margin-bottom:14px;
+        }
