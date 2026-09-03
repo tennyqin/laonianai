@@ -7,10 +7,10 @@
 
     <!-- 最后更新时间：根据语言显示，为空则显示默认更新时间 -->
     <span th:if="${lang == 'en'}">
-        [[${lastUpdate != null ? lastUpdate : 'Last Updated: August 30, 2026 | CHINA NIA Official'}]]
+        [[${lastUpdate != null ? lastUpdate : 'Last Updated: September 3, 2026 | CHINA NIA Official'}]]
     </span>
     <span th:if="${lang != 'en'}">
-        [[${lastUpdateZh != null ? lastUpdateZh : '最后更新：2026年08月30日 | 国家移民管理局权威'}]]
+        [[${lastUpdateZh != null ? lastUpdateZh : '最后更新：2026年09月03日 | 国家移民管理局权威'}]]
     </span>
 
     <span class="footer-divider">|</span>
