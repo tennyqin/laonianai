@@ -26,9 +26,9 @@
             <a href="#unilateral" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
             <a href="#mutual" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
             <a href="#transit" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
-            <a href="#faq-section" th:text="${lang == 'en' ? navFaq : navFaqZh}"></a>
+<!--            <a href="#faq-section" th:text="${lang == 'en' ? navFaq : navFaqZh}"></a>-->
             <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang == 'en' ? navVisaGuide : navVisaGuideZh}"></a>
-            <a th:href="|/articles?lang=${lang}|" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></a>
+            <a th:href="|/articles?lang=${lang}|" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></a>
             <span class="lang">
                 <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
                 <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>

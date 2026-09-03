@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${lang == 'en' ? 'Travel Pitfall Guides | China Visa-Free Tips' : '出行避坑指南｜中国免签旅行提示'}"></title>
-    <meta name="description" th:content="${lang == 'en' ? 'Practical travel pitfall guides for foreigners travelling to China visa-free. Articles covering visa-free rules, entry, stay and exit tips.' : '面向来华外籍游客的出行避坑指南，包含免签政策、入境停留出境各类实用文章'}">
+    <title th:text="${lang == 'en' ? 'Travel Guides | China Travel & Visa-Free Tips' : '旅行指南｜来华旅行与免签提示'}"></title>
+    <meta name="description" th:content="${lang == 'en' ? 'Practical travel articles for visitors to China: visa-free rules, mobile apps, local customs, border-inspection pitfalls and real-world travel advice.' : '面向来华外籍游客实用旅行文章库：免签政策、手机APP使用、本地风俗文化、出入境避坑、出行实操建议'}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index,follow">
     <link rel="canonical" th:href="${#request.requestURL}">
@@ -15,7 +15,6 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <div th:replace="~{common/ga :: google-analytics}"></div>
     <style>
-        /* 局部分页增强样式，复用网站主题 */
         .pagination-wrap{
             margin-top:40px;
             display:flex;
@@ -61,7 +60,6 @@
             color:#888;
             margin:6px 0 10px;
         }
-        /* hero标题居中，解决标题靠左 */
         .hero h1{
             text-align:center;
         }
@@ -70,6 +68,32 @@
             max-width:720px;
             margin-left:auto;
             margin-right:auto;
+        }
+        /* =========新增分类标签样式========= */
+        .category-tags-wrap{
+            margin:16px 0 28px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+        .cat-tag{
+            padding:7px 14px;
+            border-radius:20px;
+            border:1px solid #d1d5db;
+            background:#ffffff;
+            font-size:14px;
+            cursor:pointer;
+            transition:0.22s;
+            text-decoration:none;
+            color:#333;
+        }
+        .cat-tag:hover{
+            border-color:#059669;
+        }
+        .cat-tag.active{
+            background:#059669;
+            color:#ffffff;
+            border-color:#059669;
         }
     </style>
 </head>
@@ -82,47 +106,72 @@
             <a th:href="|/?lang=${lang}#unilateral|" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
             <a th:href="|/?lang=${lang}#mutual|" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
             <a th:href="|/?lang=${lang}#transit|" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
-            <a th:href="|/articles?lang=${lang}|" style="color:#059669;font-weight:bold;" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></a>
+            <a th:href="|/articles?lang=${lang}|" style="color:#059669;font-weight:bold;" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></a>
             <a th:href="|/visa-guide?lang=${lang}|" th:text="${lang == 'en' ? 'Apply for Visa' : '签证申请指南'}"></a>
             <span class="lang">
-                <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
-                <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
+                <a th:href="@{${#request.requestURI}(lang='en',category=${category},keyword=${keyword})}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
+                <a th:href="@{${#request.requestURI}(lang='zh',category=${category},keyword=${keyword})}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
             </span>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="breadcrumb-wrap">
         <div class="breadcrumb">
             <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Home' : '首页'}"></a>
             <span class="sep">/</span>
-            <span class="current" th:text="${lang == 'en' ? 'Pitfall Guides' : '避坑指南'}"></span>
+            <span class="current" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></span>
         </div>
     </div>
-
     <div class="hero" style="padding:24px 0 12px;">
-        <h1 th:text="${lang == 'en' ? 'Travel Pitfall Guides' : '出行避坑指南'}"></h1>
-        <p th:text="${lang == 'en' ? 'Practical articles for foreign visitors to understand China visa-free travel rules and avoid common mistakes.' : '帮助外籍来华游客读懂中国免签旅行规则，避开高频踩坑的实用文章'}"></p>
+        <h1 th:text="${lang == 'en' ? 'China Travel Guides' : '来华旅行指南'}"></h1>
+        <p th:text="${lang == 'en' ? 'All-round practical articles: visa-free policy, mobile apps, local customs, border tips for foreign visitors travelling to China.' : '面向来华外籍游客的全方位实用文章库：免签政策、手机APP、本地风俗文化、出入境避坑与实操出行建议'}"></p>
     </div>
 
-    <!-- 搜索框：增大上下边距，优化留白 -->
-    <form method="get" class="search-box" style="margin:24px 0 32px;">
+    <!-- 搜索表单，保留category隐藏域 -->
+    <form method="get" class="search-box" style="margin:24px 0 12px;">
         <input type="hidden" name="lang" th:value="${lang}">
+        <input type="hidden" name="category" th:value="${category}">
         <input type="text" name="keyword" class="search-input"
-               th:placeholder="${lang == 'en' ? 'Search articles...' : '搜索文章标题/摘要...'}"
+               th:placeholder="${lang == 'en' ? 'Search title / summary / category…' : '搜索标题、摘要或者分类…'}"
                th:value="${keyword}">
         <button class="search-btn" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button>
     </form>
 
+    <!-- =========分类标签栏========= -->
+    <div class="category-tags-wrap">
+        <a class="cat-tag" th:classappend="${category == null ? 'active' : ''}"
+           th:href="@{/articles(lang=${lang},keyword=${keyword})}">
+            <span th:text="${lang == 'en' ? 'All' : '全部'}"></span>
+        </a>
+        <th:block th:each="cat : ${allCategories}">
+            <a class="cat-tag"
+               th:classappend="${ (lang == 'en' ? cat.en : cat.zh) == category ? 'active' : ''}"
+               th:href="@{/articles(lang=${lang},keyword=${keyword},category=${lang == 'en' ? cat.en : cat.zh})}">
+                [[${lang == 'en' ? cat.en : cat.zh}]]
+            </a>
+        </th:block>
+    </div>
+
+    <!-- 当前筛选提示 -->
+    <div th:if="${category != null || keyword != null}" style="margin-bottom:16px;font-size:14px;color:#555;">
+        <span th:if="${keyword != null and keyword != ''}" th:text="${lang=='en'?'Keyword: ':'关键词：'} + ${keyword}"></span>
+        <span th:if="${category != null and keyword != null}"> | </span>
+        <span th:if="${category != null}" th:text="${lang=='en'?'Category: ':'分类：'} + ${category}"></span>
+        <a th:href="@{/articles(lang=${lang})}" style="margin-left:8px;color:#059669;" th:text="${lang=='en'?'Clear filters':'清除筛选'}"></a>
+    </div>
+
     <div th:if="${articlePageList.isEmpty()}">
         <p style="text-align:center;color:#666;font-size:16px;margin:50px 0;"
-           th:text="${lang == 'en' ? 'No matching articles found.' : '没有找到匹配的文章'}"></p>
+           th:text="${lang == 'en' ? 'No matching articles found. Try changing keyword or category filter.' : '没有找到匹配文章，请更换关键词或者分类筛选条件'}"></p>
     </div>
 
     <div class="list-container">
         <div th:each="art : ${articlePageList}" class="card article-card">
             <a th:href="@{/articles/{id}(id=${art.id}, lang=${lang})}" style="display:block;">
+                <div style="font-size:12px;color:#059669;margin-bottom:4px;">
+                    <span th:text="${lang == 'en' ? art.categoryEn : art.categoryZh}"></span>
+                </div>
                 <h3 style="margin-bottom:4px;" th:text="${lang=='en' ? art.titleEn : art.titleZh}"></h3>
                 <div class="article-date" th:text="${art['displayPublishDate']}"></div>
                 <p style="color:#4B5563;font-size:15px;line-height:1.7;" th:text="${lang=='en' ? art.summaryEn : art.summaryZh}"></p>
@@ -130,27 +179,24 @@
         </div>
     </div>
 
-    <!-- 【关键】只有总页数>1，才渲染分页组件，单页完全隐藏 -->
+    <!-- 分页：每一个链接带上 keyword + category，筛选状态翻页保留 -->
     <div class="pagination-wrap" th:if="${totalPages > 1}">
-        <!-- 首页 -->
         <a th:if="${page > 1}" class="pagination-item"
-           th:href="@{/articles(lang=${lang},keyword=${keyword},page=1,size=${size})}"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},category=${category},page=1,size=${size})}"
            th:text="${lang=='en'?'First':'首页'}"></a>
         <span th:unless="${page > 1}" class="pagination-item disabled" th:text="${lang=='en'?'First':'首页'}"></span>
 
-        <!-- 上一页 -->
         <a th:if="${page >1}" class="pagination-item"
-           th:href="@{/articles(lang=${lang},keyword=${keyword},page=${page-1},size=${size})}"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},category=${category},page=${page-1},size=${size})}"
            th:text="${lang=='en'?'Prev':'上一页'}"></a>
         <span th:unless="${page >1}" class="pagination-item disabled" th:text="${lang=='en'?'Prev':'上一页'}"></span>
 
-        <!-- 页码数字，只渲染前后2页，超出显示省略号 -->
         <th:block th:with="startPage=${page - 2},endPage=${page +2}">
             <span th:if="${startPage >2}" class="pagination-ellipsis">…</span>
             <th:block th:each="i : ${#numbers.sequence(1,totalPages)}">
                 <span th:if="${i >= startPage and i <= endPage}">
                     <a th:if="${i != page}" class="pagination-item"
-                       th:href="@{/articles(lang=${lang},keyword=${keyword},page=${i},size=${size})}"
+                       th:href="@{/articles(lang=${lang},keyword=${keyword},category=${category},page=${i},size=${size})}"
                        th:text="${i}"></a>
                     <span th:if="${i == page}" class="pagination-item active" th:text="${i}"></span>
                 </span>
@@ -158,15 +204,13 @@
             <span th:if="${endPage < (totalPages -1)}" class="pagination-ellipsis">…</span>
         </th:block>
 
-        <!-- 下一页 -->
         <a th:if="${page < totalPages}" class="pagination-item"
-           th:href="@{/articles(lang=${lang},keyword=${keyword},page=${page+1},size=${size})}"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},category=${category},page=${page+1},size=${size})}"
            th:text="${lang=='en'?'Next':'下一页'}"></a>
         <span th:unless="${page < totalPages}" class="pagination-item disabled" th:text="${lang=='en'?'Next':'下一页'}"></span>
 
-        <!-- 尾页 -->
         <a th:if="${page < totalPages}" class="pagination-item"
-           th:href="@{/articles(lang=${lang},keyword=${keyword},page=${totalPages},size=${size})}"
+           th:href="@{/articles(lang=${lang},keyword=${keyword},category=${category},page=${totalPages},size=${size})}"
            th:text="${lang=='en'?'Last':'尾页'}"></a>
         <span th:unless="${page < totalPages}" class="pagination-item disabled" th:text="${lang=='en'?'Last':'尾页'}"></span>
     </div>
