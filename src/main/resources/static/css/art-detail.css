@@ -18,11 +18,12 @@
             padding-left:22px;
             margin-bottom:14px;
         }
-        /* ==========新增表格样式========== */
+        /* ==========修复后的表格样式（移动端兼容）========== */
         .article-content table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
+            table-layout: auto;
         }
         .article-content th,
         .article-content td {
@@ -30,6 +31,11 @@
             padding: 9px 12px;
             font-size:14.5px;
             line-height:1.6;
+            /* 核心修复：允许单元格内文字自动换行，防止横向溢出 */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
         }
         .article-content th {
             background-color: #f3f4f6;
@@ -53,3 +59,11 @@
         .related-links-block h3 {
             margin-bottom:14px;
         }
+
+@media screen and (max-width: 600px) {
+    .article-content th,
+    .article-content td {
+        padding: 6px 8px;       /* 减小内边距，给文字更多空间 */
+        font-size: 13px;         /* 略微缩小字号 */
+    }
+}

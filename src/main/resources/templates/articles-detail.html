@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/index.css?20260903">
     <link rel="stylesheet" href="/css/country-detail.css?20260903">
     <link rel="stylesheet" href="/css/footer.css?20260903">
-    <link rel="stylesheet" href="/css/art-detail.css?20260903">
+    <link rel="stylesheet" href="/css/art-detail.css?20260905">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <div th:replace="~{common/ga :: google-analytics}"></div>
 </head>
@@ -58,18 +58,31 @@
         </div>
         <div class="article-content" th:utext="${lang == 'en' ? article.contentEn : article.contentZh}"></div>
     </div>
+
     <!-- 推荐阅读：5篇随机文章 -->
     <div class="card">
         <!-- 顶部黄色提示条：优化友好SEO文案 -->
-        <div class="alert-block expiry-block" style="padding:10px 14px;margin:-28px -28px 18px -28px;border-radius:12px 12px 0 0;font-size:13px;">
+        <div class="alert-block expiry-block" style="padding:10px 14px;margin:-20px -20px 18px -20px;border-radius:12px 12px 0 0;font-size:13px;overflow:hidden;box-sizing:border-box;">
             <span th:text="${lang == 'en' ? '💡 You may also be interested in these practical travel articles' : '💡 你可能也感兴趣的实用旅行文章'}"></span>
         </div>
-        <h3 th:text="${lang == 'en' ? 'Recommended Reads' : '推荐阅读'}"></h3>
+        <h3 th:text="${lang == 'en' ? 'Recommended Reads' : '推荐阅读'}" style="margin: 4px 4px 12px 4px;"></h3>
         <div id="recommended-article-list">
             <!-- 加载占位美化 -->
             <div style="padding:12px 0;color:#666;text-align:center;" th:text="${lang == 'en' ? 'Loading articles...' : '文章加载中...'}"></div>
         </div>
     </div>
+
+    <style>
+        .card {
+            overflow: hidden;
+        }
+        @media(max-width: 640px) {
+            .alert-block.expiry-block {
+                margin: -16px -16px 14px -16px !important;
+            }
+        }
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', async function(){
           const container = document.querySelector('#recommended-article-list');
@@ -81,46 +94,53 @@
             "Border-Inspection Pitfalls": "#dc2626"
           };
           const defaultColor = "#059669";
+
           try{
             const res = await fetch('/api/articles/random?limit=5');
             if(!res.ok) throw new Error('fetch fail');
             const list = await res.json();
             const lang = "[[${lang}]]";
+
             const html = list.map(art=>{
               const title = lang === 'en' ? art.titleEn : art.titleZh;
               const category = lang === 'en' ? art.categoryEn : art.categoryZh;
               const catKey = art.categoryEn || "";
               const labelColor = categoryColorMap[catKey] || defaultColor;
               return `
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:12px;background:#fbfdfc;transition:0.22s;">
-            <div style="font-size:11px;color:${labelColor};margin-bottom:6px;font-weight:500;">${category}</div>
-            <a href="/articles/${art.id}?lang=${lang}" style="font-size:14px;font-weight:500;color:#111827;text-decoration:none;display:block;line-height:1.5;">${title}</a>
-        </div>`;
+         <div class="rec-article-item" style="border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin:0 4px 12px 4px;background:#fbfdfc;transition:0.22s;box-sizing:border-box;">
+             <div style="font-size:11px;color:${labelColor};margin-bottom:6px;font-weight:500;">${category}</div>
+             <a href="/articles/${art.id}?lang=${lang}" style="font-size:14px;font-weight:500;color:#111827;text-decoration:none;display:block;line-height:1.5;word-break:break-word;">${title}</a>
+         </div>`;
             }).join('');
+
             container.innerHTML = html;
-            // 给卡片hover效果，事件委托
+
+            // class选择器替代匹配style字符串，hover逻辑更稳定
             container.onmouseover = function(e){
-                const item = e.target.closest('div[style*="border:1px solid #e5e7eb"]');
+                const item = e.target.closest('.rec-article-item');
                 if(item){
                     item.style.borderColor='#a7f3d0';
                     item.style.boxShadow='0 2px 8px rgba(5,150,105,0.08)';
                 }
             };
             container.onmouseout = function(e){
-                const item = e.target.closest('div[style*="border:1px solid #e5e7eb"]');
+                const item = e.target.closest('.rec-article-item');
                 if(item){
                     item.style.borderColor='#e5e7eb';
                     item.style.boxShadow='none';
                 }
             };
+
           }catch(e){
             container.innerHTML = `
-        <div style="padding:18px 12px;text-align:center;color:#6b7280;font-size:14px;">
-            ${lang==='en'?'Recommended articles temporarily unavailable':'推荐文章暂时无法加载'}
-        </div>`;
+         <div style="padding:18px 12px;text-align:center;color:#6b7280;font-size:14px;">
+             ${lang==='en'?'Recommended articles temporarily unavailable':'推荐文章暂时无法加载'}
+         </div>`;
           }
         })
     </script>
+
+
     <div class="card related-links-block">
         <h3 th:text="${lang == 'en' ? 'Related links' : '相关跳转'}"></h3>
         <div class="doc-item">
