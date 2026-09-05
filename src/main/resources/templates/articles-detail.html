@@ -5,11 +5,23 @@
     <title th:text="${lang == 'en' ? article.titleEn : article.titleZh}"></title>
     <meta name="description" th:content="${lang == 'en' ? article.summaryEn : article.summaryZh}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="application/ld+json"
+            th:utext="${structuredData}">
+    </script>
     <meta name="robots" content="index,follow">
-    <link rel="canonical" th:href="${#request.requestURL}">
-    <link rel="alternate" hreflang="en" th:href="@{/articles/{id}(id=${article.id}, lang='en')}">
-    <link rel="alternate" hreflang="zh" th:href="@{/articles/{id}(id=${article.id}, lang='zh')}">
-    <link rel="alternate" hreflang="x-default" th:href="@{/articles/{id}(id=${article.id}, lang='en')}">
+    <link rel="canonical" th:href="${canonicalUrl}">
+
+    <link rel="alternate"
+          hreflang="en"
+          th:href="${hreflang['en']}">
+
+    <link rel="alternate"
+          hreflang="zh"
+          th:href="${hreflang['zh']}">
+
+    <link rel="alternate"
+          hreflang="x-default"
+          th:href="${hreflang['x-default']}">
     <link rel="stylesheet" href="/css/index.css?20260903">
     <link rel="stylesheet" href="/css/country-detail.css?20260903">
     <link rel="stylesheet" href="/css/footer.css?20260903">

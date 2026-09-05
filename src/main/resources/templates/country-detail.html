@@ -6,6 +6,9 @@
     <meta th:content="${lang == 'en' ? detail.seoDesc : detail.seoDescZh}" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
+    <script type="application/ld+json"
+            th:utext="${structuredData}">
+    </script>
     <link rel="canonical" th:href="${canonicalUrl}">
     <link rel="alternate" hreflang="en" th:href="${#strings.replace(canonicalUrl,'lang=zh','lang=en')}">
     <link rel="alternate" hreflang="zh" th:href="${#strings.replace(canonicalUrl,'lang=en','lang=zh')}">
@@ -161,202 +164,62 @@
         </p>
     </div>
     <!-- ===================== 通用FAQ（重构折叠样式）===================== -->
-    <div class="card faq-section-wrap" th:if="${type == 'unilateral'}">
-        <h3 th:text="${lang == 'en' ? 'Frequently Asked Questions (FAQ)' : '常见问题解答'}"></h3>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: What is the validity period of this policy?' : 'Q1：政策有效期到什么时候？'}"></p>
+    <!-- ==================== FAQ - English ==================== -->
+    <div class="card faq-section-wrap"
+         th:if="${lang == 'en' and policy != null and policy.faqsEn != null and !#lists.isEmpty(policy.faqsEn)}">
+
+        <h3>Frequently Asked Questions (FAQ)</h3>
+
+        <div th:each="faq : ${policy.faqsEn}" class="faq-item">
+
+            <div class="faq-q-wrap"
+                 tabindex="0"
+                 role="button"
+                 aria-expanded="false">
+
+                <p class="faq-question"
+                   th:text="${faq.q}">
+                </p>
+
                 <span class="faq-toggle">+</span>
             </div>
+
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Brunei has no expiration date. Russia is valid until 14 Sep 2026. All other 48 countries are valid until 31 Dec 2026.' : 'A：文莱无期限；俄罗斯至2026年9月14日；其余48国至2026年12月31日。'}"></div>
+                <div class="faq-answer"
+                     th:text="${faq.a}">
+                </div>
             </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q2: How to calculate the stay period?' : 'Q2：停留期限如何计算？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: The stay period starts from the day after entry.' : 'A：停留期限自入境次日起计算。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q3: Can I extend my stay beyond the allowed days?' : 'Q3：可以延期停留吗？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: You must apply for a visa in advance. If you need extension after entry, apply to local immigration authorities.' : 'A：需提前办理签证；入境后有正当理由可向公安机关出入境管理机构申请延期。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q4: What documents are required for entry?' : 'Q4：入境需要准备哪些材料？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Valid ordinary passport. It is recommended to prepare flight tickets, hotel bookings, invitation letters if applicable.' : 'A：持有效普通护照，建议准备机票、酒店订单、邀请函等。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q5: Can I enter multiple times?' : 'Q5：可以多次免签入境吗？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Yes, there is no limit on entry times or total stay days for now.' : 'A：可以，目前无入境次数、总停留天数限制。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q6: Do I need to declare in advance?' : 'Q6：需要提前申报吗？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: No advance declaration or application is required.' : 'A：无需提前向使领馆申报或申请。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q7: What activities are NOT allowed?' : 'Q7：哪些行为不允许？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Work, study, long-term residence, media reporting are NOT allowed.' : 'A：禁止工作、就业、长期居留、学习、记者采访等活动。'}"></div>
-            </div>
+
         </div>
     </div>
-    <div class="card faq-section-wrap" th:if="${type == 'mutual'}">
-        <h3 th:text="${lang == 'en' ? 'Mutual Visa Exemption - FAQ' : '互免签证协定 - 常见问题解答'}"></h3>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: How to calculate the 30-day stay and 90 days within 180 days?' : 'Q1：如何计算单次30日、180日内累计90日？'}"></p>
+
+
+    <!-- ==================== FAQ - Chinese ==================== -->
+    <div class="card faq-section-wrap"
+         th:if="${lang == 'zh' and policy != null and policy.faqsZh != null and !#lists.isEmpty(policy.faqsZh)}">
+
+        <h3>常见问题解答</h3>
+
+        <div th:each="faq : ${policy.faqsZh}" class="faq-item">
+
+            <div class="faq-q-wrap"
+                 tabindex="0"
+                 role="button"
+                 aria-expanded="false">
+
+                <p class="faq-question"
+                   th:text="${faq.q}">
+                </p>
+
                 <span class="faq-toggle">+</span>
             </div>
+
             <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: The 180-day period is counted backward from the date of entry. The 90-day limit does not include days under visa, residence permit or APEC card. If you have accumulated 90 days in the past 180 days, you cannot enter visa-free.' : 'A：180日从入境当日向前追溯；90日不含持签证、居留证件、APEC卡停留天数。180日内累计满90日则不可免签入境。'}"></div>
+                <div class="faq-answer"
+                     th:text="${faq.a}">
+                </div>
             </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q2: What should I do if my passport is lost after entry?' : 'Q2：入境后护照遗失怎么办？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: You may exit with an emergency travel document issued by your embassy after verification of identity and no overstay.' : 'A：可持本国驻华使领馆签发的紧急旅行证件出境，需核实身份且无逾期停留。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q3: Can I extend my stay beyond 30 days?' : 'Q3：停留超过30日可以延期吗？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: You must leave before expiration. For emergency reasons, apply for a stay permit at local immigration before expiry.' : 'A：应在期满前出境；确有紧急事由，可在期满前向公安机关出入境管理部门申请停留证件。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q4: Do I need to complete accommodation registration?' : 'Q4：是否需要办理住宿登记？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Yes. Registration shall be completed within 24 hours at hotel or local police station.' : 'A：需要。应在入境后24小时内，在酒店或居住地公安机关办理住宿登记。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q5: What passports are eligible?' : 'Q5：哪些护照可享受互免签证？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Only valid passports specified in the bilateral agreement are eligible.' : 'A：仅限双边协定规定的有效护照种类。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q6: What activities are NOT allowed?' : 'Q6：哪些活动不允许？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Work, employment, study, media reporting, long-term residence are prohibited.' : 'A：禁止工作、就业、学习、记者采访、长期居留等活动。'}"></div>
-            </div>
-        </div>
-    </div>
-    <div class="card faq-section-wrap" th:if="${type == 'transit'}">
-        <h3 th:text="${lang == 'en' ? 'Transit Visa Exemption - FAQ' : '过境免签政策 - 常见问题解答'}"></h3>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q1: What is the 240-hour transit visa-free policy?' : 'Q1：什么是240小时过境免签政策？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Eligible citizens from 57 countries may enjoy up to 10-day transit stay under 240-hour transit visa-free. Cross-regional travel is allowed within designated regions of 24 provinces across 65 ports. This policy is only for transit passengers heading to a third country or region.' : 'A：57个符合条件国家的公民可享受240小时过境免签，最长可停留10天；可在24个省份共65个指定口岸对应的允许区域内跨省活动。该政策仅适用于前往第三国/地区的过境旅客。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q2: Who qualifies for 240-hour transit visa exemption?' : 'Q2：哪些人可享受240小时过境免签？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Nationals of 57 eligible countries, holding valid passport and confirmed onward ticket within 240 hours, transiting to a third country/region.' : 'A：57个指定国家公民，持有效护照+240小时内确定行程的联程客票，从中国过境前往第三国/地区。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q3: How is the 240-hour period calculated?' : 'Q3：240小时如何计算？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Counted from 00:00 on the day after entry. No extension allowed.' : 'A：自入境次日零时起算，共10天，不可延期。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q4: Which ports and regions are allowed?' : 'Q4：可从哪些口岸入境、在哪些区域活动？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: 60+ open ports in 24 provinces. You may travel across these permitted areas.' : 'A：可从24个省份60余个开放口岸入境，在规定区域内跨省活动。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q5: What activities are allowed?' : 'Q5：可从事哪些活动？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Tourism, business, family visit, transit. Work, study, media reporting, long-term residence are prohibited.' : 'A：仅限旅游、商务、探亲、过境；禁止工作、就业、学习、记者采访、长期居留。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q6: Do I need accommodation registration?' : 'Q6：是否需要办理住宿登记？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Yes. Register at hotel or local police within 24 hours of entry.' : 'A：需要。入境后24小时内，在酒店或居住地公安机关办理住宿登记。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q7: What documents are required?' : 'Q7：需要准备哪些材料？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Valid passport (valid for ≥3 months), confirmed onward ticket within 240 hours, no adverse immigration records.' : 'A：有效期不少于3个月的护照、240小时内联程客票、无不良出入境记录。'}"></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${lang == 'en' ? 'Q8: Can I change my itinerary?' : 'Q8：可以变更行程吗？'}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${lang == 'en' ? 'A: Minor changes allowed, but you must depart within 240 hours and maintain transit to a third country.' : 'A：可小幅调整，但必须在240小时内离境，且保持过境第三国的目的。'}"></div>
-            </div>
+
         </div>
     </div>
     <!-- 该国专属FAQ -->

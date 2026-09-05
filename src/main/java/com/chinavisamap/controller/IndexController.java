@@ -7,16 +7,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.chinavisamap.service.SeoService;
 import java.util.*;
 import java.util.stream.Collectors;
+import com.chinavisamap.service.SeoService;
+import com.chinavisamap.service.StructuredDataService;
 
 @Controller
 public class IndexController {
 
     private Map<String, Object> allData;
+    private final SeoService seoService;
+    private final StructuredDataService structuredDataService;
 
-    public IndexController() {
+
+    public IndexController(SeoService seoService, StructuredDataService structuredDataService) {
+        this.seoService = seoService;
+        this.structuredDataService = structuredDataService;
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             allData = objectMapper.readValue(
@@ -34,10 +41,60 @@ public class IndexController {
             @RequestParam(defaultValue = "en") String lang,
             Model model) {
 
+        lang = seoService.normalizeLang(lang);
         model.addAllAttributes(allData);
         model.addAttribute("lang", lang);
         model.addAttribute("keyword", keyword);
         model.addAttribute("searched", false);
+
+        // SEO
+        model.addAttribute(
+                "canonicalUrl",
+                seoService.canonical("/", lang)
+        );
+
+        model.addAttribute(
+                "hreflang",
+                seoService.hreflang("/")
+        );
+
+        String siteName = String.valueOf(
+                allData.getOrDefault(
+                        "siteName",
+                        "China Visa Free Guide 2026"
+                )
+        );
+
+        String title = "zh".equals(lang)
+                ? String.valueOf(allData.getOrDefault(
+                "siteTitleZh",
+                "2026中国免签政策指南"
+        ))
+                : String.valueOf(allData.getOrDefault(
+                "siteTitle",
+                "China Visa-Free Policy 2026"
+        ));
+
+        String description = "zh".equals(lang)
+                ? String.valueOf(allData.getOrDefault(
+                "siteDescZh",
+                ""
+        ))
+                : String.valueOf(allData.getOrDefault(
+                "siteDesc",
+                ""
+        ));
+
+        model.addAttribute(
+                "structuredData",
+                structuredDataService.buildHome(
+                        lang,
+                        siteName,
+                        title,
+                        description
+                )
+        );
+
 
         if (keyword == null || keyword.isEmpty()) {
             return "index";
@@ -46,6 +103,7 @@ public class IndexController {
         try {
             String kw = keyword.toLowerCase();
             model.addAttribute("searched", true);
+
 
             // ==============================================
             // 1. 搜索：单方面免签（分类保留）

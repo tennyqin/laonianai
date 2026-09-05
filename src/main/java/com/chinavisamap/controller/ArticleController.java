@@ -10,16 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.chinavisamap.service.SeoService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
+import com.chinavisamap.service.StructuredDataService;
 
 @Controller
 public class ArticleController {
 
     private List<Map<String, Object>> articleList;
+    private final SeoService seoService;
+    private final StructuredDataService structuredDataService;
+
 
     // JDK8 不支持 List.of，使用 Arrays.asList + HashMap 构建全部分类
     public static final List<Map<String, String>> ALL_CATEGORIES;
@@ -48,7 +52,9 @@ public class ArticleController {
         ALL_CATEGORIES = Collections.unmodifiableList(temp);
     }
 
-    public ArticleController(ObjectMapper objectMapper){
+    public ArticleController(ObjectMapper objectMapper, SeoService seoService, StructuredDataService structuredDataService){
+        this.seoService = seoService;
+        this.structuredDataService = structuredDataService;
         try {
             articleList = objectMapper.readValue(
                     new ClassPathResource("articles.json").getInputStream(),
@@ -97,6 +103,27 @@ public class ArticleController {
             @RequestParam(defaultValue = "en") String lang,
             Model model
     ){
+
+        lang = seoService.normalizeLang(lang);
+
+        model.addAttribute(
+                "canonicalUrl",
+                seoService.canonical("/articles", lang)
+        );
+
+        model.addAttribute(
+                "hreflang",
+                seoService.hreflang("/articles")
+        );
+
+        boolean noIndex =
+                page > 1
+                        || StringUtils.isNotBlank(keyword)
+                        || StringUtils.isNotBlank(category)
+                        || size != 10;
+
+        model.addAttribute("noIndex", noIndex);
+
         List<Map<String,Object>> source = new ArrayList<>(articleList);
 
         // 分类过滤
@@ -165,6 +192,18 @@ public class ArticleController {
             @RequestParam(defaultValue = "en") String lang,
             Model model
     ){
+        lang = seoService.normalizeLang(lang);
+
+        model.addAttribute(
+                "canonicalUrl",
+                seoService.canonical("/articles", lang)
+        );
+
+        model.addAttribute(
+                "hreflang",
+                seoService.hreflang("/articles")
+        );
+
         Optional<Map<String, Object>> opt = articleList.stream()
                 .filter(new java.util.function.Predicate<Map<String, Object>>() {
                     @Override
@@ -178,6 +217,14 @@ public class ArticleController {
         Map<String,Object> article = opt.get();
         model.addAttribute("lang", lang);
         model.addAttribute("article", article);
+        model.addAttribute(
+                "structuredData",
+                structuredDataService.buildArticle(
+                        article,
+                        lang,
+                        seoService.canonical("/articles", lang)
+                )
+        );
         return "articles-detail";
     }
 

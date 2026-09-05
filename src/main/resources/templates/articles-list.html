@@ -5,11 +5,23 @@
     <title th:text="${lang == 'en' ? 'Travel Guides | China Travel & Visa-Free Tips' : '旅行指南｜来华旅行与免签提示'}"></title>
     <meta name="description" th:content="${lang == 'en' ? 'Practical travel articles for visitors to China: visa-free rules, mobile apps, local customs, border-inspection pitfalls and real-world travel advice.' : '面向来华外籍游客实用旅行文章库：免签政策、手机APP使用、本地风俗文化、出入境避坑、出行实操建议'}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index,follow">
-    <link rel="canonical" th:href="${#request.requestURL}">
-    <link rel="alternate" hreflang="en" th:href="${#request.requestURL} + '?lang=en'">
-    <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
-    <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
+    <meta name="robots"
+          th:content="${noIndex ? 'noindex,follow' : 'index,follow'}">
+    <!-- SEO Canonical -->
+    <link rel="canonical" th:href="${canonicalUrl}">
+
+    <!-- SEO Hreflang -->
+    <link rel="alternate"
+          hreflang="en"
+          th:href="${hreflang['en']}">
+
+    <link rel="alternate"
+          hreflang="zh"
+          th:href="${hreflang['zh']}">
+
+    <link rel="alternate"
+          hreflang="x-default"
+          th:href="${hreflang['x-default']}">
     <link rel="stylesheet" href="/css/index.css?20260903">
     <link rel="stylesheet" href="/css/footer.css?20260903">
     <link rel="stylesheet" href="/css/art-list.css?20260903">

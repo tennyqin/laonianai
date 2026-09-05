@@ -1,5 +1,7 @@
 package com.chinavisamap.controller;
 
+import com.chinavisamap.service.SeoService;
+import com.chinavisamap.service.StructuredDataService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
@@ -14,8 +16,13 @@ import java.util.Map;
 public class VisaGuideController {
 
     private final Map<String, Object> vgData;
+    private final SeoService seoService;
+    private final StructuredDataService structuredDataService;
 
-    public VisaGuideController() {
+
+    public VisaGuideController(SeoService seoService, StructuredDataService structuredDataService) {
+        this.seoService = seoService;
+        this.structuredDataService = structuredDataService;
         Map<String,Object> temp = null;
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -37,6 +44,36 @@ public class VisaGuideController {
         if (!"zh".equals(lang)) {
             lang = "en";
         }
+        String path = "/visa-guide";
+
+        model.addAttribute(
+                "canonicalUrl",
+                seoService.canonical(path, lang)
+        );
+
+        model.addAttribute(
+                "hreflang",
+                seoService.hreflang(path)
+        );
+
+        String title = "zh".equals(lang)
+                ? "中国签证指南 2026"
+                : "China Visa Guide 2026";
+
+        String description = "zh".equals(lang)
+                ? "中国签证、免签、过境免签及入境政策完整指南。"
+                : "Complete guide to China visas, visa-free entry, transit visa-free policies and entry requirements.";
+
+        model.addAttribute(
+                "structuredData",
+                structuredDataService.buildVisaGuide(
+                        lang,
+                        title,
+                        description,
+                        seoService.canonical(path, lang)
+                )
+        );
+
         model.addAttribute("lang", lang);
         model.addAttribute("vg", vgData);
         return "visa-guide";

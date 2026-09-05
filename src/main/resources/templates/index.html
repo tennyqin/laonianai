@@ -6,11 +6,26 @@
     <meta th:content="${lang == 'en' ? siteDesc : siteDescZh}" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
+    <script type="application/ld+json"
+            th:utext="${structuredData}">
+    </script>
     <!-- Canonical & Hreflang SEO -->
-    <link rel="canonical" th:href="${#request.requestURL}">
-    <link rel="alternate" hreflang="en" th:href="${#request.requestURL} + '?lang=en'">
-    <link rel="alternate" hreflang="zh" th:href="${#request.requestURL} + '?lang=zh'">
-    <link rel="alternate" hreflang="x-default" th:href="${#request.requestURL} + '?lang=en'">
+    <!-- SEO Canonical -->
+    <link rel="canonical" th:href="${canonicalUrl}">
+
+    <!-- SEO Hreflang -->
+    <link rel="alternate"
+          hreflang="en"
+          th:href="${hreflang['en']}">
+
+    <link rel="alternate"
+          hreflang="zh"
+          th:href="${hreflang['zh']}">
+
+    <link rel="alternate"
+          hreflang="x-default"
+          th:href="${hreflang['x-default']}">
+
     <link rel="stylesheet" href="/css/index.css?20260903">
     <link rel="stylesheet" href="/css/footer.css?20260903">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
