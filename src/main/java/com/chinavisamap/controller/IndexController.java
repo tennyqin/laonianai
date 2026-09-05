@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.chinavisamap.service.SeoService;
 import java.util.*;
 import java.util.stream.Collectors;
-import com.chinavisamap.service.SeoService;
 import com.chinavisamap.service.StructuredDataService;
 
 @Controller
 public class IndexController {
 
-    private Map<String, Object> allData;
+    private Map<String, Object> allData = new HashMap<>();
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
 
@@ -46,6 +45,7 @@ public class IndexController {
         model.addAttribute("lang", lang);
         model.addAttribute("keyword", keyword);
         model.addAttribute("searched", false);
+        model.addAttribute("noIndex", keyword != null && !keyword.trim().isEmpty());
 
         // SEO
         model.addAttribute(

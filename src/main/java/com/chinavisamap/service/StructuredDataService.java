@@ -1,6 +1,7 @@
 package com.chinavisamap.service;
 
 import com.chinavisamap.entity.CountryDetail;
+import com.chinavisamap.entity.CountryPolicy;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -79,11 +80,22 @@ public class StructuredDataService {
     }
 
     /**
-     * 国家政策详情页
+     * 国家政策详情页（兼容旧调用）
      */
     public String buildCountry(CountryDetail detail,
                                String lang,
                                String canonicalUrl) {
+        return buildCountry(detail, lang, canonicalUrl, null, Collections.emptyMap());
+    }
+
+    /**
+     * 国家政策详情页：WebPage + Breadcrumb + FAQPage。
+     */
+    public String buildCountry(CountryDetail detail,
+                               String lang,
+                               String canonicalUrl,
+                               CountryPolicy policy,
+                               Map<String, Object> extra) {
 
         String name = "zh".equals(lang)
                 ? detail.getNameZh()
@@ -157,10 +169,122 @@ public class StructuredDataService {
 
         graph.add(breadcrumb);
 
+        if (policy != null) {
+            List<CountryPolicy.PolicyFaq> faqs = "zh".equals(lang)
+                    ? policy.getFaqsZh()
+                    : policy.getFaqsEn();
+            if (faqs != null && !faqs.isEmpty()) {
+                Map<String, Object> faqPage = new LinkedHashMap<>();
+                faqPage.put("@type", "FAQPage");
+                List<Map<String, Object>> entities = new ArrayList<>();
+                for (CountryPolicy.PolicyFaq faq : faqs) {
+                    Map<String, Object> question = new LinkedHashMap<>();
+                    question.put("@type", "Question");
+                    question.put("name", faq.getQ());
+                    Map<String, Object> answer = new LinkedHashMap<>();
+                    answer.put("@type", "Answer");
+                    answer.put("text", faq.getA());
+                    question.put("acceptedAnswer", answer);
+                    entities.add(question);
+                }
+                faqPage.put("mainEntity", entities);
+                graph.add(faqPage);
+            }
+        }
+
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("@context", "https://schema.org");
         result.put("@graph", graph);
 
+        return toJson(result);
+    }
+
+    /**
+     * 国家聚合页：WebPage + Breadcrumb + ItemList + FAQPage。
+     */
+    public String buildCountryHome(CountryDetail detail,
+                                   String lang,
+                                   String canonicalUrl,
+                                   Map<String, Object> extra,
+                                   List<String> types,
+                                   Map<String, CountryDetail> policyDetails) {
+        String name = "zh".equals(lang) ? detail.getNameZh() : detail.getName();
+        if (extra == null) extra = Collections.emptyMap();
+        if (policyDetails == null) policyDetails = Collections.emptyMap();
+        String title = "zh".equals(lang) ? stringValue(extra.get("homeSeoTitleZh")) : stringValue(extra.get("homeSeoTitleEn"));
+        String description = "zh".equals(lang) ? stringValue(extra.get("homeSeoDescZh")) : stringValue(extra.get("homeSeoDescEn"));
+        if (isBlank(title)) title = name + ("zh".equals(lang) ? "来华签证政策" : " travel to China visa-free guide");
+        if (isBlank(description)) description = "zh".equals(lang) ? name + "公民来华免签政策、停留期限、入境条件与常见问题。" : name + " citizens traveling to China: visa-free policies, stay duration, entry rules and FAQs.";
+
+        List<Map<String, Object>> graph = new ArrayList<>();
+        Map<String, Object> page = new LinkedHashMap<>();
+        page.put("@type", "WebPage");
+        page.put("@id", canonicalUrl + "#webpage");
+        page.put("url", canonicalUrl);
+        page.put("name", title);
+        page.put("description", description);
+        page.put("inLanguage", lang);
+        Map<String, Object> about = new LinkedHashMap<>();
+        about.put("@type", "Country");
+        about.put("name", name);
+        page.put("about", about);
+        graph.add(page);
+
+        Map<String, Object> breadcrumb = new LinkedHashMap<>();
+        breadcrumb.put("@type", "BreadcrumbList");
+        List<Map<String, Object>> items = new ArrayList<>();
+        items.add(breadcrumbItem(1, "zh".equals(lang) ? "首页" : "Home", BASE_URL + "/?lang=" + lang));
+        items.add(breadcrumbItem(2, name, canonicalUrl));
+        breadcrumb.put("itemListElement", items);
+        graph.add(breadcrumb);
+
+        Map<String, Object> itemList = new LinkedHashMap<>();
+        itemList.put("@type", "ItemList");
+        List<Map<String, Object>> listItems = new ArrayList<>();
+        int pos = 1;
+        for (String type : types) {
+            CountryDetail pd = policyDetails.get(type);
+            if (pd == null) continue;
+            String label = "zh".equals(lang) ? pd.getPolicyTypeZh() : pd.getPolicyType();
+            Map<String, Object> li = new LinkedHashMap<>();
+            li.put("@type", "ListItem");
+            li.put("position", pos++);
+            li.put("name", label);
+            li.put("url", BASE_URL + "/country/" + detail.getCode() + "/" + type + "?lang=" + lang);
+            listItems.add(li);
+        }
+        itemList.put("itemListElement", listItems);
+        graph.add(itemList);
+
+        Object faqValue = extra.get("zh".equals(lang) ? "homeCustomFaqsZh" : "homeCustomFaqsEn");
+        if (faqValue instanceof List && !((List<?>) faqValue).isEmpty()) {
+            Map<String, Object> faqPage = new LinkedHashMap<>();
+            faqPage.put("@type", "FAQPage");
+            List<Map<String, Object>> entities = new ArrayList<>();
+            for (Object item : (List<?>) faqValue) {
+                if (!(item instanceof Map)) continue;
+                Map<?, ?> raw = (Map<?, ?>) item;
+                String q = stringValue(raw.get("q"));
+                String a = stringValue(raw.get("a"));
+                if (isBlank(q) || isBlank(a)) continue;
+                Map<String, Object> question = new LinkedHashMap<>();
+                question.put("@type", "Question");
+                question.put("name", q);
+                Map<String, Object> answer = new LinkedHashMap<>();
+                answer.put("@type", "Answer");
+                answer.put("text", a);
+                question.put("acceptedAnswer", answer);
+                entities.add(question);
+            }
+            if (!entities.isEmpty()) {
+                faqPage.put("mainEntity", entities);
+                graph.add(faqPage);
+            }
+        }
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("@context", "https://schema.org");
+        result.put("@graph", graph);
         return toJson(result);
     }
 

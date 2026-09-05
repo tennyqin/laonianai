@@ -3,586 +3,491 @@ package com.chinavisamap.controller;
 import com.chinavisamap.entity.CountryDetail;
 import com.chinavisamap.entity.CountryPolicy;
 import com.chinavisamap.service.SeoService;
+import com.chinavisamap.service.StructuredDataService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import com.chinavisamap.service.StructuredDataService;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
+import java.util.*;
 
 @Controller
 public class CountryController {
 
-    // 原始三份政策json
-    private Map<String, CountryDetail> unilateralMap;
-    private Map<String, CountryDetail> mutualMap;
-    private Map<String, CountryDetail> transitMap;
+    private static final String NIA_SOURCE = "https://en.nia.gov.cn/";
+    private static final String VERIFIED_DATE = "2026-09-05";
+
+    private final Map<String, CountryDetail> unilateralMap;
+    private final Map<String, CountryDetail> mutualMap;
+    private final Map<String, CountryDetail> transitMap;
+    private final Map<String, Map<String, Object>> countryExtraMap;
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
 
-
-    // 新增：国家个性化扩展配置 country-extra.json
-    private Map<String, Map<String, Object>> countryExtraMap;
-
-    public CountryController(ObjectMapper objectMapper, SeoService seoService, StructuredDataService structuredDataService) {
+    public CountryController(ObjectMapper objectMapper,
+                             SeoService seoService,
+                             StructuredDataService structuredDataService) {
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
-        // 加载原始三份政策
-        try {
-            unilateralMap = objectMapper.readValue(
-                    new ClassPathResource("unilateral.json").getInputStream(),
-                    new TypeReference<Map<String, CountryDetail>>() {}
-            );
-            mutualMap = objectMapper.readValue(
-                    new ClassPathResource("mutual.json").getInputStream(),
-                    new TypeReference<Map<String, CountryDetail>>() {}
-            );
-            transitMap = objectMapper.readValue(
-                    new ClassPathResource("transit.json").getInputStream(),
-                    new TypeReference<Map<String, CountryDetail>>() {}
-            );
-        } catch (Exception ignored) {
-        }
-
-        // 加载新增 country-extra.json
-        try {
-            countryExtraMap = objectMapper.readValue(
-
-                    new ClassPathResource("country-extra.json").getInputStream(),
-                    new TypeReference<Map<String, Map<String, Object>>>() {}
-            );
-        } catch (Exception ignored) {
-            countryExtraMap = null;
-        }
+        this.unilateralMap = loadCountryMap(objectMapper, "unilateral.json");
+        this.mutualMap = loadCountryMap(objectMapper, "mutual.json");
+        this.transitMap = loadCountryMap(objectMapper, "transit.json");
+        this.countryExtraMap = loadExtraMap(objectMapper);
     }
 
-
     /**
-     * 旧接口：兼容历史访问地址 /country/{code}?type=xxx&lang=xxx
-     * 不传type 则进入【国家聚合总页】
+     * Legacy URL: /country/{code}?type=xxx&lang=xxx -> permanent redirect.
      */
-    @GetMapping(
-            value = "/country/{code}",
-            params = "type"
-    )
+    @GetMapping(value = "/country/{code}", params = "type")
     public ResponseEntity<Void> legacyCountryRedirect(
             @PathVariable String code,
             @RequestParam String type,
-            @RequestParam(defaultValue = "zh") String lang
-    ) {
+            @RequestParam(defaultValue = "en") String lang) {
 
         CountryDetail detail = getCountryDetail(code, type);
-
         if (detail == null) {
             return ResponseEntity.notFound().build();
         }
 
+        String normalizedLang = seoService.normalizeLang(lang);
         String location = UriComponentsBuilder
                 .fromPath("/country/" + code + "/" + type)
-                .queryParam("lang", lang)
+                .queryParam("lang", normalizedLang)
                 .build()
                 .encode()
                 .toUriString();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(location));
-
-        return new ResponseEntity<>(
-                headers,
-                HttpStatus.MOVED_PERMANENTLY
-        );
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
-
+    /** Country aggregate page. */
     @GetMapping("/country/{code}")
-    public String countryHome(
-            @PathVariable String code,
-            @RequestParam(defaultValue = "zh") String lang,
-            Model model
-    ) {
+    public String countryHome(@PathVariable String code,
+                              @RequestParam(defaultValue = "en") String lang,
+                              Model model) {
 
+        String normalizedLang = seoService.normalizeLang(lang);
         List<String> availableTypes = detectAvailableTypes(code);
-
         if (availableTypes.isEmpty()) {
-            return "redirect:/";
+            return "redirect:/?lang=" + normalizedLang;
         }
 
-        CountryDetail detailCountry =
-                getAnyCountryDetail(code);
+        CountryDetail detailCountry = getAnyCountryDetail(code);
+        Map<String, Object> countryExtraRoot = countryExtraMap.get(code);
 
-        Map<String, Object> countryExtraRoot =
-                countryExtraMap != null
-                        ? countryExtraMap.get(code)
-                        : null;
-
+        String path = "/country/" + code;
+        String canonicalUrl = seoService.canonical(path, normalizedLang);
         model.addAttribute("code", code);
-        model.addAttribute("lang", lang);
+        model.addAttribute("lang", normalizedLang);
         model.addAttribute("detailCountry", detailCountry);
         model.addAttribute("availableTypes", availableTypes);
         model.addAttribute("countryExtraRoot", countryExtraRoot);
+        model.addAttribute("availablePolicies", buildAvailablePolicies(code, availableTypes));
+        model.addAttribute("countryNames", buildCountryNames());
+        model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(countryExtraRoot));
+        model.addAttribute("canonicalUrl", canonicalUrl);
+        model.addAttribute("hreflang", seoService.hreflang(path));
+        model.addAttribute("structuredData", structuredDataService.buildCountryHome(
+                detailCountry,
+                normalizedLang,
+                canonicalUrl,
+                countryExtraRoot,
+                availableTypes,
+                buildPolicyDetails(code, availableTypes)
+        ));
 
         return "country-home";
     }
 
-
-    /**
-     * 新REST详情路径 /country/{code}/{type}?lang=xxx
-     */
+    /** Policy detail page. */
     @GetMapping("/country/{code}/{type}")
-    public String restCountryDetail(
-            @PathVariable String code,
-            @PathVariable String type,
-            @RequestParam(defaultValue = "en") String lang,
-            Model model
-    ) {
+    public String restCountryDetail(@PathVariable String code,
+                                    @PathVariable String type,
+                                    @RequestParam(defaultValue = "en") String lang,
+                                    Model model) {
+
+        String normalizedLang = seoService.normalizeLang(lang);
         CountryDetail detail = getCountryDetail(code, type);
         if (detail == null) {
-            return "redirect:/";
+            return "redirect:/?lang=" + normalizedLang;
         }
+
         String path = "/country/" + code + "/" + type;
+        String canonicalUrl = seoService.canonical(path, normalizedLang);
+        Map<String, Object> countryExtra = asMap(getCountryExtraItem(code, type));
+        CountryPolicy policy = buildCountryPolicy(code, type, detail, countryExtra);
 
-        model.addAttribute(
-                "canonicalUrl",
-                seoService.canonical(path, lang)
-        );
-
-        model.addAttribute(
-                "hreflang",
-                seoService.hreflang(path)
-        );
-
-        model.addAttribute(
-                "structuredData",
-                structuredDataService.buildCountry(
-                        detail,
-                        lang,
-                        seoService.canonical(path, lang)
-                )
-        );
-
-        Object countryExtra = getCountryExtraItem(code, type);
-
-        // 空Map置null，避免模板层 countryExtra != null 通过后取key得到null
-        if (countryExtra instanceof Map) {
-            Map<?, ?> extraMap = (Map<?, ?>) countryExtra;
-            if (extraMap.isEmpty()) {
-                countryExtra = null;
-            }
-        }
-        CountryPolicy policy = buildCountryPolicy(code, type, detail);
+        model.addAttribute("canonicalUrl", canonicalUrl);
+        model.addAttribute("hreflang", seoService.hreflang(path));
+        model.addAttribute("structuredData", structuredDataService.buildCountry(
+                detail,
+                normalizedLang,
+                canonicalUrl,
+                policy,
+                countryExtra
+        ));
         model.addAttribute("detail", detail);
         model.addAttribute("policy", policy);
         model.addAttribute("code", code);
         model.addAttribute("type", type);
-        model.addAttribute("lang", lang);
-       // model.addAttribute("canonicalUrl", canonicalUrl);
+        model.addAttribute("lang", normalizedLang);
         model.addAttribute("countryExtra", countryExtra);
+
         return "country-detail";
     }
 
-
-    // =====================内部工具方法=====================
-
-    /** 根据code+type获取政策详情 */
-    private CountryDetail getCountryDetail(String code, String type) {
-        if ("unilateral".equals(type)) {
-            return unilateralMap != null ? unilateralMap.get(code) : null;
-        } else if ("mutual".equals(type)) {
-            return mutualMap != null ? mutualMap.get(code) : null;
-        } else if ("transit".equals(type)) {
-            return transitMap != null ? transitMap.get(code) : null;
-        }
-        return null;
-    }
-
-    /** 获取该code+type对应的extra扩展对象 */
-    private Object getCountryExtraItem(String code, String type) {
-        if (countryExtraMap == null) return null;
-        Map<String, Object> countryNode = countryExtraMap.get(code);
-        if (countryNode == null) return null;
-        return countryNode.get(type);
-    }
-
-    /**
-     * 检测一个国家拥有哪些可用政策type
-     * 遍历三份map，收集存在的type，返回集合给聚合页
-     */
-    private List<String> detectAvailableTypes(String code) {
-        List<String> list = new ArrayList<>();
-        if (unilateralMap != null && unilateralMap.containsKey(code)) {
-            list.add("unilateral");
-        }
-        if (mutualMap != null && mutualMap.containsKey(code)) {
-            list.add("mutual");
-        }
-        if (transitMap != null && transitMap.containsKey(code)) {
-            list.add("transit");
-        }
-        return list;
-    }
-
-    /**
-     * 获取该国家任意一份存在的CountryDetail，用于聚合页展示国家基础信息
-     */
-    private CountryDetail getAnyCountryDetail(String code) {
-        if (unilateralMap != null && unilateralMap.containsKey(code)) {
-            return unilateralMap.get(code);
-        }
-        if (mutualMap != null && mutualMap.containsKey(code)) {
-            return mutualMap.get(code);
-        }
-        if (transitMap != null && transitMap.containsKey(code)) {
-            return transitMap.get(code);
-        }
-        return null;
-    }
-
-    private CountryPolicy buildCountryPolicy(
-            String code,
-            String type,
-            CountryDetail detail
-    ) {
+    private CountryPolicy buildCountryPolicy(String code,
+                                             String type,
+                                             CountryDetail detail,
+                                             Map<String, Object> extra) {
         CountryPolicy policy = new CountryPolicy();
-
         policy.setDetail(detail);
         policy.setCountryCode(code);
         policy.setPolicyType(type);
+        policy.setOfficialSource(firstNonBlank(
+                string(extra, "officialSource"), NIA_SOURCE));
+        policy.setLastVerified(firstNonBlank(
+                string(extra, "lastVerified"), VERIFIED_DATE));
+        policy.setPolicyExpiry(firstNonBlank(
+                string(extra, "policyExpiry"), ""));
 
-        policy.setOfficialSource(
-                "https://en.nia.gov.cn/"
-        );
-
-        /*
-         * 这里暂时使用统一核验日期。
-         *
-         * 后面建议改成 country-extra.json 中每条政策自己的
-         * lastVerified 字段。
-         */
-        policy.setLastVerified("2026-09-05");
+        String purposesEn = firstNonBlank(string(extra, "permittedPurposesEn"), detail.getPurpose());
+        String purposesZh = firstNonBlank(string(extra, "permittedPurposesZh"), detail.getPurposeZh());
+        policy.setPermittedPurposesEn(purposesEn);
+        policy.setPermittedPurposesZh(purposesZh);
 
         if ("unilateral".equals(type)) {
-
-            policy.setPassportTypeEn(
-                    "Valid ordinary passport"
-            );
-            policy.setPassportTypeZh(
-                    "有效普通护照"
-            );
-
-            policy.setPassportValidityEn(
-                    "Passport validity should meet the applicable entry requirements."
-            );
-            policy.setPassportValidityZh(
-                    "护照有效期应符合实际入境要求。"
-            );
-
-            policy.setEntryCountEn(
-                    "Multiple entries may be possible during the policy validity period, subject to applicable rules."
-            );
-            policy.setEntryCountZh(
-                    "在政策有效期内是否可以多次入境，以适用政策及边检实际执行为准。"
-            );
-
-            policy.setPermittedPurposesEn(
-                    detail.getPurpose()
-            );
-            policy.setPermittedPurposesZh(
-                    detail.getPurposeZh()
-            );
-
-            policy.setOnwardTicketEn(
-                    "A return or onward ticket is recommended."
-            );
-            policy.setOnwardTicketZh(
-                    "建议准备返程或联程机票。"
-            );
-
-            policy.setAccommodationEn(
-                    "Hotel booking or accommodation information may be requested."
-            );
-            policy.setAccommodationZh(
-                    "可能需要提供酒店订单或住宿信息。"
-            );
-
-            policy.setFinancialProofEn(
-                    "Financial proof may be requested when appropriate."
-            );
-            policy.setFinancialProofZh(
-                    "视实际情况可能需要提供资金证明。"
-            );
-
-            policy.setExtensionRuleEn(
-                    "If an extension is necessary, contact the local immigration administration before the permitted stay expires."
-            );
-            policy.setExtensionRuleZh(
-                    "如确有延期需要，应在允许停留期限届满前向当地公安机关出入境管理机构咨询并申请。"
-            );
-
-            buildUnilateralFaq(policy, detail);
-
+            policy.setPassportTypeEn(firstNonBlank(string(extra, "passportTypeEn"), "Valid ordinary passport"));
+            policy.setPassportTypeZh(firstNonBlank(string(extra, "passportTypeZh"), "有效普通护照"));
+            policy.setPassportValidityEn(firstNonBlank(string(extra, "passportValidityEn"),
+                    "Passport validity must meet China's entry inspection requirements."));
+            policy.setPassportValidityZh(firstNonBlank(string(extra, "passportValidityZh"),
+                    "护照有效期需符合中国入境查验标准及免签政策要求。"));
+            policy.setEntryCountEn(firstNonBlank(string(extra, "entryCountEn"),
+                    "Single entry permitted under China's unilateral visa-free policy."));
+            policy.setEntryCountZh(firstNonBlank(string(extra, "entryCountZh"),
+                    "适用中国单方面免签政策，仅限单次入境。"));
+            policy.setOnwardTicketEn(firstNonBlank(string(extra, "onwardTicketEn"),
+                    "Return or onward ticket may be required by border inspection authorities."));
+            policy.setOnwardTicketZh(firstNonBlank(string(extra, "onwardTicketZh"),
+                    "边检机关可根据查验需求，要求出示返程或第三国联程机票。"));
+            policy.setAccommodationEn(firstNonBlank(string(extra, "accommodationEn"),
+                    "Valid accommodation reservation documents may be required for entry inspection."));
+            policy.setAccommodationZh(firstNonBlank(string(extra, "accommodationZh"),
+                    "入境查验时可能需要提供有效住宿预订凭证。"));
+            policy.setFinancialProofEn(firstNonBlank(string(extra, "financialProofEn"),
+                    "Sufficient financial proof may be requested to cover stay expenses in China."));
+            policy.setFinancialProofZh(firstNonBlank(string(extra, "financialProofZh"),
+                    "可能需要提供充足资金证明，用于覆盖在华停留期间开支。"));
+            policy.setExtensionRuleEn(firstNonBlank(string(extra, "extensionRuleEn"),
+                    "Visa-free stay extension is allowed under specific conditions. Apply to local immigration authorities before stay expiration."));
+            policy.setExtensionRuleZh(firstNonBlank(string(extra, "extensionRuleZh"),
+                    "单方面免签停留可依规申请延期，需在停留期限届满前向当地出入境管理部门提交申请。"));
         } else if ("mutual".equals(type)) {
-
-            policy.setPassportTypeEn(
-                    "Passport or travel document specified by the applicable bilateral agreement"
-            );
-            policy.setPassportTypeZh(
-                    "适用双边协定规定的护照或旅行证件"
-            );
-
-            policy.setPassportValidityEn(
-                    "Passport requirements are subject to the applicable bilateral agreement."
-            );
-            policy.setPassportValidityZh(
-                    "护照有效期要求以适用的双边协定为准。"
-            );
-
-            policy.setEntryCountEn(
-                    "Entry conditions and number of entries are subject to the bilateral agreement."
-            );
-            policy.setEntryCountZh(
-                    "入境次数及相关条件以双边协定规定为准。"
-            );
-
-            policy.setPermittedPurposesEn(
-                    detail.getPurpose()
-            );
-            policy.setPermittedPurposesZh(
-                    detail.getPurposeZh()
-            );
-
-            policy.setOnwardTicketEn(
-                    "A return or onward ticket is recommended."
-            );
-            policy.setOnwardTicketZh(
-                    "建议准备返程或联程机票。"
-            );
-
-            policy.setAccommodationEn(
-                    "Accommodation information may be requested."
-            );
-            policy.setAccommodationZh(
-                    "视实际情况可能需要提供住宿信息。"
-            );
-
-            policy.setFinancialProofEn(
-                    "Financial proof may be requested when appropriate."
-            );
-            policy.setFinancialProofZh(
-                    "视实际情况可能需要提供资金证明。"
-            );
-
-            policy.setExtensionRuleEn(
-                    "Extension rules depend on the applicable bilateral agreement and Chinese immigration regulations."
-            );
-            policy.setExtensionRuleZh(
-                    "延期规则以适用双边协定及中国出入境管理规定为准。"
-            );
-
-            buildMutualFaq(policy, detail);
-
-        } else if ("transit".equals(type)) {
-
-            policy.setPassportTypeEn(
-                    "Valid passport of an eligible nationality"
-            );
-            policy.setPassportTypeZh(
-                    "符合条件国家公民持有效护照"
-            );
-
-            policy.setPassportValidityEn(
-                    "Passport must satisfy the applicable transit-entry requirements."
-            );
-            policy.setPassportValidityZh(
-                    "护照有效期应符合适用的过境入境要求。"
-            );
-
-            policy.setEntryCountEn(
-                    "Transit entry under the applicable 240-hour visa-free policy."
-            );
-            policy.setEntryCountZh(
-                    "适用240小时过境免签政策的过境入境。"
-            );
-
-            policy.setPermittedPurposesEn(
-                    "Transit to a third country or region, subject to applicable visa-free transit rules."
-            );
-            policy.setPermittedPurposesZh(
-                    "须符合前往第三国或地区的过境免签条件。"
-            );
-
-            policy.setOnwardTicketEn(
-                    "A confirmed onward ticket to a third country or region is required."
-            );
-            policy.setOnwardTicketZh(
-                    "需要持有前往第三国或地区的已确定联程客票。"
-            );
-
-            policy.setAccommodationEn(
-                    "Accommodation information may be requested."
-            );
-            policy.setAccommodationZh(
-                    "视实际情况可能需要提供住宿信息。"
-            );
-
-            policy.setFinancialProofEn(
-                    "Financial proof may be requested when appropriate."
-            );
-            policy.setFinancialProofZh(
-                    "视实际情况可能需要提供资金证明。"
-            );
-
-            policy.setExtensionRuleEn(
-                    "The applicable transit visa-free stay cannot be extended as an ordinary visa-free stay."
-            );
-            policy.setExtensionRuleZh(
-                    "过境免签停留期限不能按照普通免签停留方式办理延期。"
-            );
-
-            buildTransitFaq(policy);
+            policy.setPassportTypeEn(firstNonBlank(string(extra, "passportTypeEn"),
+                    "Valid passport or travel document specified in bilateral visa exemption agreement"));
+            policy.setPassportTypeZh(firstNonBlank(string(extra, "passportTypeZh"),
+                    "双边互免签证协定规定的有效护照或旅行证件"));
+            policy.setPassportValidityEn(firstNonBlank(string(extra, "passportValidityEn"),
+                    "Passport validity requirements comply with bilateral visa exemption agreement provisions."));
+            policy.setPassportValidityZh(firstNonBlank(string(extra, "passportValidityZh"),
+                    "护照有效期要求严格遵循中外双边互免签证协定条款。"));
+            policy.setEntryCountEn(firstNonBlank(string(extra, "entryCountEn"),
+                    "Entry times and valid periods are subject to the signed bilateral visa exemption agreement."));
+            policy.setEntryCountZh(firstNonBlank(string(extra, "entryCountZh"),
+                    "入境次数、有效期限以正式生效的双边互免签证协定为准。"));
+            policy.setOnwardTicketEn(firstNonBlank(string(extra, "onwardTicketEn"),
+                    "Onward or return ticket may be checked by border authorities based on travel purposes."));
+            policy.setOnwardTicketZh(firstNonBlank(string(extra, "onwardTicketZh"),
+                    "边检机关将根据出行目的，核查返程或联程机票凭证。"));
+            policy.setAccommodationEn(firstNonBlank(string(extra, "accommodationEn"),
+                    "Accommodation registration is mandatory for in-China stay, reservation proof may be checked on entry."));
+            policy.setAccommodationZh(firstNonBlank(string(extra, "accommodationZh"),
+                    "在华住宿必须办理住宿登记，入境时可能核查住宿预订证明。"));
+            policy.setFinancialProofEn(firstNonBlank(string(extra, "financialProofEn"),
+                    "Financial certification may be required to prove solvency for domestic stay."));
+            policy.setFinancialProofZh(firstNonBlank(string(extra, "financialProofZh"),
+                    "入境可能需要提供资金证明，证实具备在华停留消费能力。"));
+            policy.setExtensionRuleEn(firstNonBlank(string(extra, "extensionRuleEn"),
+                    "Stay extension rules follow bilateral agreements and Chinese immigration administration regulations."));
+            policy.setExtensionRuleZh(firstNonBlank(string(extra, "extensionRuleZh"),
+                    "停留延期规则依据双边协定及中国出入境管理条例执行。"));
+        } else {
+            policy.setPassportTypeEn(firstNonBlank(string(extra, "passportTypeEn"),
+                    "Valid ordinary passport of eligible countries/regions for China transit visa-free policy"));
+            policy.setPassportTypeZh(firstNonBlank(string(extra, "passportTypeZh"),
+                    "符合中国过境免签政策资质国家/地区的有效普通护照"));
+            policy.setPassportValidityEn(firstNonBlank(string(extra, "passportValidityEn"),
+                    "Passport must be valid for the entire transit period and meet border inspection standards."));
+            policy.setPassportValidityZh(firstNonBlank(string(extra, "passportValidityZh"),
+                    "护照需在全程过境期间有效，且符合边检查验标准。"));
+            policy.setEntryCountEn(firstNonBlank(string(extra, "entryCountEn"),
+                    "One-time transit entry permitted under China's 240-hour transit visa-free policy."));
+            policy.setEntryCountZh(firstNonBlank(string(extra, "entryCountZh"),
+                    "适用中国240小时过境免签政策，仅限单次过境入境。"));
+            policy.setOnwardTicketEn(firstNonBlank(string(extra, "onwardTicketEn"),
+                    "Confirmed non-stop onward ticket to a third country/region is a mandatory application condition."));
+            policy.setOnwardTicketZh(firstNonBlank(string(extra, "onwardTicketZh"),
+                    "必须持有前往第三国/地区的已确认联程机票，为过境免签核心硬性条件。"));
+            policy.setAccommodationEn(firstNonBlank(string(extra, "accommodationEn"),
+                    "Specified transit-area accommodation is required for in-city stay during transit period."));
+            policy.setAccommodationZh(firstNonBlank(string(extra, "accommodationZh"),
+                    "过境期间如需停留市区，需入住政策指定区域内住宿场所。"));
+            policy.setFinancialProofEn(firstNonBlank(string(extra, "financialProofEn"),
+                    "Basic financial proof may be requested for transit stay verification."));
+            policy.setFinancialProofZh(firstNonBlank(string(extra, "financialProofZh"),
+                    "过境停留核查时，可能需要提供基础资金证明。"));
+            policy.setExtensionRuleEn(firstNonBlank(string(extra, "extensionRuleEn"),
+                    "240-hour transit visa-free stay is non-extendable and cannot be converted to ordinary visa-free stay."));
+            policy.setExtensionRuleZh(firstNonBlank(string(extra, "extensionRuleZh"),
+                    "240小时过境免签停留期限不可延期，且无法转为普通免签停留资格。"));
         }
 
+        populateFaqs(policy, detail, type, extra);
         return policy;
     }
 
+    /**
+     * 【终极去重+SEO优化】FAQ填充逻辑
+     * 优化点：1. 彻底消除话术重复 2. 三类政策FAQ完全差异化 3. 精简语句、语义聚焦 4. 精准匹配用户搜索词
+     * 核心逻辑：优先加载自定义FAQ，无自定义内容时才填充**唯一不重复的兜底FAQ**
+     */
+    private void populateFaqs(CountryPolicy policy,
+                              CountryDetail detail,
+                              String type,
+                              Map<String, Object> extra) {
+        // 加载自定义FAQ（优先展示，不重复兜底内容）
+        List<CountryPolicy.PolicyFaq> en = toFaqs(extra.get("customFaqsEn"));
+        List<CountryPolicy.PolicyFaq> zh = toFaqs(extra.get("customFaqsZh"));
 
-    private void buildUnilateralFaq(
-            CountryPolicy policy,
-            CountryDetail detail
-    ) {
+        String name = detail.getName();
+        String nameZh = detail.getNameZh();
+        String stay = detail.getStayDays();
+        String stayTextEn = isBlank(stay) ? "the regulated period" : stay + " days";
+        String stayTextZh = isBlank(stay) ? "政策规定期限" : stay + "天";
 
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "How is the visa-free stay period calculated?",
-                        "The permitted stay is calculated according to the applicable visa-free policy and Chinese immigration rules."
-                )
-        );
+        // ===================== 过境免签FAQ（独有特性：240小时、联程机票、区域限制、不可延期）=====================
+        if ("transit".equals(type)) {
+            // 无自定义FAQ时，仅填充**专属、无重复**核心问答
+            if (en.isEmpty()) {
+                addIfMissing(en, "Who is eligible for China 240-hour transit visa-free?",
+                        name + " citizens meeting official nationality, itinerary and port requirements can enjoy China's 240-hour transit visa-free policy.");
+                addIfMissing(en, "What is the maximum stay for China transit visa-free?",
+                        "Eligible transit travelers can stay up to " + stayTextEn + " in designated transit areas.");
+                addIfMissing(en, "Is a third-country onward ticket required for transit?",
+                        "Yes. A confirmed onward ticket is a mandatory requirement for 240-hour transit visa-free entry.");
+                addIfMissing(en, "Can transit visa-free stay time be extended in China?",
+                        "No. The 240-hour transit visa-free duration is non-extendable under official regulations.");
+            }
+            if (zh.isEmpty()) {
+                addIfMissing(zh, nameZh + "公民符合什么条件可享受中国240小时过境免签？",
+                        "满足官方规定的适用国籍、第三国联程行程、指定入境口岸条件，即可享受过境免签政策。");
+                addIfMissing(zh, "中国240小时过境免签最长可以停留多久？",
+                        "符合条件人员可在指定过境区域内最长停留" + stayTextZh + "。");
+                addIfMissing(zh, "过境免签必须要有第三国联程机票吗？",
+                        "是的，持有已确认的第三国/地区联程机票是过境免签的硬性必备条件。");
+                addIfMissing(zh, "中国过境免签停留期限可以延期吗？",
+                        "不可以延期，240小时过境免签时长严格固定，无法延长或转为普通入境资格。");
+            }
+        }
+        // ===================== 双边互免FAQ（独有特性：双边协定、多国籍适配、协议有效期）=====================
+        else if ("mutual".equals(type)) {
+            if (en.isEmpty()) {
+                addIfMissing(en, "Do " + name + " passport holders enjoy visa-free entry to China?",
+                        "Qualified passport holders can enter China visa-free per the official bilateral visa exemption agreement between China and " + name + ".");
+                addIfMissing(en, "What is the visa-free stay limit for " + name + " citizens in China?",
+                        "The bilateral agreement allows a maximum visa-free stay of " + stayTextEn + " per single entry.");
+                addIfMissing(en, "Can visa-free entry be used for work or study in China?",
+                        "Visa-free entry only applies to short-term visits, not for paid employment or formal academic study.");
+                addIfMissing(en, "Is accommodation registration mandatory for foreign visitors in China?",
+                        "All foreign residents must complete official accommodation registration within 24 hours of arrival.");
+            }
+            if (zh.isEmpty()) {
+                addIfMissing(zh, nameZh + "护照可以免签入境中国吗？",
+                        "符合资质的" + nameZh + "护照持有人，可依据中" + nameZh + "双边互免协定免签入境。");
+                addIfMissing(zh, "双边互免签证单次入境可停留多久？",
+                        "根据双边官方协定，单次入境最长可免签停留" + stayTextZh + "。");
+                addIfMissing(zh, "互免签证入境可以在中国务工或留学吗？",
+                        "不可以，互免签证仅适用于旅游、商务、探亲等短期访问，不支持工作和全日制学习。");
+                addIfMissing(zh, "外籍人员来华需要办理住宿登记吗？",
+                        "所有外籍人员入境住宿，均需在抵达后24小时内完成官方住宿登记手续。");
+            }
+        }
+        // ===================== 单方面免签FAQ（独有特性：中国单方政策、固定入境目的、单次入境）=====================
+        else {
+            if (en.isEmpty()) {
+                addIfMissing(en, "Does China offer unilateral visa-free entry for " + name + " citizens?",
+                        "China provides unilateral visa-free access for qualified " + name + " ordinary passport holders with valid entry conditions.");
+                addIfMissing(en, "How long is the unilateral visa-free stay period in China?",
+                        "Eligible visitors can enjoy a maximum visa-free stay of " + stayTextEn + " per entry.");
+                addIfMissing(en, "What activities are permitted under China unilateral visa-free policy?",
+                        "Allowed activities include " + firstNonBlank(detail.getPurpose(), "tourism, business visits and short-term non-profit exchanges") + ".");
+                addIfMissing(en, "Can I extend unilateral visa-free stay in China?",
+                        "Limited extension is available for special situations via local immigration authority application.");
+            }
+            if (zh.isEmpty()) {
+                addIfMissing(zh, "中国对" + nameZh + "是否实行单方面免签政策？",
+                        "中国对符合条件的" + nameZh + "普通护照持有人实行单方面免签入境政策。");
+                addIfMissing(zh, "单方面免签来华最长停留时长是多少？",
+                        "依据中国官方政策，单次入境最长可免签停留" + stayTextZh + "。");
+                addIfMissing(zh, "免签来华可以开展哪些活动？",
+                        "仅可开展" + firstNonBlank(detail.getPurposeZh(), "旅游观光、商务拜访、短期非营利交流") + "等合规活动。");
+                addIfMissing(zh, "单方面免签停留超时可以申请延期吗？",
+                        "特殊情况可向当地出入境管理部门申请延期，常规短期访问不支持随意延期。");
+            }
+        }
 
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "免签停留期限如何计算？",
-                        "停留期限按照适用免签政策及中国出入境管理规定计算。"
-                )
-        );
-
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "Do I need accommodation registration?",
-                        "Foreign visitors staying in China generally need to complete accommodation registration according to applicable regulations."
-                )
-        );
-
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "需要办理住宿登记吗？",
-                        "外国人在中国境内住宿，一般需要按照相关规定办理住宿登记。"
-                )
-        );
-
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "Can I work or study during a visa-free stay?",
-                        "Visa-free entry does not automatically authorize employment or study. Check the applicable policy before engaging in such activities."
-                )
-        );
-
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "免签期间可以工作或者学习吗？",
-                        "免签入境并不当然赋予工作或学习资格，开展相关活动前应确认适用规定。"
-                )
-        );
+        policy.setFaqsEn(en);
+        policy.setFaqsZh(zh);
     }
 
-    private void buildMutualFaq(
-            CountryPolicy policy,
-            CountryDetail detail
-    ) {
-
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "What passport can be used?",
-                        "Eligible passport types depend on the applicable bilateral visa exemption agreement."
-                )
-        );
-
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "哪些护照可以享受互免签证？",
-                        "具体适用护照种类以相关双边互免签证协定为准。"
-                )
-        );
-
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "How long can I stay in China?",
-                        "The permitted stay is determined by the applicable bilateral agreement."
-                )
-        );
-
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "可以在中国停留多久？",
-                        "具体允许停留期限以相关双边协定规定为准。"
-                )
-        );
+    private void addIfMissing(List<CountryPolicy.PolicyFaq> list, String q, String a) {
+        for (CountryPolicy.PolicyFaq faq : list) {
+            if (q.equalsIgnoreCase(faq.getQ())) return;
+        }
+        list.add(new CountryPolicy.PolicyFaq(q, a));
     }
 
-    private void buildTransitFaq(
-            CountryPolicy policy
-    ) {
+    private List<CountryPolicy.PolicyFaq> toFaqs(Object value) {
+        List<CountryPolicy.PolicyFaq> result = new ArrayList<>();
+        if (!(value instanceof List)) return result;
+        for (Object item : (List<?>) value) {
+            if (!(item instanceof Map)) continue;
+            Map<?, ?> m = (Map<?, ?>) item;
+            String q = string(m.get("q"));
+            String a = string(m.get("a"));
+            if (!isBlank(q) && !isBlank(a)) result.add(new CountryPolicy.PolicyFaq(q, a));
+        }
+        return result;
+    }
 
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "What is the 240-hour transit visa-free policy?",
-                        "Eligible travelers from participating countries may transit through designated areas of China without a visa for up to 240 hours, subject to applicable conditions."
-                )
-        );
+    private Map<String, String> buildCountryNames() {
+        Map<String, String> result = new HashMap<>();
+        unilateralMap.forEach((k, v) -> result.putIfAbsent(k, v.getName()));
+        mutualMap.forEach((k, v) -> result.putIfAbsent(k, v.getName()));
+        transitMap.forEach((k, v) -> result.putIfAbsent(k, v.getName()));
+        return result;
+    }
 
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "什么是240小时过境免签？",
-                        "符合条件的国家公民在满足相关条件的情况下，可以在中国指定区域享受最长240小时过境免签停留。"
-                )
-        );
+    private List<String> buildRelatedCountryCodes(Map<String, Object> extra) {
+        List<String> result = new ArrayList<>();
+        if (extra == null) return result;
+        Object value = extra.get("relatedCountryCodes");
+        if (!(value instanceof List)) return result;
+        Set<String> validCodes = new HashSet<>();
+        validCodes.addAll(unilateralMap.keySet());
+        validCodes.addAll(mutualMap.keySet());
+        validCodes.addAll(transitMap.keySet());
+        for (Object item : (List<?>) value) {
+            String code = string(item);
+            if (!isBlank(code) && validCodes.contains(code) && !result.contains(code)) {
+                result.add(code);
+            }
+        }
+        return result;
+    }
 
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "Do I need an onward ticket?",
-                        "Yes. The traveler must satisfy the applicable transit requirement for travel to a third country or region."
-                )
-        );
+    private List<CountryDetail> buildAvailablePolicies(String code, List<String> types) {
+        List<CountryDetail> result = new ArrayList<>();
+        for (String type : types) {
+            CountryDetail d = getCountryDetail(code, type);
+            if (d != null) result.add(d);
+        }
+        return result;
+    }
 
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "需要联程机票吗？",
-                        "需要满足前往第三国或地区的过境条件，并持有符合要求的联程客票。"
-                )
-        );
+    private Map<String, CountryDetail> buildPolicyDetails(String code, List<String> types) {
+        Map<String, CountryDetail> result = new LinkedHashMap<>();
+        for (String type : types) {
+            CountryDetail d = getCountryDetail(code, type);
+            if (d != null) result.put(type, d);
+        }
+        return result;
+    }
 
-        policy.getFaqsEn().add(
-                new CountryPolicy.PolicyFaq(
-                        "Can I travel outside the permitted area?",
-                        "Travel is limited by the applicable designated regions and ports of the transit visa-free policy."
-                )
-        );
+    private CountryDetail getCountryDetail(String code, String type) {
+        if ("unilateral".equals(type)) return unilateralMap.get(code);
+        if ("mutual".equals(type)) return mutualMap.get(code);
+        if ("transit".equals(type)) return transitMap.get(code);
+        return null;
+    }
 
-        policy.getFaqsZh().add(
-                new CountryPolicy.PolicyFaq(
-                        "可以离开规定区域旅行吗？",
-                        "活动范围受到过境免签政策规定的适用区域和口岸限制。"
-                )
-        );
+    private Object getCountryExtraItem(String code, String type) {
+        Map<String, Object> node = countryExtraMap.get(code);
+        return node == null ? null : node.get(type);
+    }
+
+    private List<String> detectAvailableTypes(String code) {
+        List<String> result = new ArrayList<>();
+        if (unilateralMap.containsKey(code)) result.add("unilateral");
+        if (mutualMap.containsKey(code)) result.add("mutual");
+        if (transitMap.containsKey(code)) result.add("transit");
+        return result;
+    }
+
+    private CountryDetail getAnyCountryDetail(String code) {
+        CountryDetail d = unilateralMap.get(code);
+        if (d != null) return d;
+        d = mutualMap.get(code);
+        if (d != null) return d;
+        return transitMap.get(code);
+    }
+
+    private Map<String, CountryDetail> loadCountryMap(ObjectMapper mapper, String file) {
+        try {
+            return mapper.readValue(
+                    new ClassPathResource(file).getInputStream(),
+                    new TypeReference<Map<String, CountryDetail>>() {}
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load " + file, e);
+        }
+    }
+
+    private Map<String, Map<String, Object>> loadExtraMap(ObjectMapper mapper) {
+        try {
+            return mapper.readValue(
+                    new ClassPathResource("country-extra.json").getInputStream(),
+                    new TypeReference<Map<String, Map<String, Object>>>() {}
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load country-extra.json", e);
+        }
+    }
+
+    private Map<String, Object> asMap(Object value) {
+        if (value instanceof Map) {
+            Map<String, Object> result = new LinkedHashMap<>();
+            ((Map<?, ?>) value).forEach((k, v) -> result.put(String.valueOf(k), v));
+            return result;
+        }
+        return new LinkedHashMap<>();
+    }
+
+    private String string(Map<String, Object> map, String key) {
+        return map == null ? "" : string(map.get(key));
+    }
+
+    private String string(Object value) {
+        return value == null ? "" : String.valueOf(value).trim();
+    }
+
+    private String firstNonBlank(String value, String fallback) {
+        return isBlank(value) ? fallback : value;
+    }
+
+    private boolean isBlank(String value) {
+        return value == null || value.trim().isEmpty();
     }
 }

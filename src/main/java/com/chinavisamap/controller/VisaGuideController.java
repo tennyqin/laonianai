@@ -23,7 +23,7 @@ public class VisaGuideController {
     public VisaGuideController(SeoService seoService, StructuredDataService structuredDataService) {
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
-        Map<String,Object> temp = null;
+        Map<String,Object> temp = new java.util.HashMap<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             temp = objectMapper.readValue(
@@ -41,9 +41,7 @@ public class VisaGuideController {
             @RequestParam(value = "lang", required = false, defaultValue = "en") String lang,
             Model model
     ) {
-        if (!"zh".equals(lang)) {
-            lang = "en";
-        }
+        lang = seoService.normalizeLang(lang);
         String path = "/visa-guide";
 
         model.addAttribute(

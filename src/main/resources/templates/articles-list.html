@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="${lang == 'en' ? 'Travel Guides | China Travel & Visa-Free Tips' : '旅行指南｜来华旅行与免签提示'}"></title>
@@ -86,9 +86,9 @@
 
     <!-- 当前筛选提示 -->
     <div th:if="${category != null || keyword != null}" style="margin-bottom:16px;font-size:14px;color:#555;">
-        <span th:if="${keyword != null and keyword != ''}" th:text="${lang=='en'?'Keyword: ':'关键词：'} + ${keyword}"></span>
+        <span th:if="${keyword != null and keyword != ''}" th:text="${(lang=='en' ? 'Keyword: ' : '关键词：') + keyword}"></span>
         <span th:if="${category != null and keyword != null}"> | </span>
-        <span th:if="${category != null}" th:text="${lang=='en'?'Category: ':'分类：'} + ${category}"></span>
+        <span th:if="${category != null}" th:text="${(lang=='en' ? 'Category: ' : '分类：') + category}"></span>
         <a th:href="@{/articles(lang=${lang})}" style="margin-left:8px;color:#059669;" th:text="${lang=='en'?'Clear filters':'清除筛选'}"></a>
     </div>
 

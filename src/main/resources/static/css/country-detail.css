@@ -1,4 +1,4 @@
-/** country‑detail.css 优化版，对齐首页绿色高端极简风格 修复非法软连字符、移动端、a11y、动画 **/
+﻿/** country‑detail.css 优化版，对齐首页绿色高端极简风格 修复非法软连字符、移动端、a11y、动画 **/
 * {
     margin: 0;
     padding: 0;
@@ -122,6 +122,52 @@ body {
 }
 .doc-item:last-child{
     margin-bottom:0;
+}
+/* ==========可用免签政策卡片网格【修复横向挤压竖排问题】 ========== */
+.card .grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 0;
+}
+.card .grid .card {
+    padding: 0;
+    margin-bottom: 0;
+    border-radius: 12px;
+    transition: all 0.22s ease;
+}
+.card .grid .card:hover {
+    border-color: #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+    transform: translateY(-2px);
+}
+/* 核心修复：覆盖 index.css 的 .card a 横向flex，改为纵向堆叠 */
+.card .grid .card a {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px;
+    min-height: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.card .grid .card a strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+}
+.card .grid .card a .doc-item {
+    font-size: 13px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-bottom: 0;
+    white-space: normal;
+    word-break: break-word;
 }
 /* ==========FAQ 全新折叠组件【高品质交互 + a11y + 触摸优化】 ========== */
 .faq-section-wrap{}

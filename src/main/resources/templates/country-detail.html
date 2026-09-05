@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="${lang == 'en' ? detail.seoTitle : detail.seoTitleZh}"></title>
@@ -10,9 +10,9 @@
             th:utext="${structuredData}">
     </script>
     <link rel="canonical" th:href="${canonicalUrl}">
-    <link rel="alternate" hreflang="en" th:href="${#strings.replace(canonicalUrl,'lang=zh','lang=en')}">
-    <link rel="alternate" hreflang="zh" th:href="${#strings.replace(canonicalUrl,'lang=en','lang=zh')}">
-    <link rel="alternate" hreflang="x-default" th:href="${#strings.replace(canonicalUrl,'lang=zh','lang=en')}">
+    <link rel="alternate" hreflang="en" th:href="${hreflang['en']}">
+    <link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}">
+    <link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
     <!-- 优先加载公共index.css，再加载详情页css，版本戳统一 -->
     <link rel="stylesheet" href="/css/index.css?20260903">
     <link rel="stylesheet" href="/css/country-detail.css?20260903">
@@ -81,49 +81,24 @@
         <p th:text="${lang == 'en' ? detail.ports : detail.portsZh}"></p>
     </div>
     <div class="card">
-        <h3 th:text="${lang == 'en' ? 'Required Documents' : '必备入境材料'}"></h3>
-        <div th:if="${type == 'unilateral'}">
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Valid ordinary passport (valid for at least 6 months)' :
-            '• 有效普通护照（有效期不少于6个月）'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• No adverse immigration records in China' :
-            '• 无中国不良出入境记录'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Round-trip / onward ticket (recommended)' :
-            '• 往返机票/联程机票（建议准备）'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Hotel booking & financial proof (recommended)' :
-            '• 酒店订单与资金证明（建议准备）'}"></div>
-        </div>
-        <div th:if="${type == 'mutual'}">
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Valid passport as specified in bilateral agreement' :
-            '• 符合双边协定规定的有效护照'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Passport valid for at least 6 months' :
-            '• 护照有效期不少于6个月'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Stay within the number of days agreed' :
-            '• 停留不超过协定规定天数'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Round-trip ticket & travel itinerary (recommended)' :
-            '• 往返机票与行程单（建议准备）'}"></div>
-        </div>
-        <div th:if="${type == 'transit'}">
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Valid passport (valid for at least 3 months)' :
-            '• 有效护照（有效期不少于3个月）'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Confirmed onward ticket within 240 hours' :
-            '• 240小时内已确定的联程机票'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• Transit to a third country or region' :
-            '• 须过境前往第三国或地区'}"></div>
-            <div class="doc-item" th:text="${lang == 'en' ?
-            '• No adverse immigration records' :
-            '• 无不良出入境记录'}"></div>
-        </div>
+        <h3 th:text="${lang == 'en' ? 'Entry Documents & Requirements' : '入境材料与要求'}"></h3>
+        <div class="doc-item">• <strong th:text="${lang == 'en' ? 'Passport type: ' : '护照类型：'}"></strong><span th:text="${lang == 'en' ? policy.passportTypeEn : policy.passportTypeZh}"></span></div>
+        <div class="doc-item">• <strong th:text="${lang == 'en' ? 'Passport validity: ' : '护照有效期：'}"></strong><span th:text="${lang == 'en' ? policy.passportValidityEn : policy.passportValidityZh}"></span></div>
+        <div class="doc-item">• <strong th:text="${lang == 'en' ? 'Entry frequency: ' : '入境次数：'}"></strong><span th:text="${lang == 'en' ? policy.entryCountEn : policy.entryCountZh}"></span></div>
+        <div class="doc-item">• <strong th:text="${lang == 'en' ? 'Return / onward ticket: ' : '返程/联程客票：'}"></strong><span th:text="${lang == 'en' ? policy.onwardTicketEn : policy.onwardTicketZh}"></span></div>
+        <div class="doc-item">• <strong th:text="${lang == 'en' ? 'Accommodation: ' : '住宿信息：'}"></strong><span th:text="${lang == 'en' ? policy.accommodationEn : policy.accommodationZh}"></span></div>
+        <div class="doc-item">• <strong th:text="${lang == 'en' ? 'Financial proof: ' : '资金证明：'}"></strong><span th:text="${lang == 'en' ? policy.financialProofEn : policy.financialProofZh}"></span></div>
+    </div>
+    <div class="card">
+        <h3 th:text="${lang == 'en' ? 'Extension & Staying Longer' : '延期与继续停留'}"></h3>
+        <p th:text="${lang == 'en' ? policy.extensionRuleEn : policy.extensionRuleZh}"></p>
+    </div>
+    <div class="card" style="font-size:13px;color:#666;">
+        <span th:text="${lang == 'en' ? 'Source: ' : '信息来源：'}"></span>
+        <a th:href="${policy.officialSource}" target="_blank" rel="noopener noreferrer" th:text="${lang == 'en' ? 'National Immigration Administration (NIA)' : '中国国家移民管理局（NIA）'}"></a>
+        <span> · </span>
+        <span th:text="${lang == 'en' ? 'Last verified: ' : '最近核验：'}"></span>
+        <time th:text="${policy.lastVerified}"></time>
     </div>
     <!-- 政策深度解读 -->
     <div th:if="${countryExtra != null and (lang == 'en' ? countryExtra.policyExplainEn : countryExtra.policyExplainZh) != null and (lang == 'en' ? countryExtra.policyExplainEn : countryExtra.policyExplainZh) != ''}"
@@ -221,24 +196,6 @@
             </div>
 
         </div>
-    </div>
-    <!-- 该国专属FAQ -->
-    <div th:if="${countryExtra != null and (lang == 'en' ? countryExtra.customFaqsEn : countryExtra.customFaqsZh) != null and not #lists.isEmpty(lang == 'en' ? countryExtra.customFaqsEn : countryExtra.customFaqsZh)}"
-         th:with="customFaqList=${lang == 'en' ? countryExtra.customFaqsEn : countryExtra.customFaqsZh}"
-         class="card faq-section-wrap">
-        <h3 th:text="${lang == 'en' ? 'Country-Specific FAQ' : '该国专属常见问题'}"></h3>
-        <div th:each="faq : ${customFaqList}" class="faq-item">
-            <div class="faq-q-wrap" tabindex="0" role="button">
-                <p class="faq-question" th:text="${faq.q}"></p>
-                <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer" th:text="${faq.a}"></div>
-            </div>
-        </div>
-        <p style="margin-top:14px;font-size:13px;color:#666;">
-            <span th:text="${lang=='en'?'*Country-specific supplementary questions for reference only':'*该国专属补充问答仅供出行参考'}"></span>
-        </p>
     </div>
     <!-- 不适用场景与限制 -->
     <div th:if="${countryExtra != null and (lang == 'en' ? countryExtra.exclusionNoteEn : countryExtra.exclusionNoteZh) != null and (lang == 'en' ? countryExtra.exclusionNoteEn : countryExtra.exclusionNoteZh) != ''}"

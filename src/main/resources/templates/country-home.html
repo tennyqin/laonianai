@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${lang == 'en' ? (countryExtraRoot?.homeSeoTitleEn) : (countryExtraRoot?.homeSeoTitleZh)}"></title>
-    <meta name="description" th:content="${lang == 'en' ? (countryExtraRoot?.homeSeoDescEn) : (countryExtraRoot?.homeSeoDescZh)}">
+    <title th:text="${lang == 'en' ? (countryExtraRoot != null ? countryExtraRoot.homeSeoTitleEn : detailCountry.name + ' to China Visa-Free Guide 2026') : (countryExtraRoot != null ? countryExtraRoot.homeSeoTitleZh : detailCountry.nameZh + '来华签证政策指南 2026')}"></title>
+    <meta name="description" th:content="${lang == 'en' ? (countryExtraRoot != null ? countryExtraRoot.homeSeoDescEn : detailCountry.name + ' citizens traveling to China: visa-free policies, stay duration, entry rules and FAQs.') : (countryExtraRoot != null ? countryExtraRoot.homeSeoDescZh : detailCountry.nameZh + '公民来华免签政策、停留期限、入境条件与常见问题。')}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" th:href="${#httpServletRequest.requestURI} + '?lang=' + ${lang}">
-    <link rel="alternate" hreflang="en" th:href="${#httpServletRequest.requestURI} + '?lang=en'">
-    <link rel="alternate" hreflang="zh-Hans" th:href="${#httpServletRequest.requestURI} + '?lang=zh'">
-    <link rel="alternate" hreflang="x-default" th:href="${#httpServletRequest.requestURI} + '?lang=en'">
+    <script type="application/ld+json" th:utext="${structuredData}"></script>
+    <link rel="canonical" th:href="${canonicalUrl}">
+    <link rel="alternate" hreflang="en" th:href="${hreflang['en']}">
+    <link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}">
+    <link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
     <link rel="stylesheet" href="/css/index.css?20260903">
     <link rel="stylesheet" href="/css/country-detail.css?20260903">
     <link rel="stylesheet" href="/css/footer.css?20260903">
@@ -27,11 +28,14 @@
         </div>
     </div>
     <div class="card">
-        <h1 class="title" th:text="${lang=='en' ? detailCountry.name : detailCountry.nameZh}"></h1>
+        <h1 class="title" th:text="${lang=='en' ? detailCountry.name + ' Citizens Traveling to China' : detailCountry.nameZh + '公民来华签证与免签政策'}"></h1>
         <div class="row">
             <span class="label" th:text="${lang == 'en' ? 'Continent:' : '所属大洲:'}"></span>
             <span class="value" th:text="${lang == 'en' ? detailCountry.continent : detailCountry.continentZh}"></span>
         </div>
+        <p style="margin-top:14px;font-size:13px;color:#666;">
+            <span th:text="${lang == 'en' ? 'Policy information is based on public information from the China National Immigration Administration (NIA). Check official updates before travel.' : '政策信息根据中国国家移民管理局（NIA）公开信息整理，出行前请再次确认官方最新规定。'}"></span>
+        </p>
     </div>
     <th:block th:if="${countryExtraRoot != null}">
         <th:block th:with="alertText=${lang == 'en' ? countryExtraRoot.homeAlertEn : countryExtraRoot.homeAlertZh}">
@@ -59,14 +63,11 @@
     <div class="card">
         <h3 th:text="${lang == 'en' ? 'Available Visa-Free Policies for this Country' : '该国可用对华免签政策'}"></h3>
         <div class="grid">
-            <div th:each="t : ${availableTypes}" class="card">
-                <a th:href="@{/country/{code}/{type}(code=${code}, type=${t}, lang=${lang})}">
-                    <span th:switch="${t}">
-                        <span th:case="'unilateral'" th:text="${lang == 'en' ? 'unilateral' : '单方面免签'}"></span>
-                        <span th:case="'mutual'" th:text="${lang == 'en' ? 'mutual' : '互免签证'}"></span>
-                        <span th:case="'transit'" th:text="${lang == 'en' ? 'transit' : '过境免签'}"></span>
-                        <span th:case="*" th:text="${lang == 'en' ? t : t}"></span>
-                    </span>
+            <div th:each="policy : ${availablePolicies}" class="card">
+                <a th:href="@{/country/{code}/{type}(code=${code}, type=${policy.policyType}, lang=${lang})}">
+                    <strong th:text="${lang == 'en' ? policy.policyType : policy.policyTypeZh}"></strong>
+                    <span class="doc-item" th:text="${lang == 'en' ? 'Stay: ' + policy.stayDays + ' days' : '停留：' + policy.stayDays + '天'}"></span>
+                    <span class="doc-item" th:text="${lang == 'en' ? policy.purpose : policy.purposeZh}"></span>
                 </a>
             </div>
         </div>
@@ -82,27 +83,6 @@
                     </div>
                     <div class="faq-answer-wrap">
                         <div class="faq-answer" th:text="${faq.a}"></div>
-                    </div>
-                </div>
-            </div>
-        </th:block>
-    </th:block>
-    <div class="card">
-        <h3 th:text="${lang == 'en' ? 'General Travel Notes' : '通用出行提示'}"></h3>
-        <div class="doc-item" th:text="${lang == 'en' ? '• Passport is recommended to have at least 6-month validity and blank visa pages.' : '• 建议护照有效期不少于6个月，预留足够空白签证页。'}"></div>
-        <div class="doc-item" th:text="${lang == 'en' ? '• Working, studying, media reporting are NOT allowed under visa-free entry.' : '• 免签入境禁止务工、留学、记者采访。'}"></div>
-        <div class="doc-item" th:text="${lang == 'en' ? '• Accommodation registration required within 24-hours after arrival.' : '• 入境后需要24小时内办理住宿登记。'}"></div>
-        <p style="margin-top:14px;font-size:13px;color:#666;">
-            <span th:text="${lang=='en'?'*Notes are for reference only, subject to official border-inspection execution':'*提示仅供出行参考，入境以边检现场执行为准'}"></span>
-        </p>
-    </div>
-    <th:block th:if="${countryExtraRoot != null}">
-        <th:block th:with="relCodes=${countryExtraRoot.relatedCountryCodes}">
-            <div th:if="${relCodes != null and not #lists.isEmpty(relCodes)}" class="card">
-                <h3 th:text="${lang == 'en' ? 'Related Countries' : '相关参考国家'}"></h3>
-                <div class="grid">
-                    <div th:each="rcode : ${relCodes}" class="card">
-                        <a th:href="@{/country/{code}(code=${rcode}, lang=${lang})}" th:text="${rcode}"></a>
                     </div>
                 </div>
             </div>
@@ -137,6 +117,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', async function(){
           const container = document.querySelector('#recommended-article-list');
+          const lang = "[[${lang}]]";
           // 分类标签颜色映射，以英文categoryEn作为key
           const categoryColorMap = {
             "Visa-Free Tips": "#059669",
@@ -150,7 +131,6 @@
             const res = await fetch('/api/articles/random?limit=5');
             if(!res.ok) throw new Error('fetch fail');
             const list = await res.json();
-            const lang = "[[${lang}]]";
 
             const html = list.map(art=>{
               const title = lang === 'en' ? art.titleEn : art.titleZh;
@@ -203,7 +183,7 @@
         </div>
         <!-- 修复Thymeleaf锚点语法，#不能写进@{...}内部 -->
         <div class="doc-item">
-            <a th:href="@{/} + '?lang=' + ${lang} + '#compare-section'"
+            <a th:href="@{/(lang=${lang})#compare-section}"
                th:text="${lang == 'en' ? 'Three visa-free schemes comparison' : '三类免签制度对比'}">→</a>
         </div>
     </div>

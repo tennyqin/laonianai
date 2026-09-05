@@ -2,6 +2,7 @@ package com.chinavisamap.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -56,10 +57,28 @@ public class ArticleController {
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
         try {
-            articleList = objectMapper.readValue(
-                    new ClassPathResource("articles.json").getInputStream(),
-                    new TypeReference<List<Map<String,Object>>>() {}
+            JsonNode root = objectMapper.readTree(
+                    new ClassPathResource("articles.json").getInputStream()
             );
+            if (root.isArray()) {
+                articleList = objectMapper.convertValue(
+                        root, new TypeReference<List<Map<String,Object>>>() {}
+                );
+            } else if (root.isObject() && root.has("content")) {
+                JsonNode content = root.get("content");
+                if (content.isTextual()) {
+                    articleList = objectMapper.readValue(
+                            content.asText(),
+                            new TypeReference<List<Map<String,Object>>>() {}
+                    );
+                } else {
+                    articleList = objectMapper.convertValue(
+                            content, new TypeReference<List<Map<String,Object>>>() {}
+                    );
+                }
+            } else {
+                articleList = Collections.emptyList();
+            }
             DateTimeFormatter isoFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
             DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             for (Map<String, Object> art : articleList) {
@@ -105,6 +124,8 @@ public class ArticleController {
     ){
 
         lang = seoService.normalizeLang(lang);
+        page = page == null ? 1 : Math.max(page, 1);
+        size = size == null ? 10 : Math.min(Math.max(size, 1), 50);
 
         model.addAttribute(
                 "canonicalUrl",
@@ -194,14 +215,15 @@ public class ArticleController {
     ){
         lang = seoService.normalizeLang(lang);
 
+        String articlePath = "/articles/" + id;
         model.addAttribute(
                 "canonicalUrl",
-                seoService.canonical("/articles", lang)
+                seoService.canonical(articlePath, lang)
         );
 
         model.addAttribute(
                 "hreflang",
-                seoService.hreflang("/articles")
+                seoService.hreflang(articlePath)
         );
 
         Optional<Map<String, Object>> opt = articleList.stream()
@@ -222,7 +244,7 @@ public class ArticleController {
                 structuredDataService.buildArticle(
                         article,
                         lang,
-                        seoService.canonical("/articles", lang)
+                        seoService.canonical(articlePath, lang)
                 )
         );
         return "articles-detail";

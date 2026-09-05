@@ -3,6 +3,7 @@ package com.chinavisamap.controller;
 import com.chinavisamap.entity.CountryDetail;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -285,18 +286,28 @@ public class SitemapController {
     ) {
 
         try {
-
-            return objectMapper.readValue(
-                    new ClassPathResource(
-                            "articles.json"
-                    ).getInputStream(),
-                    new TypeReference<
-                            List<Map<String, Object>>
-                            >() {}
+            JsonNode root = objectMapper.readTree(
+                    new ClassPathResource("articles.json").getInputStream()
             );
-
+            if (root.isArray()) {
+                return objectMapper.convertValue(
+                        root, new TypeReference<List<Map<String, Object>>>() {}
+                );
+            }
+            if (root.isObject() && root.has("content")) {
+                JsonNode content = root.get("content");
+                if (content.isTextual()) {
+                    return objectMapper.readValue(
+                            content.asText(),
+                            new TypeReference<List<Map<String, Object>>>() {}
+                    );
+                }
+                return objectMapper.convertValue(
+                        content, new TypeReference<List<Map<String, Object>>>() {}
+                );
+            }
+            return Collections.emptyList();
         } catch (Exception e) {
-
             return Collections.emptyList();
         }
     }
