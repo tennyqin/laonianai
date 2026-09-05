@@ -2,8 +2,8 @@
 <html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${lang == 'en' ? (countryExtraRoot != null ? countryExtraRoot.homeSeoTitleEn : detailCountry.name + ' to China Visa-Free Guide 2026') : (countryExtraRoot != null ? countryExtraRoot.homeSeoTitleZh : detailCountry.nameZh + '来华签证政策指南 2026')}"></title>
-    <meta name="description" th:content="${lang == 'en' ? (countryExtraRoot != null ? countryExtraRoot.homeSeoDescEn : detailCountry.name + ' citizens traveling to China: visa-free policies, stay duration, entry rules and FAQs.') : (countryExtraRoot != null ? countryExtraRoot.homeSeoDescZh : detailCountry.nameZh + '公民来华免签政策、停留期限、入境条件与常见问题。')}">
+    <title th:text="${lang == 'en' ? (countryExtraRoot != null ? countryExtraRoot.homeSeoTitleEn : detailCountry.name + ' to China Visa Guide 2026') : (countryExtraRoot != null ? countryExtraRoot.homeSeoTitleZh : detailCountry.nameZh + '来华签证政策指南 2026')}"></title>
+    <meta name="description" th:content="${lang == 'en' ? (countryExtraRoot != null ? countryExtraRoot.homeSeoDescEn : detailCountry.name + ' citizens traveling to China: check visa-free eligibility, stay duration, entry rules and visa options.') : (countryExtraRoot != null ? countryExtraRoot.homeSeoDescZh : detailCountry.nameZh + '公民来华免签资格、停留期限、入境规则及签证方案查询。')}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <script type="application/ld+json" th:utext="${structuredData}"></script>
@@ -11,204 +11,107 @@
     <link rel="alternate" hreflang="en" th:href="${hreflang['en']}">
     <link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}">
     <link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
-    <link rel="stylesheet" href="/css/index.css?20260905">
-    <link rel="stylesheet" href="/css/country-detail.css?20260905">
-    <link rel="stylesheet" href="/css/footer.css?20260905">
+    <link rel="stylesheet" href="/css/index.css?20260906">
+    <link rel="stylesheet" href="/css/country-detail.css?20260906">
+    <link rel="stylesheet" href="/css/footer.css?20260906">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <div th:replace="~{common/ga :: google-analytics}"></div>
+    <style>
+      .decision-page{max-width:980px;margin:auto}.decision-hero{padding:28px 24px;background:linear-gradient(135deg,#f0fdf4,#fff);border:1px solid #d1fae5;border-radius:18px;margin-bottom:18px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#047857;font-weight:700}.decision-hero h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0 14px}.hero-question{font-size:20px;font-weight:700;margin:0 0 8px}.hero-answer{color:#4b5563;line-height:1.7;margin:0}.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.decision-stat{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:15px}.decision-stat b{display:block;font-size:12px;color:#6b7280;margin-bottom:6px}.decision-stat span{font-weight:700}.checker{border:1px solid #e5e7eb;border-radius:18px;padding:22px;background:#fff;margin:18px 0}.checker h2{margin-top:0}.checker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.checker label{font-size:13px;font-weight:600;color:#374151;display:block}.checker select,.checker input{width:100%;box-sizing:border-box;margin-top:6px;padding:11px;border:1px solid #d1d5db;border-radius:10px;background:#fff}.check-btn{margin-top:15px;width:100%;padding:13px;border:0;border-radius:10px;background:#059669;color:#fff;font-weight:700;cursor:pointer}.check-result{display:none;margin-top:15px;padding:16px;border-radius:12px;background:#ecfdf5;border:1px solid #a7f3d0}.check-result strong{display:block;margin-bottom:6px}.policy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.policy-card{display:block;border:1px solid #e5e7eb;border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff}.policy-card:hover{border-color:#6ee7b7;box-shadow:0 5px 18px rgba(0,0,0,.05)}.policy-card strong{display:block;font-size:18px;margin-bottom:8px}.policy-meta{font-size:13px;color:#6b7280;line-height:1.6}.section-intro{color:#6b7280;line-height:1.7}.related-grid{display:flex;flex-wrap:wrap;gap:8px}.related-link{padding:8px 12px;border:1px solid #e5e7eb;border-radius:999px;text-decoration:none;color:#374151;font-size:13px}.source-note{font-size:12px;color:#6b7280;line-height:1.6}@media(max-width:640px){.decision-grid,.checker-grid{grid-template-columns:1fr}.decision-hero{padding:22px 18px}}
+    </style>
 </head>
 <body>
-<div class="container">
-    <!--面包屑 -->
-    <div class="breadcrumb-wrap">
-        <div class="breadcrumb">
-            <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Back to Home' : '返回首页'}"></a>
-            <span class="sep">/</span>
-            <span class="current" th:text="${lang=='en' ? detailCountry.name : detailCountry.nameZh}"></span>
-        </div>
+<div class="container decision-page">
+  <div class="breadcrumb-wrap"><div class="breadcrumb">
+    <a th:href="@{/(lang=${lang})}" th:text="${lang=='en'?'Home':'首页'}"></a><span class="sep">/</span>
+    <span class="current" th:text="${lang=='en'?detailCountry.name:detailCountry.nameZh}"></span>
+  </div></div>
+
+  <section class="decision-hero">
+    <div class="eyebrow" th:text="${lang=='en'?'China Entry Decision Guide':'中国入境决策指南'}"></div>
+    <h1 th:text="${lang=='en'?detailCountry.name + ' Citizens Traveling to China':detailCountry.nameZh + '公民来华签证与免签指南'}"></h1>
+    <p class="hero-question" th:text="${lang=='en'?countryProfile.heroQuestionEn:countryProfile.heroQuestionZh}"></p>
+    <p class="hero-answer" th:text="${lang=='en'?countryProfile.heroAnswerEn:countryProfile.heroAnswerZh}"></p>
+    <div class="decision-grid">
+      <div class="decision-stat"><b th:text="${lang=='en'?'Available route(s)':'可用入境路径'}"></b><span th:text="${availableTypes.size()}"></span></div>
+      <div class="decision-stat"><b th:text="${lang=='en'?'Country priority':'国家优先级'}"></b><span th:text="${countryProfile.priority == 999 ? '—' : '#' + countryProfile.priority}"></span></div>
+      <div class="decision-stat"><b th:text="${lang=='en'?'Last verified':'最近核验'}"></b><span>2026-09-05</span></div>
     </div>
-    <div class="card">
-        <h1 class="title" th:text="${lang=='en' ? detailCountry.name + ' Citizens Traveling to China' : detailCountry.nameZh + '公民来华签证与免签政策'}"></h1>
-        <div class="row">
-            <span class="label" th:text="${lang == 'en' ? 'Continent:' : '所属大洲:'}"></span>
-            <span class="value" th:text="${lang == 'en' ? detailCountry.continent : detailCountry.continentZh}"></span>
-        </div>
-        <p style="margin-top:14px;font-size:13px;color:#666;">
-            <span th:text="${lang == 'en' ? 'Policy information is based on public information from the China National Immigration Administration (NIA). Check official updates before travel.' : '政策信息根据中国国家移民管理局（NIA）公开信息整理，出行前请再次确认官方最新规定。'}"></span>
-        </p>
+  </section>
+
+  <section class="checker" id="eligibility-checker">
+    <h2 th:text="${lang=='en'?'Check your China entry eligibility':'检查你的中国入境资格'}"></h2>
+    <p class="section-intro" th:text="${lang=='en'?'Answer four questions. The result is a guidance signal, not a substitute for the official border decision.':'回答四个问题。检查结果仅用于辅助判断，不能替代中国边检机关的最终决定。'}"></p>
+    <div class="checker-grid">
+      <div><label for="passport" th:text="${lang=='en'?'Passport':'护照'}"></label><select id="passport"><option value="ordinary" th:text="${lang=='en'?'Ordinary passport':'普通护照'}"></option><option value="other" th:text="${lang=='en'?'Other travel document':'其他旅行证件'}"></option></select></div>
+      <div><label for="purpose" th:text="${lang=='en'?'Purpose of travel':'出行目的'}"></label><select id="purpose"><option value="tourism">Tourism / 旅游</option><option value="business">Business / 商务</option><option value="family">Family visit / 探亲</option><option value="transit">Transit / 过境</option><option value="study">Study / 学习</option><option value="work">Work / 工作</option><option value="other">Other / 其他</option></select></div>
+      <div><label for="days" th:text="${lang=='en'?'Planned stay (days)':'计划停留天数'}"></label><input id="days" type="number" min="1" max="3650" value="7"></div>
+      <div><label for="route" th:text="${lang=='en'?'Entry route':'入境方式'}"></label><select id="route"><option value="direct" th:text="${lang=='en'?'Direct entry':'直接入境'}"></option><option value="transit" th:text="${lang=='en'?'Transit to a third country/region':'过境前往第三国/地区'}"></option></select></div>
     </div>
-    <th:block th:if="${countryExtraRoot != null}">
-        <th:block th:with="alertText=${lang == 'en' ? countryExtraRoot.homeAlertEn : countryExtraRoot.homeAlertZh}">
-            <div th:if="${alertText != null and alertText != ''}" class="alert-block expiry-block" th:text="${alertText}"></div>
-        </th:block>
-    </th:block>
-    <div class="card">
-        <h3 th:text="${lang == 'en' ? 'Country Overview' : '国家概况'}"></h3>
-        <p th:if="${countryExtraRoot != null and !#strings.isEmpty( (lang == 'en' ? countryExtraRoot.homeIntroEn : countryExtraRoot.homeIntroZh) )}"
-           th:text="${lang == 'en' ? countryExtraRoot.homeIntroEn : countryExtraRoot.homeIntroZh}">
-        </p>
-        <p th:unless="${countryExtraRoot != null and !#strings.isEmpty( (lang == 'en' ? countryExtraRoot.homeIntroEn : countryExtraRoot.homeIntroZh) )}">
-            <span th:if="${lang == 'zh'}">该国家公民来华可以享受对应免签入境政策。不同免签类型在停留期限、入境条件、允许活动上存在区别，请查看下方可用政策卡片，进入对应政策详情阅读完整规则。出行前请务必确认政策有效期以及护照材料是否满足入境条件，入境最终决定权归中国边检机关。</span>
-            <span th:if="${lang == 'en'}">Citizens of this country are eligible for China visa-free entry schemes. Different visa-free types vary in stay duration, entry conditions and permitted activities. Please open related policy card below for full regulations. Always verify policy expiry and passport requirements before travel; final entry decision belongs to China border inspection authorities.</span>
-        </p>
+    <button class="check-btn" type="button" onclick="checkEligibility()" th:text="${lang=='en'?'Check eligibility':'开始检查'}"></button>
+    <div class="check-result" id="check-result"><strong id="result-title"></strong><span id="result-text"></span><div id="result-links" style="margin-top:10px"></div></div>
+  </section>
+
+  <section class="card">
+    <h2 th:text="${lang=='en'?'Choose the policy that matches your trip':'选择与你行程匹配的政策'}"></h2>
+    <p class="section-intro" th:text="${lang=='en'?countryProfile.introEn:countryProfile.introZh}"></p>
+    <div class="policy-grid">
+      <a class="policy-card" th:each="policy : ${availablePolicies}" th:href="@{/country/{code}/{type}(code=${code},type=${policy.policyType},lang=${lang})}">
+        <strong th:text="${lang=='en'?policy.policyType:policy.policyTypeZh}"></strong>
+        <div class="policy-meta"><span th:text="${lang=='en'?'Stay: '+policy.stayDays+' days':'停留：'+policy.stayDays+'天'}"></span><br><span th:text="${lang=='en'?policy.purpose:policy.purposeZh}"></span></div>
+        <span style="display:inline-block;margin-top:12px;color:#047857;font-weight:700;font-size:13px" th:text="${lang=='en'?'View detailed conditions →':'查看详细条件 →'}"></span>
+      </a>
     </div>
-    <th:block th:if="${countryExtraRoot != null}">
-        <th:block th:with="noteList=${lang == 'en' ? countryExtraRoot.homeImportantNotesEn : countryExtraRoot.homeImportantNotesZh}">
-            <div th:if="${noteList != null and not #lists.isEmpty(noteList)}" class="card">
-                <h3 th:text="${lang == 'en' ? 'Important Travel Notes' : '出行重要提示'}"></h3>
-                <div th:each="note : ${noteList}" class="doc-item">• [[${note}]]</div>
-            </div>
-        </th:block>
-    </th:block>
-    <div class="card">
-        <h3 th:text="${lang == 'en' ? 'Available Visa-Free Policies for this Country' : '该国可用对华免签政策'}"></h3>
-        <div class="grid">
-            <div th:each="policy : ${availablePolicies}" class="card">
-                <a th:href="@{/country/{code}/{type}(code=${code}, type=${policy.policyType}, lang=${lang})}">
-                    <strong th:text="${lang == 'en' ? policy.policyType : policy.policyTypeZh}"></strong>
-                    <span class="doc-item" th:text="${lang == 'en' ? 'Stay: ' + policy.stayDays + ' days' : '停留：' + policy.stayDays + '天'}"></span>
-                    <span class="doc-item" th:text="${lang == 'en' ? policy.purpose : policy.purposeZh}"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <th:block th:if="${countryExtraRoot != null}">
-        <th:block th:with="homeFaqList=${lang == 'en' ? countryExtraRoot.homeCustomFaqsEn : countryExtraRoot.homeCustomFaqsZh}">
-            <div th:if="${homeFaqList != null and not #lists.isEmpty(homeFaqList)}" class="card faq-section-wrap">
-                <h3 th:text="${lang == 'en' ? 'Country-Level Frequently Asked Questions' : '该国整体常见问题'}"></h3>
-                <div th:each="faq : ${homeFaqList}" class="faq-item">
-                    <div class="faq-q-wrap" tabindex="0" role="button">
-                        <p class="faq-question" th:text="${faq.q}"></p>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer-wrap">
-                        <div class="faq-answer" th:text="${faq.a}"></div>
-                    </div>
-                </div>
-            </div>
-        </th:block>
-    </th:block>
+  </section>
 
+  <th:block th:if="${countryExtraRoot != null}"><th:block th:with="noteList=${lang=='en'?countryExtraRoot.homeImportantNotesEn:countryExtraRoot.homeImportantNotesZh}">
+    <section class="card" th:if="${noteList != null and !#lists.isEmpty(noteList)}"><h2 th:text="${lang=='en'?'Before you travel':'出发前重点确认'}"></h2><div th:each="note : ${noteList}" class="doc-item">✓ [[${note}]]</div></section>
+  </th:block></th:block>
 
-    <!-- 推荐阅读：5篇随机文章 -->
-    <div class="card">
-        <!-- 顶部黄色提示条：优化友好SEO文案 -->
-        <div class="alert-block expiry-block" style="padding:10px 14px;margin:-20px -20px 18px -20px;border-radius:12px 12px 0 0;font-size:13px;overflow:hidden;box-sizing:border-box;">
-            <span th:text="${lang == 'en' ? '💡 You may also be interested in these practical travel articles' : '💡 你可能也感兴趣的实用旅行文章'}"></span>
-        </div>
-        <h3 th:text="${lang == 'en' ? 'Recommended Reads' : '推荐阅读'}" style="margin: 4px 4px 12px 4px;"></h3>
-        <div id="recommended-article-list">
-            <!-- 加载占位美化 -->
-            <div style="padding:12px 0;color:#666;text-align:center;" th:text="${lang == 'en' ? 'Loading articles...' : '文章加载中...'}"></div>
-        </div>
-    </div>
+  <th:block th:if="${countryExtraRoot != null}"><th:block th:with="homeFaqList=${lang=='en'?countryExtraRoot.homeCustomFaqsEn:countryExtraRoot.homeCustomFaqsZh}">
+    <section class="card faq-section-wrap" th:if="${homeFaqList != null and !#lists.isEmpty(homeFaqList)}"><h2 th:text="${lang=='en'?'Questions travelers ask':'旅客常见问题'}"></h2>
+      <div th:each="faq : ${homeFaqList}" class="faq-item"><div class="faq-q-wrap" tabindex="0" role="button"><p class="faq-question" th:text="${faq.q}"></p><span class="faq-toggle">+</span></div><div class="faq-answer-wrap"><div class="faq-answer" th:text="${faq.a}"></div></div></div>
+    </section>
+  </th:block></th:block>
 
-    <style>
-        .card {
-            overflow: hidden;
-        }
-        @media(max-width: 640px) {
-            .alert-block.expiry-block {
-                margin: -16px -16px 14px -16px !important;
-            }
-        }
-    </style>
+  <section class="card" th:if="${relatedCountryCodes != null and !#lists.isEmpty(relatedCountryCodes)}">
+    <h2 th:text="${lang=='en'?'Related country guides':'相关国家指南'}"></h2>
+    <div class="related-grid"><a class="related-link" th:each="rc : ${relatedCountryCodes}" th:href="@{/country/{code}(code=${rc},lang=${lang})}" th:text="${countryNames[rc] != null ? countryNames[rc] : rc}"></a></div>
+  </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', async function(){
-          const container = document.querySelector('#recommended-article-list');
-          const lang = "[[${lang}]]";
-          // 分类标签颜色映射，以英文categoryEn作为key
-          const categoryColorMap = {
-            "Visa-Free Tips": "#059669",
-            "China Life & Apps": "#2563EB",
-            "Travel Customs": "#d97706",
-            "Border-Inspection Pitfalls": "#dc2626"
-          };
-          const defaultColor = "#059669";
+  <section class="card"><h2 th:text="${lang=='en'?'Official verification':'官方核验'}"></h2><p class="source-note" th:text="${lang=='en'?'Policy information is based on publicly available information and should be rechecked before travel. The final entry decision is made by the competent Chinese border inspection authority.':'政策信息根据公开资料整理，出行前应再次核对最新规定。最终入境决定由中国有关边检机关依法作出。'}"></p><a th:href="${'https://en.nia.gov.cn/'}" rel="noopener noreferrer" target="_blank" th:text="${lang=='en'?'China National Immigration Administration (NIA)':'中国国家移民管理局（NIA）'}"></a></section>
 
-          try{
-            const res = await fetch('/api/articles/random?limit=5');
-            if(!res.ok) throw new Error('fetch fail');
-            const list = await res.json();
-
-            const html = list.map(art=>{
-              const title = lang === 'en' ? art.titleEn : art.titleZh;
-              const category = lang === 'en' ? art.categoryEn : art.categoryZh;
-              const catKey = art.categoryEn || "";
-              const labelColor = categoryColorMap[catKey] || defaultColor;
-              return `
-         <div class="rec-article-item" style="border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin:0 4px 12px 4px;background:#fbfdfc;transition:0.22s;box-sizing:border-box;">
-             <div style="font-size:11px;color:${labelColor};margin-bottom:6px;font-weight:500;">${category}</div>
-             <a href="/articles/${art.id}?lang=${lang}" style="font-size:14px;font-weight:500;color:#111827;text-decoration:none;display:block;line-height:1.5;word-break:break-word;">${title}</a>
-         </div>`;
-            }).join('');
-
-            container.innerHTML = html;
-
-            // class选择器替代匹配style字符串，hover逻辑更稳定
-            container.onmouseover = function(e){
-                const item = e.target.closest('.rec-article-item');
-                if(item){
-                    item.style.borderColor='#a7f3d0';
-                    item.style.boxShadow='0 2px 8px rgba(5,150,105,0.08)';
-                }
-            };
-            container.onmouseout = function(e){
-                const item = e.target.closest('.rec-article-item');
-                if(item){
-                    item.style.borderColor='#e5e7eb';
-                    item.style.boxShadow='none';
-                }
-            };
-
-          }catch(e){
-            container.innerHTML = `
-         <div style="padding:18px 12px;text-align:center;color:#6b7280;font-size:14px;">
-             ${lang==='en'?'Recommended articles temporarily unavailable':'推荐文章暂时无法加载'}
-         </div>`;
-          }
-        })
-    </script>
-
-
-
-    <div class="card">
-        <h3 th:text="${lang == 'en' ? 'Related Resources' : '相关参考链接'}"></h3>
-        <div class="doc-item">
-            <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Back to all countries list' : '返回全部国家列表'}">→</a>
-        </div>
-        <div class="doc-item">
-            <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang == 'en' ? 'Visa Application Guide' : '签证申请指南'}">→</a>
-        </div>
-        <!-- 修复Thymeleaf锚点语法，#不能写进@{...}内部 -->
-        <div class="doc-item">
-            <a th:href="@{/(lang=${lang})#compare-section}"
-               th:text="${lang == 'en' ? 'Three visa-free schemes comparison' : '三类免签制度对比'}">→</a>
-        </div>
-    </div>
-
+  <section class="card"><h2 th:text="${lang=='en'?'More help':'继续查询'}"></h2><div class="doc-item"><a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang=='en'?'China Visa Application Guide':'中国签证申请指南'}"></a></div><div class="doc-item"><a th:href="@{/(lang=${lang})}" th:text="${lang=='en'?'Browse all countries':'浏览全部国家'}"></a></div></section>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function(){
-        const faqWraps = document.querySelectorAll('.faq-q-wrap');
-        faqWraps.forEach(wrap => {
-            wrap.removeEventListener('click',toggleFaq);
-            wrap.addEventListener('click', toggleFaq);
-            wrap.removeEventListener('keydown',toggleKey);
-            wrap.addEventListener('keydown', toggleKey);
-        });
-        function toggleFaq(){
-            const itemEl = this.closest('.faq-item');
-            itemEl.classList.toggle('open');
-        }
-        function toggleKey(e){
-            if(e.key === 'Enter' || e.key === ' '){
-                e.preventDefault();
-                this.click();
-            }
-        }
-    })
+function checkEligibility(){
+ const lang=document.documentElement.lang||'en', p=document.getElementById('passport').value, purpose=document.getElementById('purpose').value, days=parseInt(document.getElementById('days').value||'0',10), route=document.getElementById('route').value;
+ const result=document.getElementById('check-result'), title=document.getElementById('result-title'), text=document.getElementById('result-text'), links=document.getElementById('result-links');
+ result.style.display='block'; links.innerHTML='';
+ if(p!=='ordinary'){
+   title.textContent=lang==='en'?'Check your travel document':'请进一步确认旅行证件';
+   text.textContent=lang==='en'?'The country policy pages are primarily written for the passport category stated by the applicable policy. Check the detailed policy before relying on visa-free entry.':'当前页面主要针对适用政策规定的护照类别，请在依赖免签入境前查看具体政策。'; return;
+ }
+ if(route==='transit' || purpose==='transit'){
+   title.textContent=lang==='en'?'Transit route selected':'已选择过境路径';
+   text.textContent=lang==='en'?'Open the transit policy below and verify that your international itinerary meets all transit conditions.':'请进入下方过境政策，并确认国际联程行程满足全部过境条件。';
+   links.innerHTML='<a href="/country/[[${code}]]/transit?lang='+encodeURIComponent(lang)+'">'+(lang==='en'?'View transit policy →':'查看过境政策 →')+'</a>'; return;
+ }
+ if(purpose==='work'||purpose==='study'||purpose==='other'){
+   title.textContent=lang==='en'?'A regular visa may be required':'可能需要普通签证';
+   text.textContent=lang==='en'?'This purpose may fall outside common visa-free purposes. Do not rely on a visa-free route until the applicable policy explicitly covers it.':'该出行目的可能不属于常见免签范围。在确认适用政策明确涵盖前，不要直接依赖免签入境。';
+   links.innerHTML='<a href="/visa-guide?lang='+encodeURIComponent(lang)+'">'+(lang==='en'?'Open China visa guide →':'查看中国签证指南 →')+'</a>'; return;
+ }
+ const maxDays=parseInt('[[${detailCountry.stayDays}]]'||'0',10);
+ if(maxDays>0 && days>maxDays){
+   title.textContent=lang==='en'?'Your planned stay is longer than the listed limit':'计划停留超过页面显示期限';
+   text.textContent=lang==='en'?'Choose a policy with a sufficient stay period or review the visa route.':'请选择停留期限足够的政策，或查看普通签证方案。';
+ }else{
+   title.textContent=lang==='en'?'You may have a visa-free route':'你可能存在免签入境路径';
+   text.textContent=lang==='en'?'Your answers match a common short-stay scenario. Open the applicable policy and verify every condition before travel.':'你的答案符合常见短期出行场景，请进入适用政策详情并在出行前逐项核验条件。';
+ }
+}
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.faq-q-wrap').forEach(w=>{w.addEventListener('click',()=>w.closest('.faq-item').classList.toggle('open'));w.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();w.click()}})})});
 </script>
 <div th:replace="~{common/footer :: footer}"></div>
 </body>
