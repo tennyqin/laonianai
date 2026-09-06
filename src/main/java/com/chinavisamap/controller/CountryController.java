@@ -28,10 +28,6 @@ import java.util.*;
 public class CountryController {
     private static final String NIA_SOURCE = "https://en.nia.gov.cn/";
     private static final String VERIFIED_DATE = "2026-09-06";
-    private static final Set<String> CURRENT_UNILATERAL_30 = Collections.unmodifiableSet(new HashSet<String>() {{
-        add("kyrgyzstan");
-        add("vietnam");
-    }});
 
     private final Map<String, CountryDetail> unilateralMap;
     private final Map<String, CountryDetail> mutualMap;
@@ -60,7 +56,15 @@ public class CountryController {
     @GetMapping(value = "/country/{code}", params = "type")
     public ResponseEntity<Void> legacyCountryRedirect(@PathVariable String code, @RequestParam String type,
                                                        @RequestParam(defaultValue = "en") String lang) {
-        if (getCountryDetail(code, type) == null) return ResponseEntity.notFound().build();
+        CountryDetail detail = getCountryDetail(code, type);
+        if (detail == null) {
+            // Preserve old indexed unilateral URLs for countries whose old synthetic
+            // policy record has been removed: redirect to the real country page.
+            if ("unilateral".equalsIgnoreCase(type) && getAnyCountryDetail(code) != null) {
+                return redirectToCountryHome(code, lang);
+            }
+            return ResponseEntity.notFound().build();
+        }
         String location = UriComponentsBuilder.fromPath("/country/" + routeCode(code) + "/" + type)
                 .queryParam("lang", seoService.normalizeLang(lang)).build().encode().toUriString();
         HttpHeaders headers = new HttpHeaders();
@@ -85,11 +89,12 @@ public class CountryController {
         model.addAttribute("availableTypes", types);
         model.addAttribute("countryExtraRoot", extra);
         model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, extra));
-        model.addAttribute("availablePolicies", buildAvailablePolicies(code, types));
+        List<CountryDetail> availablePolicies = buildAvailablePolicies(code, types);
+        model.addAttribute("availablePolicies", availablePolicies);
         model.addAttribute("countryNames", buildCountryNames());
         model.addAttribute("countryFlags", buildCountryFlags());
         model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(extra));
-        model.addAttribute("eligibilityConfig", eligibilityService.build(pageCode, buildAvailablePolicies(code, types), extra));
+        model.addAttribute("eligibilityConfig", eligibilityService.build(pageCode, availablePolicies, extra));
         model.addAttribute("canonicalUrl", canonical);
         model.addAttribute("hreflang", seoService.hreflang(path));
         model.addAttribute("structuredData", structuredDataService.buildCountryHome(detailCountry, normalizedLang, canonical, extra, types, buildPolicyDetails(code, types)));
@@ -97,11 +102,18 @@ public class CountryController {
     }
 
     @GetMapping("/country/{code}/{type}")
-    public String restCountryDetail(@PathVariable String code, @PathVariable String type,
+    public Object restCountryDetail(@PathVariable String code, @PathVariable String type,
                                     @RequestParam(defaultValue = "en") String lang, Model model) {
         String normalizedLang = seoService.normalizeLang(lang);
         CountryDetail detailCountry = getCountryDetail(code, type);
-        if (detailCountry == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Country policy not found");
+        if (detailCountry == null) {
+            // A legacy synthetic unilateral route must never be presented as a real policy.
+            // Keep the URL alive with a permanent redirect to the country decision page.
+            if ("unilateral".equalsIgnoreCase(type) && getAnyCountryDetail(code) != null) {
+                return redirectView(code, normalizedLang);
+            }
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Country policy not found");
+        }
         String pageCode = routeCode(code);
         String path = "/country/" + pageCode + "/" + type;
         String canonical = seoService.canonical(path, normalizedLang);
@@ -122,6 +134,22 @@ public class CountryController {
         model.addAttribute("availableTypes", detectAvailableTypes(code));
         model.addAttribute("policyDetails", buildPolicyDetails(code, detectAvailableTypes(code)));
         return "country-detail";
+    }
+
+    private ResponseEntity<Void> redirectToCountryHome(String code, String lang) {
+        String location = UriComponentsBuilder.fromPath("/country/" + routeCode(code))
+                .queryParam("lang", seoService.normalizeLang(lang)).build().encode().toUriString();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create(location));
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+    }
+
+    private ResponseEntity<Void> redirectView(String code, String lang) {
+        String location = UriComponentsBuilder.fromPath("/country/" + routeCode(code))
+                .queryParam("lang", lang).build().encode().toUriString();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create(location));
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
     private Map<String, Object> buildCountryProfile(String code, CountryDetail detailCountry, Map<String, Object> extra) {
@@ -200,36 +228,38 @@ public class CountryController {
         return result;
     }
 
-    private CountryDetail syntheticUnilateral(String key) {
-        if (!CURRENT_UNILATERAL_30.contains(key)) return null;
-        CountryDetail detail = new CountryDetail(); detail.setCode(key);
-        if ("kyrgyzstan".equals(key)) { detail.setName("Kyrgyzstan"); detail.setNameZh("吉尔吉斯斯坦"); }
-        else { detail.setName("Vietnam"); detail.setNameZh("越南"); }
-        detail.setContinent("Asia"); detail.setContinentZh("亚洲"); detail.setPolicyType("unilateral"); detail.setPolicyTypeZh("单方面免签（中国给予）"); detail.setStayDays("30"); detail.setValidFrom("2026-08-20"); detail.setPurpose("Business, tourism, family visit, exchange, transit"); detail.setPurposeZh("经商、旅游观光、探亲访友、交流访问、过境"); detail.setRule("Stay no more than 30 days. Period starts from 00:00 next day."); detail.setRuleZh("停留不超过30日，停留时间自入境次日零时起算"); detail.setPorts("All open ports of China"); detail.setPortsZh("全国所有对外开放口岸"); detail.setSeoTitle(detail.getName() + " to China Visa-Free Policy 2026 | 30 Days Unilateral"); detail.setSeoTitleZh(detail.getNameZh() + "来华免签政策2026 | 单方面30天免签");
-        return detail;
-    }
-
     private List<String> detectAvailableTypes(String code) {
         String key = resolver.policyKey(code); List<String> result = new ArrayList<>();
-        if (unilateralMap.containsKey(key) || CURRENT_UNILATERAL_30.contains(key)) result.add("unilateral");
-        if (mutualMap.containsKey(key)) result.add("mutual"); if (transitMap.containsKey(key)) result.add("transit"); return result;
+        if (unilateralMap.containsKey(key)) result.add("unilateral");
+        if (mutualMap.containsKey(key)) result.add("mutual");
+        if (transitMap.containsKey(key)) result.add("transit");
+        return result;
     }
 
     private CountryDetail getCountryDetail(String code, String type) {
-        String key = resolver.policyKey(code); if ("unilateral".equals(type)) { CountryDetail d=unilateralMap.get(key); return d!=null?d:syntheticUnilateral(key); }
-        if ("mutual".equals(type)) return mutualMap.get(key); if ("transit".equals(type)) return transitMap.get(key); return null;
+        String key = resolver.policyKey(code);
+        if ("unilateral".equals(type)) return unilateralMap.get(key);
+        if ("mutual".equals(type)) return mutualMap.get(key);
+        if ("transit".equals(type)) return transitMap.get(key);
+        return null;
     }
 
-    private CountryDetail getAnyCountryDetail(String code) { String key=resolver.policyKey(code); CountryDetail d=unilateralMap.get(key); if(d!=null)return d; d=mutualMap.get(key); if(d!=null)return d; d=transitMap.get(key); return d!=null?d:syntheticUnilateral(key); }
+    private CountryDetail getAnyCountryDetail(String code) {
+        String key = resolver.policyKey(code);
+        CountryDetail d=unilateralMap.get(key); if(d!=null)return d;
+        d=mutualMap.get(key); if(d!=null)return d;
+        return transitMap.get(key);
+    }
+
     private String routeCode(String code) { return resolver.routeCode(resolver.policyKey(code)); }
     private Map<String,Object> getCountryExtraRoot(String code) { Map<String,Object> m=countryExtraMap.get(code); return m!=null?m:countryExtraMap.get(routeCode(code)); }
     private Object getCountryExtraItem(String code,String type) { Map<String,Object> m=getCountryExtraRoot(code); return m==null?null:m.get(type); }
-    private List<CountryDetail> buildAvailablePolicies(String code,List<String> types) { List<CountryDetail> r=new ArrayList<>(); for(String type:types){CountryDetail d=getCountryDetail(code,type);if(d!=null)r.add(d);} return r; }
+    private List<CountryDetail> buildAvailablePolicies(String code,List<String> types) { List<CountryDetail> r=new ArrayList<>(); for(String type:types){CountryDetail d=getCountryDetail(code,type);if(d!=null)r.add(d);}return r; }
     private Map<String,CountryDetail> buildPolicyDetails(String code,List<String> types){Map<String,CountryDetail> r=new LinkedHashMap<>();for(String type:types){CountryDetail d=getCountryDetail(code,type);if(d!=null)r.put(type,d);}return r;}
     private Map<String,String> buildCountryNames(){Map<String,String> r=new LinkedHashMap<>();addNames(r,unilateralMap);addNames(r,mutualMap);addNames(r,transitMap);return r;}
     private void addNames(Map<String,String> r,Map<String,CountryDetail> m){for(Map.Entry<String,CountryDetail> e:m.entrySet())r.putIfAbsent(routeCode(e.getKey()),e.getValue().getName());}
     private Map<String,String> buildCountryFlags(){Map<String,String> r=new LinkedHashMap<>();for(String code:buildCountryNames().keySet())r.put(code,flagService.flag(code));return r;}
-    private List<String> buildRelatedCountryCodes(Map<String,Object> extra){List<String> r=new ArrayList<>();if(extra==null)return r;Object v=extra.get("relatedCountryCodes");if(!(v instanceof List))return r;for(Object item:(List<?>)v){String c=string(item);if(!isBlank(c)&&getAnyCountryDetail(c)!=null&&!r.contains(c))r.add(routeCode(c));}return r;}
+    private List<String> buildRelatedCountryCodes(Map<String,Object> extra){List<String> r=new ArrayList<>();if(extra==null)return r;Object v=extra.get("relatedCountryCodes");if(!(v instanceof List))return r;for(Object item:(List<?>)v){String c=string(item);String canonical=routeCode(c);if(!isBlank(c)&&getAnyCountryDetail(c)!=null&&!r.contains(canonical))r.add(canonical);}return r;}
     private Map<String,CountryDetail> loadCountryMap(ObjectMapper mapper,String fileName){try{return mapper.readValue(new ClassPathResource(fileName).getInputStream(),new TypeReference<Map<String,CountryDetail>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load "+fileName,e);}}
     private Map<String,Map<String,Object>> loadExtraMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("country-extra.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-extra.json",e);}}
     private Map<String,Object> asMap(Object value){if(!(value instanceof Map))return new LinkedHashMap<>();Map<String,Object> r=new LinkedHashMap<>();for(Map.Entry<?,?>e:((Map<?,?>)value).entrySet())r.put(String.valueOf(e.getKey()),e.getValue());return r;}
