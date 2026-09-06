@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/** Resolves country slugs and ISO-2 aliases to emoji flags. */
+/** Resolves country slugs and ISO-2 aliases to ISO-2 country codes. */
 @Service("countryFlagService")
 public class CountryFlagService {
     private final Map<String,String> iso2 = new HashMap<>();
@@ -49,14 +49,15 @@ public class CountryFlagService {
 
     private void add(String key,String value){iso2.put(key,value);}
 
-    public String flag(String code){
-        if(code==null||code.trim().isEmpty())return "🌐";
+    public String iso2Code(String code){
+        if(code==null||code.trim().isEmpty())return "xx";
         String value=code.trim().toLowerCase(Locale.ROOT).replace(" ","").replace("_","").replace("-","");
-        String alpha2=iso2.get(value);
-        return alpha2==null?"🌐":toFlag(alpha2);
+        return iso2.getOrDefault(value,"XX").toLowerCase(Locale.ROOT);
     }
 
-    private String toFlag(String alpha2){
+    public String flag(String code){
+        String alpha2=iso2Code(code).toUpperCase(Locale.ROOT);
+        if("XX".equals(alpha2))return "🌐";
         int first=Character.codePointAt(alpha2,0)-'A'+0x1F1E6;
         int second=Character.codePointAt(alpha2,1)-'A'+0x1F1E6;
         return new String(Character.toChars(first))+new String(Character.toChars(second));
