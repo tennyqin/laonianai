@@ -1,137 +1,26 @@
 <!DOCTYPE html>
 <html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title th:text="${lang == 'en' ? vg.meta.pageTitleEn : vg.meta.pageTitleZh}"></title>
-    <meta th:content="${lang == 'en' ? vg.meta.pageDescEn : vg.meta.pageDescZh}" name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical" th:href="${canonicalUrl}">
-
-    <link rel="alternate"
-          hreflang="en"
-          th:href="${hreflang['en']}">
-
-    <link rel="alternate"
-          hreflang="zh"
-          th:href="${hreflang['zh']}">
-
-    <link rel="alternate"
-          hreflang="x-default"
-          th:href="${hreflang['x-default']}">
-    <script type="application/ld+json"
-            th:utext="${structuredData}">
-    </script>
-    <link rel="stylesheet" href="/css/index.css?20260905">
-    <link rel="stylesheet" href="/css/footer.css?20260905">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <div th:replace="~{common/ga :: google-analytics}"></div>
+<meta charset="UTF-8">
+<title th:text="${lang == 'en' ? vg.meta.pageTitleEn : vg.meta.pageTitleZh}"></title>
+<meta th:content="${lang == 'en' ? vg.meta.pageDescEn : vg.meta.pageDescZh}" name="description">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow">
+<link rel="canonical" th:href="${canonicalUrl}"><link rel="alternate" hreflang="en" th:href="${hreflang['en']}"><link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}"><link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
+<script type="application/ld+json" th:utext="${structuredData}"></script>
+<link rel="stylesheet" href="/css/index.css?20260906"><link rel="stylesheet" href="/css/footer.css?20260906"><link rel="icon" href="/favicon.ico" type="image/x-icon">
+<div th:replace="~{common/ga :: google-analytics}"></div>
+<style>.site-header{border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:20}.site-header-inner{max-width:1180px;margin:auto;min-height:62px;padding:0 18px;display:flex;align-items:center;gap:24px}.site-logo{font-weight:850;color:#064e3b;text-decoration:none;white-space:nowrap}.site-nav{display:flex;gap:18px;align-items:center;flex:1}.site-nav a,.site-lang a{color:#374151;text-decoration:none;font-size:14px}.site-nav a:hover,.site-lang a:hover,.site-lang .active{color:#047857}.site-lang{display:flex;gap:6px;white-space:nowrap}@media(max-width:720px){.site-header-inner{flex-wrap:wrap;padding:10px 14px}.site-nav{order:3;width:100%;overflow:auto;gap:14px}}</style>
 </head>
 <body>
-<div class="last-update" th:text="${lang=='en' ? vg.meta.lastUpdateHintEn : vg.meta.lastUpdateHintZh}"></div>
-
-<div class="header">
-    <div class="container header-inner">
-        <a th:href="|/?lang=${lang}|" class="logo">China Visa Free Guide 2026</a>
-        <div class="nav">
-            <a th:href="|/?lang=${lang}|" th:text="${lang=='en'?'Home':'首页'}"></a>
-            <a th:href="|/?lang=${lang}#unilateral|" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
-            <a th:href="|/?lang=${lang}#mutual|" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
-            <a th:href="|/?lang=${lang}#transit|" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
-<!--            <a th:href="|/?lang=${lang}#faq-section|" th:text="${lang == 'en' ? 'FAQ' : '常见问题'}"></a>-->
-            <a th:href="|/visa-guide?lang=${lang}|" th:text="${lang == 'en' ? 'Apply for Visa' : '签证申请指南'}" style="color:#059669;font-weight:bold;"></a>
-            <a th:href="|/articles?lang=${lang}|" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></a>
-            <span class="lang">
-                <!--语言切换按钮，保留@{表达式，当前页面切换语言，不跳转页面 -->
-                <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
-                <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
-            </span>
-        </div>
-    </div>
-</div>
-
-
-
+<div th:replace="~{common/header :: site-header}"></div>
 <div class="container">
-    <div class="hero">
-        <h1 th:text="${lang == 'en' ? vg.intro.titleEn : vg.intro.titleZh}"></h1>
-        <p th:text="${lang == 'en' ? vg.intro.para1En : vg.intro.para1Zh}"></p>
-        <p style="margin-top:12px" th:text="${lang == 'en' ? vg.intro.para2En : vg.intro.para2Zh}"></p>
-    </div>
-
-    <!-- 签证类型 -->
-    <div class="section">
-        <h2 class="title" th:text="${lang == 'en' ? vg.visaTypesTitleEn : vg.visaTypesTitleZh}"></h2>
-        <div class="grid">
-            <div class="card" th:each="vt : ${vg.visaTypes}">
-                <div>
-                    <strong th:text="${lang == 'en' ? vt.titleEn : vt.titleZh}"></strong>
-                    <p style="font-size:13px;color:#4b5563;margin-top:4px;" th:text="${lang == 'en' ? vt.descEn : vt.descZh}"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 申请材料 -->
-    <div class="section">
-        <h2 class="title" th:text="${lang == 'en' ? vg.docCheckTitleEn : vg.docCheckTitleZh}"></h2>
-        <div class="grid">
-            <div class="card" th:each="doc : ${vg.docList}">
-                <div>
-                    <strong th:text="${lang == 'en' ? doc.titleEn : doc.titleZh}"></strong>
-                    <p style="font-size:13px;color:#4b5563;margin-top:4px;" th:text="${lang == 'en' ? doc.descEn : doc.descZh}"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 申请流程 -->
-    <div class="section">
-        <h2 class="title" th:text="${lang == 'en' ? vg.processTitleEn : vg.processTitleZh}"></h2>
-        <div th:each="step : ${vg.processSteps}" class="policy">
-            <h3><span th:text="${step.num}"></span>. <span th:text="${lang == 'en' ? step.titleEn : step.titleZh}"></span></h3>
-            <p th:text="${lang == 'en' ? step.descEn : step.descZh}"></p>
-        </div>
-        <div class="alert-block disclaimer-block" style="margin-top:16px;" th:text="${lang == 'en' ? vg.processingNoteEn : vg.processingNoteZh}"></div>
-    </div>
-
-    <!-- FAQ -->
-    <div class="section faq-section">
-        <h2 class="title" th:text="${lang == 'en' ? vg.faqTitleEn : vg.faqTitleZh}"></h2>
-        <div class="faq-items">
-            <div class="faq-item" th:each="item : ${vg.visaFaqs}">
-                <div class="faq-q">
-                    <span th:text="${lang == 'en' ? item.qEn : item.qZh}"></span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-a">
-                    <div th:text="${lang == 'en' ? item.aEn : item.aZh}"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div style="text-align:center;margin:30px 0;">
-        <a th:href="|/?lang=${lang}|" style="color:#059669;font-weight:600;">← <span th:text="${lang=='en'?'Back to homepage to check visa-free eligibility':'返回首页查询免签资格'}"></span></a>
-    </div>
-
+<div class="hero"><h1 th:text="${lang == 'en' ? vg.intro.titleEn : vg.intro.titleZh}"></h1><p th:text="${lang == 'en' ? vg.intro.para1En : vg.intro.para1Zh}"></p><p style="margin-top:12px" th:text="${lang == 'en' ? vg.intro.para2En : vg.intro.para2Zh}"></p></div>
+<div class="section"><h2 class="title" th:text="${lang == 'en' ? vg.visaTypesTitleEn : vg.visaTypesTitleZh}"></h2><div class="grid"><div class="card" th:each="vt : ${vg.visaTypes}"><div><strong th:text="${lang == 'en' ? vt.titleEn : vt.titleZh}"></strong><p style="font-size:13px;color:#4b5563;margin-top:4px;" th:text="${lang == 'en' ? vt.descEn : vt.descZh}"></p></div></div></div></div>
+<div class="section"><h2 class="title" th:text="${lang == 'en' ? vg.docCheckTitleEn : vg.docCheckTitleZh}"></h2><div class="grid"><div class="card" th:each="doc : ${vg.docList}"><div><strong th:text="${lang == 'en' ? doc.titleEn : doc.titleZh}"></strong><p style="font-size:13px;color:#4b5563;margin-top:4px;" th:text="${lang == 'en' ? doc.descEn : doc.descZh}"></p></div></div></div></div>
+<div class="section"><h2 class="title" th:text="${lang == 'en' ? vg.processTitleEn : vg.processTitleZh}"></h2><div th:each="step : ${vg.processSteps}" class="policy"><h3><span th:text="${step.num}"></span>. <span th:text="${lang == 'en' ? step.titleEn : step.titleZh}"></span></h3><p th:text="${lang == 'en' ? step.descEn : step.descZh}"></p></div><div class="alert-block disclaimer-block" style="margin-top:16px;" th:text="${lang == 'en' ? vg.processingNoteEn : vg.processingNoteZh}"></div></div>
+<div class="section faq-section"><h2 class="title" th:text="${lang == 'en' ? vg.faqTitleEn : vg.faqTitleZh}"></h2><div class="faq-items"><div class="faq-item" th:each="item : ${vg.visaFaqs}"><div class="faq-q"><span th:text="${lang == 'en' ? item.qEn : item.qZh}"></span><span class="faq-toggle">+</span></div><div class="faq-a"><div th:text="${lang == 'en' ? item.aEn : item.aZh}"></div></div></div></div></div>
+<div style="text-align:center;margin:30px 0;"><a th:href="@{/(lang=${lang})}" style="color:#059669;font-weight:600;">← <span th:text="${lang=='en'?'Back to homepage to check visa-free eligibility':'返回首页查询免签资格'}"></span></a></div>
 </div>
-
 <div th:replace="~{common/footer :: footer}"></div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function(){
-      const faqQuestions = document.querySelectorAll('.faq-q');
-      faqQuestions.forEach(q => {
-        q.addEventListener('click', function(){
-          const parent = this.closest('.faq-item');
-          parent.classList.toggle('open');
-          const toggle = this.querySelector('.faq-toggle');
-          toggle.textContent = parent.classList.contains('open') ? '−' : '+';
-        });
-      });
-    });
-</script>
-</body>
-</html>
+<script>document.addEventListener('DOMContentLoaded',function(){var qs=document.querySelectorAll('.faq-q');for(var i=0;i<qs.length;i++){qs[i].addEventListener('click',function(){var p=this.closest('.faq-item');p.classList.toggle('open');this.querySelector('.faq-toggle').textContent=p.classList.contains('open')?'−':'+';});}});</script>
+</body></html>
