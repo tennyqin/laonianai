@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${lang}">
 <head>
     <meta charset="UTF-8">
     <title th:text="${lang == 'en' ? siteTitle : siteTitleZh}">China Visa Free Guide</title>
-    <meta th:content="${lang == 'en' ? siteDesc : siteDescZh}" name="description">
+    <meta name="description" th:content="${lang == 'en' ? siteDesc : siteDescZh}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" th:content="${noIndex ? 'noindex,follow' : 'index,follow'}">
-    <script type="application/ld+json" th:utext="${structuredData}"></script>
     <link rel="canonical" th:href="${canonicalUrl}">
     <link rel="alternate" hreflang="en" th:href="${hreflang['en']}">
     <link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}">
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="/css/index.css?20260906">
     <link rel="stylesheet" href="/css/footer.css?20260906">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <div th:replace="~{common/ga :: google-analytics}"></div>
     <style>
         .country-link{display:flex;align-items:center;gap:8px;min-width:0}.country-flag{font-size:20px;line-height:1;flex:none}.country-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.country-days{margin-left:auto;flex:none}
     </style>
@@ -22,38 +20,70 @@
 <body>
 <div class="last-update" th:text="${lang == 'en' ? lastUpdate : lastUpdateZh}"></div>
 <div class="header"><div class="container header-inner">
-    <a href="/" class="logo" th:text="${siteName}"></a>
+    <a class="logo" th:href="@{/(lang=${lang})}" th:text="${siteName}"></a>
     <div class="nav">
+        <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Home' : '首页'}"></a>
         <a href="#unilateral" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
         <a href="#mutual" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
         <a href="#transit" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
         <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang == 'en' ? navVisaGuide : navVisaGuideZh}"></a>
         <a th:href="@{/articles(lang=${lang})}" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></a>
-        <span class="lang"><a th:href="@{/(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> | <a th:href="@{/(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a></span>
+        <a th:href="@{/(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a>
+        <a th:href="@{/(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
     </div>
 </div></div>
 <div class="container">
     <div class="hero"><h1 th:text="${lang == 'en' ? heroTitle : heroTitleZh}"></h1><p th:text="${lang == 'en' ? heroDesc : heroDescZh}"></p></div>
-    <form method="get" class="search-box"><input type="hidden" name="lang" th:value="${lang}"><input type="text" name="keyword" class="search-input" th:placeholder="${lang == 'en' ? 'Search country...' : '搜索国家名称或代码...'}" th:value="${keyword}"><button class="search-btn" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button></form>
+    <form method="get" class="search-box">
+        <input type="hidden" name="lang" th:value="${lang}">
+        <input type="text" name="keyword" class="search-input" th:placeholder="${lang == 'en' ? 'Search country...' : '搜索国家名称或代码...'}" th:value="${keyword}">
+        <button class="search-btn" type="submit" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button>
+    </form>
+
     <div th:if="${searched}">
-        <h2 style="text-align:center;margin-bottom:30px" th:text="${lang == 'en' ? 'Search Results' : '搜索结果'}"></h2>
-        <div class="section" th:if="${!unilateralResult.isEmpty()}"><h3 class="title" th:text="${lang == 'en' ? 'Unilateral Visa Free' : '单方面免签'}"></h3><div class="grid"><div class="card" th:each="country : ${unilateralResult}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='unilateral',lang=${lang})"><span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span></a></div></div></div>
-        <div class="section" th:if="${!mutualResult.isEmpty()}"><h3 class="title" th:text="${lang == 'en' ? 'Mutual Visa Exemption' : '互免签证'}"></h3><div class="grid"><div class="card" th:each="country : ${mutualResult}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='mutual',lang=${lang})"><span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span><span class="country-days" style="font-size:12px;color:#6B7280">[[${country.days}]]d</span></a></div></div></div>
-        <div class="section" th:if="${!transitResult.isEmpty()}"><h3 class="title" th:text="${lang == 'en' ? 'Transit Visa Free' : '过境免签'}"></h3><div class="grid"><div class="card" th:each="country : ${transitResult}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='transit',lang=${lang})"><span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span></a></div></div></div>
-        <div class="section" th:if="${unilateralResult.isEmpty() && mutualResult.isEmpty() && transitResult.isEmpty()}"><p style="text-align:center;color:#666" th:text="${lang == 'en' ? 'No results found.' : '未找到相关国家。'}"></p></div>
+        <h2 class="title" th:text="${lang == 'en' ? 'Search Results' : '搜索结果'}"></h2>
+        <div class="section" th:if="${!unilateralResult.isEmpty()}">
+            <h3 class="title" th:text="${lang == 'en' ? 'Unilateral Visa Free' : '单方面免签'}"></h3>
+            <div class="grid"><div class="card" th:each="country : ${unilateralResult}">
+                <a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='unilateral',lang=${lang})}">
+                    <span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
+                </a>
+            </div></div>
+        </div>
+        <div class="section" th:if="${!mutualResult.isEmpty()}">
+            <h3 class="title" th:text="${lang == 'en' ? 'Mutual Visa Exemption' : '互免签证'}"></h3>
+            <div class="grid"><div class="card" th:each="country : ${mutualResult}">
+                <a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='mutual',lang=${lang})}">
+                    <span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span><span class="country-days" th:text="|${country.days}d|"></span>
+                </a>
+            </div></div>
+        </div>
+        <div class="section" th:if="${!transitResult.isEmpty()}">
+            <h3 class="title" th:text="${lang == 'en' ? 'Transit Visa Free' : '过境免签'}"></h3>
+            <div class="grid"><div class="card" th:each="country : ${transitResult}">
+                <a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='transit',lang=${lang})}">
+                    <span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
+                </a>
+            </div></div>
+        </div>
+        <div class="section" th:if="${unilateralResult.isEmpty() && mutualResult.isEmpty() && transitResult.isEmpty()}">
+            <p th:text="${lang == 'en' ? 'No results found.' : '未找到相关国家。'}"></p>
+        </div>
     </div>
+
     <div th:if="${!searched}">
         <div class="intro-block"><p th:text="${lang == 'en' ? introPara1 : introPara1Zh}"></p><p th:text="${lang == 'en' ? introPara2 : introPara2Zh}"></p></div>
         <div class="alert-block expiry-block"><strong th:text="${lang == 'en' ? '⚠️ Policy Expiry Reminder' : '⚠️ 政策到期提醒'}"></strong><p th:text="${lang == 'en' ? expiryNote : expiryNoteZh}"></p></div>
-        <div id="compare-section"></div>
-        <div class="section compare-section"><h2 class="title" th:text="${lang == 'en' ? compareTableTitle : compareTableTitleZh}"></h2><div class="table-wrap"><table class="policy-table"><thead><tr th:each="row : ${compareRows}" th:if="${row.label == 'Policy Type'}"><th th:text="${lang == 'en' ? row.label : row.labelZh}"></th><th th:text="${lang == 'en' ? row.col1 : row.col1Zh}"></th><th th:text="${lang == 'en' ? row.col2 : row.col2Zh}"></th><th th:text="${lang == 'en' ? row.col3 : row.col3Zh}"></th></tr></thead><tbody><tr th:each="row : ${compareRows}" th:if="${row.label != 'Policy Type'}"><td th:text="${lang == 'en' ? row.label : row.labelZh}"></td><td th:text="${lang == 'en' ? row.col1 : row.col1Zh}"></td><td th:text="${lang == 'en' ? row.col2 : row.col2Zh}"></td><td th:text="${lang == 'en' ? row.col3 : row.col3Zh}"></td></tr></tbody></table></div></div>
-        <div id="faq-section" class="section faq-section"><h2 class="title" th:text="${lang == 'en' ? 'Frequently Asked Questions' : '常见问题'}"></h2><div class="faq-items"><div class="faq-item" th:each="item : ${faqs}"><div class="faq-q" tabindex="0" role="button"><span th:text="${lang == 'en' ? item.q : item.qZh}"></span><span class="faq-toggle">+</span></div><div class="faq-a"><div th:text="${lang == 'en' ? item.a : item.aZh}"></div></div></div></div></div>
+        <div class="section compare-section"><h2 class="title" th:text="${lang == 'en' ? compareTableTitle : compareTableTitleZh}"></h2><div class="table-wrap"><table class="policy-table"><tbody><tr th:each="row : ${compareRows}"><td th:text="${lang == 'en' ? row.label : row.labelZh}"></td><td th:text="${lang == 'en' ? row.col1 : row.col1Zh}"></td><td th:text="${lang == 'en' ? row.col2 : row.col2Zh}"></td><td th:text="${lang == 'en' ? row.col3 : row.col3Zh}"></td></tr></tbody></table></div></div>
+        <div class="section faq-section"><h2 class="title" th:text="${lang == 'en' ? 'Frequently Asked Questions' : '常见问题'}"></h2><div class="faq-items"><div class="faq-item" th:each="item : ${faqs}"><div class="faq-q"><span th:text="${lang == 'en' ? item.q : item.qZh}"></span></div><div class="faq-a"><div th:text="${lang == 'en' ? item.a : item.aZh}"></div></div></div></div></div>
     </div>
-    <div id="unilateral" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? unilateralTitle : unilateralTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? unilateralDesc : unilateralDescZh}"></p><div th:each="c : ${continents}"><h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? c.name : c.nameZh}"></h3><div class="grid"><div class="card" th:each="country : ${c.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='unilateral',lang=${lang})"><span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span></a></div></div></div></div>
-    <div id="mutual" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? mutualTitle : mutualTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? mutualDesc : mutualDescZh}"></p><div th:each="cont : ${mutualContinents}"><h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='mutual',lang=${lang})"><span class="country-flag" aria-hidden="true" th:text="${c.flag}"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span><span class="country-days" style="font-size:12px;color:#6B7280">[[${c.days}]]d</span></a></div></div></div></div>
-    <div id="transit" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? transitTitle : transitTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? transitDesc : transitDescZh}"></p><div th:each="cont : ${transitContinents}"><h3 style="margin:20px 0 10px" th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='transit',lang=${lang})"><span class="country-flag" aria-hidden="true" th:text="${c.flag}"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span></a></div></div></div><div style="margin-top:30px"><div class="policy" th:each="p : ${policies}"><h3 th:text="${lang == 'en' ? p.title : p.titleZh}"></h3><p th:text="${lang == 'en' ? p.content : p.contentZh}"></p></div></div></div>
+
+    <div id="unilateral" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? unilateralTitle : unilateralTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? unilateralDesc : unilateralDescZh}"></p><div th:each="c : ${continents}"><h3 th:text="${lang == 'en' ? c.name : c.nameZh}"></h3><div class="grid"><div class="card" th:each="country : ${c.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='unilateral',lang=${lang})}"><span class="country-flag" aria-hidden="true" th:text="${country.flag}"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span></a></div></div></div></div>
+
+    <div id="mutual" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? mutualTitle : mutualTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? mutualDesc : mutualDescZh}"></p><div th:each="cont : ${mutualContinents}"><h3 th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='mutual',lang=${lang})}"><span class="country-flag" aria-hidden="true" th:text="${c.flag}"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span><span class="country-days" th:text="|${c.days}d|"></span></a></div></div></div></div>
+
+    <div id="transit" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? transitTitle : transitTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? transitDesc : transitDescZh}"></p><div th:each="cont : ${transitContinents}"><h3 th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='transit',lang=${lang})}"><span class="country-flag" aria-hidden="true" th:text="${c.flag}"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span></a></div></div></div><div class="policy" th:each="p : ${policies}"><h3 th:text="${lang == 'en' ? p.title : p.titleZh}"></h3><p th:text="${lang == 'en' ? p.content : p.contentZh}"></p></div></div>
 </div>
 <div th:replace="~{common/footer :: footer}"></div>
-<script>document.addEventListener('DOMContentLoaded',function(){const faqQuestions=document.querySelectorAll('.faq-q');faqQuestions.forEach(q=>{q.addEventListener('click',toggleFaq);q.addEventListener('keydown',toggleKey)});function toggleFaq(){const parent=this.closest('.faq-item');parent.classList.toggle('open');this.querySelector('.faq-toggle').textContent=parent.classList.contains('open')?'−':'+'}function toggleKey(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click()}}adjustHashScroll()});window.addEventListener('hashchange',adjustHashScroll);function adjustHashScroll(){if(!window.location.hash)return;const targetEl=document.getElementById(window.location.hash.substring(1));if(!targetEl)return;const headerEl=document.querySelector('.header');const headerHeight=headerEl?headerEl.offsetHeight:0;const rect=targetEl.getBoundingClientRect();window.scrollTo({top:rect.top+window.scrollY-headerHeight-12,behavior:'smooth'})}</script>
 </body>
 </html>
