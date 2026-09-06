@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="site-header" class="site-header">
+    <div class="site-header-inner">
+        <a class="site-logo" th:href="@{/(lang=${lang})}">China Visa Free Guide</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a th:href="@{/(lang=${lang})}" th:text="${lang=='en'?'Home':'首页'}"></a>
+            <a th:href="@{/(lang=${lang})}#unilateral" th:text="${lang=='en'?'Visa-Free Policies':'免签政策'}"></a>
+            <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang=='en'?'Visa Guide':'签证指南'}"></a>
+            <a th:href="@{/articles(lang=${lang})}" th:text="${lang=='en'?'Travel Guides':'旅行指南'}"></a>
+        </nav>
+        <div class="site-lang">
+            <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang=='en'?'active':''}">EN</a>
+            <span aria-hidden="true">|</span>
+            <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang=='zh'?'active':''}">中文</a>
+        </div>
+    </div>
+</header>
+</body>
+</html>
