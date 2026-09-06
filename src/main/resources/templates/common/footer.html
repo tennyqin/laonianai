@@ -1,42 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- 全局公共底部 fragment -->
 <div th:fragment="footer" class="footer">
-    <!-- 站点名称：为空则显示默认名称 -->
+    <div th:if="${relatedArticles != null and !relatedArticles.isEmpty()}" class="footer-content-cluster">
+        <strong th:text="${lang=='en'?'Related China travel guides':'相关来华旅行指南'}"></strong>
+        <div class="footer-link-grid">
+            <a th:each="art:${relatedArticles}" th:href="@{/articles/{id}(id=${art.id},lang=${lang})}" th:text="${lang=='en'?art.titleEn:art.titleZh}"></a>
+        </div>
+    </div>
+    <div th:if="${relatedCountryCodes != null and !relatedCountryCodes.isEmpty() and #request.requestURI.startsWith('/articles/') }" class="footer-content-cluster">
+        <strong th:text="${lang=='en'?'Related country visa guides':'相关国家签证指南'}"></strong>
+        <div class="footer-link-grid">
+            <a th:each="c:${relatedCountryCodes}" th:href="@{/country/{code}(code=${c},lang=${lang})}" th:text="${lang=='en'?c:c}"></a>
+        </div>
+    </div>
     <span th:text="${siteName != null ? siteName : 'China Visa Free Guide 2026'}"></span> © 2026<br>
-
-    <!-- 最后更新时间：根据语言显示，为空则显示默认更新时间 -->
-    <span th:if="${lang == 'en'}">
-        [[${lastUpdate != null ? lastUpdate : 'Last Updated: September 3, 2026 | Based on official NIA information'}]]
-    </span>
-    <span th:if="${lang != 'en'}">
-        [[${lastUpdateZh != null ? lastUpdateZh : '最后更新：2026年09月03日 | 信息来源：中国国家移民管理局公开信息'}]]
-    </span>
-
+    <span th:if="${lang == 'en'}">[[${lastUpdate != null ? lastUpdate : 'Last Updated: September 3, 2026 | Based on official NIA information'}]]</span>
+    <span th:if="${lang != 'en'}">[[${lastUpdateZh != null ? lastUpdateZh : '最后更新：2026年09月03日 | 信息来源：中国国家移民管理局公开信息'}]]</span>
     <span class="footer-divider">|</span>
     <a href="#" id="contact-link" class="footer-contact-link">
-        <!-- 内置SVG邮件图标，无需外部字体库 -->
-        <svg class="footer-email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-        </svg>
-        <span th:if="${lang == 'en'}">Contact Webmaster</span>
-        <span th:if="${lang != 'en'}">联系站长</span>
+        <svg class="footer-email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span th:if="${lang == 'en'}">Contact Webmaster</span><span th:if="${lang != 'en'}">联系站长</span>
     </a>
-
-    <script th:inline="javascript">
-        (function() {
-            var link = document.getElementById('contact-link');
-            if (link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // 动态拼接，避免明文暴露邮箱
-                    var u = 'tennyqin1988';
-                    var d = 'gmail.com';
-                    window.location.href = 'mailto:' + u + '@' + d;
-                });
-            }
-        })();
+    <style>
+        .footer-content-cluster{max-width:980px;margin:0 auto 24px;padding:16px;border:1px solid #d1fae5;background:#f7fffb;border-radius:14px;text-align:left}.footer-content-cluster strong{display:block;color:#065f46;margin-bottom:10px}.footer-link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px}.footer-link-grid a{color:#047857;font-size:13px;line-height:1.5}.footer-link-grid a:hover{text-decoration:underline}@media(max-width:640px){.footer-link-grid{grid-template-columns:1fr}.footer-content-cluster{margin-left:12px;margin-right:12px}}
+    </style>
+    <script>
+        (function(){var link=document.getElementById('contact-link');if(link){link.addEventListener('click',function(e){e.preventDefault();var u='tennyqin1988';var d='gmail.com';window.location.href='mailto:'+u+'@'+d;});}})();
     </script>
 </div>
 </html>
