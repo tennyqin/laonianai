@@ -6,19 +6,27 @@ import java.util.*;
 
 @Service
 public class CountryCodeResolver {
-    private final Map<String, String> aliases = new HashMap<>();
+    private final Map<String, String> aliases = new LinkedHashMap<>();
+    private final Map<String, String> canonicalRoutes = new LinkedHashMap<>();
 
     public CountryCodeResolver() {
-        aliases.put("sg", "singapore"); aliases.put("singapore", "singapore");
-        aliases.put("us", "usa"); aliases.put("usa", "usa");
-        aliases.put("de", "germany"); aliases.put("germany", "germany");
-        aliases.put("al", "albania"); aliases.put("albania", "albania");
-        aliases.put("pl", "poland"); aliases.put("poland", "poland");
-        aliases.put("au", "australia"); aliases.put("australia", "australia");
-        aliases.put("cz", "czechia"); aliases.put("czechia", "czechia"); aliases.put("czech", "czechia");
-        aliases.put("gb", "uk"); aliases.put("uk", "uk");
-        aliases.put("my", "malaysia"); aliases.put("malaysia", "malaysia");
-        aliases.put("jp", "japan"); aliases.put("japan", "japan");
+        add("sg", "singapore");
+        add("us", "usa");
+        add("de", "germany");
+        add("al", "albania");
+        add("pl", "poland");
+        add("au", "australia");
+        add("cz", "czechia");
+        aliases.put("czech", "czechia");
+        add("gb", "uk");
+        add("my", "malaysia");
+        add("jp", "japan");
+    }
+
+    private void add(String route, String policyKey) {
+        aliases.put(route, policyKey);
+        aliases.put(policyKey, policyKey);
+        canonicalRoutes.put(policyKey, route);
     }
 
     public String policyKey(String code) {
@@ -27,13 +35,17 @@ public class CountryCodeResolver {
         return aliases.getOrDefault(value, value);
     }
 
+    /**
+     * Returns the single canonical route code for a policy key.
+     * This must be deterministic: HashMap iteration must never decide an SEO URL.
+     */
     public String routeCode(String policyKey) {
         if (policyKey == null) return "";
-        for (Map.Entry<String,String> e : aliases.entrySet()) {
-            if (e.getValue().equals(policyKey) && e.getKey().length() <= 3) return e.getKey();
-        }
-        return policyKey;
+        String value = policyKey.trim().toLowerCase(Locale.ROOT);
+        return canonicalRoutes.getOrDefault(value, value);
     }
 
-    public Set<String> knownRouteAliases() { return Collections.unmodifiableSet(aliases.keySet()); }
+    public Set<String> knownRouteAliases() {
+        return Collections.unmodifiableSet(aliases.keySet());
+    }
 }
