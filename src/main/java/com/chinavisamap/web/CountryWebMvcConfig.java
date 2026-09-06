@@ -6,27 +6,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CountryWebMvcConfig implements WebMvcConfigurer {
-    private final CountryEligibilityModelInterceptor eligibilityInterceptor;
-    private final CountryPolicyRouteGuardInterceptor routeGuardInterceptor;
-    private final CountryPolicyCorrectionInterceptor correctionInterceptor;
     private final ContentLinkModelInterceptor contentLinkInterceptor;
 
-    public CountryWebMvcConfig(CountryEligibilityModelInterceptor eligibilityInterceptor,
-                                CountryPolicyRouteGuardInterceptor routeGuardInterceptor,
-                                CountryPolicyCorrectionInterceptor correctionInterceptor,
-                                ContentLinkModelInterceptor contentLinkInterceptor) {
-        this.eligibilityInterceptor = eligibilityInterceptor;
-        this.routeGuardInterceptor = routeGuardInterceptor;
-        this.correctionInterceptor = correctionInterceptor;
+    public CountryWebMvcConfig(ContentLinkModelInterceptor contentLinkInterceptor) {
         this.contentLinkInterceptor = contentLinkInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // Registered first so its postHandle runs last and can finalize localized priority content + structured data.
+        // CountryController is the single source of truth for country/policy models.
+        // Only the deterministic internal-link interceptor is layered on top.
         registry.addInterceptor(contentLinkInterceptor).addPathPatterns("/country/**", "/articles/**");
-        registry.addInterceptor(routeGuardInterceptor).addPathPatterns("/country/**");
-        registry.addInterceptor(eligibilityInterceptor).addPathPatterns("/country/*");
-        registry.addInterceptor(correctionInterceptor).addPathPatterns("/country/**");
     }
 }
