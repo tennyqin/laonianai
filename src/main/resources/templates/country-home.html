@@ -2,35 +2,181 @@
 <html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title th:text="${lang=='en' ? (countryExtraRoot!=null && countryExtraRoot['homeSeoTitleEn']!=null ? countryExtraRoot['homeSeoTitleEn'] : detailCountry.name+' to China Visa Guide 2026') : (countryExtraRoot!=null && countryExtraRoot['homeSeoTitleZh']!=null ? countryExtraRoot['homeSeoTitleZh'] : detailCountry.nameZh+'来华签证政策指南 2026')}"></title>
+<title th:text="${lang=='en' ? (countryExtraRoot!=null && countryExtraRoot['homeSeoTitleEn']!=null ? countryExtraRoot['homeSeoTitleEn'] : detailCountry.name+' to China Visa Guide 2026') : (countryExtraRoot!=null && countryExtraRoot['homeSeoTitleZh']!=null ? countryExtraRoot['homeSeoTitleZh'] : detailCountry.nameZh+'来华签证政策指南 2026')}">China Visa Guide</title>
 <meta name="description" th:content="${lang=='en' ? (countryExtraRoot!=null && countryExtraRoot['homeSeoDescEn']!=null ? countryExtraRoot['homeSeoDescEn'] : detailCountry.name+' citizens traveling to China: check visa-free eligibility, stay duration, entry rules and visa options.') : (countryExtraRoot!=null && countryExtraRoot['homeSeoDescZh']!=null ? countryExtraRoot['homeSeoDescZh'] : detailCountry.nameZh+'公民来华免签资格、停留期限、入境规则及签证方案查询。')}">
-<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow">
-<script type="application/ld+json" th:utext="${structuredData}"></script><link rel="canonical" th:href="${canonicalUrl}"><link rel="alternate" hreflang="en" th:href="${hreflang['en']}"><link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}"><link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
-<link rel="stylesheet" href="/css/index.css?20260906"><link rel="stylesheet" href="/css/country-detail.css?20260906"><link rel="stylesheet" href="/css/footer.css?20260906"><link rel="icon" href="/favicon.ico" type="image/x-icon"><div th:replace="~{common/ga :: google-analytics}"></div>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json" th:utext="${structuredData}"></script>
+<link rel="canonical" th:href="${canonicalUrl}">
+<link rel="alternate" hreflang="en" th:href="${hreflang['en']}">
+<link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}">
+<link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
+<link rel="stylesheet" href="/css/index.css?20260906">
+<link rel="stylesheet" href="/css/country-detail.css?20260906">
+<link rel="stylesheet" href="/css/footer.css?20260906">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<div th:replace="~{common/ga :: google-analytics}"></div>
 <style>
 .page{max-width:980px;margin:auto}.hero{padding:30px 26px;background:#fff;border:1px solid #d1fae5;border-radius:20px;margin-bottom:18px}.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#047857;font-weight:800}.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0 12px}.question{font-size:20px;font-weight:750;margin:0 0 8px}.answer,.intro,.muted{color:#64748b;line-height:1.7}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.stat{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:14px}.stat b{display:block;font-size:11px;color:#64748b;margin-bottom:5px}.stat span{font-weight:800}.box{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:23px;margin:18px 0}.box h2{margin:0 0 6px}.checker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.field label{display:block;font-size:13px;font-weight:750;color:#374151}.field select,.field input{width:100%;box-sizing:border-box;margin-top:7px;padding:12px;border:1px solid #d1d5db;border-radius:11px;background:#fff;font-size:14px}.field select:focus,.field input:focus{outline:2px solid #a7f3d0;border-color:#10b981}.help{font-size:12px;color:#64748b;line-height:1.5;margin-top:5px;display:block}.conditional{display:none}.check-btn{margin-top:17px;width:100%;border:0;border-radius:11px;padding:14px;background:#059669;color:#fff;font-weight:800;font-size:15px;cursor:pointer}.check-btn:hover{background:#047857}.result{display:none;margin-top:17px;padding:18px;border-radius:14px;border:1px solid #d1d5db;background:#f8fafc}.result.ok{background:#ecfdf5;border-color:#a7f3d0}.result.warn{background:#fffbeb;border-color:#fde68a}.result.bad{background:#fef2f2;border-color:#fecaca}.result-title{font-size:19px;font-weight:850;margin-bottom:6px}.result-text{color:#475569;line-height:1.7}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.summary div{background:#fff;border:1px solid #e5e7eb;border-radius:9px;padding:10px;font-size:12px}.summary b{display:block;color:#64748b;font-size:10px;margin-bottom:3px}.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.links a{padding:9px 12px;border:1px solid #d1d5db;border-radius:9px;background:#fff;color:#047857;text-decoration:none;font-weight:750;font-size:13px}.route-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:15px}.route{display:flex;flex-direction:column;min-height:175px;border:1px solid #dfe7e4;border-radius:16px;padding:18px;text-decoration:none;color:#1f2937;background:#fff;transition:.15s}.route:hover{transform:translateY(-2px);border-color:#6ee7b7;box-shadow:0 10px 25px rgba(16,185,129,.12)}.route-icon{width:38px;height:38px;border-radius:11px;background:#ecfdf5;color:#047857;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:19px}.route strong{font-size:18px;margin-bottom:7px}.route-meta{font-size:13px;color:#64748b;line-height:1.6}.route-cta{margin-top:auto;padding-top:13px;color:#047857;font-size:13px;font-weight:800}.notes{margin:0;padding-left:20px}.notes li{margin:8px 0;color:#475569;line-height:1.6}.related{display:flex;flex-wrap:wrap;gap:8px}.related a{padding:8px 12px;border:1px solid #e5e7eb;border-radius:999px;text-decoration:none;color:#374151;background:#fff;font-size:13px}.faq details{border-top:1px solid #e5e7eb;padding:13px 0}.faq summary{cursor:pointer;font-weight:750}.source{font-size:12px;color:#64748b;line-height:1.6}@media(max-width:640px){.stats,.checker-grid,.summary{grid-template-columns:1fr}.hero,.box{padding:19px 16px}.route-grid{grid-template-columns:1fr}}
-</style></head>
-<body><div class="container page">
+</style>
+</head>
+<body>
+<div class="container page">
 <div class="breadcrumb-wrap"><div class="breadcrumb"><a th:href="@{/(lang=${lang})}" th:text="${lang=='en'?'Home':'首页'}"></a><span class="sep">/</span><span class="current" th:text="${lang=='en'?detailCountry.name:detailCountry.nameZh}"></span></div></div>
-<section class="hero"><div class="eyebrow" th:text="${lang=='en'?'China Entry Decision Guide':'中国入境决策指南'}"></div><h1 th:text="${lang=='en'?detailCountry.name+' Citizens Traveling to China':detailCountry.nameZh+'公民来华签证与免签指南'}"></h1><p class="question" th:text="${lang=='en'?countryProfile['heroQuestionEn']:countryProfile['heroQuestionZh']}"></p><p class="answer" th:text="${lang=='en'?countryProfile['heroAnswerEn']:countryProfile['heroAnswerZh']}"></p><div class="stats"><div class="stat"><b th:text="${lang=='en'?'Available routes':'可用路径'}"></b><span th:text="${availableTypes.size()}"></span></div><div class="stat"><b th:text="${lang=='en'?'Priority market':'优先市场'}"></b><span th:text="${countryProfile['priority']==999?'—':'#'+countryProfile['priority']}"></span></div><div class="stat"><b th:text="${lang=='en'?'Last verified':'最近核验'}"></b><span>2026-09-05</span></div></div></section>
-<section class="box" id="eligibility-checker"><h2 th:text="${lang=='en'?'China Entry Eligibility Checker':'中国入境资格检查器'}"></h2><p class="intro" th:text="${lang=='en'?'This checker uses this country policy data and performs the check locally. It does not call an API when you click Check. It is a screening tool, not a border-entry guarantee.':'本检查器直接使用当前国家的政策数据，点击检查时不会再请求接口。它是出行前筛查工具，不等同于边检最终决定。'}"></p>
-<div class="checker-grid"><div class="field"><label for="passport" th:text="${lang=='en'?'1. Passport type':'1. 护照类型'}"></label><select id="passport"><option value="ordinary" th:text="${lang=='en'?'Ordinary passport':'普通护照'}"></option><option value="diplomatic" th:text="${lang=='en'?'Diplomatic / official passport':'外交 / 公务护照'}"></option><option value="other" th:text="${lang=='en'?'Other travel document':'其他旅行证件'}"></option></select><small class="help" th:text="${lang=='en'?'The policy engine is designed around ordinary passports.':'政策引擎以普通护照规则为核心。'}"></small></div>
+<section class="hero">
+<div class="eyebrow" th:text="${lang=='en'?'China Entry Decision Guide':'中国入境决策指南'}"></div>
+<h1 th:text="${lang=='en'?detailCountry.name+' Citizens Traveling to China':detailCountry.nameZh+'公民来华签证与免签指南'}"></h1>
+<p class="question" th:text="${lang=='en'?countryProfile['heroQuestionEn']:countryProfile['heroQuestionZh']}"></p>
+<p class="answer" th:text="${lang=='en'?countryProfile['heroAnswerEn']:countryProfile['heroAnswerZh']}"></p>
+<div class="stats"><div class="stat"><b th:text="${lang=='en'?'Available routes':'可用路径'}"></b><span th:text="${availableTypes.size()}"></span></div><div class="stat"><b th:text="${lang=='en'?'Priority market':'优先市场'}"></b><span th:text="${countryProfile['priority']==999?'—':'#'+countryProfile['priority']}"></span></div><div class="stat"><b th:text="${lang=='en'?'Last verified':'最近核验'}"></b><span>2026-09-05</span></div></div>
+</section>
+<section class="box" id="eligibility-checker">
+<h2 th:text="${lang=='en'?'China Entry Eligibility Checker':'中国入境资格检查器'}"></h2>
+<p class="intro" th:text="${lang=='en'?'This checker uses the same policy records as the route cards. It runs locally after the page loads and does not call an API when you click Check. It is a screening tool, not a border-entry guarantee.':'本检查器使用与政策卡片相同的数据。页面加载后在本地完成判断，点击检查不会再次请求接口。它是出行前筛查工具，不等同于边检最终决定。'}"></p>
+<div class="checker-grid">
+<div class="field"><label for="passport" th:text="${lang=='en'?'1. Passport type':'1. 护照类型'}"></label><select id="passport"><option value="ordinary" th:text="${lang=='en'?'Ordinary passport':'普通护照'}"></option><option value="diplomatic" th:text="${lang=='en'?'Diplomatic / official passport':'外交 / 公务护照'}"></option><option value="other" th:text="${lang=='en'?'Other travel document':'其他旅行证件'}"></option></select><small class="help" th:text="${lang=='en'?'The screening rules are based on ordinary-passport policy records.':'筛查规则以普通护照政策记录为基础。'}"></small></div>
 <div class="field"><label for="purpose" th:text="${lang=='en'?'2. Main purpose':'2. 主要目的'}"></label><select id="purpose"><option value="tourism" th:text="${lang=='en'?'Tourism':'旅游'}"></option><option value="business" th:text="${lang=='en'?'Business':'商务'}"></option><option value="family" th:text="${lang=='en'?'Family visit':'探亲访友'}"></option><option value="exchange" th:text="${lang=='en'?'Exchange / visit':'交流 / 访问'}"></option><option value="transit" th:text="${lang=='en'?'Transit':'过境'}"></option><option value="study" th:text="${lang=='en'?'Study':'学习'}"></option><option value="work" th:text="${lang=='en'?'Work':'工作'}"></option><option value="other" th:text="${lang=='en'?'Other':'其他'}"></option></select></div>
-<div class="field"><label for="days" th:text="${lang=='en'?'3. Planned stay in China':'3. 计划在华停留'}"></label><input id="days" type="number" min="1" max="3650" value="7" inputmode="numeric"><small class="help" th:text="${lang=='en'?'Use the total planned number of days.':'填写计划在中国大陆停留的总天数。'}"></small></div>
-<div class="field"><label for="entryMode" th:text="${lang=='en'?'4. Entry route':'4. 入境路径'}"></label><select id="entryMode"><option value="direct" th:text="${lang=='en'?'Direct entry':'直接入境'}"></option><option value="transit" th:text="${lang=='en'?'Transit to a third country / region':'过境前往第三国 / 地区'}"></option><option value="hainan" th:text="${lang=='en'?'Hainan regional entry':'海南区域免签'}"></option></select></div>
+<div class="field"><label for="days" th:text="${lang=='en'?'3. Planned stay in China':'3. 计划在华停留'}"></label><input id="days" type="number" min="1" max="3650" value="7" inputmode="numeric"><small class="help" th:text="${lang=='en'?'Enter the planned number of days.':'填写计划在中国大陆停留的总天数。'}"></small></div>
+<div class="field"><label for="entryMode" th:text="${lang=='en'?'4. Entry route':'4. 入境路径'}"></label><select id="entryMode"><option value="direct" th:text="${lang=='en'?'Direct entry':'直接入境'}"></option><option value="transit" th:text="${lang=='en'?'240-hour transit to a third country / region':'240小时过境前往第三国 / 地区'}"></option><option value="hainan" th:text="${lang=='en'?'Hainan regional entry':'海南区域免签'}"></option></select></div>
 <div class="field conditional" id="transitFields"><label for="destination" th:text="${lang=='en'?'5. Onward destination':'5. 后续目的地'}"></label><input id="destination" type="text" autocomplete="off" th:placeholder="${lang=='en'?'e.g. Japan, Thailand':'例如：日本、泰国'}"><label style="margin-top:9px;display:flex;gap:8px;align-items:flex-start;font-weight:600"><input id="onward" type="checkbox" style="width:auto;margin-top:3px"><span th:text="${lang=='en'?'I have confirmed onward travel evidence':'我有已确认的后续行程证明'}"></span></label></div>
-<div class="field conditional" id="hainanFields"><label th:text="${lang=='en'?'Hainan condition':'海南条件'}"></label><div class="help" th:text="${lang=='en'?'This route is limited to Hainan Province and excludes long-term work or study.':'该路径仅适用于海南省，长期工作或学习不适用。'}"></div></div></div>
-<button class="check-btn" id="check-btn" type="button" th:text="${lang=='en'?'Check my eligibility':'检查我的资格'}"></button><div class="result" id="check-result" aria-live="polite"><div class="result-title" id="result-title"></div><div class="result-text" id="result-text"></div><div class="summary" id="result-summary"></div><div class="links" id="result-links"></div></div></section>
+<div class="field conditional" id="hainanFields"><label th:text="${lang=='en'?'Hainan condition':'海南条件'}"></label><div class="help" th:text="${lang=='en'?'Hainan eligibility is shown only when a verified country-level Hainan rule is available.':'只有存在已核验的国家级海南政策数据时，才会判定海南免签资格。'}"></div></div>
+</div>
+<button class="check-btn" id="check-btn" type="button" th:text="${lang=='en'?'Check my eligibility':'检查我的资格'}"></button>
+<div class="result" id="check-result" aria-live="polite"><div class="result-title" id="result-title"></div><div class="result-text" id="result-text"></div><div class="summary" id="result-summary"></div><div class="links" id="result-links"></div></div>
+</section>
 <section class="box" id="routes"><h2 th:text="${lang=='en'?'Choose the route that matches your trip':'选择与你行程匹配的入境路径'}"></h2><p class="intro" th:text="${lang=='en'?countryProfile['introEn']:countryProfile['introZh']}"></p><div class="route-grid"><a class="route" th:each="policy:${availablePolicies}" th:href="@{/country/{code}/{type}(code=${code},type=${policy.policyType},lang=${lang})}"><span class="route-icon" th:text="${policy.policyType=='transit'?'↔':policy.policyType=='mutual'?'⇄':'✓'}"></span><strong th:text="${lang=='en'?policy.policyType:policy.policyTypeZh}"></strong><div class="route-meta"><span th:text="${lang=='en'?'Maximum listed stay: '+policy.stayDays+' days':'政策记录最长停留：'+policy.stayDays+'天'}"></span><br><span th:text="${lang=='en'?policy.purpose:policy.purposeZh}"></span></div><span class="route-cta" th:text="${lang=='en'?'View detailed rules →':'查看详细规则 →'}"></span></a></div></section>
 <section class="box" th:if="${countryExtraRoot!=null && countryExtraRoot['homeImportantNotesEn']!=null}"><h2 th:text="${lang=='en'?'Important before you travel':'出行前重要提示'}"></h2><ul class="notes" th:if="${lang=='en'}"><li th:each="n:${countryExtraRoot['homeImportantNotesEn']}" th:text="${n}"></li></ul><ul class="notes" th:if="${lang!='en'}"><li th:each="n:${countryExtraRoot['homeImportantNotesZh']}" th:text="${n}"></li></ul></section>
 <section class="box"><h2 th:text="${lang=='en'?'Common questions':'常见问题'}"></h2><div class="faq"><details open><summary th:text="${lang=='en'?'Does visa-free entry mean guaranteed admission?':'免签是否代表一定可以入境？'}"></summary><p class="muted" th:text="${lang=='en'?'No. Final admission remains subject to immigration inspection and the rules in force on the travel date.':'不代表。最终是否准许入境仍由边检机关依据出行当日有效规定决定。'}"></p></details><details><summary th:text="${lang=='en'?'What if my purpose is work or study?':'如果是工作或学习怎么办？'}"></summary><p class="muted" th:text="${lang=='en'?'Do not rely on ordinary visa-free routes. Check the appropriate China visa requirements.':'不要直接依赖普通免签路径，请查看对应的中国签证要求。'}"></p></details><details><summary th:text="${lang=='en'?'What if no route matches my trip?':'如果没有路径符合我的行程怎么办？'}"></summary><p class="muted" th:text="${lang=='en'?'Use the China visa guide and verify the latest official requirements before booking travel.':'请进入中国签证申请指南，并在预订行程前核对官方最新要求。'}"></p></details></div></section>
 <section class="box" th:if="${relatedCountryCodes!=null && !relatedCountryCodes.isEmpty()}"><h2 th:text="${lang=='en'?'Related country guides':'相关国家指南'}"></h2><div class="related"><a th:each="c:${relatedCountryCodes}" th:href="@{/country/{code}(code=${c},lang=${lang})}" th:text="${countryNames[c]!=null?countryNames[c]:c}"></a></div></section>
-<section class="box"><p class="source"><strong th:text="${lang=='en'?'Official verification':'官方核验'}"></strong><br>National Immigration Administration (NIA): <a href="https://en.nia.gov.cn/" rel="noopener noreferrer" target="_blank">en.nia.gov.cn</a><br><span th:text="${lang=='en'?'Visa-free policies can change. Recheck the official source before travel. Last site verification: 2026-09-05.':'免签政策可能变化，出行前应再次核对官方信息。本网站最近一次核验：2026-09-05。'}"></span></p></section>
+<section class="box"><p class="source"><strong th:text="${lang=='en'?'Official verification':'官方核验'}"></strong><br>National Immigration Administration: <a href="https://en.nia.gov.cn/" rel="noopener noreferrer" target="_blank">en.nia.gov.cn</a><br><span th:text="${lang=='en'?'Visa-free policies can change. Recheck the official source before travel. Last site verification: 2026-09-05.':'免签政策可能变化，出行前应再次核对官方信息。本网站最近一次核验：2026-09-05。'}"></span></p></section>
 </div>
-<script th:inline="javascript">/*<![CDATA[*/
-const CONFIG=/*[[${eligibilityConfig}]]*/{};const LANG=/*[[${lang}]]*/'en';const CODE=/*[[${code}]]*/'';const result=document.getElementById('check-result'),titleEl=document.getElementById('result-title'),textEl=document.getElementById('result-text'),summaryEl=document.getElementById('result-summary'),linksEl=document.getElementById('result-links'),mode=document.getElementById('entryMode'),tf=document.getElementById('transitFields'),hf=document.getElementById('hainanFields');
-function refresh(){tf.style.display=mode.value==='transit'?'block':'none';hf.style.display=mode.value==='hainan'?'block':'none'}mode.addEventListener('change',refresh);refresh();
-function show(c,t,x,s,l){result.className='result '+c;result.style.display='block';titleEl.textContent=t;textEl.textContent=x;summaryEl.innerHTML=s.map(a=>'<div><b>'+a[0]+'</b>'+a[1]+'</div>').join('');linksEl.innerHTML=l.map(a=>'<a href="'+a[0]+'">'+a[1]+'</a>').join('')}
-function direct(p,d){return (CONFIG.policies||[]).find(x=>(x.type==='unilateral'||x.type==='mutual')&&(x.purposes||[]).includes(p)&&d<=Number(x.stayDays||0))}
-function check(){const passport=document.getElementById('passport').value,purpose=document.getElementById('purpose').value,days=Number(document.getElementById('days').value||0);if(!Number.isFinite(days)||days<1){show('bad',LANG==='en'?'Enter a valid stay length':'请输入有效停留天数','',[],[]);return}if(passport!=='ordinary'){show('warn',LANG==='en'?'Separate passport check required':'需要单独核验护照类型',LANG==='en'?'This engine is based on ordinary passport rules.':'本引擎以普通护照规则为基础。',[['Passport',passport],['Stay',days+' days']],[['/visa-guide?lang='+LANG,LANG==='en'?'China visa guide':'中国签证指南']]);return}if(['work','study','other'].includes(purpose)){show('bad',LANG==='en'?'A regular visa is likely required':'通常需要申请普通签证',LANG==='en'?'The general visa-free routes do not cover this purpose.':'通用免签路径不覆盖该目的。',[['Purpose',purpose],['Stay',days+' days']],[['/visa-guide?lang='+LANG,LANG==='en'?'Visa guide':'签证指南']]);return}if(mode.value==='transit'){const p=CONFIG.transit240||{};const onward=document.getElementById('onward').checked;if(!p.enabled){show('bad',LANG==='en'?'240-hour transit is not listed':'当前国家未列入240小时过境免签','',[],[['/visa-guide?lang='+LANG,LANG==='en'?'Visa guide':'签证指南']]);return}if(!onward){show('warn',LANG==='en'?'Transit route may qualify, but proof is incomplete':'可能符合过境路径，但材料不完整',LANG==='en'?'A confirmed onward itinerary to a third country or region is required.':'需要前往第三国或地区的已确认联程行程。',[['Limit',p.maxStayDays+' days'],['Onward proof',LANG==='en'?'Not confirmed':'未确认']],[['/country/'+CODE+'/transit?lang='+LANG,LANG==='en'?'View transit rules':'查看过境规则']]);return}if(days>Number(p.maxStayDays||10)){show('bad',LANG==='en'?'Planned stay exceeds the transit limit':'计划停留超过过境期限',LANG==='en'?'The current 240-hour route allows no more than 10 days.':'当前240小时过境免签最长为10天。',[['Stay',days+' days'],['Limit',p.maxStayDays+' days']],[['/visa-guide?lang='+LANG,LANG==='en'?'Visa guide':'签证指南']]);return}show('ok',LANG==='en'?'Likely eligible for 240-hour transit':'可能符合240小时过境免签',LANG==='en'?'Your answers match the configured transit conditions. Verify the exact port, permitted area and itinerary before departure.':'你的信息符合当前过境条件。出发前仍需核对具体口岸、允许活动区域及联程行程。',[['Limit',p.maxStayDays+' days'],['Onward proof',LANG==='en'?'Confirmed':'已确认']],[['/country/'+CODE+'/transit?lang='+LANG,LANG==='en'?'View transit rules':'查看过境规则']]);return}if(mode.value==='hainan'){const h=CONFIG.hainan||{};if(!h.enabled){show('bad',LANG==='en'?'Hainan route is not listed':'当前国家未列入海南免签','',[],[['/visa-guide?lang='+LANG,LANG==='en'?'Visa guide':'签证指南']]);return}if(days>Number(h.maxStayDays||30)||!h.purposes.includes(purpose)){show('bad',LANG==='en'?'This Hainan route does not match the trip':'该海南路径不匹配当前行程',LANG==='en'?'Check the 30-day regional limit and permitted short-term purposes.':'请核对30天区域限制及允许的短期出行目的。',[['Stay',days+' days'],['Limit',h.maxStayDays+' days'],['Purpose',purpose]],[['/visa-guide?lang='+LANG,LANG==='en'?'Visa guide':'签证指南']]);return}show('ok',LANG==='en'?'Likely eligible for Hainan regional entry':'可能符合海南区域免签',LANG==='en'?'The route is limited to Hainan Province and short-term permitted purposes.':'该路径仅限海南省及公布的短期出行目的。',[['Region','Hainan'],['Limit',h.maxStayDays+' days'],['Purpose',purpose]],[['/country/'+CODE+'?lang='+LANG,LANG==='en'?'Country routes':'国家路径']]);return}const p=direct(purpose,days);if(p){show('ok',LANG==='en'?'Likely eligible for visa-free entry':'可能符合免签入境',LANG==='en'?'Your purpose and stay match a listed direct route. Verify the passport and entry conditions before travel.':'你的目的和停留时间符合当前列出的直接免签路径。出发前请核对护照及具体入境条件。',[['Route',p.type],['Limit',p.stayDays+' days'],['Purpose',purpose]],[['/country/'+CODE+'/'+p.type+'?lang='+LANG,LANG==='en'?'View exact policy':'查看具体政策']]);return}show('warn',LANG==='en'?'No listed direct route matches this trip':'没有列出的直接免签路径匹配该行程',LANG==='en'?'Check the specific policy or use the China visa guide.':'请核对具体政策，或进入中国签证指南。',[['Purpose',purpose],['Stay',days+' days']],[['/visa-guide?lang='+LANG,LANG==='en'?'China visa guide':'中国签证指南']])}document.getElementById('check-btn').addEventListener('click',check);if(location.hash==='#eligibility-checker')setTimeout(()=>document.getElementById('eligibility-checker').scrollIntoView({behavior:'smooth',block:'start'}),60);/*]]>*/</script>
-</body></html>
+<script th:inline="javascript">
+/*<![CDATA[*/
+var CONFIG = /*[[${eligibilityConfig}]]*/ {};
+var LANG = /*[[${lang}]]*/ 'en';
+var CODE = /*[[${code}]]*/ '';
+var result = document.getElementById('check-result');
+var titleEl = document.getElementById('result-title');
+var textEl = document.getElementById('result-text');
+var summaryEl = document.getElementById('result-summary');
+var linksEl = document.getElementById('result-links');
+var mode = document.getElementById('entryMode');
+var transitFields = document.getElementById('transitFields');
+var hainanFields = document.getElementById('hainanFields');
+
+function refreshEntryFields() {
+    transitFields.style.display = mode.value === 'transit' ? 'block' : 'none';
+    hainanFields.style.display = mode.value === 'hainan' ? 'block' : 'none';
+}
+mode.addEventListener('change', refreshEntryFields);
+refreshEntryFields();
+
+function showResult(cssClass, title, text, summary, links) {
+    result.className = 'result ' + cssClass;
+    result.style.display = 'block';
+    titleEl.textContent = title;
+    textEl.textContent = text;
+    summaryEl.innerHTML = '';
+    linksEl.innerHTML = '';
+    for (var i = 0; i < summary.length; i++) {
+        var item = document.createElement('div');
+        var label = document.createElement('b');
+        label.textContent = summary[i].k;
+        item.appendChild(label);
+        item.appendChild(document.createTextNode(summary[i].v));
+        summaryEl.appendChild(item);
+    }
+    for (var j = 0; j < links.length; j++) {
+        var link = document.createElement('a');
+        link.href = links[j].url;
+        link.textContent = links[j].text;
+        linksEl.appendChild(link);
+    }
+}
+
+function findDirectPolicy(purpose, days) {
+    var policies = CONFIG.policies || [];
+    for (var i = 0; i < policies.length; i++) {
+        var p = policies[i];
+        if (p.type !== 'unilateral' && p.type !== 'mutual') continue;
+        if (!p.stayDays) continue;
+        if ((p.purposes || []).indexOf(purpose) < 0) continue;
+        if (days <= Number(p.stayDays)) return p;
+    }
+    return null;
+}
+
+function checkEligibility() {
+    var passport = document.getElementById('passport').value;
+    var purpose = document.getElementById('purpose').value;
+    var days = Number(document.getElementById('days').value);
+
+    if (!isFinite(days) || days < 1 || days > 3650) {
+        showResult('bad', LANG === 'en' ? 'Enter a valid stay length' : '请输入有效停留天数', '', [], []);
+        return;
+    }
+
+    if (passport !== 'ordinary') {
+        showResult('warn', LANG === 'en' ? 'Separate passport check required' : '需要单独核验护照类型', LANG === 'en' ? 'This checker is based on ordinary-passport policy records. Do not treat this result as a diplomatic or official-passport exemption.' : '本检查器基于普通护照政策记录。外交、公务或其他旅行证件不能直接套用该结果。', [{k:'Passport',v:passport},{k:'Stay',v:days+' days'}], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'China visa guide' : '中国签证指南'}]);
+        return;
+    }
+
+    if (purpose === 'work' || purpose === 'study' || purpose === 'other') {
+        showResult('bad', LANG === 'en' ? 'A regular visa is likely required' : '通常需要申请普通签证', LANG === 'en' ? 'The configured visa-free routes do not cover this purpose. Check the appropriate China visa category.' : '当前政策记录中的普通免签路径不覆盖该目的，请查看对应的中国签证类别。', [{k:'Purpose',v:purpose},{k:'Stay',v:days+' days'}], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'Visa guide' : '签证指南'}]);
+        return;
+    }
+
+    if (mode.value === 'transit') {
+        var transit = CONFIG.transit240 || {};
+        var destination = document.getElementById('destination').value.trim();
+        var onward = document.getElementById('onward').checked;
+        if (!transit.enabled) {
+            showResult('bad', LANG === 'en' ? '240-hour transit is not listed for this country' : '当前国家未列入240小时过境免签', LANG === 'en' ? 'Use the direct policy or China visa guide instead.' : '请改用直接入境政策或中国签证指南。', [], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'Visa guide' : '签证指南'}]);
+            return;
+        }
+        if (!destination || !onward) {
+            showResult('warn', LANG === 'en' ? 'Transit route may qualify, but itinerary evidence is incomplete' : '可能符合过境路径，但行程材料不完整', LANG === 'en' ? 'A confirmed onward itinerary to a third country or region is required. Enter the destination and confirm that evidence exists.' : '需要前往第三国或地区的已确认后续行程。请填写目的地并确认已有行程证明。', [{k:'Limit',v:String(transit.maxStayDays || 10)+' days'},{k:'Onward evidence',v:onward?'Confirmed':'Not confirmed'}], [{url:'/country/'+CODE+'/transit?lang='+LANG,text:LANG === 'en' ? 'View transit rules' : '查看过境规则'}]);
+            return;
+        }
+        if (days > Number(transit.maxStayDays || 10)) {
+            showResult('bad', LANG === 'en' ? 'Planned stay exceeds the 240-hour transit limit' : '计划停留超过240小时过境期限', LANG === 'en' ? 'The configured 240-hour route allows no more than 10 days.' : '当前配置的240小时过境路径最长为10天。', [{k:'Stay',v:days+' days'},{k:'Limit',v:String(transit.maxStayDays || 10)+' days'},{k:'Destination',v:destination}], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'Visa guide' : '签证指南'}]);
+            return;
+        }
+        showResult('ok', LANG === 'en' ? 'Likely eligible for 240-hour transit' : '可能符合240小时过境免签', LANG === 'en' ? 'Your answers match the configured transit conditions. Verify the exact eligible port, permitted area and itinerary before departure.' : '你的信息符合当前配置的过境条件。出发前仍需核对具体适用口岸、允许活动区域和联程行程。', [{k:'Limit',v:String(transit.maxStayDays || 10)+' days'},{k:'Destination',v:destination},{k:'Onward evidence',v:'Confirmed'}], [{url:'/country/'+CODE+'/transit?lang='+LANG,text:LANG === 'en' ? 'View transit rules' : '查看过境规则'}]);
+        return;
+    }
+
+    if (mode.value === 'hainan') {
+        var hainan = CONFIG.hainan || {};
+        if (!hainan.enabled) {
+            showResult('warn', LANG === 'en' ? 'Hainan eligibility cannot be verified from current country data' : '当前国家数据无法核验海南免签资格', LANG === 'en' ? 'The site deliberately does not guess Hainan eligibility when a verified country-level rule is unavailable.' : '当缺少已核验的国家级海南政策数据时，网站不会猜测是否符合海南免签。', [{k:'Stay',v:days+' days'},{k:'Purpose',v:purpose}], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'Check other visa options' : '查看其他签证方案'}]);
+            return;
+        }
+        if (days > Number(hainan.maxStayDays || 30) || (hainan.purposes || []).indexOf(purpose) < 0) {
+            showResult('bad', LANG === 'en' ? 'This Hainan route does not match the trip' : '该海南路径不匹配当前行程', LANG === 'en' ? 'Check the regional limit and permitted short-term purposes.' : '请核对区域停留期限和允许的短期出行目的。', [{k:'Stay',v:days+' days'},{k:'Purpose',v:purpose}], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'Visa guide' : '签证指南'}]);
+            return;
+        }
+        showResult('ok', LANG === 'en' ? 'Likely eligible for Hainan regional entry' : '可能符合海南区域免签', LANG === 'en' ? 'The configured Hainan rule matches this trip. Verify the current official requirements before travel.' : '当前配置的海南规则与行程匹配。出行前请核对官方最新要求。', [{k:'Region',v:'Hainan'},{k:'Limit',v:String(hainan.maxStayDays || 30)+' days'},{k:'Purpose',v:purpose}], [{url:'/country/'+CODE+'?lang='+LANG,text:LANG === 'en' ? 'Country routes' : '国家路径'}]);
+        return;
+    }
+
+    var direct = findDirectPolicy(purpose, days);
+    if (direct) {
+        showResult('ok', LANG === 'en' ? 'Likely eligible for visa-free entry' : '可能符合免签入境', LANG === 'en' ? 'Your purpose and planned stay match a listed direct policy. Verify the exact passport, purpose and entry conditions before travel.' : '你的出行目的和计划停留时间符合当前列出的直接政策。出发前请核对具体护照、目的和入境条件。', [{k:'Route',v:direct.type},{k:'Limit',v:direct.stayText+' days'},{k:'Purpose',v:purpose}], [{url:direct.policyUrl+'?lang='+LANG,text:LANG === 'en' ? 'View exact policy' : '查看具体政策'}]);
+        return;
+    }
+
+    showResult('warn', LANG === 'en' ? 'No verified direct visa-free route matches this trip' : '没有已核验的直接免签路径匹配该行程', LANG === 'en' ? 'Check the specific country policy or use the China visa guide. The checker will not guess when the source data is incomplete or the stay rule is not a simple day limit.' : '请核对具体国家政策或进入中国签证指南。当源数据不完整或停留规则不是简单天数限制时，检查器不会自行猜测。', [{k:'Purpose',v:purpose},{k:'Stay',v:days+' days'}], [{url:'/visa-guide?lang='+LANG,text:LANG === 'en' ? 'China visa guide' : '中国签证指南'}]);
+}
+
+document.getElementById('check-btn').addEventListener('click', checkEligibility);
+if (window.location.hash === '#eligibility-checker') {
+    window.setTimeout(function () {
+        var checker = document.getElementById('eligibility-checker');
+        if (checker) checker.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 60);
+}
+/*]]>*/
+</script>
+</body>
+</html>
