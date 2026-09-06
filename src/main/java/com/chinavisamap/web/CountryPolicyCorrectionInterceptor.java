@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,7 @@ public class CountryPolicyCorrectionInterceptor implements HandlerInterceptor {
         if (policyObject instanceof CountryPolicy && detailObject instanceof CountryDetail) {
             CountryPolicy policy = (CountryPolicy) policyObject;
             CountryDetail detail = (CountryDetail) detailObject;
-            String key = resolver.policyKey(detail.getCode());
-            applyCorrection(key, detail, policy);
+            applyCorrection(resolver.policyKey(detail.getCode()), detail, policy);
             policy.setLastVerified(VERIFIED);
             String lang = String.valueOf(modelAndView.getModel().get("lang"));
             String canonical = String.valueOf(modelAndView.getModel().get("canonicalUrl"));
@@ -57,10 +57,31 @@ public class CountryPolicyCorrectionInterceptor implements HandlerInterceptor {
                 continue;
             }
             CountryDetail detail = (CountryDetail) item;
-            if (!"mutual".equals(detail.getPolicyType())) {
-                continue;
+            if ("mutual".equals(detail.getPolicyType())) {
+                applyCorrection(resolver.policyKey(detail.getCode()), detail, null);
             }
-            applyCorrection(resolver.policyKey(detail.getCode()), detail, null);
+        }
+
+        Object detailObject = modelAndView.getModel().get("detailCountry");
+        Object extraObject = modelAndView.getModel().get("countryExtraRoot");
+        Object typesObject = modelAndView.getModel().get("availableTypes");
+        if (detailObject instanceof CountryDetail && extraObject instanceof Map && typesObject instanceof List) {
+            Map<String, CountryDetail> details = new LinkedHashMap<String, CountryDetail>();
+            for (Object item : (List<?>) policiesObject) {
+                if (item instanceof CountryDetail) {
+                    CountryDetail detail = (CountryDetail) item;
+                    details.put(detail.getPolicyType(), detail);
+                }
+            }
+            String lang = String.valueOf(modelAndView.getModel().get("lang"));
+            String canonical = String.valueOf(modelAndView.getModel().get("canonicalUrl"));
+            modelAndView.getModel().put("structuredData", structuredDataService.buildCountryHome(
+                    (CountryDetail) detailObject,
+                    lang,
+                    canonical,
+                    (Map<String, Object>) extraObject,
+                    (List<String>) typesObject,
+                    details));
         }
     }
 
