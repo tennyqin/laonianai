@@ -39,7 +39,24 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
         if (path == null || !path.startsWith("/country/")) {
             return true;
         }
+
         String[] parts = path.substring("/country/".length()).split("/");
+        if (parts.length >= 1 && parts[0] != null && !parts[0].isEmpty()) {
+            String requestedCode = parts[0];
+            String canonicalCode = resolver.routeCode(resolver.policyKey(requestedCode));
+            if (!requestedCode.equalsIgnoreCase(canonicalCode)) {
+                StringBuilder location = new StringBuilder("/country/").append(canonicalCode);
+                if (parts.length >= 2 && parts[1] != null && !parts[1].isEmpty()) {
+                    location.append('/').append(parts[1]);
+                }
+                String lang = safeLang(request.getParameter("lang"));
+                location.append("?lang=").append(lang);
+                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                response.setHeader("Location", location.toString());
+                return false;
+            }
+        }
+
         if (parts.length == 2 && "unilateral".equals(parts[1]) && NOT_UNILATERAL.contains(resolver.policyKey(parts[0]))) {
             response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
             response.setHeader("Location", "/country/" + resolver.routeCode(parts[0]) + "?lang=" + safeLang(request.getParameter("lang")));
