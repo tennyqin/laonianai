@@ -50,9 +50,14 @@ public class CountryFlagService {
     private void add(String key,String value){iso2.put(key,value);}
 
     public String iso2Code(String code){
-        if(code==null||code.trim().isEmpty())return "xx";
+        if(code==null||code.trim().isEmpty())return "XX";
         String value=code.trim().toLowerCase(Locale.ROOT).replace(" ","").replace("_","").replace("-","");
-        return iso2.getOrDefault(value,"XX").toLowerCase(Locale.ROOT);
+        return iso2.getOrDefault(value,"XX");
+    }
+
+    /** Lowercase ISO-2 code used by flag-icons CSS, e.g. SG -> sg. */
+    public String cssCode(String code){
+        return iso2Code(code).toLowerCase(Locale.ROOT);
     }
 
     public String flag(String code){
