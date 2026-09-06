@@ -2,6 +2,7 @@ package com.chinavisamap.controller;
 
 import com.chinavisamap.entity.CountryDetail;
 import com.chinavisamap.entity.CountryPolicy;
+import com.chinavisamap.service.CountryCodeResolver;
 import com.chinavisamap.service.SeoService;
 import com.chinavisamap.service.StructuredDataService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -16,339 +17,50 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
 import java.util.*;
 
 @Controller
 public class CountryController {
-
-    private static final String NIA_SOURCE = "https://en.nia.gov.cn/";
-    private static final String VERIFIED_DATE = "2026-09-05";
-
-    private final Map<String, CountryDetail> unilateralMap;
-    private final Map<String, CountryDetail> mutualMap;
-    private final Map<String, CountryDetail> transitMap;
-    private final Map<String, Map<String, Object>> countryExtraMap;
+    private static final String NIA_SOURCE="https://en.nia.gov.cn/";
+    private static final String VERIFIED_DATE="2026-09-05";
+    private final Map<String,CountryDetail> unilateralMap,mutualMap,transitMap;
+    private final Map<String,Map<String,Object>> countryExtraMap;
+    private final CountryCodeResolver resolver;
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
+    public CountryController(ObjectMapper mapper,CountryCodeResolver resolver,SeoService seoService,StructuredDataService structuredDataService){this.resolver=resolver;this.seoService=seoService;this.structuredDataService=structuredDataService;unilateralMap=loadCountryMap(mapper,"unilateral.json");mutualMap=loadCountryMap(mapper,"mutual.json");transitMap=loadCountryMap(mapper,"transit.json");countryExtraMap=loadExtraMap(mapper);}
 
-    public CountryController(ObjectMapper objectMapper,
-                             SeoService seoService,
-                             StructuredDataService structuredDataService) {
-        this.seoService = seoService;
-        this.structuredDataService = structuredDataService;
-        this.unilateralMap = loadCountryMap(objectMapper, "unilateral.json");
-        this.mutualMap = loadCountryMap(objectMapper, "mutual.json");
-        this.transitMap = loadCountryMap(objectMapper, "transit.json");
-        this.countryExtraMap = loadExtraMap(objectMapper);
-    }
-
-    @GetMapping(value = "/country/{code}", params = "type")
-    public ResponseEntity<Void> legacyCountryRedirect(
-            @PathVariable String code,
-            @RequestParam String type,
-            @RequestParam(defaultValue = "en") String lang) {
-        CountryDetail detail = getCountryDetail(code, type);
-        if (detail == null) return ResponseEntity.notFound().build();
-        String normalizedLang = seoService.normalizeLang(lang);
-        String location = UriComponentsBuilder.fromPath("/country/" + code + "/" + type)
-                .queryParam("lang", normalizedLang).build().encode().toUriString();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create(location));
-        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
-    }
+    @GetMapping(value="/country/{code}",params="type")
+    public ResponseEntity<Void> legacyCountryRedirect(@PathVariable String code,@RequestParam String type,@RequestParam(defaultValue="en") String lang){if(getCountryDetail(code,type)==null)return ResponseEntity.notFound().build();String location=UriComponentsBuilder.fromPath("/country/"+routeCode(code)+"/"+type).queryParam("lang",seoService.normalizeLang(lang)).build().encode().toUriString();HttpHeaders h=new HttpHeaders();h.setLocation(URI.create(location));return new ResponseEntity<>(h,HttpStatus.MOVED_PERMANENTLY);}
 
     @GetMapping("/country/{code}")
-    public String countryHome(@PathVariable String code,
-                              @RequestParam(defaultValue = "en") String lang,
-                              Model model) {
-        String normalizedLang = seoService.normalizeLang(lang);
-        List<String> availableTypes = detectAvailableTypes(code);
-        if (availableTypes.isEmpty()) return "redirect:/?lang=" + normalizedLang;
-
-        CountryDetail detailCountry = getAnyCountryDetail(code);
-        Map<String, Object> countryExtraRoot = countryExtraMap.get(code);
-        String path = "/country/" + code;
-        String canonicalUrl = seoService.canonical(path, normalizedLang);
-
-        model.addAttribute("code", code);
-        model.addAttribute("lang", normalizedLang);
-        model.addAttribute("detailCountry", detailCountry);
-        model.addAttribute("availableTypes", availableTypes);
-        model.addAttribute("countryExtraRoot", countryExtraRoot);
-        model.addAttribute("countryProfile", buildCountryProfile(code, detailCountry, countryExtraRoot));
-        model.addAttribute("availablePolicies", buildAvailablePolicies(code, availableTypes));
-        model.addAttribute("countryNames", buildCountryNames());
-        model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(countryExtraRoot));
-        model.addAttribute("canonicalUrl", canonicalUrl);
-        model.addAttribute("hreflang", seoService.hreflang(path));
-        model.addAttribute("structuredData", structuredDataService.buildCountryHome(
-                detailCountry, normalizedLang, canonicalUrl, countryExtraRoot,
-                availableTypes, buildPolicyDetails(code, availableTypes)));
-        return "country-home";
-    }
+    public String countryHome(@PathVariable String code,@RequestParam(defaultValue="en") String lang,Model model){String l=seoService.normalizeLang(lang);List<String>types=detectAvailableTypes(code);if(types.isEmpty())return "redirect:/?lang="+l;String publicCode=routeCode(code);CountryDetail d=getAnyCountryDetail(code);Map<String,Object>extra=getCountryExtraRoot(code);String path="/country/"+publicCode;String canonical=seoService.canonical(path,l);model.addAttribute("code",publicCode);model.addAttribute("lang",l);model.addAttribute("detailCountry",d);model.addAttribute("availableTypes",types);model.addAttribute("countryExtraRoot",extra);model.addAttribute("countryProfile",buildCountryProfile(publicCode,d,extra));model.addAttribute("availablePolicies",buildAvailablePolicies(code,types));model.addAttribute("countryNames",buildCountryNames());model.addAttribute("relatedCountryCodes",buildRelatedCountryCodes(extra));model.addAttribute("canonicalUrl",canonical);model.addAttribute("hreflang",seoService.hreflang(path));model.addAttribute("structuredData",structuredDataService.buildCountryHome(d,l,canonical,extra,types,buildPolicyDetails(code,types)));return "country-home";}
 
     @GetMapping("/country/{code}/{type}")
-    public String restCountryDetail(@PathVariable String code,
-                                    @PathVariable String type,
-                                    @RequestParam(defaultValue = "en") String lang,
-                                    Model model) {
-        String normalizedLang = seoService.normalizeLang(lang);
-        CountryDetail detail = getCountryDetail(code, type);
-        if (detail == null) return "redirect:/?lang=" + normalizedLang;
+    public String restCountryDetail(@PathVariable String code,@PathVariable String type,@RequestParam(defaultValue="en") String lang,Model model){String l=seoService.normalizeLang(lang);CountryDetail d=getCountryDetail(code,type);if(d==null)return "redirect:/?lang="+l;String publicCode=routeCode(code);String path="/country/"+publicCode+"/"+type;String canonical=seoService.canonical(path,l);Map<String,Object>extra=asMap(getCountryExtraItem(code,type));Map<String,Object>root=getCountryExtraRoot(code);CountryPolicy p=buildCountryPolicy(publicCode,type,d,extra);model.addAttribute("canonicalUrl",canonical);model.addAttribute("hreflang",seoService.hreflang(path));model.addAttribute("structuredData",structuredDataService.buildCountry(d,l,canonical,p,extra));model.addAttribute("detail",d);model.addAttribute("policy",p);model.addAttribute("code",publicCode);model.addAttribute("type",type);model.addAttribute("lang",l);model.addAttribute("countryExtra",extra);model.addAttribute("countryProfile",buildCountryProfile(publicCode,d,root));model.addAttribute("availableTypes",detectAvailableTypes(code));model.addAttribute("policyDetails",buildPolicyDetails(code,detectAvailableTypes(code)));return "country-detail";}
 
-        String path = "/country/" + code + "/" + type;
-        String canonicalUrl = seoService.canonical(path, normalizedLang);
-        Map<String, Object> countryExtra = asMap(getCountryExtraItem(code, type));
-        Map<String, Object> countryRoot = countryExtraMap.get(code);
-        CountryPolicy policy = buildCountryPolicy(code, type, detail, countryExtra);
+    private Map<String,Object> buildCountryProfile(String code,CountryDetail d,Map<String,Object>e){Map<String,Object>p=new LinkedHashMap<>();p.put("code",code);p.put("priority",e==null?999:number(e.get("priority"),999));p.put("tier",firstNonBlank(string(e,"tier"),"C"));p.put("heroQuestionEn",firstNonBlank(string(e,"homeHeroQuestionEn"),"Do "+d.getName()+" citizens need a visa for China?"));p.put("heroQuestionZh",firstNonBlank(string(e,"homeHeroQuestionZh"),d.getNameZh()+"公民去中国需要签证吗？"));p.put("heroAnswerEn",firstNonBlank(string(e,"homeHeroAnswerEn"),"Your visa requirement depends on your passport, purpose, stay and the China entry policy that applies to your itinerary."));p.put("heroAnswerZh",firstNonBlank(string(e,"homeHeroAnswerZh"),"是否需要签证取决于护照、出行目的、停留时间以及适用于你行程的中国入境政策。"));p.put("introEn",firstNonBlank(string(e,"homeIntroEn"),"Use the eligibility checker first, then open the policy that matches your trip."));p.put("introZh",firstNonBlank(string(e,"homeIntroZh"),"建议先使用资格检查器，再进入与你行程相匹配的政策详情页。"));return p;}
+    private int number(Object v,int f){if(v instanceof Number)return((Number)v).intValue();try{return Integer.parseInt(string(v));}catch(Exception e){return f;}}
 
-        model.addAttribute("canonicalUrl", canonicalUrl);
-        model.addAttribute("hreflang", seoService.hreflang(path));
-        model.addAttribute("structuredData", structuredDataService.buildCountry(
-                detail, normalizedLang, canonicalUrl, policy, countryExtra));
-        model.addAttribute("detail", detail);
-        model.addAttribute("policy", policy);
-        model.addAttribute("code", code);
-        model.addAttribute("type", type);
-        model.addAttribute("lang", normalizedLang);
-        model.addAttribute("countryExtra", countryExtra);
-        model.addAttribute("countryProfile", buildCountryProfile(code, detail, countryRoot));
-        model.addAttribute("availableTypes", detectAvailableTypes(code));
-        model.addAttribute("policyDetails", buildPolicyDetails(code, detectAvailableTypes(code)));
-        return "country-detail";
-    }
+    private CountryPolicy buildCountryPolicy(String code,String type,CountryDetail d,Map<String,Object>e){CountryPolicy p=new CountryPolicy();p.setDetail(d);p.setCountryCode(code);p.setPolicyType(type);p.setOfficialSource(firstNonBlank(string(e,"officialSource"),NIA_SOURCE));p.setLastVerified(firstNonBlank(string(e,"lastVerified"),VERIFIED_DATE));p.setPolicyExpiry(string(e,"policyExpiry"));p.setPermittedPurposesEn(firstNonBlank(string(e,"permittedPurposesEn"),d.getPurpose()));p.setPermittedPurposesZh(firstNonBlank(string(e,"permittedPurposesZh"),d.getPurposeZh()));boolean t="transit".equals(type),m="mutual".equals(type);p.setPassportTypeEn(firstNonBlank(string(e,"passportTypeEn"),t?"Valid ordinary passport of an eligible country/region":m?"Passport covered by the applicable bilateral agreement":"Valid ordinary passport"));p.setPassportTypeZh(firstNonBlank(string(e,"passportTypeZh"),t?"符合过境免签条件国家/地区的有效普通护照":m?"适用双边互免签证协定的护照":"有效普通护照"));p.setPassportValidityEn(firstNonBlank(string(e,"passportValidityEn"),t?"Passport and transit-document requirements must meet the current transit policy.":"Passport requirements follow the applicable entry policy."));p.setPassportValidityZh(firstNonBlank(string(e,"passportValidityZh"),t?"护照及过境旅行证件要求须符合当前过境政策。":"护照要求以适用入境政策为准。"));p.setEntryCountEn(firstNonBlank(string(e,"entryCountEn"),t?"Transit conditions and permitted stay follow the current 240-hour policy.":m?"Entry frequency and stay limits follow the applicable bilateral agreement.":"Entry conditions and stay limits follow the current unilateral policy."));p.setEntryCountZh(firstNonBlank(string(e,"entryCountZh"),t?"过境条件及停留期限以当前240小时过境免签政策为准。":m?"入境次数及停留期限以适用双边协定为准。":"入境条件及停留期限以当前单方面免签政策为准。"));p.setOnwardTicketEn(firstNonBlank(string(e,"onwardTicketEn"),t?"A confirmed onward itinerary to a third country or region is required.":"Check the current return or onward travel requirements for your itinerary."));p.setOnwardTicketZh(firstNonBlank(string(e,"onwardTicketZh"),t?"需要前往第三国或地区的已确认联程行程。":"请根据实际行程核对返程或后续行程材料要求。"));p.setAccommodationEn(firstNonBlank(string(e,"accommodationEn"),"Keep accommodation information available if requested at entry inspection."));p.setAccommodationZh(firstNonBlank(string(e,"accommodationZh"),"如入境查验需要，请准备住宿信息。"));p.setFinancialProofEn(firstNonBlank(string(e,"financialProofEn"),"Prepare trip-related supporting documents if requested."));p.setFinancialProofZh(firstNonBlank(string(e,"financialProofZh"),"如被要求，请准备与行程相关的证明材料。"));p.setExtensionRuleEn(firstNonBlank(string(e,"extensionRuleEn"),"Do not assume a visa-free stay can be extended; contact the local immigration authority before expiry."));p.setExtensionRuleZh(firstNonBlank(string(e,"extensionRuleZh"),"不要默认免签停留可以延期；如需延长，应在期限届满前咨询当地出入境管理部门。"));populateFaqs(p,d,type,e);return p;}
+    private void populateFaqs(CountryPolicy p,CountryDetail d,String type,Map<String,Object>e){List<CountryPolicy.PolicyFaq>en=toFaqs(e.get("customFaqsEn")),zh=toFaqs(e.get("customFaqsZh"));String stay=isBlank(d.getStayDays())?"the period stated by the policy":d.getStayDays()+" days",stayZh=isBlank(d.getStayDays())?"政策规定期限":d.getStayDays()+"天";if("transit".equals(type)){addIfMissing(en,"How long can "+d.getName()+" citizens stay under this transit route?","The current policy record allows up to "+stay+", subject to the qualifying transit itinerary and entry record.");addIfMissing(zh,d.getNameZh()+"公民过境免签可以停留多久？","当前政策记录允许最长停留"+stayZh+"，具体以符合条件的过境行程和入境记录为准。");}else if("mutual".equals(type)){addIfMissing(en,"Do "+d.getName()+" citizens need a visa under this agreement?","A visa may be waived when the passport and purpose meet the applicable bilateral agreement.");addIfMissing(zh,d.getNameZh()+"公民按照互免协定去中国需要签证吗？","满足适用双边互免签证协定条件时，可以免办签证入境。");}else{addIfMissing(en,"Can "+d.getName()+" citizens enter China without a visa?","They may qualify when the ordinary passport, purpose and stay conditions of the current policy are met.");addIfMissing(zh,d.getNameZh()+"公民可以免签进入中国吗？","满足当前普通护照、出行目的和停留条件时，可能适用中国免签安排。");}p.setFaqsEn(en);p.setFaqsZh(zh);}
+    private void addIfMissing(List<CountryPolicy.PolicyFaq>l,String q,String a){for(CountryPolicy.PolicyFaq f:l)if(q.equalsIgnoreCase(f.getQ()))return;l.add(new CountryPolicy.PolicyFaq(q,a));}
+    private List<CountryPolicy.PolicyFaq>toFaqs(Object v){List<CountryPolicy.PolicyFaq>r=new ArrayList<>();if(!(v instanceof List))return r;for(Object x:(List<?>)v){if(!(x instanceof Map))continue;Map<?,?>m=(Map<?,?>)x;String q=string(m.get("q")),a=string(m.get("a"));if(!isBlank(q)&&!isBlank(a))r.add(new CountryPolicy.PolicyFaq(q,a));}return r;}
 
-    private Map<String, Object> buildCountryProfile(String code, CountryDetail detail, Map<String, Object> extra) {
-        Map<String, Object> profile = new LinkedHashMap<>();
-        profile.put("code", code);
-        profile.put("priority", extra == null ? 999 : number(extra.get("priority"), 999));
-        profile.put("tier", firstNonBlank(string(extra, "tier"), "C"));
-        profile.put("heroQuestionEn", firstNonBlank(string(extra, "homeHeroQuestionEn"),
-                "Do " + detail.getName() + " citizens need a visa for China?"));
-        profile.put("heroQuestionZh", firstNonBlank(string(extra, "homeHeroQuestionZh"),
-                detail.getNameZh() + "公民去中国需要签证吗？"));
-        profile.put("heroAnswerEn", firstNonBlank(string(extra, "homeHeroAnswerEn"),
-                "Your visa requirement depends on the passport, travel purpose, stay and the China entry policy that applies to your itinerary."));
-        profile.put("heroAnswerZh", firstNonBlank(string(extra, "homeHeroAnswerZh"),
-                "是否需要签证取决于护照、出行目的、停留时间以及当前适用于你行程的中国入境政策。"));
-        profile.put("introEn", firstNonBlank(string(extra, "homeIntroEn"),
-                "Use the eligibility checker first, then open the policy that matches your trip."));
-        profile.put("introZh", firstNonBlank(string(extra, "homeIntroZh"),
-                "建议先使用资格检查器，再进入与你行程相匹配的政策详情页。"));
-        return profile;
-    }
-
-    private int number(Object value, int fallback) {
-        if (value instanceof Number) return ((Number) value).intValue();
-        try { return Integer.parseInt(string(value)); } catch (Exception ignored) { return fallback; }
-    }
-
-    private CountryPolicy buildCountryPolicy(String code, String type, CountryDetail detail, Map<String, Object> extra) {
-        CountryPolicy policy = new CountryPolicy();
-        policy.setDetail(detail);
-        policy.setCountryCode(code);
-        policy.setPolicyType(type);
-        policy.setOfficialSource(firstNonBlank(string(extra, "officialSource"), NIA_SOURCE));
-        policy.setLastVerified(firstNonBlank(string(extra, "lastVerified"), VERIFIED_DATE));
-        policy.setPolicyExpiry(firstNonBlank(string(extra, "policyExpiry"), ""));
-        policy.setPermittedPurposesEn(firstNonBlank(string(extra, "permittedPurposesEn"), detail.getPurpose()));
-        policy.setPermittedPurposesZh(firstNonBlank(string(extra, "permittedPurposesZh"), detail.getPurposeZh()));
-
-        if ("unilateral".equals(type)) {
-            policy.setPassportTypeEn(firstNonBlank(string(extra, "passportTypeEn"), "Valid ordinary passport"));
-            policy.setPassportTypeZh(firstNonBlank(string(extra, "passportTypeZh"), "有效普通护照"));
-            policy.setPassportValidityEn(firstNonBlank(string(extra, "passportValidityEn"), "Passport validity must meet China's entry inspection requirements."));
-            policy.setPassportValidityZh(firstNonBlank(string(extra, "passportValidityZh"), "护照有效期需符合中国入境查验及适用免签政策要求。"));
-            policy.setEntryCountEn(firstNonBlank(string(extra, "entryCountEn"), "Entry conditions and frequency follow the applicable unilateral visa-free policy."));
-            policy.setEntryCountZh(firstNonBlank(string(extra, "entryCountZh"), "入境条件及次数以适用的单方面免签政策为准。"));
-            policy.setOnwardTicketEn(firstNonBlank(string(extra, "onwardTicketEn"), "Check the current entry requirements for any return or onward itinerary documentation."));
-            policy.setOnwardTicketZh(firstNonBlank(string(extra, "onwardTicketZh"), "如行程涉及返程或联程行程，请按当前入境要求准备相关凭证。"));
-            policy.setAccommodationEn(firstNonBlank(string(extra, "accommodationEn"), "Keep your accommodation information available if requested during entry inspection."));
-            policy.setAccommodationZh(firstNonBlank(string(extra, "accommodationZh"), "如入境查验需要，请准备住宿信息或相关凭证。"));
-            policy.setFinancialProofEn(firstNonBlank(string(extra, "financialProofEn"), "Prepare evidence relevant to your trip if an authority requests it."));
-            policy.setFinancialProofZh(firstNonBlank(string(extra, "financialProofZh"), "如有关机关要求，请准备与行程相关的证明材料。"));
-            policy.setExtensionRuleEn(firstNonBlank(string(extra, "extensionRuleEn"), "If you need to stay longer, contact the local immigration authority before the permitted stay expires."));
-            policy.setExtensionRuleZh(firstNonBlank(string(extra, "extensionRuleZh"), "如需延长停留，请在允许停留期限届满前向当地出入境管理部门咨询并申请。"));
-        } else if ("mutual".equals(type)) {
-            policy.setPassportTypeEn(firstNonBlank(string(extra, "passportTypeEn"), "Passport or travel document covered by the applicable bilateral agreement"));
-            policy.setPassportTypeZh(firstNonBlank(string(extra, "passportTypeZh"), "适用双边互免签证协定的护照或旅行证件"));
-            policy.setPassportValidityEn(firstNonBlank(string(extra, "passportValidityEn"), "Passport requirements follow the applicable bilateral visa-exemption agreement."));
-            policy.setPassportValidityZh(firstNonBlank(string(extra, "passportValidityZh"), "护照要求以适用的双边互免签证协定为准。"));
-            policy.setEntryCountEn(firstNonBlank(string(extra, "entryCountEn"), "Entry frequency and stay limits follow the applicable bilateral agreement."));
-            policy.setEntryCountZh(firstNonBlank(string(extra, "entryCountZh"), "入境次数及停留期限以适用双边协定为准。"));
-            policy.setOnwardTicketEn(firstNonBlank(string(extra, "onwardTicketEn"), "Travel-document checks depend on the applicable agreement and itinerary."));
-            policy.setOnwardTicketZh(firstNonBlank(string(extra, "onwardTicketZh"), "返程或联程材料要求以适用协定及实际行程为准。"));
-            policy.setAccommodationEn(firstNonBlank(string(extra, "accommodationEn"), "Keep accommodation information available for entry and local registration requirements."));
-            policy.setAccommodationZh(firstNonBlank(string(extra, "accommodationZh"), "请准备住宿信息，并遵守在华住宿登记要求。"));
-            policy.setFinancialProofEn(firstNonBlank(string(extra, "financialProofEn"), "Prepare trip-related supporting documents if requested."));
-            policy.setFinancialProofZh(firstNonBlank(string(extra, "financialProofZh"), "如被要求，请准备与行程相关的证明材料。"));
-            policy.setExtensionRuleEn(firstNonBlank(string(extra, "extensionRuleEn"), "Extension follows the applicable bilateral agreement and Chinese immigration rules."));
-            policy.setExtensionRuleZh(firstNonBlank(string(extra, "extensionRuleZh"), "延期以适用双边协定及中国出入境管理规定为准。"));
-        } else {
-            policy.setPassportTypeEn(firstNonBlank(string(extra, "passportTypeEn"), "Valid passport of an eligible country/region under China's transit visa-free policy"));
-            policy.setPassportTypeZh(firstNonBlank(string(extra, "passportTypeZh"), "符合中国过境免签政策条件国家/地区的有效护照"));
-            policy.setPassportValidityEn(firstNonBlank(string(extra, "passportValidityEn"), "Passport must satisfy the applicable transit visa-free requirements."));
-            policy.setPassportValidityZh(firstNonBlank(string(extra, "passportValidityZh"), "护照需符合适用过境免签政策要求。"));
-            policy.setEntryCountEn(firstNonBlank(string(extra, "entryCountEn"), "Transit entry conditions and permitted stay follow the current transit visa-free policy."));
-            policy.setEntryCountZh(firstNonBlank(string(extra, "entryCountZh"), "过境入境条件及允许停留期限以当前过境免签政策为准。"));
-            policy.setOnwardTicketEn(firstNonBlank(string(extra, "onwardTicketEn"), "A confirmed onward itinerary meeting the transit policy is required."));
-            policy.setOnwardTicketZh(firstNonBlank(string(extra, "onwardTicketZh"), "需要持有符合过境免签政策要求的已确认联程行程。"));
-            policy.setAccommodationEn(firstNonBlank(string(extra, "accommodationEn"), "Accommodation and travel-area requirements depend on the applicable transit rules."));
-            policy.setAccommodationZh(firstNonBlank(string(extra, "accommodationZh"), "住宿及停留区域要求以适用过境规则为准。"));
-            policy.setFinancialProofEn(firstNonBlank(string(extra, "financialProofEn"), "Keep trip-supporting documents available if requested during transit inspection."));
-            policy.setFinancialProofZh(firstNonBlank(string(extra, "financialProofZh"), "过境查验时如被要求，请准备与行程相关的证明材料。"));
-            policy.setExtensionRuleEn(firstNonBlank(string(extra, "extensionRuleEn"), "Transit visa-free stay is governed by the current transit policy and should not be assumed extendable."));
-            policy.setExtensionRuleZh(firstNonBlank(string(extra, "extensionRuleZh"), "过境免签停留受当前政策约束，不应默认可以延期。"));
-        }
-        populateFaqs(policy, detail, type, extra);
-        return policy;
-    }
-
-    private void populateFaqs(CountryPolicy policy, CountryDetail detail, String type, Map<String, Object> extra) {
-        List<CountryPolicy.PolicyFaq> en = toFaqs(extra.get("customFaqsEn"));
-        List<CountryPolicy.PolicyFaq> zh = toFaqs(extra.get("customFaqsZh"));
-        String stay = detail.getStayDays();
-        String stayTextEn = isBlank(stay) ? "the period stated by the policy" : stay + " days";
-        String stayTextZh = isBlank(stay) ? "政策规定期限" : stay + "天";
-        String name = detail.getName();
-        String nameZh = detail.getNameZh();
-        if ("transit".equals(type)) {
-            addIfMissing(en, "How long can " + name + " citizens stay in China under this transit policy?", "The permitted transit stay is " + stayTextEn + ", subject to the current transit rules and entry record.");
-            addIfMissing(en, "What is the key requirement for China transit visa-free entry?", "The itinerary must satisfy the applicable transit visa-free conditions, including the required onward travel arrangement.");
-            addIfMissing(zh, nameZh + "公民过境免签可以在中国停留多久？", "允许停留期限为" + stayTextZh + "，具体以当前过境政策及入境记录为准。");
-            addIfMissing(zh, "中国过境免签最关键的条件是什么？", "行程必须符合适用的过境免签条件，包括规定的后续行程安排。 ");
-        } else if ("mutual".equals(type)) {
-            addIfMissing(en, "Do " + name + " citizens need a visa for China under this agreement?", "The applicable bilateral visa-exemption agreement may waive the visa requirement when its conditions are met.");
-            addIfMissing(en, "How long can " + name + " citizens stay in China?", "The maximum stay is " + stayTextEn + " under the applicable policy record.");
-            addIfMissing(zh, nameZh + "公民按照互免协定去中国需要签证吗？", "满足适用双边互免签证协定条件时，可以免办签证入境。");
-            addIfMissing(zh, nameZh + "公民免签来华可以停留多久？", "按照当前政策记录，最长停留为" + stayTextZh + "。");
-        } else {
-            addIfMissing(en, "Can " + name + " citizens enter China without a visa?", "They may qualify for the current unilateral visa-free arrangement when the published passport, purpose and stay conditions are met.");
-            addIfMissing(en, "How long can " + name + " citizens stay in China without a visa?", "The current policy record allows a stay of " + stayTextEn + ".");
-            addIfMissing(zh, nameZh + "公民可以免签进入中国吗？", "在符合当前公布的护照、出行目的和停留条件时，可能适用中国单方面免签安排。");
-            addIfMissing(zh, nameZh + "公民免签来中国可以停留多久？", "当前政策记录显示最长停留为" + stayTextZh + "。");
-        }
-        policy.setFaqsEn(en);
-        policy.setFaqsZh(zh);
-    }
-
-    private void addIfMissing(List<CountryPolicy.PolicyFaq> list, String q, String a) {
-        for (CountryPolicy.PolicyFaq faq : list) if (q.equalsIgnoreCase(faq.getQ())) return;
-        list.add(new CountryPolicy.PolicyFaq(q, a));
-    }
-
-    private List<CountryPolicy.PolicyFaq> toFaqs(Object value) {
-        List<CountryPolicy.PolicyFaq> result = new ArrayList<>();
-        if (!(value instanceof List)) return result;
-        for (Object item : (List<?>) value) {
-            if (!(item instanceof Map)) continue;
-            Map<?, ?> m = (Map<?, ?>) item;
-            String q = string(m.get("q"));
-            String a = string(m.get("a"));
-            if (!isBlank(q) && !isBlank(a)) result.add(new CountryPolicy.PolicyFaq(q, a));
-        }
-        return result;
-    }
-
-    private Map<String, String> buildCountryNames() {
-        Map<String, String> result = new HashMap<>();
-        unilateralMap.forEach((k, v) -> result.putIfAbsent(k, v.getName()));
-        mutualMap.forEach((k, v) -> result.putIfAbsent(k, v.getName()));
-        transitMap.forEach((k, v) -> result.putIfAbsent(k, v.getName()));
-        return result;
-    }
-
-    private List<String> buildRelatedCountryCodes(Map<String, Object> extra) {
-        List<String> result = new ArrayList<>();
-        if (extra == null) return result;
-        Object value = extra.get("relatedCountryCodes");
-        if (!(value instanceof List)) return result;
-        Set<String> validCodes = new HashSet<>();
-        validCodes.addAll(unilateralMap.keySet());
-        validCodes.addAll(mutualMap.keySet());
-        validCodes.addAll(transitMap.keySet());
-        for (Object item : (List<?>) value) {
-            String code = string(item);
-            if (!isBlank(code) && validCodes.contains(code) && !result.contains(code)) result.add(code);
-        }
-        return result;
-    }
-
-    private List<CountryDetail> buildAvailablePolicies(String code, List<String> types) {
-        List<CountryDetail> result = new ArrayList<>();
-        for (String type : types) {
-            CountryDetail d = getCountryDetail(code, type);
-            if (d != null) result.add(d);
-        }
-        return result;
-    }
-
-    private Map<String, CountryDetail> buildPolicyDetails(String code, List<String> types) {
-        Map<String, CountryDetail> result = new LinkedHashMap<>();
-        for (String type : types) {
-            CountryDetail d = getCountryDetail(code, type);
-            if (d != null) result.put(type, d);
-        }
-        return result;
-    }
-
-    private CountryDetail getCountryDetail(String code, String type) {
-        if ("unilateral".equals(type)) return unilateralMap.get(code);
-        if ("mutual".equals(type)) return mutualMap.get(code);
-        if ("transit".equals(type)) return transitMap.get(code);
-        return null;
-    }
-
-    private Object getCountryExtraItem(String code, String type) {
-        Map<String, Object> node = countryExtraMap.get(code);
-        return node == null ? null : node.get(type);
-    }
-
-    private List<String> detectAvailableTypes(String code) {
-        List<String> result = new ArrayList<>();
-        if (unilateralMap.containsKey(code)) result.add("unilateral");
-        if (mutualMap.containsKey(code)) result.add("mutual");
-        if (transitMap.containsKey(code)) result.add("transit");
-        return result;
-    }
-
-    private CountryDetail getAnyCountryDetail(String code) {
-        CountryDetail d = unilateralMap.get(code);
-        if (d != null) return d;
-        d = mutualMap.get(code);
-        if (d != null) return d;
-        return transitMap.get(code);
-    }
-
-    private Map<String, CountryDetail> loadCountryMap(ObjectMapper mapper, String file) {
-        try {
-            return mapper.readValue(new ClassPathResource(file).getInputStream(), new TypeReference<Map<String, CountryDetail>>() {});
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to load " + file, e);
-        }
-    }
-
-    private Map<String, Map<String, Object>> loadExtraMap(ObjectMapper mapper) {
-        try {
-            return mapper.readValue(new ClassPathResource("country-extra.json").getInputStream(), new TypeReference<Map<String, Map<String, Object>>>() {});
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to load country-extra.json", e);
-        }
-    }
-
-    private Map<String, Object> asMap(Object value) {
-        if (value instanceof Map) {
-            Map<String, Object> result = new LinkedHashMap<>();
-            ((Map<?, ?>) value).forEach((k, v) -> result.put(String.valueOf(k), v));
-            return result;
-        }
-        return new LinkedHashMap<>();
-    }
-
-    private String string(Map<String, Object> map, String key) { return map == null ? "" : string(map.get(key)); }
-    private String string(Object value) { return value == null ? "" : String.valueOf(value).trim(); }
-    private String firstNonBlank(String value, String fallback) { return isBlank(value) ? fallback : value; }
-    private boolean isBlank(String value) { return value == null || value.trim().isEmpty(); }
+    private List<String>detectAvailableTypes(String code){String k=resolver.policyKey(code);List<String>r=new ArrayList<>();if(unilateralMap.containsKey(k))r.add("unilateral");if(mutualMap.containsKey(k))r.add("mutual");if(transitMap.containsKey(k))r.add("transit");return r;}
+    private CountryDetail getCountryDetail(String code,String type){String k=resolver.policyKey(code);if("unilateral".equals(type))return unilateralMap.get(k);if("mutual".equals(type))return mutualMap.get(k);if("transit".equals(type))return transitMap.get(k);return null;}
+    private CountryDetail getAnyCountryDetail(String code){String k=resolver.policyKey(code);CountryDetail d=unilateralMap.get(k);if(d!=null)return d;d=mutualMap.get(k);if(d!=null)return d;return transitMap.get(k);}
+    private String routeCode(String code){return resolver.routeCode(resolver.policyKey(code));}
+    private Map<String,Object>getCountryExtraRoot(String code){Map<String,Object>m=countryExtraMap.get(code);return m!=null?m:countryExtraMap.get(routeCode(code));}
+    private Object getCountryExtraItem(String code,String type){Map<String,Object>m=getCountryExtraRoot(code);return m==null?null:m.get(type);}
+    private List<CountryDetail>buildAvailablePolicies(String code,List<String>types){List<CountryDetail>r=new ArrayList<>();for(String t:types){CountryDetail d=getCountryDetail(code,t);if(d!=null)r.add(d);}return r;}
+    private Map<String,CountryDetail>buildPolicyDetails(String code,List<String>types){Map<String,CountryDetail>r=new LinkedHashMap<>();for(String t:types){CountryDetail d=getCountryDetail(code,t);if(d!=null)r.put(t,d);}return r;}
+    private Map<String,String>buildCountryNames(){Map<String,String>r=new LinkedHashMap<>();addNames(r,unilateralMap);addNames(r,mutualMap);addNames(r,transitMap);return r;}
+    private void addNames(Map<String,String>r,Map<String,CountryDetail>m){m.forEach((k,v)->r.putIfAbsent(routeCode(k),v.getName()));}
+    private List<String>buildRelatedCountryCodes(Map<String,Object>e){List<String>r=new ArrayList<>();if(e==null)return r;Object v=e.get("relatedCountryCodes");if(!(v instanceof List))return r;for(Object x:(List<?>)v){String c=string(x);if(!isBlank(c)&&getAnyCountryDetail(c)!=null&&!r.contains(c))r.add(c);}return r;}
+    private Map<String,CountryDetail>loadCountryMap(ObjectMapper m,String f){try{return m.readValue(new ClassPathResource(f).getInputStream(),new TypeReference<Map<String,CountryDetail>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load "+f,e);}}
+    private Map<String,Map<String,Object>>loadExtraMap(ObjectMapper m){try{return m.readValue(new ClassPathResource("country-extra.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-extra.json",e);}}
+    private Map<String,Object>asMap(Object v){if(v instanceof Map){Map<String,Object>r=new LinkedHashMap<>();((Map<?,?>)v).forEach((k,x)->r.put(String.valueOf(k),x));return r;}return new LinkedHashMap<>();}
+    private String string(Map<String,Object>m,String k){return m==null?"":string(m.get(k));}private String string(Object v){return v==null?"":String.valueOf(v).trim();}private String firstNonBlank(String v,String f){return isBlank(v)?f:v;}private boolean isBlank(String v){return v==null||v.trim().isEmpty();}private int number(Object v,int f){if(v instanceof Number)return((Number)v).intValue();try{return Integer.parseInt(string(v));}catch(Exception e){return f;}}
 }
