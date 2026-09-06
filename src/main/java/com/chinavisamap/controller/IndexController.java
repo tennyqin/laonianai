@@ -1,5 +1,6 @@
 package com.chinavisamap.controller;
 
+import com.chinavisamap.service.CountryFlagService;
 import com.chinavisamap.service.SeoService;
 import com.chinavisamap.service.StructuredDataService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,10 +21,13 @@ public class IndexController {
     private final Map<String, Object> allData = new HashMap<>();
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
+    private final CountryFlagService countryFlagService;
 
-    public IndexController(SeoService seoService, StructuredDataService structuredDataService) {
+    public IndexController(SeoService seoService, StructuredDataService structuredDataService,
+                           CountryFlagService countryFlagService) {
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
+        this.countryFlagService = countryFlagService;
         try {
             allData.putAll(new ObjectMapper().readValue(
                     new ClassPathResource("data.json").getInputStream(),
@@ -48,6 +52,7 @@ public class IndexController {
         model.addAttribute("noIndex", keyword != null && !keyword.trim().isEmpty());
         model.addAttribute("canonicalUrl", seoService.canonical("/", currentLang));
         model.addAttribute("hreflang", seoService.hreflang("/"));
+        model.addAttribute("countryFlags", buildCountryFlags());
 
         String siteName = String.valueOf(allData.getOrDefault("siteName", "China Visa Free Guide 2026"));
         String title = "zh".equals(currentLang)
@@ -83,11 +88,32 @@ public class IndexController {
         return "index";
     }
 
+    private Map<String, String> buildCountryFlags() {
+        Map<String, String> result = new HashMap<>();
+        addFlagsFromContinents(result, allData.get("continents"));
+        addFlagsFromContinents(result, allData.get("mutualContinents"));
+        addFlagsFromContinents(result, allData.get("transitContinents"));
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void addFlagsFromContinents(Map<String, String> result, Object value) {
+        if (!(value instanceof List)) return;
+        for (Object continent : (List<?>) value) {
+            if (!(continent instanceof Map)) continue;
+            Object countries = ((Map<String, Object>) continent).get("countries");
+            if (!(countries instanceof List)) continue;
+            for (Object item : (List<?>) countries) {
+                if (!(item instanceof Map)) continue;
+                Object code = ((Map<String, Object>) item).get("code");
+                if (code != null) result.put(String.valueOf(code), countryFlagService.flag(String.valueOf(code)));
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     private List<Map<String, Object>> searchAndSort(List<Map<String, Object>> continents, String kw, String lang) {
-        if (continents == null) {
-            return Collections.emptyList();
-        }
+        if (continents == null) return Collections.emptyList();
         return continents.stream()
                 .filter(Objects::nonNull)
                 .flatMap(c -> {
@@ -115,21 +141,14 @@ public class IndexController {
         String z = normalize(c.get("nameZh"));
         String code = normalize(c.get("code"));
         int s = 0;
-
-        // Exact country code is the strongest intent signal.
         if (code.equals(kw)) s += 1000;
-        // Exact localized name should beat partial matches.
         if ("en".equals(lang) && n.equals(kw)) s += 900;
         if ("zh".equals(lang) && z.equals(kw)) s += 900;
-        // Exact name in the other language still deserves a strong score.
         if (n.equals(kw)) s += 700;
         if (z.equals(kw)) s += 700;
-        // Prefix matches normally indicate a country-name search.
         if (n.startsWith(kw)) s += 400;
         if (z.startsWith(kw)) s += 400;
-        // Code prefix is useful but weaker than a real country name.
         if (code.startsWith(kw)) s += 250;
-        // Contains is the broad fallback.
         if (n.contains(kw)) s += 120;
         if (z.contains(kw)) s += 120;
         if (code.contains(kw)) s += 80;
