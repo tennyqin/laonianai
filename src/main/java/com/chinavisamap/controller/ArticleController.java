@@ -30,47 +30,33 @@ public class ArticleController {
     public static final List<Map<String, String>> ALL_CATEGORIES;
     static {
         List<Map<String,String>> temp = new ArrayList<>();
-        Map<String,String> cat1 = new HashMap<>();
-        cat1.put("en","Visa-Free Tips");
-        cat1.put("zh","免签政策提示");
-        temp.add(cat1);
-        Map<String,String> cat2 = new HashMap<>();
-        cat2.put("en","China Life & Apps");
-        cat2.put("zh","中国生活与APP");
-        temp.add(cat2);
-        Map<String,String> cat3 = new HashMap<>();
-        cat3.put("en","Travel Customs");
-        cat3.put("zh","旅行风俗文化");
-        temp.add(cat3);
-        Map<String,String> cat4 = new HashMap<>();
-        cat4.put("en","Border-Inspection Pitfalls");
-        cat4.put("zh","边检出入境踩坑");
-        temp.add(cat4);
+        temp.add(category("Visa-Free Tips", "免签政策提示"));
+        temp.add(category("China Life & Apps", "中国生活与APP"));
+        temp.add(category("Travel Customs", "旅行风俗文化"));
+        temp.add(category("Border-Inspection Pitfalls", "边检出入境踩坑"));
         ALL_CATEGORIES = Collections.unmodifiableList(temp);
+    }
+
+    private static Map<String,String> category(String en, String zh) {
+        Map<String,String> result = new LinkedHashMap<>();
+        result.put("en", en);
+        result.put("zh", zh);
+        return result;
     }
 
     public ArticleController(ObjectMapper objectMapper, SeoService seoService, StructuredDataService structuredDataService){
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
         try {
-            JsonNode root = objectMapper.readTree(
-                    new ClassPathResource("articles.json").getInputStream()
-            );
+            JsonNode root = objectMapper.readTree(new ClassPathResource("articles.json").getInputStream());
             if (root.isArray()) {
-                articleList = objectMapper.convertValue(
-                        root, new TypeReference<List<Map<String,Object>>>() {}
-                );
+                articleList = objectMapper.convertValue(root, new TypeReference<List<Map<String,Object>>>() {});
             } else if (root.isObject() && root.has("content")) {
                 JsonNode content = root.get("content");
                 if (content.isTextual()) {
-                    articleList = objectMapper.readValue(
-                            content.asText(),
-                            new TypeReference<List<Map<String,Object>>>() {}
-                    );
+                    articleList = objectMapper.readValue(content.asText(), new TypeReference<List<Map<String,Object>>>() {});
                 } else {
-                    articleList = objectMapper.convertValue(
-                            content, new TypeReference<List<Map<String,Object>>>() {}
-                    );
+                    articleList = objectMapper.convertValue(content, new TypeReference<List<Map<String,Object>>>() {});
                 }
             } else {
                 articleList = Collections.emptyList();
@@ -90,15 +76,10 @@ public class ArticleController {
                     art.put("displayPublishDate", "");
                 }
             }
-            articleList.sort(new Comparator<Map<String, Object>>() {
-                @Override
-                public int compare(Map<String, Object> a, Map<String, Object> b) {
-                    String t1 = (String) a.get("publishAt");
-                    String t2 = (String) b.get("publishAt");
-                    if(t1 == null) return 1;
-                    if(t2 == null) return -1;
-                    return t2.compareTo(t1);
-                }
+            articleList.sort((a, b) -> {
+                String t1 = String.valueOf(a.getOrDefault("publishAt", ""));
+                String t2 = String.valueOf(b.getOrDefault("publishAt", ""));
+                return t2.compareTo(t1);
             });
         } catch (Exception e) {
             articleList = Collections.emptyList();
@@ -114,64 +95,123 @@ public class ArticleController {
             @RequestParam(defaultValue = "en") String lang,
             Model model
     ){
-        lang = seoService.normalizeLang(lang);
-        page = page == null ? 1 : Math.max(page, 1);
-        size = size == null ? 10 : Math.min(Math.max(size, 1), 50);
-        model.addAttribute("canonicalUrl", seoService.canonical("/articles", lang));
+        final String currentLang = seoService.normalizeLang(lang);
+        final int currentPage = page == null ? 1 : Math.max(page, 1);
+        final int currentSize = size == null ? 10 : Math.min(Math.max(size, 1), 50);
+        model.addAttribute("canonicalUrl", seoService.canonical("/articles", currentLang));
         model.addAttribute("hreflang", seoService.hreflang("/articles"));
 
-        boolean noIndex = page > 1 || StringUtils.isNotBlank(keyword) || StringUtils.isNotBlank(category) || size != 10;
+        boolean noIndex = currentPage > 1 || StringUtils.isNotBlank(keyword) || StringUtils.isNotBlank(category) || currentSize != 10;
         model.addAttribute("noIndex", noIndex);
 
         List<Map<String,Object>> source = new ArrayList<>(articleList);
         if(StringUtils.isNotBlank(category)){
-            final String catParam = category;
-            source = source.stream().filter(new java.util.function.Predicate<Map<String, Object>>() {
-                @Override
-                public boolean test(Map<String, Object> art) {
-                    String catEn = (String) art.getOrDefault("categoryEn","");
-                    String catZh = (String) art.getOrDefault("categoryZh","");
-                    return catParam.equals(catEn) || catParam.equals(catZh);
-                }
-            }).collect(Collectors.toList());
+            final String catParam = category.trim();
+            source = source.stream()
+                    .filter(art -> catParam.equalsIgnoreCase(text(art, "categoryEn")) || catParam.equalsIgnoreCase(text(art, "categoryZh")))
+                    .collect(Collectors.toList());
         }
+
         if(StringUtils.isNotBlank(keyword)){
-            final String kw = keyword.toLowerCase();
-            source = source.stream().filter(new java.util.function.Predicate<Map<String, Object>>() {
-                @Override
-                public boolean test(Map<String, Object> art) {
-                    String titleEn = ((String)art.getOrDefault("titleEn","")).toLowerCase();
-                    String titleZh = ((String)art.getOrDefault("titleZh","")).toLowerCase();
-                    String sumEn = ((String)art.getOrDefault("summaryEn","")).toLowerCase();
-                    String sumZh = ((String)art.getOrDefault("summaryZh","")).toLowerCase();
-                    String catEn = ((String)art.getOrDefault("categoryEn","")).toLowerCase();
-                    String catZh = ((String)art.getOrDefault("categoryZh","")).toLowerCase();
-                    return titleEn.contains(kw) || titleZh.contains(kw) || sumEn.contains(kw) || sumZh.contains(kw) || catEn.contains(kw) || catZh.contains(kw);
-                }
-            }).collect(Collectors.toList());
+            final String kw = normalize(keyword);
+            source = source.stream()
+                    .filter(art -> articleMatches(art, kw))
+                    .sorted((a, b) -> {
+                        int byScore = Integer.compare(articleScore(b, kw, currentLang), articleScore(a, kw, currentLang));
+                        if (byScore != 0) return byScore;
+                        return text(a, "titleEn").compareToIgnoreCase(text(b, "titleEn"));
+                    })
+                    .collect(Collectors.toList());
         }
 
         int total = source.size();
-        int totalPages = (int)Math.ceil((double)total / size);
-        int offset = (page-1)*size;
+        int totalPages = (int)Math.ceil((double)total / currentSize);
+        int offset = (currentPage - 1) * currentSize;
         List<Map<String,Object>> pageData;
         if(offset >= total){
             pageData = Collections.emptyList();
         }else {
-            int end = Math.min(offset+size, total);
+            int end = Math.min(offset + currentSize, total);
             pageData = source.subList(offset, end);
         }
 
-        model.addAttribute("lang", lang);
+        model.addAttribute("lang", currentLang);
         model.addAttribute("keyword", keyword);
         model.addAttribute("category", category);
         model.addAttribute("allCategories", ALL_CATEGORIES);
-        model.addAttribute("page", page);
-        model.addAttribute("size", size);
+        model.addAttribute("page", currentPage);
+        model.addAttribute("size", currentSize);
         model.addAttribute("total", total);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("articlePageList", pageData);
         return "articles-list";
+    }
+
+    private boolean articleMatches(Map<String,Object> art, String kw) {
+        String titleEn = normalize(art.get("titleEn"));
+        String titleZh = normalize(art.get("titleZh"));
+        String sumEn = normalize(art.get("summaryEn"));
+        String sumZh = normalize(art.get("summaryZh"));
+        String catEn = normalize(art.get("categoryEn"));
+        String catZh = normalize(art.get("categoryZh"));
+        String tagsEn = normalizeList(art.get("tagsEn"));
+        String tagsZh = normalizeList(art.get("tagsZh"));
+        String countries = normalizeList(art.get("relatedCountryCodes"));
+        return titleEn.contains(kw) || titleZh.contains(kw)
+                || sumEn.contains(kw) || sumZh.contains(kw)
+                || catEn.contains(kw) || catZh.contains(kw)
+                || tagsEn.contains(kw) || tagsZh.contains(kw)
+                || countries.contains(kw);
+    }
+
+    private int articleScore(Map<String,Object> art, String kw, String lang) {
+        String titleEn = normalize(art.get("titleEn"));
+        String titleZh = normalize(art.get("titleZh"));
+        String sumEn = normalize(art.get("summaryEn"));
+        String sumZh = normalize(art.get("summaryZh"));
+        String catEn = normalize(art.get("categoryEn"));
+        String catZh = normalize(art.get("categoryZh"));
+        String tagsEn = normalizeList(art.get("tagsEn"));
+        String tagsZh = normalizeList(art.get("tagsZh"));
+        String countries = normalizeList(art.get("relatedCountryCodes"));
+
+        int score = 0;
+        score += titleScore(titleEn, kw, "en".equals(lang), 1000);
+        score += titleScore(titleZh, kw, "zh".equals(lang), 1000);
+        score += containsScore(tagsEn, kw, 500, 300);
+        score += containsScore(tagsZh, kw, 500, 300);
+        score += containsScore(sumEn, kw, 180, 80);
+        score += containsScore(sumZh, kw, 180, 80);
+        score += containsScore(catEn, kw, 120, 60);
+        score += containsScore(catZh, kw, 120, 60);
+        score += containsScore(countries, kw, 220, 120);
+        return score;
+    }
+
+    private int titleScore(String value, String kw, boolean localized, int base) {
+        if (value.equals(kw)) return base + (localized ? 200 : 100);
+        if (value.startsWith(kw)) return base / 2 + (localized ? 80 : 40);
+        if (value.contains(kw)) return base / 4;
+        return 0;
+    }
+
+    private int containsScore(String value, String kw, int exact, int partial) {
+        if (value.equals(kw)) return exact;
+        if (value.contains(kw)) return partial;
+        return 0;
+    }
+
+    private String normalizeList(Object value) {
+        if (!(value instanceof List)) return normalize(value);
+        return ((List<?>) value).stream().map(this::normalize).collect(Collectors.joining(" "));
+    }
+
+    private String text(Map<String,Object> map, String key) {
+        return String.valueOf(map.getOrDefault(key, ""));
+    }
+
+    private String normalize(Object value) {
+        return value == null ? "" : String.valueOf(value).trim().toLowerCase(Locale.ROOT);
     }
 
     @GetMapping("/articles/{id}")
@@ -180,25 +220,21 @@ public class ArticleController {
             @RequestParam(defaultValue = "en") String lang,
             Model model
     ){
-        lang = seoService.normalizeLang(lang);
+        final String currentLang = seoService.normalizeLang(lang);
         String articlePath = "/articles/" + id;
         Optional<Map<String, Object>> opt = articleList.stream()
-                .filter(new java.util.function.Predicate<Map<String, Object>>() {
-                    @Override
-                    public boolean test(Map<String, Object> a) {
-                        return id.equals(a.get("id"));
-                    }
-                }).findFirst();
+                .filter(a -> id.equals(a.get("id")))
+                .findFirst();
         if(!opt.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article not found");
         }
 
-        model.addAttribute("canonicalUrl", seoService.canonical(articlePath, lang));
+        model.addAttribute("canonicalUrl", seoService.canonical(articlePath, currentLang));
         model.addAttribute("hreflang", seoService.hreflang(articlePath));
         Map<String,Object> article = opt.get();
-        model.addAttribute("lang", lang);
+        model.addAttribute("lang", currentLang);
         model.addAttribute("article", article);
-        model.addAttribute("structuredData", structuredDataService.buildArticle(article, lang, seoService.canonical(articlePath, lang)));
+        model.addAttribute("structuredData", structuredDataService.buildArticle(article, currentLang, seoService.canonical(articlePath, currentLang)));
         return "articles-detail";
     }
 
