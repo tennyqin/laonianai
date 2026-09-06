@@ -30,7 +30,7 @@ public class IndexController {
                     new TypeReference<Map<String, Object>>() {}
             ));
         } catch (Exception ignored) {
-            // 建议：生产环境不要直接 ignored，至少打印日志 log.error("Failed to load data.json", ignored);
+            // Keep the application available even if the static data cannot be loaded.
         }
     }
 
@@ -39,11 +39,8 @@ public class IndexController {
     public String index(@RequestParam(required = false) String keyword,
                         @RequestParam(defaultValue = "en") String lang,
                         Model model) {
-
-        // 1. 处理 lang，使其成为 effectively final，解决 Lambda 报错的根本原因
         final String currentLang = seoService.normalizeLang(lang);
 
-        // 2. 注入基础 Model 属性
         model.addAllAttributes(allData);
         model.addAttribute("lang", currentLang);
         model.addAttribute("keyword", keyword);
@@ -52,7 +49,6 @@ public class IndexController {
         model.addAttribute("canonicalUrl", seoService.canonical("/", currentLang));
         model.addAttribute("hreflang", seoService.hreflang("/"));
 
-        // 3. 处理 SEO 标题和描述
         String siteName = String.valueOf(allData.getOrDefault("siteName", "China Visa Free Guide 2026"));
         String title = "zh".equals(currentLang)
                 ? String.valueOf(allData.getOrDefault("siteTitleZh", "2026中国免签政策指南"))
@@ -60,48 +56,38 @@ public class IndexController {
         String description = "zh".equals(currentLang)
                 ? String.valueOf(allData.getOrDefault("siteDescZh", ""))
                 : String.valueOf(allData.getOrDefault("siteDesc", ""));
-
         model.addAttribute("structuredData", structuredDataService.buildHome(currentLang, siteName, title, description));
 
-        // 4. 如果没有关键词，直接返回
         if (keyword == null || keyword.trim().isEmpty()) {
             return "index";
         }
 
-        // 5. 准备搜索变量（final）
-        final String kw = keyword.trim().toLowerCase(Locale.ROOT);
+        final String kw = normalize(keyword);
         model.addAttribute("searched", true);
 
-        // 6. 初始化默认空结果
         List<Map<String, Object>> unilateralResult = Collections.emptyList();
         List<Map<String, Object>> mutualResult = Collections.emptyList();
         List<Map<String, Object>> transitResult = Collections.emptyList();
-
         try {
             unilateralResult = searchAndSort((List<Map<String, Object>>) allData.get("continents"), kw, currentLang);
             mutualResult = searchAndSort((List<Map<String, Object>>) allData.get("mutualContinents"), kw, currentLang);
             transitResult = searchAndSort((List<Map<String, Object>>) allData.get("transitContinents"), kw, currentLang);
         } catch (Exception ignored) {
-            // 搜索异常兜底，结果保持为空列表
+            // Keep empty results as the safe fallback.
         }
 
         model.addAttribute("unilateralResult", unilateralResult);
         model.addAttribute("mutualResult", mutualResult);
         model.addAttribute("transitResult", transitResult);
         model.addAttribute("searchResultCount", unilateralResult.size() + mutualResult.size() + transitResult.size());
-
         return "index";
     }
 
-    /**
-     * 抽取公共的搜索与排序逻辑，避免代码重复
-     */
     @SuppressWarnings("unchecked")
     private List<Map<String, Object>> searchAndSort(List<Map<String, Object>> continents, String kw, String lang) {
         if (continents == null) {
             return Collections.emptyList();
         }
-
         return continents.stream()
                 .filter(Objects::nonNull)
                 .flatMap(c -> {
@@ -109,28 +95,54 @@ public class IndexController {
                     return v instanceof List ? ((List<Map<String, Object>>) v).stream() : Stream.empty();
                 })
                 .filter(c -> match(c, kw))
-                .sorted((a, b) -> Integer.compare(score(b, kw, lang), score(a, kw, lang)))
+                .sorted((a, b) -> {
+                    int byScore = Integer.compare(score(b, kw, lang), score(a, kw, lang));
+                    if (byScore != 0) return byScore;
+                    return displayName(a, lang).compareToIgnoreCase(displayName(b, lang));
+                })
                 .collect(Collectors.toList());
     }
 
     private boolean match(Map<String, Object> c, String kw) {
-        String n = String.valueOf(c.getOrDefault("name", "")).toLowerCase(Locale.ROOT);
-        String z = String.valueOf(c.getOrDefault("nameZh", "")).toLowerCase(Locale.ROOT);
-        String code = String.valueOf(c.getOrDefault("code", "")).toLowerCase(Locale.ROOT);
+        String n = normalize(c.get("name"));
+        String z = normalize(c.get("nameZh"));
+        String code = normalize(c.get("code"));
         return n.contains(kw) || z.contains(kw) || code.contains(kw);
     }
 
     private int score(Map<String, Object> c, String kw, String lang) {
-        String n = String.valueOf(c.getOrDefault("name", "")).toLowerCase(Locale.ROOT);
-        String z = String.valueOf(c.getOrDefault("nameZh", "")).toLowerCase(Locale.ROOT);
-        String code = String.valueOf(c.getOrDefault("code", "")).toLowerCase(Locale.ROOT);
-
+        String n = normalize(c.get("name"));
+        String z = normalize(c.get("nameZh"));
+        String code = normalize(c.get("code"));
         int s = 0;
-        if (code.equals(kw)) s += 100;
-        if ("en".equals(lang) && n.equals(kw)) s += 90;
-        if ("zh".equals(lang) && z.equals(kw)) s += 90;
-        if (n.startsWith(kw) || z.startsWith(kw)) s += 40;
 
+        // Exact country code is the strongest intent signal.
+        if (code.equals(kw)) s += 1000;
+        // Exact localized name should beat partial matches.
+        if ("en".equals(lang) && n.equals(kw)) s += 900;
+        if ("zh".equals(lang) && z.equals(kw)) s += 900;
+        // Exact name in the other language still deserves a strong score.
+        if (n.equals(kw)) s += 700;
+        if (z.equals(kw)) s += 700;
+        // Prefix matches normally indicate a country-name search.
+        if (n.startsWith(kw)) s += 400;
+        if (z.startsWith(kw)) s += 400;
+        // Code prefix is useful but weaker than a real country name.
+        if (code.startsWith(kw)) s += 250;
+        // Contains is the broad fallback.
+        if (n.contains(kw)) s += 120;
+        if (z.contains(kw)) s += 120;
+        if (code.contains(kw)) s += 80;
         return s;
+    }
+
+    private String displayName(Map<String, Object> c, String lang) {
+        return "zh".equals(lang)
+                ? String.valueOf(c.getOrDefault("nameZh", c.getOrDefault("name", "")))
+                : String.valueOf(c.getOrDefault("name", c.getOrDefault("nameZh", "")));
+    }
+
+    private String normalize(Object value) {
+        return value == null ? "" : String.valueOf(value).trim().toLowerCase(Locale.ROOT);
     }
 }
