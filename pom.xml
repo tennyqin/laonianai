@@ -72,6 +72,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Local SVG country flags. Packaged inside the application; no external image/CDN dependency. -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>flag-icons</artifactId>
+            <version>7.5.0</version>
+        </dependency>
+
         <!-- 测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
