@@ -23,9 +23,10 @@ public class CountryWebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        // Registered first so its postHandle runs last and can finalize localized priority content + structured data.
+        registry.addInterceptor(contentLinkInterceptor).addPathPatterns("/country/**", "/articles/**");
         registry.addInterceptor(routeGuardInterceptor).addPathPatterns("/country/**");
         registry.addInterceptor(eligibilityInterceptor).addPathPatterns("/country/*");
         registry.addInterceptor(correctionInterceptor).addPathPatterns("/country/**");
-        registry.addInterceptor(contentLinkInterceptor).addPathPatterns("/country/**", "/articles/**");
     }
 }
