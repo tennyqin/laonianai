@@ -26,63 +26,156 @@ public class CountryPolicyCorrectionInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+    @SuppressWarnings("unchecked")
+    public void postHandle(HttpServletRequest request,
+                           HttpServletResponse response,
+                           Object handler,
+                           ModelAndView modelAndView) {
+
         if (modelAndView == null) {
             return;
         }
+
+        /*
+         * Country policy detail page
+         */
         Object policyObject = modelAndView.getModel().get("policy");
-        Object detailObject = modelAndView.getModel().get("detail");
-        if (policyObject instanceof CountryPolicy && detailObject instanceof CountryDetail) {
+        Object policyDetailObject = modelAndView.getModel().get("detail");
+
+        if (policyObject instanceof CountryPolicy
+                && policyDetailObject instanceof CountryDetail) {
+
             CountryPolicy policy = (CountryPolicy) policyObject;
-            CountryDetail detail = (CountryDetail) detailObject;
-            applyCorrection(resolver.policyKey(detail.getCode()), detail, policy);
+            CountryDetail detail = (CountryDetail) policyDetailObject;
+
+            applyCorrection(
+                    resolver.policyKey(detail.getCode()),
+                    detail,
+                    policy
+            );
+
             policy.setLastVerified(VERIFIED);
-            String lang = String.valueOf(modelAndView.getModel().get("lang"));
-            String canonical = String.valueOf(modelAndView.getModel().get("canonicalUrl"));
-            Map<String, Object> extra = modelAndView.getModel().get("countryExtra") instanceof Map
-                    ? (Map<String, Object>) modelAndView.getModel().get("countryExtra") : null;
-            modelAndView.getModel().put("structuredData", structuredDataService.buildCountry(detail, lang, canonical, policy, extra));
+
+            String lang = String.valueOf(
+                    modelAndView.getModel().get("lang")
+            );
+
+            String canonical = String.valueOf(
+                    modelAndView.getModel().get("canonicalUrl")
+            );
+
+            Object extraObject =
+                    modelAndView.getModel().get("countryExtra");
+
+            Map<String, Object> extra =
+                    extraObject instanceof Map
+                            ? (Map<String, Object>) extraObject
+                            : null;
+
+            modelAndView.getModel().put(
+                    "structuredData",
+                    structuredDataService.buildCountry(
+                            detail,
+                            lang,
+                            canonical,
+                            policy,
+                            extra
+                    )
+            );
+
             return;
         }
 
+        /*
+         * Country home page
+         */
         if (!"country-home".equals(modelAndView.getViewName())) {
             return;
         }
-        Object policiesObject = modelAndView.getModel().get("availablePolicies");
+
+        Object policiesObject =
+                modelAndView.getModel().get("availablePolicies");
+
         if (!(policiesObject instanceof List)) {
             return;
         }
+
         for (Object item : (List<?>) policiesObject) {
+
             if (!(item instanceof CountryDetail)) {
                 continue;
             }
+
             CountryDetail detail = (CountryDetail) item;
+
+            /*
+             * Mutual policy correction
+             */
             if ("mutual".equals(detail.getPolicyType())) {
-                applyCorrection(resolver.policyKey(detail.getCode()), detail, null);
+                applyCorrection(
+                        resolver.policyKey(detail.getCode()),
+                        detail,
+                        null
+                );
             }
         }
 
-        Object detailObject = modelAndView.getModel().get("detailCountry");
-        Object extraObject = modelAndView.getModel().get("countryExtraRoot");
-        Object typesObject = modelAndView.getModel().get("availableTypes");
-        if (detailObject instanceof CountryDetail && extraObject instanceof Map && typesObject instanceof List) {
-            Map<String, CountryDetail> details = new LinkedHashMap<String, CountryDetail>();
-            for (Object item : (List<?>) policiesObject) {
-                if (item instanceof CountryDetail) {
-                    CountryDetail detail = (CountryDetail) item;
-                    details.put(detail.getPolicyType(), detail);
-                }
-            }
-            String lang = String.valueOf(modelAndView.getModel().get("lang"));
-            String canonical = String.valueOf(modelAndView.getModel().get("canonicalUrl"));
-            modelAndView.getModel().put("structuredData", structuredDataService.buildCountryHome(
-                    (CountryDetail) detailObject,
-                    lang,
-                    canonical,
-                    (Map<String, Object>) extraObject,
-                    (List<String>) typesObject,
-                    details));
+        /*
+         * Country home structured data
+         */
+        Object countryObject =
+                modelAndView.getModel().get("detailCountry");
+
+        Object extraRootObject =
+                modelAndView.getModel().get("countryExtraRoot");
+
+        Object typesObject =
+                modelAndView.getModel().get("availableTypes");
+
+        if (!(countryObject instanceof CountryDetail)
+                || !(extraRootObject instanceof Map)
+                || !(typesObject instanceof List)) {
+            return;
         }
+
+        Map<String, CountryDetail> details =
+                new LinkedHashMap<String, CountryDetail>();
+
+        for (Object item : (List<?>) policiesObject) {
+
+            if (!(item instanceof CountryDetail)) {
+                continue;
+            }
+
+            CountryDetail detail = (CountryDetail) item;
+
+            if (detail.getPolicyType() != null) {
+                details.put(
+                        detail.getPolicyType(),
+                        detail
+                );
+            }
+        }
+
+        String lang = String.valueOf(
+                modelAndView.getModel().get("lang")
+        );
+
+        String canonical = String.valueOf(
+                modelAndView.getModel().get("canonicalUrl")
+        );
+
+        modelAndView.getModel().put(
+                "structuredData",
+                structuredDataService.buildCountryHome(
+                        (CountryDetail) countryObject,
+                        lang,
+                        canonical,
+                        (Map<String, Object>) extraRootObject,
+                        (List<String>) typesObject,
+                        details
+                )
+        );
     }
 
     private void applyCorrection(String key, CountryDetail detail, CountryPolicy policy) {
