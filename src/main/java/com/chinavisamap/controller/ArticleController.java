@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 import com.chinavisamap.service.SeoService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,8 +27,6 @@ public class ArticleController {
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
 
-
-    // JDK8 不支持 List.of，使用 Arrays.asList + HashMap 构建全部分类
     public static final List<Map<String, String>> ALL_CATEGORIES;
     static {
         List<Map<String,String>> temp = new ArrayList<>();
@@ -34,22 +34,18 @@ public class ArticleController {
         cat1.put("en","Visa-Free Tips");
         cat1.put("zh","免签政策提示");
         temp.add(cat1);
-
         Map<String,String> cat2 = new HashMap<>();
         cat2.put("en","China Life & Apps");
         cat2.put("zh","中国生活与APP");
         temp.add(cat2);
-
         Map<String,String> cat3 = new HashMap<>();
         cat3.put("en","Travel Customs");
         cat3.put("zh","旅行风俗文化");
         temp.add(cat3);
-
         Map<String,String> cat4 = new HashMap<>();
         cat4.put("en","Border-Inspection Pitfalls");
         cat4.put("zh","边检出入境踩坑");
         temp.add(cat4);
-
         ALL_CATEGORIES = Collections.unmodifiableList(temp);
     }
 
@@ -94,7 +90,6 @@ public class ArticleController {
                     art.put("displayPublishDate", "");
                 }
             }
-            // 按发布时间倒序
             articleList.sort(new Comparator<Map<String, Object>>() {
                 @Override
                 public int compare(Map<String, Object> a, Map<String, Object> b) {
@@ -110,9 +105,6 @@ public class ArticleController {
         }
     }
 
-    /**
-     * 文章列表页 /articles
-     */
     @GetMapping("/articles")
     public String articleList(
             @RequestParam(required = false) String keyword,
@@ -122,47 +114,27 @@ public class ArticleController {
             @RequestParam(defaultValue = "en") String lang,
             Model model
     ){
-
         lang = seoService.normalizeLang(lang);
         page = page == null ? 1 : Math.max(page, 1);
         size = size == null ? 10 : Math.min(Math.max(size, 1), 50);
+        model.addAttribute("canonicalUrl", seoService.canonical("/articles", lang));
+        model.addAttribute("hreflang", seoService.hreflang("/articles"));
 
-        model.addAttribute(
-                "canonicalUrl",
-                seoService.canonical("/articles", lang)
-        );
-
-        model.addAttribute(
-                "hreflang",
-                seoService.hreflang("/articles")
-        );
-
-        boolean noIndex =
-                page > 1
-                        || StringUtils.isNotBlank(keyword)
-                        || StringUtils.isNotBlank(category)
-                        || size != 10;
-
+        boolean noIndex = page > 1 || StringUtils.isNotBlank(keyword) || StringUtils.isNotBlank(category) || size != 10;
         model.addAttribute("noIndex", noIndex);
 
         List<Map<String,Object>> source = new ArrayList<>(articleList);
-
-        // 分类过滤
         if(StringUtils.isNotBlank(category)){
             final String catParam = category;
-            source = source.stream()
-                    .filter(new java.util.function.Predicate<Map<String, Object>>() {
-                        @Override
-                        public boolean test(Map<String, Object> art) {
-                            String catEn = (String) art.getOrDefault("categoryEn","");
-                            String catZh = (String) art.getOrDefault("categoryZh","");
-                            return catParam.equals(catEn) || catParam.equals(catZh);
-                        }
-                    })
-                    .collect(Collectors.toList());
+            source = source.stream().filter(new java.util.function.Predicate<Map<String, Object>>() {
+                @Override
+                public boolean test(Map<String, Object> art) {
+                    String catEn = (String) art.getOrDefault("categoryEn","");
+                    String catZh = (String) art.getOrDefault("categoryZh","");
+                    return catParam.equals(catEn) || catParam.equals(catZh);
+                }
+            }).collect(Collectors.toList());
         }
-
-        // 关键词搜索：标题/摘要/分类
         if(StringUtils.isNotBlank(keyword)){
             final String kw = keyword.toLowerCase();
             source = source.stream().filter(new java.util.function.Predicate<Map<String, Object>>() {
@@ -174,9 +146,7 @@ public class ArticleController {
                     String sumZh = ((String)art.getOrDefault("summaryZh","")).toLowerCase();
                     String catEn = ((String)art.getOrDefault("categoryEn","")).toLowerCase();
                     String catZh = ((String)art.getOrDefault("categoryZh","")).toLowerCase();
-                    return titleEn.contains(kw) || titleZh.contains(kw)
-                            || sumEn.contains(kw) || sumZh.contains(kw)
-                            || catEn.contains(kw) || catZh.contains(kw);
+                    return titleEn.contains(kw) || titleZh.contains(kw) || sumEn.contains(kw) || sumZh.contains(kw) || catEn.contains(kw) || catZh.contains(kw);
                 }
             }).collect(Collectors.toList());
         }
@@ -204,9 +174,6 @@ public class ArticleController {
         return "articles-list";
     }
 
-    /**
-     * 文章详情页 /articles/{id}
-     */
     @GetMapping("/articles/{id}")
     public String articleDetail(
             @PathVariable String id,
@@ -214,18 +181,7 @@ public class ArticleController {
             Model model
     ){
         lang = seoService.normalizeLang(lang);
-
         String articlePath = "/articles/" + id;
-        model.addAttribute(
-                "canonicalUrl",
-                seoService.canonical(articlePath, lang)
-        );
-
-        model.addAttribute(
-                "hreflang",
-                seoService.hreflang(articlePath)
-        );
-
         Optional<Map<String, Object>> opt = articleList.stream()
                 .filter(new java.util.function.Predicate<Map<String, Object>>() {
                     @Override
@@ -234,34 +190,24 @@ public class ArticleController {
                     }
                 }).findFirst();
         if(!opt.isPresent()){
-            return "redirect:/articles?lang="+lang;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article not found");
         }
+
+        model.addAttribute("canonicalUrl", seoService.canonical(articlePath, lang));
+        model.addAttribute("hreflang", seoService.hreflang(articlePath));
         Map<String,Object> article = opt.get();
         model.addAttribute("lang", lang);
         model.addAttribute("article", article);
-        model.addAttribute(
-                "structuredData",
-                structuredDataService.buildArticle(
-                        article,
-                        lang,
-                        seoService.canonical(articlePath, lang)
-                )
-        );
+        model.addAttribute("structuredData", structuredDataService.buildArticle(article, lang, seoService.canonical(articlePath, lang)));
         return "articles-detail";
     }
 
-    /**
-     * 获取随机N篇文章API，用于页面推荐阅读
-     */
     @GetMapping("/api/articles/random")
     @ResponseBody
-    public List<Map<String,Object>> randomArticles(
-            @RequestParam(defaultValue = "5") Integer limit
-    ){
+    public List<Map<String,Object>> randomArticles(@RequestParam(defaultValue = "5") Integer limit){
+        int safeLimit = limit == null ? 5 : Math.min(Math.max(limit, 1), 20);
         List<Map<String,Object>> copy = new ArrayList<>(articleList);
         Collections.shuffle(copy);
-        return copy.stream()
-                .limit(limit)
-                .collect(Collectors.toList());
+        return copy.stream().limit(safeLimit).collect(Collectors.toList());
     }
 }
