@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -24,7 +25,7 @@ import java.util.*;
 @Controller
 public class CountryController {
     private static final String NIA_SOURCE = "https://en.nia.gov.cn/";
-    private static final String VERIFIED_DATE = "2026-09-05";
+    private static final String VERIFIED_DATE = "2026-09-06";
     private static final Set<String> CURRENT_UNILATERAL_30 = Collections.unmodifiableSet(new HashSet<String>() {{
         add("kyrgyzstan");
         add("vietnam");
@@ -64,7 +65,7 @@ public class CountryController {
     public String countryHome(@PathVariable String code, @RequestParam(defaultValue = "en") String lang, Model model) {
         String normalizedLang = seoService.normalizeLang(lang);
         List<String> types = detectAvailableTypes(code);
-        if (types.isEmpty()) return "redirect:/?lang=" + normalizedLang;
+        if (types.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Country not found");
         String pageCode = routeCode(code);
         CountryDetail detailCountry = getAnyCountryDetail(code);
         Map<String, Object> extra = getCountryExtraRoot(code);
@@ -90,7 +91,7 @@ public class CountryController {
     public String restCountryDetail(@PathVariable String code, @PathVariable String type, @RequestParam(defaultValue = "en") String lang, Model model) {
         String normalizedLang = seoService.normalizeLang(lang);
         CountryDetail detailCountry = getCountryDetail(code, type);
-        if (detailCountry == null) return "redirect:/?lang=" + normalizedLang;
+        if (detailCountry == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Country policy not found");
         String pageCode = routeCode(code);
         String path = "/country/" + pageCode + "/" + type;
         String canonical = seoService.canonical(path, normalizedLang);
