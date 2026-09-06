@@ -58,6 +58,8 @@ public class CountryController {
                                                        @RequestParam(defaultValue = "en") String lang) {
         CountryDetail detail = getCountryDetail(code, type);
         if (detail == null) {
+            // Preserve old indexed unilateral URLs for countries whose old synthetic
+            // policy record has been removed: redirect to the real country page.
             if ("unilateral".equalsIgnoreCase(type) && getAnyCountryDetail(code) != null) {
                 return redirectToCountryHome(code, lang);
             }
@@ -84,7 +86,6 @@ public class CountryController {
         model.addAttribute("lang", normalizedLang);
         model.addAttribute("detailCountry", detailCountry);
         model.addAttribute("countryFlag", flagService.flag(pageCode));
-        model.addAttribute("countryIso2", flagService.iso2Code(pageCode));
         model.addAttribute("availableTypes", types);
         model.addAttribute("countryExtraRoot", extra);
         model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, extra));
@@ -92,7 +93,6 @@ public class CountryController {
         model.addAttribute("availablePolicies", availablePolicies);
         model.addAttribute("countryNames", buildCountryNames());
         model.addAttribute("countryFlags", buildCountryFlags());
-        model.addAttribute("countryIso2Map", buildCountryIso2Map());
         model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(extra));
         model.addAttribute("eligibilityConfig", eligibilityService.build(pageCode, availablePolicies, extra));
         model.addAttribute("canonicalUrl", canonical);
@@ -107,6 +107,8 @@ public class CountryController {
         String normalizedLang = seoService.normalizeLang(lang);
         CountryDetail detailCountry = getCountryDetail(code, type);
         if (detailCountry == null) {
+            // A legacy synthetic unilateral route must never be presented as a real policy.
+            // Keep the URL alive with a permanent redirect to the country decision page.
             if ("unilateral".equalsIgnoreCase(type) && getAnyCountryDetail(code) != null) {
                 return redirectView(code, normalizedLang);
             }
@@ -257,7 +259,6 @@ public class CountryController {
     private Map<String,String> buildCountryNames(){Map<String,String> r=new LinkedHashMap<>();addNames(r,unilateralMap);addNames(r,mutualMap);addNames(r,transitMap);return r;}
     private void addNames(Map<String,String> r,Map<String,CountryDetail> m){for(Map.Entry<String,CountryDetail> e:m.entrySet())r.putIfAbsent(routeCode(e.getKey()),e.getValue().getName());}
     private Map<String,String> buildCountryFlags(){Map<String,String> r=new LinkedHashMap<>();for(String code:buildCountryNames().keySet())r.put(code,flagService.flag(code));return r;}
-    private Map<String,String> buildCountryIso2Map(){Map<String,String> r=new LinkedHashMap<>();for(String code:buildCountryNames().keySet())r.put(code,flagService.iso2Code(code));return r;}
     private List<String> buildRelatedCountryCodes(Map<String,Object> extra){List<String> r=new ArrayList<>();if(extra==null)return r;Object v=extra.get("relatedCountryCodes");if(!(v instanceof List))return r;for(Object item:(List<?>)v){String c=string(item);String canonical=routeCode(c);if(!isBlank(c)&&getAnyCountryDetail(c)!=null&&!r.contains(canonical))r.add(canonical);}return r;}
     private Map<String,CountryDetail> loadCountryMap(ObjectMapper mapper,String fileName){try{return mapper.readValue(new ClassPathResource(fileName).getInputStream(),new TypeReference<Map<String,CountryDetail>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load "+fileName,e);}}
     private Map<String,Map<String,Object>> loadExtraMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("country-extra.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-extra.json",e);}}
