@@ -15,6 +15,50 @@
     <span class="footer-divider">|</span>
     <a href="#" id="contact-link" class="footer-contact-link"><svg class="footer-email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span th:if="${lang == 'en'}">Contact Webmaster</span><span th:if="${lang != 'en'}">联系站长</span></a>
     <style>.footer-content-cluster{max-width:980px;margin:0 auto 24px;padding:16px;border:1px solid #d1fae5;background:#f7fffb;border-radius:14px;text-align:left}.footer-content-cluster strong{display:block;color:#065f46;margin-bottom:10px}.footer-link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px}.footer-link-grid a{color:#047857;font-size:13px;line-height:1.5}.footer-link-grid a:hover{text-decoration:underline}@media(max-width:640px){.footer-link-grid{grid-template-columns:1fr}.footer-content-cluster{margin-left:12px;margin-right:12px}}</style>
-    <script>(function(){var link=document.getElementById('contact-link');if(link){link.addEventListener('click',function(e){e.preventDefault();window.location.href='mailto:'+'tennyqin1988'+'@'+'gmail.com';});}})();</script>
+    <script>(function(){
+        var link=document.getElementById('contact-link');
+        if(link){link.addEventListener('click',function(e){e.preventDefault();window.location.href='mailto:'+'tennyqin1988'+'@'+'gmail.com';});}
+
+        // The eligibility checker uses compact machine values internally. Never expose those
+        // values directly to users, especially on Chinese pages.
+        if(document.documentElement.lang==='zh'){
+            var dict={
+                'Passport':'护照','Stay':'停留时间','Purpose':'出行目的','Limit':'限制期限',
+                'Onward evidence':'后续行程证明','Confirmed':'已确认','Not confirmed':'未确认',
+                'Destination':'后续目的地','Region':'地区','Hainan':'海南','Route':'路径',
+                'Mutual exemption':'互免签证','Stay entered':'填写的停留时间',
+                'Leave restricted area':'离开口岸限定区域','Not without required immigration handling':'如无相应手续不可离开',
+                '10 days':'10天','30 days':'30天','24 hours':'24小时','1 day':'1天',
+                'ordinary':'普通护照','diplomatic':'外交/公务护照','other':'其他旅行证件',
+                'tourism':'旅游','business':'商务','family':'探亲访友','exchange':'交流访问',
+                'transit':'过境','study':'学习','work':'工作','other':'其他',
+                'Hainan':'海南','Visa guide':'签证指南','Country routes':'国家路径',
+                'The general 24-hour transit facility is limited to no more than 24 hours and does not mean a 10-day stay.':'一般24小时过境便利安排最长不超过24小时，并不意味着可以停留10天。'
+            };
+            function translateNode(node){
+                if(!node)return;
+                if(node.nodeType===3){
+                    var value=node.nodeValue.trim();
+                    if(dict[value]) node.nodeValue=node.nodeValue.replace(value,dict[value]);
+                    return;
+                }
+                if(node.nodeType!==1)return;
+                if(node.childNodes.length===1 && node.firstChild.nodeType===3){
+                    var text=node.textContent.trim();
+                    if(dict[text]) node.textContent=dict[text];
+                }
+                if(node.childNodes)for(var i=0;i<node.childNodes.length;i++)translateNode(node.childNodes[i]);
+            }
+            function translateChecker(){
+                var summary=document.getElementById('result-summary'),text=document.getElementById('result-text');
+                if(summary)translateNode(summary);
+                if(text)translateNode(text);
+            }
+            translateChecker();
+            if(window.MutationObserver){
+                new MutationObserver(function(){translateChecker();}).observe(document.body,{subtree:true,childList:true,characterData:true});
+            }
+        }
+    })();</script>
 </div>
 </html>
