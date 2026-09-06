@@ -24,7 +24,10 @@ import java.util.*;
 public class CountryController {
     private static final String NIA_SOURCE="https://en.nia.gov.cn/";
     private static final String VERIFIED_DATE="2026-09-05";
-    private static final Set<String> CURRENT_UNILATERAL_30=Set.of("kyrgyzstan","vietnam");
+    private static final Set<String> CURRENT_UNILATERAL_30 = Collections.unmodifiableSet(new HashSet<String>() {{
+        add("kyrgyzstan");
+        add("vietnam");
+    }});
     private final Map<String,CountryDetail> unilateralMap,mutualMap,transitMap;
     private final Map<String,Map<String,Object>> countryExtraMap;
     private final CountryCodeResolver resolver; private final SeoService seoService; private final StructuredDataService structuredDataService;
