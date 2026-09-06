@@ -2,6 +2,7 @@ package com.chinavisamap.web;
 
 import com.chinavisamap.entity.CountryDetail;
 import com.chinavisamap.service.CountryCodeResolver;
+import com.chinavisamap.service.CountryEligibilityService;
 import com.chinavisamap.service.StructuredDataService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -21,10 +22,14 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
     private static final Set<String> NOT_UNILATERAL = new HashSet<String>(Arrays.asList("kyrgyzstan", "vietnam"));
 
     private final CountryCodeResolver resolver;
+    private final CountryEligibilityService eligibilityService;
     private final StructuredDataService structuredDataService;
 
-    public CountryPolicyRouteGuardInterceptor(CountryCodeResolver resolver, StructuredDataService structuredDataService) {
+    public CountryPolicyRouteGuardInterceptor(CountryCodeResolver resolver,
+                                               CountryEligibilityService eligibilityService,
+                                               StructuredDataService structuredDataService) {
         this.resolver = resolver;
+        this.eligibilityService = eligibilityService;
         this.structuredDataService = structuredDataService;
     }
 
@@ -85,14 +90,25 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
             }
             String lang = langObject == null ? "en" : String.valueOf(langObject);
             String canonical = canonicalObject == null ? "" : String.valueOf(canonicalObject);
+            modelAndView.getModel().put("eligibilityConfig",
+                    eligibilityService.build(resolver.routeCode(code), toPolicyList(modelAndView.getModel().get("availablePolicies")), (Map<String, Object>) extraObject));
             modelAndView.getModel().put("structuredData", structuredDataService.buildCountryHome(
-                    (CountryDetail) detailObject,
-                    lang,
-                    canonical,
-                    (Map<String, Object>) extraObject,
-                    (List<String>) typesAfter,
-                    details));
+                    (CountryDetail) detailObject, lang, canonical, (Map<String, Object>) extraObject,
+                    (List<String>) typesAfter, details));
         }
+    }
+
+    private List<CountryDetail> toPolicyList(Object value) {
+        List<CountryDetail> result = new java.util.ArrayList<CountryDetail>();
+        if (!(value instanceof List)) {
+            return result;
+        }
+        for (Object item : (List<?>) value) {
+            if (item instanceof CountryDetail) {
+                result.add((CountryDetail) item);
+            }
+        }
+        return result;
     }
 
     private String safeLang(String value) {
