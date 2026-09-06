@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,12 +46,13 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
             String canonicalCode = resolver.routeCode(resolver.policyKey(requestedCode));
             if (!requestedCode.equalsIgnoreCase(canonicalCode)) {
                 StringBuilder location = new StringBuilder("/country/").append(canonicalCode);
-                String type = parts.length >= 2 && parts[1] != null ? parts[1].trim() : "";
-                if (type.isEmpty()) {
-                    type = request.getParameter("type");
-                }
-                if (type != null && !type.trim().isEmpty()) {
-                    location.append('/').append(type.trim());
+                if (parts.length >= 2 && parts[1] != null && !parts[1].isEmpty()) {
+                    location.append('/').append(parts[1]);
+                } else {
+                    String legacyType = request.getParameter("type");
+                    if (legacyType != null && !legacyType.trim().isEmpty()) {
+                        location.append('/').append(legacyType.trim());
+                    }
                 }
                 String lang = safeLang(request.getParameter("lang"));
                 location.append("?lang=").append(lang);
