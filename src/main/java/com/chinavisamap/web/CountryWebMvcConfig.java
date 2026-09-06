@@ -9,13 +9,16 @@ public class CountryWebMvcConfig implements WebMvcConfigurer {
     private final CountryEligibilityModelInterceptor eligibilityInterceptor;
     private final CountryPolicyRouteGuardInterceptor routeGuardInterceptor;
     private final CountryPolicyCorrectionInterceptor correctionInterceptor;
+    private final ContentLinkModelInterceptor contentLinkInterceptor;
 
     public CountryWebMvcConfig(CountryEligibilityModelInterceptor eligibilityInterceptor,
                                 CountryPolicyRouteGuardInterceptor routeGuardInterceptor,
-                                CountryPolicyCorrectionInterceptor correctionInterceptor) {
+                                CountryPolicyCorrectionInterceptor correctionInterceptor,
+                                ContentLinkModelInterceptor contentLinkInterceptor) {
         this.eligibilityInterceptor = eligibilityInterceptor;
         this.routeGuardInterceptor = routeGuardInterceptor;
         this.correctionInterceptor = correctionInterceptor;
+        this.contentLinkInterceptor = contentLinkInterceptor;
     }
 
     @Override
@@ -23,5 +26,6 @@ public class CountryWebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(routeGuardInterceptor).addPathPatterns("/country/**");
         registry.addInterceptor(eligibilityInterceptor).addPathPatterns("/country/*");
         registry.addInterceptor(correctionInterceptor).addPathPatterns("/country/**");
+        registry.addInterceptor(contentLinkInterceptor).addPathPatterns("/country/**", "/articles/**");
     }
 }
