@@ -1,5 +1,6 @@
 package com.chinavisamap.controller;
 
+import com.chinavisamap.entity.CountryDetail;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,6 +27,7 @@ public class ArticleController {
     private List<Map<String, Object>> articleList;
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
+    private final Map<String, String> countrySearchNames = new LinkedHashMap<>();
 
     public static final List<Map<String, String>> ALL_CATEGORIES;
     static {
@@ -47,6 +49,9 @@ public class ArticleController {
     public ArticleController(ObjectMapper objectMapper, SeoService seoService, StructuredDataService structuredDataService){
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
+        loadCountrySearchNames(objectMapper, "unilateral.json");
+        loadCountrySearchNames(objectMapper, "mutual.json");
+        loadCountrySearchNames(objectMapper, "transit.json");
         try {
             JsonNode root = objectMapper.readTree(new ClassPathResource("articles.json").getInputStream());
             if (root.isArray()) {
@@ -83,6 +88,25 @@ public class ArticleController {
             });
         } catch (Exception e) {
             articleList = Collections.emptyList();
+        }
+    }
+
+    private void loadCountrySearchNames(ObjectMapper mapper, String fileName) {
+        try {
+            Map<String, CountryDetail> data = mapper.readValue(
+                    new ClassPathResource(fileName).getInputStream(),
+                    new TypeReference<Map<String, CountryDetail>>() {}
+            );
+            for (Map.Entry<String, CountryDetail> entry : data.entrySet()) {
+                CountryDetail country = entry.getValue();
+                if (country == null) continue;
+                String code = entry.getKey();
+                countrySearchNames.put(normalize(code), normalize(country.getName()));
+                countrySearchNames.put(normalize(country.getName()), normalize(code));
+                countrySearchNames.put(normalize(country.getNameZh()), normalize(code));
+            }
+        } catch (Exception ignored) {
+            // Country-name search is an enhancement; article rendering must still work.
         }
     }
 
@@ -156,7 +180,7 @@ public class ArticleController {
         String catZh = normalize(art.get("categoryZh"));
         String tagsEn = normalizeList(art.get("tagsEn"));
         String tagsZh = normalizeList(art.get("tagsZh"));
-        String countries = normalizeList(art.get("relatedCountryCodes"));
+        String countries = countryTerms(art.get("relatedCountryCodes"));
         return titleEn.contains(kw) || titleZh.contains(kw)
                 || sumEn.contains(kw) || sumZh.contains(kw)
                 || catEn.contains(kw) || catZh.contains(kw)
@@ -173,7 +197,7 @@ public class ArticleController {
         String catZh = normalize(art.get("categoryZh"));
         String tagsEn = normalizeList(art.get("tagsEn"));
         String tagsZh = normalizeList(art.get("tagsZh"));
-        String countries = normalizeList(art.get("relatedCountryCodes"));
+        String countries = countryTerms(art.get("relatedCountryCodes"));
 
         int score = 0;
         score += titleScore(titleEn, kw, "en".equals(lang), 1000);
@@ -184,8 +208,27 @@ public class ArticleController {
         score += containsScore(sumZh, kw, 180, 80);
         score += containsScore(catEn, kw, 120, 60);
         score += containsScore(catZh, kw, 120, 60);
-        score += containsScore(countries, kw, 220, 120);
+        score += containsScore(countries, kw, 350, 180);
         return score;
+    }
+
+    private String countryTerms(Object value) {
+        if (!(value instanceof List)) return normalize(value);
+        StringBuilder result = new StringBuilder();
+        for (Object item : (List<?>) value) {
+            String code = normalize(item);
+            if (result.length() > 0) result.append(' ');
+            result.append(code);
+            String name = countrySearchNames.get(code);
+            if (name != null) result.append(' ').append(name);
+            // Reverse lookup lets a user search for a country name even when the article stores only its code.
+            for (Map.Entry<String,String> entry : countrySearchNames.entrySet()) {
+                if (entry.getValue().equals(code)) {
+                    result.append(' ').append(entry.getKey());
+                }
+            }
+        }
+        return result.toString();
     }
 
     private int titleScore(String value, String kw, boolean localized, int base) {
