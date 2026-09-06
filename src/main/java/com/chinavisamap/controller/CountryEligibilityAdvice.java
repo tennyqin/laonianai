@@ -5,6 +5,7 @@ import com.chinavisamap.service.CountryCodeResolver;
 import com.chinavisamap.service.CountryEligibilityService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,10 +32,10 @@ public class CountryEligibilityAdvice {
     }
 
     @ModelAttribute
-    public void addEligibilityConfig(Model model) {
-        Object codeObj = model.getAttribute("code");
-        if (codeObj == null) return;
-        String code = String.valueOf(codeObj);
+    public void addEligibilityConfig(Model model, HttpServletRequest request) {
+        String[] parts = request.getRequestURI().split("/");
+        if (parts.length < 3 || !"country".equals(parts[1])) return;
+        String code = parts[2].toLowerCase(Locale.ROOT);
         String key = resolver.policyKey(code);
         List<CountryDetail> policies = new ArrayList<>();
         if (unilateral.containsKey(key)) policies.add(unilateral.get(key));
