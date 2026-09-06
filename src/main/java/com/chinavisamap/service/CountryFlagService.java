@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/** Resolves every country code used by the policy JSON files to a real flag. */
+/** Resolves country slugs and ISO-2 aliases to emoji flags. */
 @Service("countryFlagService")
 public class CountryFlagService {
     private final Map<String,String> iso2 = new HashMap<>();
 
     public CountryFlagService() {
-        add("albania","AL"); add("argentina","AR"); add("armenia","AM"); add("australia","AU"); add("austria","AT");
+        add("albania","AL"); add("andorra","AD"); add("argentina","AR"); add("armenia","AM"); add("australia","AU"); add("austria","AT");
         add("azerbaijan","AZ"); add("belarus","BY"); add("belgium","BE"); add("bosnia","BA"); add("bosniaandherzegovina","BA");
         add("brazil","BR"); add("brunei","BN"); add("bulgaria","BG"); add("canada","CA"); add("chile","CL");
         add("croatia","HR"); add("cyprus","CY"); add("czechia","CZ"); add("czech","CZ"); add("denmark","DK");
@@ -33,9 +33,8 @@ public class CountryFlagService {
         add("seychelles","SC"); add("solomon","SB"); add("solomonislands","SB"); add("suriname","SR"); add("tonga","TO");
         add("guyana","GY"); add("jamaica","JM");
 
-        // ISO-2 and legacy route aliases.
         String[][] aliases = {
-            {"al","AL"},{"ar","AR"},{"am","AM"},{"au","AU"},{"at","AT"},{"az","AZ"},{"by","BY"},{"be","BE"},{"ba","BA"},{"br","BR"},
+            {"ad","AD"},{"al","AL"},{"ar","AR"},{"am","AM"},{"au","AU"},{"at","AT"},{"az","AZ"},{"by","BY"},{"be","BE"},{"ba","BA"},{"br","BR"},
             {"bn","BN"},{"bg","BG"},{"ca","CA"},{"cl","CL"},{"hr","HR"},{"cy","CY"},{"cz","CZ"},{"dk","DK"},{"ee","EE"},{"fi","FI"},
             {"fr","FR"},{"ge","GE"},{"de","DE"},{"gr","GR"},{"hu","HU"},{"is","IS"},{"id","ID"},{"ie","IE"},{"it","IT"},{"jp","JP"},
             {"kz","KZ"},{"kr","KR"},{"kg","KG"},{"kw","KW"},{"lv","LV"},{"li","LI"},{"lt","LT"},{"lu","LU"},{"my","MY"},{"mv","MV"},
