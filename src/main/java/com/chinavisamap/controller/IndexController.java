@@ -105,8 +105,15 @@ public class IndexController {
             if (!(countries instanceof List)) continue;
             for (Object item : (List<?>) countries) {
                 if (!(item instanceof Map)) continue;
-                Object code = ((Map<String, Object>) item).get("code");
-                if (code != null) result.put(String.valueOf(code), countryFlagService.flag(String.valueOf(code)));
+                Map<String, Object> country = (Map<String, Object>) item;
+                Object code = country.get("code");
+                if (code == null) continue;
+                String key = String.valueOf(code);
+                String flag = countryFlagService.flag(key);
+                result.put(key, flag);
+                // Keep a per-country value as a second, template-safe source. This avoids
+                // a missing Map lookup ever rendering an empty flag in Thymeleaf.
+                country.put("flag", flag);
             }
         }
     }
