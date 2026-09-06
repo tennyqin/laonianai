@@ -8,16 +8,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CountryWebMvcConfig implements WebMvcConfigurer {
     private final CountryEligibilityModelInterceptor eligibilityInterceptor;
     private final CountryPolicyRouteGuardInterceptor routeGuardInterceptor;
+    private final CountryPolicyCorrectionInterceptor correctionInterceptor;
 
     public CountryWebMvcConfig(CountryEligibilityModelInterceptor eligibilityInterceptor,
-                                CountryPolicyRouteGuardInterceptor routeGuardInterceptor) {
+                                CountryPolicyRouteGuardInterceptor routeGuardInterceptor,
+                                CountryPolicyCorrectionInterceptor correctionInterceptor) {
         this.eligibilityInterceptor = eligibilityInterceptor;
         this.routeGuardInterceptor = routeGuardInterceptor;
+        this.correctionInterceptor = correctionInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(routeGuardInterceptor).addPathPatterns("/country/**");
         registry.addInterceptor(eligibilityInterceptor).addPathPatterns("/country/*");
+        registry.addInterceptor(correctionInterceptor).addPathPatterns("/country/**");
     }
 }
