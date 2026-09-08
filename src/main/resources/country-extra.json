@@ -47,10 +47,11 @@
         "q": "在哪里查看详细的中国入境规定？",
         "a": "请打开本页对应政策卡片查看详细条件，并在出行前再次核对官方最新信息。"
       }
-    ]
+    ],
+    "routeCode": "sg"
   },
   "us": {
-    "priority": 2,
+    "priority": 4,
     "tier": "A",
     "homeSeoTitleEn": "USA to China Visa Guide 2026 | Visa-Free Transit & Entry Rules",
     "homeSeoDescEn": "US citizens traveling to China: understand transit visa-free eligibility, visa requirements and the conditions that apply to your itinerary.",
@@ -77,7 +78,8 @@
       "gb",
       "au",
       "de"
-    ]
+    ],
+    "routeCode": "us"
   },
   "de": {
     "priority": 3,
@@ -198,7 +200,7 @@
     ]
   },
   "au": {
-    "priority": 6,
+    "priority": 8,
     "tier": "A",
     "homeSeoTitleEn": "Australia to China Visa Guide 2026 | Australian Citizens Visa-Free Entry",
     "homeSeoDescEn": "Australian citizens traveling to China: check visa-free eligibility, permitted purposes, stay limits and entry requirements.",
@@ -225,7 +227,8 @@
       "gb",
       "us",
       "de"
-    ]
+    ],
+    "routeCode": "au"
   },
   "cz": {
     "priority": 7,
@@ -258,7 +261,7 @@
     ]
   },
   "gb": {
-    "priority": 8,
+    "priority": 9,
     "tier": "A",
     "homeSeoTitleEn": "UK to China Visa Guide 2026 | British Citizens Visa-Free Entry",
     "homeSeoDescEn": "British citizens traveling to China: check visa-free eligibility, stay duration, permitted purposes and China visa options.",
@@ -285,10 +288,11 @@
       "au",
       "de",
       "fr"
-    ]
+    ],
+    "routeCode": "gb"
   },
   "my": {
-    "priority": 9,
+    "priority": 5,
     "tier": "A",
     "homeSeoTitleEn": "Malaysia to China Visa Guide 2026 | Visa-Free & Entry Rules",
     "homeSeoDescEn": "Malaysian citizens traveling to China: check visa-free arrangements, permitted purposes, stay limits and entry conditions.",
@@ -315,10 +319,11 @@
       "th",
       "id",
       "jp"
-    ]
+    ],
+    "routeCode": "my"
   },
   "jp": {
-    "priority": 10,
+    "priority": 2,
     "tier": "A",
     "homeSeoTitleEn": "Japan to China Visa Guide 2026 | Japanese Citizens Visa-Free Entry",
     "homeSeoDescEn": "Japanese citizens traveling to China: check current visa-free eligibility, permitted purposes, stay limits and entry rules.",
@@ -345,7 +350,8 @@
       "kr",
       "au",
       "gb"
-    ]
+    ],
+    "routeCode": "jp"
   },
   "andorra": {
     "priority": 999,
@@ -1431,8 +1437,8 @@
     ]
   },
   "russia": {
-    "priority": 999,
-    "tier": "C",
+    "priority": 7,
+    "tier": "A",
     "routeCode": "russia",
     "homeSeoTitleEn": "Russia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
     "homeSeoDescEn": "Russia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
@@ -1602,8 +1608,8 @@
     ]
   },
   "korea": {
-    "priority": 999,
-    "tier": "C",
+    "priority": 3,
+    "tier": "A",
     "routeCode": "korea",
     "homeSeoTitleEn": "South Korea to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
     "homeSeoDescEn": "South Korea citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
@@ -1697,8 +1703,8 @@
     ]
   },
   "thailand": {
-    "priority": 999,
-    "tier": "C",
+    "priority": 6,
+    "tier": "A",
     "routeCode": "thailand",
     "homeSeoTitleEn": "Thailand to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
     "homeSeoDescEn": "Thailand citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
@@ -1828,5 +1834,10 @@
       "belgium",
       "bosnia"
     ]
+  },
+  "ca": {
+    "priority": 10,
+    "tier": "A",
+    "routeCode": "ca"
   }
 }

@@ -96,7 +96,7 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
     }
 
     private void mergePriorityPresentation(Map<String,Object> base,Map<String,Object> priority){
-        String[] presentationKeys={"homeSeoTitleEn","homeSeoDescEn","homeSeoTitleZh","homeSeoDescZh","homeHeroQuestionEn","homeHeroQuestionZh","homeHeroAnswerEn","homeHeroAnswerZh","homeIntroEn","homeIntroZh","homeImportantNotesEn","homeImportantNotesZh","directVisaFree"};
+        String[] presentationKeys={"homeSeoTitleEn","homeSeoDescEn","homeSeoTitleZh","homeSeoDescZh","homeHeroQuestionEn","homeHeroQuestionZh","homeHeroAnswerEn","homeHeroAnswerZh","homeIntroEn","homeIntroZh","homeImportantNotesEn","homeImportantNotesZh","homeCustomFaqsEn","homeCustomFaqsZh","directVisaFree"};
         for(String key:presentationKeys)if(priority.containsKey(key))base.put(key,priority.get(key));
         // Do not overwrite priority/tier/route identity or the canonical recommendation list.
         // Those remain owned by country-extra.json when present.

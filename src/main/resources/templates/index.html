@@ -12,7 +12,7 @@
     <link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
     <link rel="stylesheet"
           th:href="@{/webjars/flag-icons/7.5.0/css/flag-icons.min.css}">
-    <link rel="stylesheet" href="/css/index.css?20260906">
+    <link rel="stylesheet" href="/css/index.css?20260909">
     <link rel="stylesheet" href="/css/footer.css?20260906">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
@@ -21,23 +21,25 @@
         .country-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .country-days{margin-left:auto;flex:none}
         .route-tag{display:inline-block;padding:4px 7px;border-radius:999px;background:#ecfdf5;color:#047857;font-size:11px;font-weight:750}
+        .search-country-card{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+        .search-country-card:hover{transform:translateY(-2px)}
+        .search-country-card .country-link{color:inherit;text-decoration:none}
+        .search-summary{margin-top:10px;font-size:13px;color:#475569;line-height:1.6}
+        .search-action{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:#2563eb}
     </style>
 </head>
-<body>
+<body id="top">
 <div class="last-update" th:text="${lang == 'en' ? lastUpdate : lastUpdateZh}"></div>
-<div class="header"><div class="container header-inner">
-    <a class="logo" th:href="@{/(lang=${lang})}" th:text="${siteName}"></a>
-    <div class="nav">
-        <a th:href="@{/(lang=${lang})}" th:text="${lang == 'en' ? 'Home' : '首页'}"></a>
-        <a href="#unilateral" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
-        <a href="#mutual" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
-        <a href="#transit" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
-        <a th:href="@{/visa-guide(lang=${lang})}" th:text="${lang == 'en' ? navVisaGuide : navVisaGuideZh}"></a>
-        <a th:href="@{/articles(lang=${lang})}" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></a>
-        <a th:href="@{/(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a>
-        <a th:href="@{/(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
+<div th:replace="~{common/header :: site-header}"></div>
+<nav class="home-route-tabs" aria-label="Policy sections">
+    <div class="home-route-tabs-inner container">
+        <a class="home-route-tab active" href="#top" th:text="${lang == 'en' ? 'Overview' : '总览'}"></a>
+        <a class="home-route-tab" href="#unilateral" th:text="${lang == 'en' ? 'Direct visa-free' : '单方面免签'}"></a>
+        <a class="home-route-tab" href="#mutual" th:text="${lang == 'en' ? 'Mutual exemption' : '互免签证'}"></a>
+        <a class="home-route-tab" href="#transit" th:text="${lang == 'en' ? '240-hour transit' : '240小时过境'}"></a>
+        <a class="home-route-tab" href="#hainan" th:text="${lang == 'en' ? 'Hainan 30-day' : '海南30天免签'}"></a>
     </div>
-</div></div>
+</nav>
 <div class="container">
     <div class="hero"><h1 th:text="${lang == 'en' ? heroTitle : heroTitleZh}"></h1><p th:text="${lang == 'en' ? heroDesc : heroDescZh}"></p></div>
     <form method="get" class="search-box">
@@ -51,16 +53,17 @@
         <div class="section" th:if="${searchHasResults}">
             <p class="subtitle" th:text="${lang == 'en' ? 'Open a country guide to compare all available routes, run the eligibility checker, and then review the exact policy.' : '进入国家指南后，可先比较所有可用路径，再使用资格检查器，最后查看对应政策详情。'}"></p>
             <div class="grid">
-                <div class="card" th:each="country : ${searchCountryResults}">
-                    <a class="country-link" th:href="@{/country/{code}(code=${country.code},lang=${lang})}">
+                <a class="card search-country-card" th:each="country : ${searchCountryResults}" th:href="@{/country/{code}(code=${country.code},lang=${lang})}" style="text-decoration:none;color:inherit;">
+                    <div class="country-link">
                         <span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(country.code)}" aria-hidden="true"></span>
                         <span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
-                    </a>
-                    <div class="route-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+                    </div>
+                    <div class="search-summary" th:text="${lang == 'en' ? 'Available China entry options:' : '可用中国入境政策：'}"></div>
+                    <div class="route-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
                         <span th:each="t : ${country.routeTypes}" class="route-tag" th:text="${t=='unilateral'?(lang=='en'?'Direct visa-free':'直接免签'):t=='mutual'?(lang=='en'?'Mutual exemption':'互免签证'):t=='transit'?(lang=='en'?'240-hour transit':'240小时过境免签'):(lang=='en'?'Hainan 30-day':'海南30天免签')}"></span>
                     </div>
-                    <div style="margin-top:9px;font-size:12px;color:#64748b;line-height:1.5;" th:text="${lang == 'en' ? 'Country guide + checker →' : '进入国家指南并检查资格 →'}"></div>
-                </div>
+                    <div class="search-action" th:text="${lang == 'en' ? 'View full rules and eligibility →' : '查看完整规则和资格要求 →'}"></div>
+                </a>
             </div>
         </div>
         <div class="section" th:if="${!searchHasResults}">

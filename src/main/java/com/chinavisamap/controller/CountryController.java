@@ -304,9 +304,13 @@ public class CountryController {
 
     private CountryDetail getAnyCountryDetail(String code) {
         String key = resolver.policyKey(code);
-        CountryDetail d=unilateralMap.get(key); if(d!=null)return d;
-        d=mutualMap.get(key); if(d!=null)return d;
-        return transitMap.get(key);
+        CountryDetail d = unilateralMap.get(key); if (d != null) return d;
+        d = mutualMap.get(key); if (d != null) return d;
+        d = transitMap.get(key); if (d != null) return d;
+        // Hainan-only countries (for example the Philippines) still need a
+        // country decision page and checker. Never assume every country has a
+        // mainland unilateral/mutual/transit record.
+        return hainanMap.get(key);
     }
 
     private String routeCode(String code) { return resolver.routeCode(resolver.policyKey(code)); }
