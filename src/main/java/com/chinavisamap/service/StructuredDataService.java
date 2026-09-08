@@ -33,6 +33,11 @@ public class StructuredDataService {
         website.put("name", siteName);
         website.put("description", description);
         website.put("inLanguage", lang);
+        Map<String, Object> searchAction = new LinkedHashMap<>();
+        searchAction.put("@type", "SearchAction");
+        searchAction.put("target", BASE_URL + "/?lang=" + lang + "&keyword={search_term_string}");
+        searchAction.put("query-input", "required name=search_term_string");
+        website.put("potentialAction", searchAction);
         items.add(website);
 
         Map<String, Object> organization = new LinkedHashMap<>();
@@ -223,6 +228,15 @@ public class StructuredDataService {
         data.put("url", canonicalUrl);
         data.put("inLanguage", lang);
         if (!isBlank(publishAt)) data.put("datePublished", publishAt);
+        String category = stringValue(article.get("categoryEn"));
+        if (!isBlank(category)) data.put("articleSection", category);
+        Object tags = article.get("tagsEn");
+        if (tags instanceof List && !((List<?>) tags).isEmpty()) data.put("keywords", tags);
+        Map<String, Object> author = new LinkedHashMap<>();
+        author.put("@type", "Organization");
+        author.put("name", "China Visa Free Guide");
+        author.put("url", BASE_URL);
+        data.put("author", author);
         Map<String, Object> publisher = new LinkedHashMap<>();
         publisher.put("@type", "Organization");
         publisher.put("name", "China Visa Free Guide");
@@ -244,7 +258,16 @@ public class StructuredDataService {
         data.put("name", title);
         data.put("description", description);
         data.put("inLanguage", lang);
-        return toJson(data);
+        Map<String, Object> breadcrumb = new LinkedHashMap<>();
+        breadcrumb.put("@type", "BreadcrumbList");
+        List<Map<String, Object>> items = new ArrayList<>();
+        items.add(breadcrumbItem(1, "zh".equals(lang) ? "首页" : "Home", BASE_URL + "/?lang=" + lang));
+        items.add(breadcrumbItem(2, title, canonicalUrl));
+        breadcrumb.put("itemListElement", items);
+        Map<String, Object> graph = new LinkedHashMap<>();
+        graph.put("@context", "https://schema.org");
+        graph.put("@graph", Arrays.asList(data, breadcrumb));
+        return toJson(graph);
     }
 
     private String canonicalCountryRoute(String code) {

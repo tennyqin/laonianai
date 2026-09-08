@@ -13,6 +13,7 @@ public class CountryDetail {
     private String policyTypeZh;
     private String stayDays;
     private String validFrom;
+    private String policyExpiry;
     private String purpose;
     private String purposeZh;
     private String rule;

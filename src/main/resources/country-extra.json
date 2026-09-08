@@ -12,16 +12,41 @@
     "homeHeroAnswerZh": "新加坡护照持有人可根据护照类型、出行目的及当前生效政策，适用下方相应的中国免签或其他入境安排。",
     "homeIntroEn": "This page is designed as a decision guide for Singapore citizens planning a trip to China. Start with the eligibility checker, then open the policy that matches your purpose and itinerary.",
     "homeIntroZh": "本页面向计划来华的新加坡公民，按“先判断资格、再查看政策”的方式整理。建议先使用资格检查器，再进入与你的出行目的和行程相匹配的政策详情。",
-    "homeImportantNotesEn": ["Use the policy detail page that matches your actual travel purpose.", "Entry decisions remain subject to Chinese border inspection authorities and the rules in force on the date of travel.", "Check passport and travel-document requirements before departure."],
-    "homeImportantNotesZh": ["请根据实际出行目的进入对应政策详情页。", "最终入境决定以中国边检机关及出行当日生效的规定为准。", "出行前确认护照及相关旅行证件要求。"],
-    "relatedCountryCodes": ["my", "jp", "au", "de"],
+    "homeImportantNotesEn": [
+      "Use the policy detail page that matches your actual travel purpose.",
+      "Entry decisions remain subject to Chinese border inspection authorities and the rules in force on the date of travel.",
+      "Check passport and travel-document requirements before departure."
+    ],
+    "homeImportantNotesZh": [
+      "请根据实际出行目的进入对应政策详情页。",
+      "最终入境决定以中国边检机关及出行当日生效的规定为准。",
+      "出行前确认护照及相关旅行证件要求。"
+    ],
+    "relatedCountryCodes": [
+      "my",
+      "jp",
+      "au",
+      "de"
+    ],
     "homeCustomFaqsEn": [
-      {"q":"What should Singapore citizens check before traveling to China?","a":"Check the applicable policy, permitted purpose, maximum stay, passport requirements and any itinerary-specific conditions before departure."},
-      {"q":"Where can I check the detailed China entry rules?","a":"Open the policy card on this page for the applicable policy and its detailed conditions, then verify the latest official information before travel."}
+      {
+        "q": "What should Singapore citizens check before traveling to China?",
+        "a": "Check the applicable policy, permitted purpose, maximum stay, passport requirements and any itinerary-specific conditions before departure."
+      },
+      {
+        "q": "Where can I check the detailed China entry rules?",
+        "a": "Open the policy card on this page for the applicable policy and its detailed conditions, then verify the latest official information before travel."
+      }
     ],
     "homeCustomFaqsZh": [
-      {"q":"新加坡公民来中国前需要重点确认什么？","a":"建议确认适用政策、允许的出行目的、最长停留期限、护照要求以及行程相关条件。"},
-      {"q":"在哪里查看详细的中国入境规定？","a":"请打开本页对应政策卡片查看详细条件，并在出行前再次核对官方最新信息。"}
+      {
+        "q": "新加坡公民来中国前需要重点确认什么？",
+        "a": "建议确认适用政策、允许的出行目的、最长停留期限、护照要求以及行程相关条件。"
+      },
+      {
+        "q": "在哪里查看详细的中国入境规定？",
+        "a": "请打开本页对应政策卡片查看详细条件，并在出行前再次核对官方最新信息。"
+      }
     ]
   },
   "us": {
@@ -37,9 +62,22 @@
     "homeHeroAnswerZh": "是否免签取决于你的行程。符合条件的美国护照持有人在满足过境要求时可能适用过境免签；普通赴华行程可能仍需申请签证。",
     "homeIntroEn": "For US travelers, the key question is whether your itinerary qualifies for a transit arrangement or requires a regular China visa. Use the checker before choosing a policy.",
     "homeIntroZh": "对于美国旅客，最关键的是判断你的行程属于符合条件的过境安排还是需要普通中国签证。建议先使用资格检查器。",
-    "homeImportantNotesEn": ["Transit eligibility depends on the required international itinerary and transit conditions.", "Do not treat transit visa-free rules as a general tourist visa exemption.", "If your trip is not eligible for a visa-free arrangement, use the China visa guide."],
-    "homeImportantNotesZh": ["过境免签资格取决于规定的国际联程及过境条件。", "不要把过境免签理解为普通旅游免签。", "如果你的行程不符合免签安排，请进入中国签证申请指南。"],
-    "relatedCountryCodes": ["ca", "gb", "au", "de"]
+    "homeImportantNotesEn": [
+      "Transit eligibility depends on the required international itinerary and transit conditions.",
+      "Do not treat transit visa-free rules as a general tourist visa exemption.",
+      "If your trip is not eligible for a visa-free arrangement, use the China visa guide."
+    ],
+    "homeImportantNotesZh": [
+      "过境免签资格取决于规定的国际联程及过境条件。",
+      "不要把过境免签理解为普通旅游免签。",
+      "如果你的行程不符合免签安排，请进入中国签证申请指南。"
+    ],
+    "relatedCountryCodes": [
+      "ca",
+      "gb",
+      "au",
+      "de"
+    ]
   },
   "de": {
     "priority": 3,
@@ -54,9 +92,22 @@
     "homeHeroAnswerZh": "德国公民在护照、出行目的和停留期限符合当前政策条件时，可适用中国现行免签安排。",
     "homeIntroEn": "This Germany-to-China guide focuses on the questions German travelers usually need answered first: whether a visa is required, how long they can stay and which purposes are covered.",
     "homeIntroZh": "本页优先回答德国旅客最关心的问题：是否需要签证、可以停留多久以及哪些出行目的符合政策。",
-    "homeImportantNotesEn": ["Check the exact permitted purpose before relying on visa-free entry.", "Maximum stay is determined by the applicable policy and entry record.", "Verify the latest official policy before departure."],
-    "homeImportantNotesZh": ["使用免签入境前请确认实际出行目的符合政策。", "最长停留期限以适用政策及入境记录为准。", "出行前请再次核对官方最新政策。"],
-    "relatedCountryCodes": ["pl", "cz", "gb", "fr"]
+    "homeImportantNotesEn": [
+      "Check the exact permitted purpose before relying on visa-free entry.",
+      "Maximum stay is determined by the applicable policy and entry record.",
+      "Verify the latest official policy before departure."
+    ],
+    "homeImportantNotesZh": [
+      "使用免签入境前请确认实际出行目的符合政策。",
+      "最长停留期限以适用政策及入境记录为准。",
+      "出行前请再次核对官方最新政策。"
+    ],
+    "relatedCountryCodes": [
+      "pl",
+      "cz",
+      "gb",
+      "fr"
+    ]
   },
   "al": {
     "priority": 4,
@@ -71,9 +122,22 @@
     "homeHeroAnswerZh": "阿尔巴尼亚公民在护照、出行目的和停留期限符合双边互免签证协定条件时，可适用相应免签安排。",
     "homeIntroEn": "The Albania page separates bilateral visa-exemption rules from transit rules so you can identify the correct route for your China trip.",
     "homeIntroZh": "本页将双边互免签证规则与过境规则分开，帮助你判断赴华行程应适用哪一种安排。",
-    "homeImportantNotesEn": ["Bilateral visa exemption conditions can differ from unilateral visa-free policies.", "Check the exact passport category and permitted purpose in the policy detail.", "Verify the agreement and current implementation before travel."],
-    "homeImportantNotesZh": ["双边互免签证条件与单方面免签政策可能不同。", "请在政策详情中确认具体护照类别和允许目的。", "出行前确认协定及当前执行情况。"],
-    "relatedCountryCodes": ["rs", "me", "ba", "sm"]
+    "homeImportantNotesEn": [
+      "Bilateral visa exemption conditions can differ from unilateral visa-free policies.",
+      "Check the exact passport category and permitted purpose in the policy detail.",
+      "Verify the agreement and current implementation before travel."
+    ],
+    "homeImportantNotesZh": [
+      "双边互免签证条件与单方面免签政策可能不同。",
+      "请在政策详情中确认具体护照类别和允许目的。",
+      "出行前确认协定及当前执行情况。"
+    ],
+    "relatedCountryCodes": [
+      "rs",
+      "me",
+      "ba",
+      "sm"
+    ]
   },
   "pl": {
     "priority": 5,
@@ -88,18 +152,49 @@
     "homeHeroAnswerZh": "波兰公民在护照、出行目的和停留期限符合现行政策条件时，可适用中国单方面免签安排。",
     "homeIntroEn": "Poland is one of the priority country pages on ChinaVisaMap. This guide puts the eligibility decision first, followed by the exact visa-free conditions and practical entry questions.",
     "homeIntroZh": "波兰是 ChinaVisaMap 首批重点国家页面之一。本页把资格判断放在最前面，再逐步展开具体免签条件和实际入境问题。",
-    "homeImportantNotesEn": ["Confirm that your actual purpose is covered by the current visa-free policy.", "Check the maximum stay and entry conditions before booking a trip around the policy.", "Use the policy detail page for the full rules and official verification date."],
-    "homeImportantNotesZh": ["确认实际出行目的属于当前免签政策允许范围。", "在根据免签政策规划行程前确认最长停留期限和入境条件。", "完整规则及核验日期请进入政策详情页查看。"],
-    "relatedCountryCodes": ["de", "cz", "gb", "fr"],
+    "homeImportantNotesEn": [
+      "Confirm that your actual purpose is covered by the current visa-free policy.",
+      "Check the maximum stay and entry conditions before booking a trip around the policy.",
+      "Use the policy detail page for the full rules and official verification date."
+    ],
+    "homeImportantNotesZh": [
+      "确认实际出行目的属于当前免签政策允许范围。",
+      "在根据免签政策规划行程前确认最长停留期限和入境条件。",
+      "完整规则及核验日期请进入政策详情页查看。"
+    ],
+    "relatedCountryCodes": [
+      "de",
+      "cz",
+      "gb",
+      "fr"
+    ],
     "homeCustomFaqsEn": [
-      {"q":"Can Polish citizens visit China without a visa?","a":"Polish citizens may be eligible under the current China visa-free policy when all applicable conditions are met. Use the checker and review the unilateral policy page before travel."},
-      {"q":"How long can Polish citizens stay in China without a visa?","a":"The maximum stay is determined by the current unilateral visa-free policy. The policy card and detail page show the applicable stay period."},
-      {"q":"What if my purpose is not covered by visa-free entry?","a":"If your purpose is outside the permitted scope, you should not rely on visa-free entry. Check the China visa application guide for the appropriate visa route."}
+      {
+        "q": "Can Polish citizens visit China without a visa?",
+        "a": "Polish citizens may be eligible under the current China visa-free policy when all applicable conditions are met. Use the checker and review the unilateral policy page before travel."
+      },
+      {
+        "q": "How long can Polish citizens stay in China without a visa?",
+        "a": "The maximum stay is determined by the current unilateral visa-free policy. The policy card and detail page show the applicable stay period."
+      },
+      {
+        "q": "What if my purpose is not covered by visa-free entry?",
+        "a": "If your purpose is outside the permitted scope, you should not rely on visa-free entry. Check the China visa application guide for the appropriate visa route."
+      }
     ],
     "homeCustomFaqsZh": [
-      {"q":"波兰公民可以免签去中国吗？","a":"在满足当前中国免签政策全部适用条件的情况下，波兰公民可能可以免签入境。建议先使用资格检查器，再查看单方面免签详情。"},
-      {"q":"波兰公民免签来中国可以停留多久？","a":"最长停留期限以当前单方面免签政策为准，本页政策卡片和详情页会展示适用期限。"},
-      {"q":"如果我的出行目的不属于免签范围怎么办？","a":"如果出行目的不在允许范围内，不应直接依赖免签入境，请进入中国签证申请指南选择合适的签证方案。"}
+      {
+        "q": "波兰公民可以免签去中国吗？",
+        "a": "在满足当前中国免签政策全部适用条件的情况下，波兰公民可能可以免签入境。建议先使用资格检查器，再查看单方面免签详情。"
+      },
+      {
+        "q": "波兰公民免签来中国可以停留多久？",
+        "a": "最长停留期限以当前单方面免签政策为准，本页政策卡片和详情页会展示适用期限。"
+      },
+      {
+        "q": "如果我的出行目的不属于免签范围怎么办？",
+        "a": "如果出行目的不在允许范围内，不应直接依赖免签入境，请进入中国签证申请指南选择合适的签证方案。"
+      }
     ]
   },
   "au": {
@@ -115,9 +210,22 @@
     "homeHeroAnswerZh": "澳大利亚公民在满足当前政策规定的护照、出行目的和停留条件时，可能适用中国免签安排。",
     "homeIntroEn": "Use this page to make the visa decision before you plan your China itinerary. The policy detail then provides the conditions and practical entry checklist.",
     "homeIntroZh": "建议先在本页完成是否需要签证的判断，再根据对应政策详情规划中国行程和准备入境材料。",
-    "homeImportantNotesEn": ["Check whether your purpose is included before relying on visa-free entry.", "Review the policy detail for the current stay limit and conditions.", "Recheck official information shortly before departure."],
-    "homeImportantNotesZh": ["依赖免签入境前先确认出行目的属于政策允许范围。", "请查看政策详情中的当前停留期限和条件。", "出发前再次核对官方信息。"],
-    "relatedCountryCodes": ["nz", "gb", "us", "de"]
+    "homeImportantNotesEn": [
+      "Check whether your purpose is included before relying on visa-free entry.",
+      "Review the policy detail for the current stay limit and conditions.",
+      "Recheck official information shortly before departure."
+    ],
+    "homeImportantNotesZh": [
+      "依赖免签入境前先确认出行目的属于政策允许范围。",
+      "请查看政策详情中的当前停留期限和条件。",
+      "出发前再次核对官方信息。"
+    ],
+    "relatedCountryCodes": [
+      "nz",
+      "gb",
+      "us",
+      "de"
+    ]
   },
   "cz": {
     "priority": 7,
@@ -132,9 +240,22 @@
     "homeHeroAnswerZh": "捷克公民在符合当前公布的资格条件时，可能适用中国现行免签安排。",
     "homeIntroEn": "This guide separates the country-level decision from the detailed policy so travelers can quickly identify the route that applies to their trip.",
     "homeIntroZh": "本页把国家级判断与具体政策详情分开，方便旅客快速找到适合自己行程的入境路径。",
-    "homeImportantNotesEn": ["Confirm purpose and stay conditions in the policy detail.", "Do not assume every passport or travel document has the same treatment.", "Check the latest official information before departure."],
-    "homeImportantNotesZh": ["请在政策详情中确认出行目的和停留条件。", "不同护照或旅行证件的适用情况可能不同。", "出行前核对官方最新信息。"],
-    "relatedCountryCodes": ["pl", "de", "at", "sk"]
+    "homeImportantNotesEn": [
+      "Confirm purpose and stay conditions in the policy detail.",
+      "Do not assume every passport or travel document has the same treatment.",
+      "Check the latest official information before departure."
+    ],
+    "homeImportantNotesZh": [
+      "请在政策详情中确认出行目的和停留条件。",
+      "不同护照或旅行证件的适用情况可能不同。",
+      "出行前核对官方最新信息。"
+    ],
+    "relatedCountryCodes": [
+      "pl",
+      "de",
+      "at",
+      "sk"
+    ]
   },
   "gb": {
     "priority": 8,
@@ -149,9 +270,22 @@
     "homeHeroAnswerZh": "英国公民是否可以免签进入中国，取决于护照、出行目的及行程适用的当前政策。",
     "homeIntroEn": "Start with the eligibility decision, then open the relevant policy page for the detailed conditions. If no visa-free route applies, continue to the China visa guide.",
     "homeIntroZh": "建议先完成资格判断，再进入对应政策查看详细条件。如果没有适用免签路径，请继续查看中国签证申请指南。",
-    "homeImportantNotesEn": ["Check the exact passport and purpose requirements.", "Transit rules are different from ordinary visa-free travel.", "Always verify the current policy before departure."],
-    "homeImportantNotesZh": ["确认具体护照和出行目的要求。", "过境规则与普通免签出行规则不同。", "出发前务必核对当前政策。"],
-    "relatedCountryCodes": ["us", "au", "de", "fr"]
+    "homeImportantNotesEn": [
+      "Check the exact passport and purpose requirements.",
+      "Transit rules are different from ordinary visa-free travel.",
+      "Always verify the current policy before departure."
+    ],
+    "homeImportantNotesZh": [
+      "确认具体护照和出行目的要求。",
+      "过境规则与普通免签出行规则不同。",
+      "出发前务必核对当前政策。"
+    ],
+    "relatedCountryCodes": [
+      "us",
+      "au",
+      "de",
+      "fr"
+    ]
   },
   "my": {
     "priority": 9,
@@ -166,9 +300,22 @@
     "homeHeroAnswerZh": "马来西亚公民在护照、出行目的和停留条件符合相应政策时，可能适用中国免签安排。",
     "homeIntroEn": "This page helps Malaysian travelers distinguish the applicable visa-exemption arrangement from transit and regular visa routes.",
     "homeIntroZh": "本页帮助马来西亚旅客区分适用的免签安排、过境路径以及普通签证路径。",
-    "homeImportantNotesEn": ["Bilateral visa-exemption terms should be checked against the current policy details.", "Confirm the purpose and maximum stay before travel.", "Use the visa guide if your trip falls outside the exemption conditions."],
-    "homeImportantNotesZh": ["双边免签条款请以当前政策详情为准。", "出行前确认目的和最长停留期限。", "如果行程不符合免签条件，请使用签证指南。"],
-    "relatedCountryCodes": ["sg", "th", "id", "jp"]
+    "homeImportantNotesEn": [
+      "Bilateral visa-exemption terms should be checked against the current policy details.",
+      "Confirm the purpose and maximum stay before travel.",
+      "Use the visa guide if your trip falls outside the exemption conditions."
+    ],
+    "homeImportantNotesZh": [
+      "双边免签条款请以当前政策详情为准。",
+      "出行前确认目的和最长停留期限。",
+      "如果行程不符合免签条件，请使用签证指南。"
+    ],
+    "relatedCountryCodes": [
+      "sg",
+      "th",
+      "id",
+      "jp"
+    ]
   },
   "jp": {
     "priority": 10,
@@ -183,8 +330,1503 @@
     "homeHeroAnswerZh": "日本公民在判断是否免签前，应结合护照、出行目的和计划停留时间核对当前政策。",
     "homeIntroEn": "The Japan-to-China guide is structured around the actual travel decision: identify the applicable policy first, then review its conditions and practical entry steps.",
     "homeIntroZh": "本页围绕真实出行决策设计：先判断适用政策，再查看政策条件和实际入境步骤。",
-    "homeImportantNotesEn": ["Check the policy that matches your actual travel purpose.", "Review stay and passport conditions before booking around the exemption.", "Confirm the latest official information before departure."],
-    "homeImportantNotesZh": ["请根据实际出行目的选择对应政策。", "在根据免签安排预订行程前确认停留期限和护照条件。", "出发前确认官方最新信息。"],
-    "relatedCountryCodes": ["sg", "kr", "au", "gb"]
+    "homeImportantNotesEn": [
+      "Check the policy that matches your actual travel purpose.",
+      "Review stay and passport conditions before booking around the exemption.",
+      "Confirm the latest official information before departure."
+    ],
+    "homeImportantNotesZh": [
+      "请根据实际出行目的选择对应政策。",
+      "在根据免签安排预订行程前确认停留期限和护照条件。",
+      "出发前确认官方最新信息。"
+    ],
+    "relatedCountryCodes": [
+      "sg",
+      "kr",
+      "au",
+      "gb"
+    ]
+  },
+  "andorra": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "andorra",
+    "homeSeoTitleEn": "Andorra to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Andorra citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "安道尔来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "安道尔公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Andorra citizens enter China without a visa?",
+    "homeHeroQuestionZh": "安道尔公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Andorra ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的安道尔普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "antigua": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "antigua",
+    "homeSeoTitleEn": "Antigua and Barbuda to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Antigua and Barbuda citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "安提瓜和巴布达来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "安提瓜和巴布达公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Antigua and Barbuda citizens enter China without a visa?",
+    "homeHeroQuestionZh": "安提瓜和巴布达公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Antigua and Barbuda citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "安提瓜和巴布达公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "argentina": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "argentina",
+    "homeSeoTitleEn": "Argentina to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Argentina citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "阿根廷来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "阿根廷公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Argentina citizens enter China without a visa?",
+    "homeHeroQuestionZh": "阿根廷公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Argentina ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的阿根廷普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "armenia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "armenia",
+    "homeSeoTitleEn": "Armenia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Armenia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "亚美尼亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "亚美尼亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Armenia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "亚美尼亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Armenia citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "亚美尼亚公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "austria": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "austria",
+    "homeSeoTitleEn": "Austria to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Austria citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "奥地利来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "奥地利公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Austria citizens enter China without a visa?",
+    "homeHeroQuestionZh": "奥地利公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Austria ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的奥地利普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "azerbaijan": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "azerbaijan",
+    "homeSeoTitleEn": "Azerbaijan to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Azerbaijan citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "阿塞拜疆来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "阿塞拜疆公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Azerbaijan citizens enter China without a visa?",
+    "homeHeroQuestionZh": "阿塞拜疆公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Azerbaijan citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "阿塞拜疆公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "georgia",
+      "kazakhstan",
+      "qatar"
+    ]
+  },
+  "bahamas": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "bahamas",
+    "homeSeoTitleEn": "Bahamas to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Bahamas citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "巴哈马来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "巴哈马公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Bahamas citizens enter China without a visa?",
+    "homeHeroQuestionZh": "巴哈马公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Bahamas citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "巴哈马公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "bahrain": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "bahrain",
+    "homeSeoTitleEn": "Bahrain to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Bahrain citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "巴林来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "巴林公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Bahrain citizens enter China without a visa?",
+    "homeHeroQuestionZh": "巴林公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Bahrain ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的巴林普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "barbados": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "barbados",
+    "homeSeoTitleEn": "Barbados to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Barbados citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "巴巴多斯来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "巴巴多斯公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Barbados citizens enter China without a visa?",
+    "homeHeroQuestionZh": "巴巴多斯公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Barbados citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "巴巴多斯公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "belarus": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "belarus",
+    "homeSeoTitleEn": "Belarus to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Belarus citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "白俄罗斯来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "白俄罗斯公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Belarus citizens enter China without a visa?",
+    "homeHeroQuestionZh": "白俄罗斯公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Belarus citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "白俄罗斯公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "belgium": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "belgium",
+    "homeSeoTitleEn": "Belgium to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Belgium citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "比利时来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "比利时公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Belgium citizens enter China without a visa?",
+    "homeHeroQuestionZh": "比利时公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Belgium ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的比利时普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "bosnia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "bosnia",
+    "homeSeoTitleEn": "Bosnia and Herzegovina to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Bosnia and Herzegovina citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "波黑来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "波黑公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Bosnia and Herzegovina citizens enter China without a visa?",
+    "homeHeroQuestionZh": "波黑公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Bosnia and Herzegovina citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "波黑公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "brazil": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "brazil",
+    "homeSeoTitleEn": "Brazil to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Brazil citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "巴西来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "巴西公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Brazil citizens enter China without a visa?",
+    "homeHeroQuestionZh": "巴西公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Brazil ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的巴西普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "brunei": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "brunei",
+    "homeSeoTitleEn": "Brunei to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Brunei citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "文莱来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "文莱公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Brunei citizens enter China without a visa?",
+    "homeHeroQuestionZh": "文莱公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Brunei ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的文莱普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "bulgaria": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "bulgaria",
+    "homeSeoTitleEn": "Bulgaria to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Bulgaria citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "保加利亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "保加利亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Bulgaria citizens enter China without a visa?",
+    "homeHeroQuestionZh": "保加利亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Bulgaria ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的保加利亚普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "canada": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "canada",
+    "homeSeoTitleEn": "Canada to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Canada citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "加拿大来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "加拿大公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Canada citizens enter China without a visa?",
+    "homeHeroQuestionZh": "加拿大公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Canada ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的加拿大普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "chile": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "chile",
+    "homeSeoTitleEn": "Chile to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Chile citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "智利来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "智利公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Chile citizens enter China without a visa?",
+    "homeHeroQuestionZh": "智利公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Chile ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的智利普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "croatia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "croatia",
+    "homeSeoTitleEn": "Croatia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Croatia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "克罗地亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "克罗地亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Croatia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "克罗地亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Croatia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的克罗地亚普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "cyprus": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "cyprus",
+    "homeSeoTitleEn": "Cyprus to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Cyprus citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "塞浦路斯来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "塞浦路斯公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Cyprus citizens enter China without a visa?",
+    "homeHeroQuestionZh": "塞浦路斯公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Cyprus ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的塞浦路斯普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "denmark": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "denmark",
+    "homeSeoTitleEn": "Denmark to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Denmark citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "丹麦来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "丹麦公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Denmark citizens enter China without a visa?",
+    "homeHeroQuestionZh": "丹麦公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Denmark ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的丹麦普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "dominica": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "dominica",
+    "homeSeoTitleEn": "Dominica to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Dominica citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "多米尼克来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "多米尼克公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Dominica citizens enter China without a visa?",
+    "homeHeroQuestionZh": "多米尼克公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Dominica citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "多米尼克公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "ecuador": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "ecuador",
+    "homeSeoTitleEn": "Ecuador to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Ecuador citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "厄瓜多尔来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "厄瓜多尔公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Ecuador citizens enter China without a visa?",
+    "homeHeroQuestionZh": "厄瓜多尔公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Ecuador citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "厄瓜多尔公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "estonia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "estonia",
+    "homeSeoTitleEn": "Estonia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Estonia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "爱沙尼亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "爱沙尼亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Estonia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "爱沙尼亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Estonia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的爱沙尼亚普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "fiji": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "fiji",
+    "homeSeoTitleEn": "Fiji to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Fiji citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "斐济来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "斐济公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Fiji citizens enter China without a visa?",
+    "homeHeroQuestionZh": "斐济公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Fiji citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "斐济公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "finland": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "finland",
+    "homeSeoTitleEn": "Finland to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Finland citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "芬兰来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "芬兰公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Finland citizens enter China without a visa?",
+    "homeHeroQuestionZh": "芬兰公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Finland ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的芬兰普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "france": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "france",
+    "homeSeoTitleEn": "France to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "France citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "法国来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "法国公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can France citizens enter China without a visa?",
+    "homeHeroQuestionZh": "法国公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible France ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的法国普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "de",
+      "italy",
+      "netherlands",
+      "spain"
+    ]
+  },
+  "georgia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "georgia",
+    "homeSeoTitleEn": "Georgia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Georgia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "格鲁吉亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "格鲁吉亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Georgia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "格鲁吉亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Georgia citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "格鲁吉亚公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "kazakhstan",
+      "qatar"
+    ]
+  },
+  "greece": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "greece",
+    "homeSeoTitleEn": "Greece to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Greece citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "希腊来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "希腊公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Greece citizens enter China without a visa?",
+    "homeHeroQuestionZh": "希腊公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Greece ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的希腊普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "grenada": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "grenada",
+    "homeSeoTitleEn": "Grenada to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Grenada citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "格林纳达来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "格林纳达公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Grenada citizens enter China without a visa?",
+    "homeHeroQuestionZh": "格林纳达公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Grenada citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "格林纳达公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "hungary": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "hungary",
+    "homeSeoTitleEn": "Hungary to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Hungary citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "匈牙利来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "匈牙利公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Hungary citizens enter China without a visa?",
+    "homeHeroQuestionZh": "匈牙利公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Hungary ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的匈牙利普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "iceland": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "iceland",
+    "homeSeoTitleEn": "Iceland to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Iceland citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "冰岛来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "冰岛公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Iceland citizens enter China without a visa?",
+    "homeHeroQuestionZh": "冰岛公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Iceland ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的冰岛普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "indonesia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "indonesia",
+    "homeSeoTitleEn": "Indonesia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Indonesia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "印度尼西亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "印度尼西亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Indonesia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "印度尼西亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Indonesia ordinary-passport holders may use the 240-hour transit route only when traveling through China to a third country or region and meeting all transit conditions.",
+    "homeHeroAnswerZh": "符合条件的印度尼西亚普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。",
+    "relatedCountryCodes": [
+      "al",
+      "austria",
+      "belgium",
+      "bosnia"
+    ]
+  },
+  "ireland": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "ireland",
+    "homeSeoTitleEn": "Ireland to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Ireland citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "爱尔兰来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "爱尔兰公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Ireland citizens enter China without a visa?",
+    "homeHeroQuestionZh": "爱尔兰公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Ireland ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的爱尔兰普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "italy": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "italy",
+    "homeSeoTitleEn": "Italy to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Italy citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "意大利来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "意大利公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Italy citizens enter China without a visa?",
+    "homeHeroQuestionZh": "意大利公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Italy ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的意大利普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "netherlands",
+      "spain"
+    ]
+  },
+  "kazakhstan": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "kazakhstan",
+    "homeSeoTitleEn": "Kazakhstan to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Kazakhstan citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "哈萨克斯坦来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "哈萨克斯坦公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Kazakhstan citizens enter China without a visa?",
+    "homeHeroQuestionZh": "哈萨克斯坦公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Kazakhstan citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "哈萨克斯坦公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "qatar"
+    ]
+  },
+  "kuwait": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "kuwait",
+    "homeSeoTitleEn": "Kuwait to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Kuwait citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "科威特来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "科威特公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Kuwait citizens enter China without a visa?",
+    "homeHeroQuestionZh": "科威特公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Kuwait ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的科威特普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "kyrgyzstan": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "kyrgyzstan",
+    "homeSeoTitleEn": "Kyrgyzstan to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Kyrgyzstan citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "吉尔吉斯斯坦来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "吉尔吉斯斯坦公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Kyrgyzstan citizens enter China without a visa?",
+    "homeHeroQuestionZh": "吉尔吉斯斯坦公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Kyrgyzstan ordinary-passport holders may use the 240-hour transit route only when traveling through China to a third country or region and meeting all transit conditions.",
+    "homeHeroAnswerZh": "符合条件的吉尔吉斯斯坦普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。",
+    "relatedCountryCodes": [
+      "al",
+      "austria",
+      "belgium",
+      "bosnia"
+    ]
+  },
+  "latvia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "latvia",
+    "homeSeoTitleEn": "Latvia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Latvia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "拉脱维亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "拉脱维亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Latvia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "拉脱维亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Latvia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的拉脱维亚普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "liechtenstein": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "liechtenstein",
+    "homeSeoTitleEn": "Liechtenstein to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Liechtenstein citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "列支敦士登来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "列支敦士登公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Liechtenstein citizens enter China without a visa?",
+    "homeHeroQuestionZh": "列支敦士登公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Liechtenstein ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的列支敦士登普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "lithuania": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "lithuania",
+    "homeSeoTitleEn": "Lithuania to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Lithuania citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "立陶宛来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "立陶宛公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Lithuania citizens enter China without a visa?",
+    "homeHeroQuestionZh": "立陶宛公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Lithuania ordinary-passport holders may use the 240-hour transit route only when traveling through China to a third country or region and meeting all transit conditions.",
+    "homeHeroAnswerZh": "符合条件的立陶宛普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。",
+    "relatedCountryCodes": [
+      "al",
+      "austria",
+      "belgium",
+      "bosnia"
+    ]
+  },
+  "luxembourg": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "luxembourg",
+    "homeSeoTitleEn": "Luxembourg to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Luxembourg citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "卢森堡来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "卢森堡公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Luxembourg citizens enter China without a visa?",
+    "homeHeroQuestionZh": "卢森堡公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Luxembourg ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的卢森堡普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "maldives": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "maldives",
+    "homeSeoTitleEn": "Maldives to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Maldives citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "马尔代夫来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "马尔代夫公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Maldives citizens enter China without a visa?",
+    "homeHeroQuestionZh": "马尔代夫公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Maldives citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "马尔代夫公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "malta": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "malta",
+    "homeSeoTitleEn": "Malta to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Malta citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "马耳他来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "马耳他公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Malta citizens enter China without a visa?",
+    "homeHeroQuestionZh": "马耳他公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Malta ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的马耳他普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "mauritius": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "mauritius",
+    "homeSeoTitleEn": "Mauritius to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Mauritius citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "毛里求斯来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "毛里求斯公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Mauritius citizens enter China without a visa?",
+    "homeHeroQuestionZh": "毛里求斯公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Mauritius citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "毛里求斯公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "mexico": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "mexico",
+    "homeSeoTitleEn": "Mexico to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Mexico citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "墨西哥来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "墨西哥公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Mexico citizens enter China without a visa?",
+    "homeHeroQuestionZh": "墨西哥公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Mexico ordinary-passport holders may use the 240-hour transit route only when traveling through China to a third country or region and meeting all transit conditions.",
+    "homeHeroAnswerZh": "符合条件的墨西哥普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。",
+    "relatedCountryCodes": [
+      "al",
+      "austria",
+      "belgium",
+      "bosnia"
+    ]
+  },
+  "monaco": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "monaco",
+    "homeSeoTitleEn": "Monaco to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Monaco citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "摩纳哥来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "摩纳哥公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Monaco citizens enter China without a visa?",
+    "homeHeroQuestionZh": "摩纳哥公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Monaco ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的摩纳哥普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "montenegro": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "montenegro",
+    "homeSeoTitleEn": "Montenegro to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Montenegro citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "黑山来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "黑山公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Montenegro citizens enter China without a visa?",
+    "homeHeroQuestionZh": "黑山公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Montenegro ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的黑山普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "netherlands": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "netherlands",
+    "homeSeoTitleEn": "Netherlands to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Netherlands citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "荷兰来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "荷兰公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Netherlands citizens enter China without a visa?",
+    "homeHeroQuestionZh": "荷兰公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Netherlands ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的荷兰普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "spain"
+    ]
+  },
+  "newzealand": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "newzealand",
+    "homeSeoTitleEn": "New Zealand to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "New Zealand citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "新西兰来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "新西兰公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can New Zealand citizens enter China without a visa?",
+    "homeHeroQuestionZh": "新西兰公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible New Zealand ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的新西兰普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "northmacedonia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "northmacedonia",
+    "homeSeoTitleEn": "North Macedonia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "North Macedonia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "北马其顿来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "北马其顿公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can North Macedonia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "北马其顿公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible North Macedonia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的北马其顿普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "norway": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "norway",
+    "homeSeoTitleEn": "Norway to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Norway citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "挪威来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "挪威公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Norway citizens enter China without a visa?",
+    "homeHeroQuestionZh": "挪威公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Norway ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的挪威普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "oman": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "oman",
+    "homeSeoTitleEn": "Oman to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Oman citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "阿曼来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "阿曼公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Oman citizens enter China without a visa?",
+    "homeHeroQuestionZh": "阿曼公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Oman ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的阿曼普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "peru": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "peru",
+    "homeSeoTitleEn": "Peru to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Peru citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "秘鲁来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "秘鲁公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Peru citizens enter China without a visa?",
+    "homeHeroQuestionZh": "秘鲁公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Peru ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的秘鲁普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "philippines": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "philippines",
+    "homeSeoTitleEn": "Philippines to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Philippines citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "菲律宾来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "菲律宾公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Philippines citizens enter China without a visa?",
+    "homeHeroQuestionZh": "菲律宾公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Philippines citizens may use the Hainan 30-day regional visa-free route when the ordinary-passport and purpose conditions are met.",
+    "homeHeroAnswerZh": "菲律宾公民符合普通护照及事由条件时，可使用海南30天区域免签路径。",
+    "relatedCountryCodes": [
+      "al",
+      "argentina",
+      "au",
+      "austria"
+    ]
+  },
+  "portugal": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "portugal",
+    "homeSeoTitleEn": "Portugal to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Portugal citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "葡萄牙来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "葡萄牙公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Portugal citizens enter China without a visa?",
+    "homeHeroQuestionZh": "葡萄牙公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Portugal ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的葡萄牙普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "qatar": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "qatar",
+    "homeSeoTitleEn": "Qatar to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Qatar citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "卡塔尔来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "卡塔尔公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Qatar citizens enter China without a visa?",
+    "homeHeroQuestionZh": "卡塔尔公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Qatar citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "卡塔尔公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "romania": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "romania",
+    "homeSeoTitleEn": "Romania to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Romania citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "罗马尼亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "罗马尼亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Romania citizens enter China without a visa?",
+    "homeHeroQuestionZh": "罗马尼亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Romania ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的罗马尼亚普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "russia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "russia",
+    "homeSeoTitleEn": "Russia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Russia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "俄罗斯来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "俄罗斯公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Russia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "俄罗斯公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Russia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的俄罗斯普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "samoa": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "samoa",
+    "homeSeoTitleEn": "Samoa to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Samoa citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "萨摩亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "萨摩亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Samoa citizens enter China without a visa?",
+    "homeHeroQuestionZh": "萨摩亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Samoa citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "萨摩亚公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "sanmarino": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "sanmarino",
+    "homeSeoTitleEn": "San Marino to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "San Marino citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "圣马力诺来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "圣马力诺公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can San Marino citizens enter China without a visa?",
+    "homeHeroQuestionZh": "圣马力诺公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "San Marino citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "圣马力诺公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "saudi": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "saudi",
+    "homeSeoTitleEn": "Saudi Arabia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Saudi Arabia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "沙特来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "沙特公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Saudi Arabia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "沙特公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Saudi Arabia ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的沙特普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "serbia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "serbia",
+    "homeSeoTitleEn": "Serbia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Serbia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "塞尔维亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "塞尔维亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Serbia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "塞尔维亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Serbia citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "塞尔维亚公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "seychelles": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "seychelles",
+    "homeSeoTitleEn": "Seychelles to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Seychelles citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "塞舌尔来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "塞舌尔公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Seychelles citizens enter China without a visa?",
+    "homeHeroQuestionZh": "塞舌尔公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Seychelles citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "塞舌尔公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "slovakia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "slovakia",
+    "homeSeoTitleEn": "Slovakia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Slovakia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "斯洛伐克来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "斯洛伐克公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Slovakia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "斯洛伐克公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Slovakia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的斯洛伐克普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "slovenia": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "slovenia",
+    "homeSeoTitleEn": "Slovenia to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Slovenia citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "斯洛文尼亚来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "斯洛文尼亚公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Slovenia citizens enter China without a visa?",
+    "homeHeroQuestionZh": "斯洛文尼亚公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Slovenia ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的斯洛文尼亚普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "solomon": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "solomon",
+    "homeSeoTitleEn": "Solomon Islands to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Solomon Islands citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "所罗门群岛来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "所罗门群岛公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Solomon Islands citizens enter China without a visa?",
+    "homeHeroQuestionZh": "所罗门群岛公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Solomon Islands citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "所罗门群岛公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "korea": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "korea",
+    "homeSeoTitleEn": "South Korea to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "South Korea citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "韩国来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "韩国公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can South Korea citizens enter China without a visa?",
+    "homeHeroQuestionZh": "韩国公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible South Korea ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的韩国普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "spain": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "spain",
+    "homeSeoTitleEn": "Spain to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Spain citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "西班牙来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "西班牙公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Spain citizens enter China without a visa?",
+    "homeHeroQuestionZh": "西班牙公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Spain ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的西班牙普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "suriname": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "suriname",
+    "homeSeoTitleEn": "Suriname to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Suriname citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "苏里南来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "苏里南公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Suriname citizens enter China without a visa?",
+    "homeHeroQuestionZh": "苏里南公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Suriname citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "苏里南公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "sweden": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "sweden",
+    "homeSeoTitleEn": "Sweden to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Sweden citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "瑞典来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "瑞典公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Sweden citizens enter China without a visa?",
+    "homeHeroQuestionZh": "瑞典公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Sweden ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的瑞典普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "switzerland": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "switzerland",
+    "homeSeoTitleEn": "Switzerland to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Switzerland citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "瑞士来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "瑞士公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Switzerland citizens enter China without a visa?",
+    "homeHeroQuestionZh": "瑞士公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Switzerland ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route. The correct route depends on the itinerary and purpose.",
+    "homeHeroAnswerZh": "符合条件的瑞士普通护照持有人可能同时适用30天直接免签和240小时过境免签，两条路径的条件不同，需按实际行程判断。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "thailand": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "thailand",
+    "homeSeoTitleEn": "Thailand to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Thailand citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "泰国来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "泰国公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Thailand citizens enter China without a visa?",
+    "homeHeroQuestionZh": "泰国公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Thailand citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "泰国公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "tonga": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "tonga",
+    "homeSeoTitleEn": "Tonga to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Tonga citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "汤加来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "汤加公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Tonga citizens enter China without a visa?",
+    "homeHeroQuestionZh": "汤加公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Tonga citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "汤加公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "ukraine": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "ukraine",
+    "homeSeoTitleEn": "Ukraine to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Ukraine citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "乌克兰来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "乌克兰公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Ukraine citizens enter China without a visa?",
+    "homeHeroQuestionZh": "乌克兰公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Ukraine ordinary-passport holders may use the 240-hour transit route only when traveling through China to a third country or region and meeting all transit conditions.",
+    "homeHeroAnswerZh": "符合条件的乌克兰普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。",
+    "relatedCountryCodes": [
+      "al",
+      "austria",
+      "belgium",
+      "bosnia"
+    ]
+  },
+  "uae": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "uae",
+    "homeSeoTitleEn": "United Arab Emirates to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "United Arab Emirates citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "阿联酋来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "阿联酋公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can United Arab Emirates citizens enter China without a visa?",
+    "homeHeroQuestionZh": "阿联酋公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "United Arab Emirates citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "阿联酋公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "azerbaijan",
+      "georgia",
+      "kazakhstan",
+      "qatar"
+    ]
+  },
+  "uruguay": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "uruguay",
+    "homeSeoTitleEn": "Uruguay to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Uruguay citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "乌拉圭来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "乌拉圭公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Uruguay citizens enter China without a visa?",
+    "homeHeroQuestionZh": "乌拉圭公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Uruguay ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.",
+    "homeHeroAnswerZh": "符合条件的乌拉圭普通护照持有人可按现行政策免签来华最长30天，具体以出行当日规定为准。",
+    "relatedCountryCodes": [
+      "france",
+      "de",
+      "italy",
+      "netherlands"
+    ]
+  },
+  "uzbekistan": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "uzbekistan",
+    "homeSeoTitleEn": "Uzbekistan to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Uzbekistan citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "乌兹别克斯坦来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "乌兹别克斯坦公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Uzbekistan citizens enter China without a visa?",
+    "homeHeroQuestionZh": "乌兹别克斯坦公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Uzbekistan citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
+    "homeHeroAnswerZh": "乌兹别克斯坦公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "relatedCountryCodes": [
+      "uae",
+      "azerbaijan",
+      "georgia",
+      "kazakhstan"
+    ]
+  },
+  "vietnam": {
+    "priority": 999,
+    "tier": "C",
+    "routeCode": "vietnam",
+    "homeSeoTitleEn": "Vietnam to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
+    "homeSeoDescEn": "Vietnam citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoTitleZh": "越南来华签证与免签指南 2026 | 资格查询与入境规则",
+    "homeSeoDescZh": "越南公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeHeroQuestionEn": "Can Vietnam citizens enter China without a visa?",
+    "homeHeroQuestionZh": "越南公民去中国可以免签吗？",
+    "homeHeroAnswerEn": "Eligible Vietnam ordinary-passport holders may use the 240-hour transit route only when traveling through China to a third country or region and meeting all transit conditions.",
+    "homeHeroAnswerZh": "符合条件的越南普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。",
+    "relatedCountryCodes": [
+      "al",
+      "austria",
+      "belgium",
+      "bosnia"
+    ]
   }
 }

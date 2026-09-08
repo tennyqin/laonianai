@@ -20,6 +20,7 @@
         .country-flag{width:24px;height:18px;display:inline-block;flex:none;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
         .country-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .country-days{margin-left:auto;flex:none}
+        .route-tag{display:inline-block;padding:4px 7px;border-radius:999px;background:#ecfdf5;color:#047857;font-size:11px;font-weight:750}
     </style>
 </head>
 <body>
@@ -47,32 +48,29 @@
 
     <div th:if="${searched}">
         <h2 class="title" th:text="${lang == 'en' ? 'Search Results' : '搜索结果'}"></h2>
-        <div class="section" th:if="${!unilateralResult.isEmpty()}">
-            <h3 class="title" th:text="${lang == 'en' ? 'Unilateral Visa Free' : '单方面免签'}"></h3>
-            <div class="grid"><div class="card" th:each="country : ${unilateralResult}">
-                <a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='unilateral',lang=${lang})}">
-                    <span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(country.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
-                </a>
-            </div></div>
+        <div class="section" th:if="${searchHasResults}">
+            <p class="subtitle" th:text="${lang == 'en' ? 'Open a country guide to compare all available routes, run the eligibility checker, and then review the exact policy.' : '进入国家指南后，可先比较所有可用路径，再使用资格检查器，最后查看对应政策详情。'}"></p>
+            <div class="grid">
+                <div class="card" th:each="country : ${searchCountryResults}">
+                    <a class="country-link" th:href="@{/country/{code}(code=${country.code},lang=${lang})}">
+                        <span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(country.code)}" aria-hidden="true"></span>
+                        <span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
+                    </a>
+                    <div class="route-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+                        <span th:each="t : ${country.routeTypes}" class="route-tag" th:text="${t=='unilateral'?(lang=='en'?'Direct visa-free':'直接免签'):t=='mutual'?(lang=='en'?'Mutual exemption':'互免签证'):t=='transit'?(lang=='en'?'240-hour transit':'240小时过境免签'):(lang=='en'?'Hainan 30-day':'海南30天免签')}"></span>
+                    </div>
+                    <div style="margin-top:9px;font-size:12px;color:#64748b;line-height:1.5;" th:text="${lang == 'en' ? 'Country guide + checker →' : '进入国家指南并检查资格 →'}"></div>
+                </div>
+            </div>
         </div>
-        <div class="section" th:if="${!mutualResult.isEmpty()}">
-            <h3 class="title" th:text="${lang == 'en' ? 'Mutual Visa Exemption' : '互免签证'}"></h3>
-            <div class="grid"><div class="card" th:each="country : ${mutualResult}">
-                <a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='mutual',lang=${lang})}">
-                    <span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(country.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span><span class="country-days" th:text="|${country.days}d|"></span>
-                </a>
-            </div></div>
-        </div>
-        <div class="section" th:if="${!transitResult.isEmpty()}">
-            <h3 class="title" th:text="${lang == 'en' ? 'Transit Visa Free' : '过境免签'}"></h3>
-            <div class="grid"><div class="card" th:each="country : ${transitResult}">
-                <a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='transit',lang=${lang})}">
-                    <span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(country.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span>
-                </a>
-            </div></div>
-        </div>
-        <div class="section" th:if="${unilateralResult.isEmpty() && mutualResult.isEmpty() && transitResult.isEmpty()}">
-            <p th:text="${lang == 'en' ? 'No results found.' : '未找到相关国家。'}"></p>
+        <div class="section" th:if="${!searchHasResults}">
+            <div class="alert-block" style="background:#eff6ff;border-color:#bfdbfe;">
+                <strong th:text="${lang == 'en' ? 'No country policy match — but 24-hour transit may still be relevant' : '没有找到该国家的对应政策，但24小时过境免签可能仍然适用'}"></strong>
+                <p th:text="${lang == 'en' ? 'The 24-hour visa-free transit policy is not limited to the 57-country 240-hour list. China applies a general 24-hour transit policy to nationals of all countries at open ports. You must be transiting to a third country or region, hold valid international travel documents and confirmed onward international travel, and normally remain within the port restricted area. If you need to leave that area, a temporary entry permit is required.' : '24小时过境免签并不等同于57国240小时名单。中国所有对外开放口岸对世界各国人员实施24小时过境免签，但必须是经中国前往第三国或地区，持有效国际旅行证件和已确定座位的国际联程客票，并且通常不得离开口岸限定区域。如需离开限定区域，应先申请临时入境许可。'}"></p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+                    <a class="search-btn" th:href="@{/visa-guide(lang=${lang})}" style="display:inline-block;text-decoration:none;" th:text="${lang == 'en' ? 'Open China visa guide →' : '查看中国签证指南 →'}"></a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -80,14 +78,15 @@
         <div class="intro-block"><p th:text="${lang == 'en' ? introPara1 : introPara1Zh}"></p><p th:text="${lang == 'en' ? introPara2 : introPara2Zh}"></p></div>
         <div class="alert-block expiry-block"><strong th:text="${lang == 'en' ? '⚠️ Policy Expiry Reminder' : '⚠️ 政策到期提醒'}"></strong><p th:text="${lang == 'en' ? expiryNote : expiryNoteZh}"></p></div>
         <div class="section compare-section"><h2 class="title" th:text="${lang == 'en' ? compareTableTitle : compareTableTitleZh}"></h2><div class="table-wrap"><table class="policy-table"><tbody><tr th:each="row : ${compareRows}"><td th:text="${lang == 'en' ? row.label : row.labelZh}"></td><td th:text="${lang == 'en' ? row.col1 : row.col1Zh}"></td><td th:text="${lang == 'en' ? row.col2 : row.col2Zh}"></td><td th:text="${lang == 'en' ? row.col3 : row.col3Zh}"></td></tr></tbody></table></div></div>
-        <div class="section faq-section"><h2 class="title" th:text="${lang == 'en' ? 'Frequently Asked Questions' : '常见问题'}"></h2><div class="faq-items"><div class="faq-item" th:each="item : ${faqs}"><div class="faq-q"><span th:text="${lang == 'en' ? item.q : item.qZh}"></span></div><div class="faq-a"><div th:text="${lang == 'en' ? item.a : item.aZh}"></div></div></div></div></div>
+        <div class="section faq-section"><h2 class="title" th:text="${lang == 'en' ? 'Frequently Asked Questions' : '常见问题'}"></h2><div class="faq-items"><div class="faq-item" th:each="item : ${faqs}"><div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span th:text="${lang == 'en' ? item.q : item.qZh}"></span><span class="faq-toggle" aria-hidden="true">+</span></div><div class="faq-a"><div th:text="${lang == 'en' ? item.a : item.aZh}"></div></div></div></div></div>
     </div>
 
     <div id="unilateral" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? unilateralTitle : unilateralTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? unilateralDesc : unilateralDescZh}"></p><div th:each="c : ${continents}"><h3 th:text="${lang == 'en' ? c.name : c.nameZh}"></h3><div class="grid"><div class="card" th:each="country : ${c.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${country.code},type='unilateral',lang=${lang})}"><span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(country.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? country.name : country.nameZh}"></span></a></div></div></div></div>
 
     <div id="mutual" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? mutualTitle : mutualTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? mutualDesc : mutualDescZh}"></p><div th:each="cont : ${mutualContinents}"><h3 th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='mutual',lang=${lang})}"><span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(c.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span><span class="country-days" th:text="|${c.days}d|"></span></a></div></div></div></div>
 
-    <div id="transit" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? transitTitle : transitTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? transitDesc : transitDescZh}"></p><div th:each="cont : ${transitContinents}"><h3 th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='transit',lang=${lang})}"><span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(c.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span></a></div></div></div><div class="policy" th:each="p : ${policies}"><h3 th:text="${lang == 'en' ? p.title : p.titleZh}"></h3><p th:text="${lang == 'en' ? p.content : p.contentZh}"></p></div></div>
+    <div id="transit" class="section" th:if="${!searched}"><h2 class="title" th:text="${lang == 'en' ? transitTitle : transitTitleZh}"></h2><p class="subtitle" th:text="${lang == 'en' ? transitDesc : transitDescZh}"></p><div class="alert-block" style="margin:12px 0 18px;background:#eff6ff;border-color:#bfdbfe;"><strong th:text="${lang == 'en' ? 'Important: 24-hour transit is different from the 240-hour list' : '重要：24小时过境免签与240小时名单不同'}"></strong><p th:text="${lang == 'en' ? 'China applies a general 24-hour visa-free transit policy to nationals of all countries at open ports. It is for transit to a third country or region and normally requires valid international travel documents, confirmed onward international travel and staying within the port restricted area. The 240-hour policy shown below is a separate, country-limited route.' : '中国所有对外开放口岸对世界各国人员实施24小时过境免签，但它要求经中国前往第三国或地区，并满足有效国际旅行证件、已确定座位的国际联程客票及口岸限定区域等条件。下面列出的240小时过境免签则是另一项仅适用于特定国家的政策。'}"></p></div><div th:each="cont : ${transitContinents}"><h3 th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='transit',lang=${lang})}"><span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(c.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span></a></div></div></div><div class="policy" th:each="p : ${policies}"><h3 th:text="${lang == 'en' ? p.title : p.titleZh}"></h3><p th:text="${lang == 'en' ? p.content : p.contentZh}"></p></div></div>
+    <div id="hainan" class="section" th:if="${!searched}"><h2 class="title" th:text="${hainanTitle}"></h2><p class="subtitle" th:text="${lang == 'en' ? hainanDesc : hainanDescZh}"></p><div th:each="cont : ${hainanContinents}"><h3 th:text="${lang == 'en' ? cont.name : cont.nameZh}"></h3><div class="grid"><div class="card" th:each="c : ${cont.countries}"><a class="country-link" th:href="@{/country/{code}/{type}(code=${c.code},type='hainan',lang=${lang})}"><span class="country-flag fi" th:classappend="${'fi-' + @countryFlagService.iso2Code(c.code)}" aria-hidden="true"></span><span class="country-name" th:text="${lang == 'en' ? c.name : c.nameZh}"></span><span class="country-days" th:text="|30d|"></span></a></div></div></div></div>
 </div>
 <div th:replace="~{common/footer :: footer}"></div>
 </body>

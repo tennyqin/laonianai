@@ -14,30 +14,38 @@ import java.util.Map;
 @Service
 public class CountryEligibilityService {
     private final CountryCodeResolver resolver;
+    private final Map<String, CountryDetail> hainanMap;
 
-    public CountryEligibilityService(CountryCodeResolver resolver) {
+    public CountryEligibilityService(CountryCodeResolver resolver, com.fasterxml.jackson.databind.ObjectMapper mapper) {
         this.resolver = resolver;
+        try {
+            this.hainanMap = mapper.readValue(new org.springframework.core.io.ClassPathResource("hainan.json").getInputStream(), new com.fasterxml.jackson.core.type.TypeReference<Map<String, CountryDetail>>() {});
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load hainan.json", e);
+        }
     }
 
     public Map<String, Object> build(String countryCode, List<CountryDetail> policies, Map<String, Object> extra) {
         String normalized = resolver.policyKey(countryCode);
         List<Map<String, Object>> rules = buildPolicies(policies);
         Map<String, Object> root = new LinkedHashMap<>();
-        root.put("version", "2026-09-06");
+        root.put("version", "2026-09-09");
         root.put("countryCode", resolver.routeCode(normalized));
-        root.put("policySource", "unilateral.json / mutual.json / transit.json");
+        root.put("policySource", "unilateral.json / mutual.json / transit.json / hainan.json");
         root.put("policies", rules);
 
-        // Hainan is not represented in the country policy JSONs used by this page.
-        // Never infer country eligibility from a hard-coded list.
+        CountryDetail hainanDetail = hainanMap.get(normalized);
         Map<String, Object> hainan = new LinkedHashMap<>();
-        hainan.put("enabled", false);
-        hainan.put("maxStayDays", null);
-        hainan.put("purposes", Collections.emptyList());
+        boolean hainanEnabled = hainanDetail != null;
+        hainan.put("enabled", hainanEnabled);
+        hainan.put("maxStayDays", hainanEnabled ? 30 : null);
+        hainan.put("purposes", hainanEnabled ? purposeCodes(hainanDetail.getPurpose()) : Collections.emptyList());
         hainan.put("restrictedToHainan", true);
-        hainan.put("requiresOrdinaryPassport", true);
-        hainan.put("verificationRequired", true);
-        hainan.put("officialSource", "https://en.nia.gov.cn/");
+        hainan.put("requiresOrdinaryPassport", hainanEnabled);
+        hainan.put("requiresThirdCountryOrRegion", false);
+        hainan.put("verificationRequired", !hainanEnabled);
+        hainan.put("officialSource", hainanEnabled ? "https://en.nia.gov.cn/" : null);
+        hainan.put("policyUrl", hainanEnabled ? "/country/" + resolver.routeCode(normalized) + "/hainan" : null);
         root.put("hainan", hainan);
 
         // 240-hour transit is enabled only when this country's transit.json record exists.
@@ -88,6 +96,8 @@ public class CountryEligibilityService {
             item.put("sourceRule", safe(policy.getRule()));
             item.put("sourceRuleZh", safe(policy.getRuleZh()));
             item.put("policyCode", resolver.policyKey(policy.getCode()));
+            item.put("policyExpiry", policy.getPolicyExpiry());
+            item.put("validFrom", policy.getValidFrom());
             result.add(item);
         }
         return result;
@@ -105,6 +115,9 @@ public class CountryEligibilityService {
         addIfContains(result, value, "business", "business", "commercial", "商务", "经商");
         addIfContains(result, value, "family", "family", "relative", "friend", "探亲", "访友");
         addIfContains(result, value, "exchange", "exchange", "交流");
+        addIfContains(result, value, "medical", "medical", "医疗", "就医");
+        addIfContains(result, value, "conference", "conference", "exhibition", "会展");
+        addIfContains(result, value, "sports", "sports", "competition", "体育");
         addIfContains(result, value, "transit", "transit", "过境");
         addIfContains(result, value, "visit", "visit", "访问");
         return result;

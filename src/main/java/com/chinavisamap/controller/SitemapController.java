@@ -22,6 +22,7 @@ public class SitemapController {
     private final Map<String, CountryDetail> unilateralMap;
     private final Map<String, CountryDetail> mutualMap;
     private final Map<String, CountryDetail> transitMap;
+    private final Map<String, CountryDetail> hainanMap;
     private final List<Map<String, Object>> articles;
     private final CountryCodeResolver resolver;
 
@@ -30,6 +31,7 @@ public class SitemapController {
         unilateralMap = loadCountryMap(objectMapper, "unilateral.json");
         mutualMap = loadCountryMap(objectMapper, "mutual.json");
         transitMap = loadCountryMap(objectMapper, "transit.json");
+        hainanMap = loadCountryMap(objectMapper, "hainan.json");
         articles = loadArticles(objectMapper);
     }
 
@@ -45,6 +47,7 @@ public class SitemapController {
         addCanonicalCodes(countryCodes, unilateralMap.keySet());
         addCanonicalCodes(countryCodes, mutualMap.keySet());
         addCanonicalCodes(countryCodes, transitMap.keySet());
+        addCanonicalCodes(countryCodes, hainanMap.keySet());
         for (String code : countryCodes) {
             addMultilingualUrl(xml, "/country/" + code, "country");
         }
@@ -52,6 +55,7 @@ public class SitemapController {
         addCountryTypeUrls(xml, unilateralMap, "unilateral");
         addCountryTypeUrls(xml, mutualMap, "mutual");
         addCountryTypeUrls(xml, transitMap, "transit");
+        addCountryTypeUrls(xml, hainanMap, "hainan");
 
         addMultilingualUrl(xml, "/articles", "articles");
         for (Map<String, Object> article : articles) {

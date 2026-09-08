@@ -32,6 +32,7 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
         loadCountryNames(mapper, "unilateral.json");
         loadCountryNames(mapper, "mutual.json");
         loadCountryNames(mapper, "transit.json");
+        loadCountryNames(mapper, "hainan.json");
     }
 
     private void loadCountryNames(ObjectMapper mapper, String fileName) {
@@ -88,7 +89,9 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
             List<String> codes=article==null?Collections.emptyList():relatedCountries(article);
             mav.addObject("relatedCountryCodes",codes); Map<String,String> names=new LinkedHashMap<>();
             for(String c:codes){String[] n=countryNames.get(c);names.put(c,n==null?c:("zh".equals(lang)?n[1]:n[0]));}
-            mav.addObject("relatedCountryNames",names); mav.addObject("contentLinkLang",lang);
+            mav.addObject("relatedCountryNames",names);
+            mav.addObject("relatedArticles",relatedArticlesForArticle(article));
+            mav.addObject("contentLinkLang",lang);
         }
     }
 
@@ -120,6 +123,31 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
     private int score(Map<String,Object>a,String code,String type){int score=0;String category=String.valueOf(a.getOrDefault("categoryEn",""));String text=(String.valueOf(a.getOrDefault("titleEn",""))+" "+String.valueOf(a.getOrDefault("titleZh",""))+" "+String.valueOf(a.getOrDefault("summaryEn",""))+" "+String.valueOf(a.getOrDefault("summaryZh",""))).toLowerCase(Locale.ROOT);if("transit".equals(type)){if(category.toLowerCase(Locale.ROOT).contains("visa"))score+=30;if(containsTag(a,"Transit"))score+=35;if(containsTag(a,"240-hour"))score+=30;if(text.contains("transit")||text.contains("过境"))score+=20;}else if("unilateral".equals(type)||"mutual".equals(type)){if(category.toLowerCase(Locale.ROOT).contains("visa-free"))score+=20;if(containsTag(a,"Visa-Free"))score+=25;if(text.contains("visa-free")||text.contains("免签"))score+=15;}Map<String,Object> priority=priorityContent.get(resolver.policyKey(code));if(priority!=null)score+=Math.max(0,20-number(priority.get("priority"),999)/10);return score;}
     private int number(Object value,int fallback){try{return Integer.parseInt(String.valueOf(value));}catch(Exception e){return fallback;}}
     private boolean containsTag(Map<String,Object>a,String k){Object t=a.get("tagsEn");if(!(t instanceof List))return false;return((List<?>)t).stream().anyMatch(v->String.valueOf(v).toLowerCase(Locale.ROOT).contains(k.toLowerCase(Locale.ROOT)));}
+    private List<Map<String,Object>> relatedArticlesForArticle(Map<String,Object> current){
+        if(current==null)return Collections.emptyList();
+        String id=String.valueOf(current.getOrDefault("id",""));
+        List<String> codes=relatedCountries(current);
+        String category=String.valueOf(current.getOrDefault("categoryEn",""));
+        return articles.stream().filter(a->!id.equals(String.valueOf(a.getOrDefault("id","")))).sorted((a,b)->{
+            int sb=articleLinkScore(b,codes,category),sa=articleLinkScore(a,codes,category);
+            if(sb!=sa)return Integer.compare(sb,sa);
+            return String.valueOf(b.getOrDefault("publishAt","")).compareTo(String.valueOf(a.getOrDefault("publishAt","")));
+        }).limit(5).collect(Collectors.toList());
+    }
+    private int articleLinkScore(Map<String,Object>a,List<String> codes,String category){
+        int score=0;
+        if(category.equalsIgnoreCase(String.valueOf(a.getOrDefault("categoryEn",""))))score+=40;
+        if(belongsToAnyCountry(a,codes))score+=80;
+        if(containsTag(a,"Visa-Free"))score+=10;
+        if(containsTag(a,"Transit"))score+=10;
+        return score;
+    }
+    private boolean belongsToAnyCountry(Map<String,Object>a,List<String> codes){
+        if(codes==null||codes.isEmpty())return false;
+        for(String code:codes)if(belongsToCountry(a,code))return true;
+        return false;
+    }
+
     private List<String> relatedCountries(Map<String,Object>a){Object raw=a.get("relatedCountryCodes");if(!(raw instanceof List))return Collections.emptyList();return normalizeRelatedCodes((List<?>)raw,"");}
     private Map<String,Object> findArticle(String id){return articles.stream().filter(a->id.equals(String.valueOf(a.get("id")))).findFirst().orElse(null);}
     private List<Map<String,Object>> loadArticles(ObjectMapper m){try{JsonNode r=m.readTree(new ClassPathResource("articles.json").getInputStream());JsonNode c=r.isObject()&&r.has("content")?r.get("content"):r;if(c.isTextual())c=m.readTree(c.asText());return m.convertValue(c,new TypeReference<List<Map<String,Object>>>(){});}catch(Exception e){return Collections.emptyList();}}

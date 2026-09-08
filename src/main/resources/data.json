@@ -4,24 +4,24 @@
   "siteTitleZh": "2026中国免签政策指南 | 单方面50国·互免29国·240小时过境",
   "siteDesc": "Official 2026 China visa-free guide: 50 unilateral 30-day visa-free, 29 mutual visa exemption, 240-hour transit visa-free for 57 countries at 65 ports across 24 provinces.",
   "siteDescZh": "2026中国官方免签政策：50国单方面30天免签、29国互免签证、57国240小时过境免签，覆盖24省份65个口岸。",
-  "lastUpdate": "Last Updated: September 3, 2026 | Based on official NIA information",
-  "lastUpdateZh": "最后更新：2026年09月03日 | 信息来源：中国国家移民管理局公开信息",
+  "lastUpdate": "Last Updated: September 9, 2026 | Checked against current official NIA/MFA public information",
+  "lastUpdateZh": "最后更新：2026年09月09日 | 已根据国家移民管理局、中国外交部最新公开信息核对",
   "heroTitle": "China Visa-Free Policies 2026",
   "heroTitleZh": "中国免签政策 2026",
   "heroDesc": "Official 2026 update: 50 Unilateral 30-day visa-free, 29 mutual visa exemption, 240-hour transit visa-free for 57 countries, and 24-hour transit visa-free for all nationalities. Data source: National Immigration Administration.",
   "heroDescZh": "2026权威更新：单方面免签50国、互免签证29国、240小时过境免签57国，以及面向所有国家的24小时过境免签，一站式查询。数据来源：国家移民管理局。",
   "unilateralTitle": "Unilateral 30-Day Visa-Free (50 Countries)",
   "unilateralTitleZh": "单方面免签（50国）",
-  "unilateralDesc": "Citizens from 50 eligible countries may enter China visa-free for up to 30 days. Source: NIA official policy.",
-  "unilateralDescZh": "50国公民可免签入境中国，最长停留30天。信息来源：国家移民管理局。",
+  "unilateralDesc": "Ordinary passport holders from 50 countries may enter China visa-free for up to 30 days for covered short-term purposes. Brunei has no stated expiry date; Russia is currently valid through Dec 31, 2027; the other 48 countries are currently stated through Dec 31, 2026.",
+  "unilateralDescZh": "50国普通护照持有人符合条件时可免签来华最长30天。文莱目前未设截止日期；俄罗斯现行政策至2027年12月31日；其余48国现行政策至2026年12月31日。",
   "mutualTitle": "Mutual Visa Exemption (29 Countries)",
   "mutualTitleZh": "互免签证协定（29国）",
   "mutualDesc": "Official bilateral agreements: citizens of both sides enjoy visa-free entry. Subject to latest government announcements.",
   "mutualDescZh": "依据双边协议，双方公民互相免签入境。最终以官方公告为准。",
   "transitTitle": "240-Hour Transit Visa-Free (57 Countries)",
   "transitTitleZh": "240小时过境免签（57国）",
-  "transitDesc": "10-day transit stay, 65 ports in 24 provinces, cross-region travel permitted. Policies subject to official updates.",
-  "transitDescZh": "停留10天，覆盖24省份65个口岸，允许规定区域内跨省活动。政策如有变动以官方为准。",
+  "transitDesc": "57-country 240-hour visa-free transit: 65 designated ports in 24 provinces, autonomous regions and municipalities. Transit must be to a third country or region and all current conditions must be met.",
+  "transitDescZh": "57国240小时过境免签：覆盖24个省、自治区、直辖市的65个适用口岸。必须属于前往第三国或地区的过境行程，并满足现行全部条件。",
   "continents": [
     {
       "name": "Europe",
@@ -905,78 +905,490 @@
       "nameZh": "三亚"
     }
   ],
-  "siteDescExtended":"Check eligibility for China visa-free entry: unilateral 30-day, mutual visa exemption, 240-hour transit visa-free. Requirements, expiry dates and FAQ for foreign visitors travelling to China.",
-  "siteDescExtendedZh":"来华外国人免签资格查询：单方面免签、互免协定、240小时过境免签；入境材料、政策到期时间、常见问题。",
-  "introPara1":"This reference website summarizes China’s official visa-free entry policies published by the National Immigration Administration (NIA). Three major visa-free schemes apply to foreign nationals visiting China for tourism, business visits, family reunions or transit purposes. Always verify against official NIA announcements before departure, as policies carry expiration dates and may be adjusted.",
-  "introPara1Zh":"本站汇总国家移民管理局发布的中国免签入境官方政策。外国人赴华旅游、商务、探亲或过境可适用三类免签制度。所有免签政策存在有效期，出行前请务必核对国家移民管理局最新公告。",
-  "introPara2":"Unilateral visa-free, mutual visa exemption and 240-hour transit visa-free have different stay-lengths, eligibility rules and permitted activities. Use the search box or country list below to look up rules for your nationality. If your country is not covered by any visa-free arrangement, you will need to apply for a Chinese visa in advance.",
-  "introPara2Zh":"单方面免签、互免签证、240小时过境免签在停留时长、适用条件、允许活动上有明确区别。使用搜索框或下方国家列表查询本国入境规则；若你的国家不在免签范围内，则需要提前申请中国签证。",
-  "disclaimer":"Disclaimer: This site is an independent informational reference, NOT an official government website. All information is compiled from NIA public releases. Confirm entry rules with official sources before travel.",
-  "disclaimerZh":"免责声明：本站仅为独立资讯参考网站，并非政府官方站点。全部信息整理自国家移民管理局公开公告，出行前请以官方渠道核实入境规则。",
-  "expiryNote":"Policy Expiry Reminder: Most unilateral 30-day visa-free policies expire on 31-Dec-2026. Russian citizens’ unilateral visa-free is valid until 31-Dec-2027. Brunei holds unlimited unilateral visa-free access. Mutual agreements follow bilateral treaty terms.",
-  "expiryNoteZh":"政策到期提醒：绝大多数单方面30天免签政策将于2026-12-31到期；俄罗斯单方面免签有效期至2027-12-31；文莱单方面免签无截止期限；互免签证按双边协定有效期执行。",
-  "compareTableTitle":"Overview of Three China Visa-Free Schemes",
-  "compareTableTitleZh":"三类中国免签制度对比总览",
-  "compareRows":[
+  "siteDescExtended": "Check eligibility for China visa-free entry: unilateral 30-day, mutual visa exemption, 240-hour transit visa-free. Requirements, expiry dates and FAQ for foreign visitors travelling to China.",
+  "siteDescExtendedZh": "来华外国人免签资格查询：单方面免签、互免协定、240小时过境免签；入境材料、政策到期时间、常见问题。",
+  "introPara1": "This independent reference summarizes China visa-free routes using current public information from the National Immigration Administration (NIA) and Ministry of Foreign Affairs (MFA). It separates direct unilateral visa-free entry, bilateral visa exemption, 240-hour transit and Hainan regional visa-free entry so travelers do not confuse different rules.",
+  "introPara1Zh": "本独立信息站根据国家移民管理局（NIA）和中国外交部（MFA）公开信息整理来华免签路径，并明确区分单方面免签、双边互免签证、240小时过境免签和海南区域免签，避免混淆不同政策。",
+  "introPara2": "Use the checker and country page that match your nationality and itinerary. A visa-free listing is not a guarantee of admission; passport type, purpose, itinerary, stay calculation, port and regional restrictions can all matter.",
+  "introPara2Zh": "请根据国籍和实际行程使用对应的检查器及国家页面。列入免签名单不等于保证入境；护照类型、来华事由、行程、停留计算、口岸和地区限制都可能影响最终结果。",
+  "disclaimer": "Disclaimer: This site is an independent informational reference, NOT an official government website. All information is compiled from NIA public releases. Confirm entry rules with official sources before travel.",
+  "disclaimerZh": "免责声明：本站仅为独立资讯参考网站，并非政府官方站点。全部信息整理自国家移民管理局公开公告，出行前请以官方渠道核实入境规则。",
+  "expiryNote": "Policy expiry: Brunei has no stated expiry date; Russia is valid through 31-Dec-2027; the other 48 unilateral visa-free countries are currently stated through 31-Dec-2026. Re-check before travel.",
+  "expiryNoteZh": "政策期限：文莱目前未设截止日期；俄罗斯现行单方面免签至2027-12-31；其余48国目前公布至2026-12-31。出行前请再次核对。",
+  "compareTableTitle": "Overview of Three China Visa-Free Schemes",
+  "compareTableTitleZh": "三类中国免签制度对比总览",
+  "compareRows": [
     {
-      "label":"Policy Type","labelZh":"政策类型",
-      "col1":"Unilateral 30-Day Visa-Free","col1Zh":"单方面30天免签",
-      "col2":"Mutual Visa Exemption","col2Zh":"互免签证协定",
-      "col3":"240-Hour Transit Visa-Free","col3Zh":"240小时过境免签"
+      "label": "Policy Type",
+      "labelZh": "政策类型",
+      "col1": "Unilateral 30-Day Visa-Free",
+      "col1Zh": "单方面30天免签",
+      "col2": "Mutual Visa Exemption",
+      "col2Zh": "互免签证协定",
+      "col3": "240-Hour Transit Visa-Free",
+      "col3Zh": "240小时过境免签"
     },
     {
-      "label":"Max Stay","labelZh":"最长停留",
-      "col1":"Up to 30 days","col1Zh":"最长30天",
-      "col2":"30-90 days (varies by country)","col2Zh":"30-90天（各国不同）",
-      "col3":"Up to 10 days (transit only)","col3Zh":"最长10天（仅限过境）"
+      "label": "Max Stay",
+      "labelZh": "最长停留",
+      "col1": "Up to 30 days",
+      "col1Zh": "最长30天",
+      "col2": "30-90 days (varies by country)",
+      "col2Zh": "30-90天（各国不同）",
+      "col3": "Up to 10 days (transit only)",
+      "col3Zh": "最长10天（仅限过境）"
     },
     {
-      "label":"Applicable Purpose","labelZh":"适用目的",
-      "col1":"Tourism, business, family visit","col1Zh":"旅游、商务、探亲",
-      "col2":"Tourism, business, family visit","col2Zh":"旅游、商务、探亲",
-      "col3":"Transit to a third country/region only","col3Zh":"仅限过境前往第三国/地区"
+      "label": "Applicable Purpose",
+      "labelZh": "适用目的",
+      "col1": "Tourism, business, family visit",
+      "col1Zh": "旅游、商务、探亲",
+      "col2": "Tourism, business, family visit",
+      "col2Zh": "旅游、商务、探亲",
+      "col3": "Transit to a third country/region only",
+      "col3Zh": "仅限过境前往第三国/地区"
     },
     {
-      "label":"Policy Nature","labelZh":"政策性质",
-      "col1":"China unilateral policy (expiring)","col1Zh":"中国单方面政策（有到期日）",
-      "col2":"Bilateral government agreement","col2Zh":"双边政府协定",
-      "col3":"Transit-specific entry facilitation","col3Zh":"专门过境便利政策"
+      "label": "Policy Nature",
+      "labelZh": "政策性质",
+      "col1": "China unilateral policy (expiring)",
+      "col1Zh": "中国单方面政策（有到期日）",
+      "col2": "Bilateral government agreement",
+      "col2Zh": "双边政府协定",
+      "col3": "Transit-specific entry facilitation",
+      "col3Zh": "专门过境便利政策"
     }
   ],
-  "faqs":[
+  "faqs": [
     {
-      "q":"What documents do I need for visa-free entry into China?",
-      "qZh":"免签入境中国我需要准备哪些材料？",
-      "a":"Valid passport with ≥6-month validity, sufficient blank pages. It is strongly recommended to carry onward/return flight tickets and proof of accommodation. Visa-free entry does not guarantee admission; final decision rests with border inspection.",
-      "aZh":"有效期≥6个月的护照并留有足够空白签证页；建议备好离境机票、住宿预订单。免签资格不等于一定允许入境，最终由边检确定。"
+      "q": "What documents do I need for visa-free entry into China?",
+      "qZh": "免签入境中国我需要准备哪些材料？",
+      "a": "You need a valid ordinary passport that meets the applicable policy requirements. It is sensible to carry evidence supporting your purpose and itinerary, such as onward/return tickets, accommodation details or an invitation when relevant. Visa-free eligibility does not guarantee admission.",
+      "aZh": "需要持符合适用政策要求的有效普通护照。根据实际情况，建议携带与来华事由和行程相符的材料，例如返程或后续行程、住宿信息或邀请函等。免签资格不等于保证入境。"
     },
     {
-      "q":"Can I work or study under visa-free status?",
-      "qZh":"免签入境可以工作或者读书吗？",
-      "a":"No. Visa-free entry cannot be used for paid work, employment, internships or formal study. You must apply for the corresponding Chinese visa before arrival for these activities.",
-      "aZh":"不可以。免签入境禁止务工、受雇、实习、正式留学；从事以上活动必须提前办理对应类型中国签证。"
+      "q": "Can I work or study under visa-free status?",
+      "qZh": "免签入境可以工作或者读书吗？",
+      "a": "No. Visa-free entry cannot be used for paid work, employment, internships or formal study. You must apply for the corresponding Chinese visa before arrival for these activities.",
+      "aZh": "不可以。免签入境禁止务工、受雇、实习、正式留学；从事以上活动必须提前办理对应类型中国签证。"
     },
     {
-      "q":"Can I extend my visa-free stay after arriving in China?",
-      "qZh":"免签入境后可以在中国境内延期停留吗？",
-      "a":"Visa-free status generally cannot be extended inside mainland China. If you need longer stay, apply for a proper visa before travelling to China.",
-      "aZh":"免签入境一般无法在中国境内申请延期。如需更长停留时间，请出发前申请对应签证。"
+      "q": "Can I extend my visa-free stay after arriving in China?",
+      "qZh": "免签入境后可以在中国境内延期停留吗？",
+      "a": "Do not plan on extending a visa-free stay as a normal option. If you expect to stay longer than the permitted visa-free period, obtain the appropriate visa in advance. In exceptional cases after entry, any further stay must be handled with the competent exit-entry administration according to current rules.",
+      "aZh": "不要把免签延期当作正常方案。如预计超过免签期限，应提前办理相应签证；入境后如因特殊、合理事由确需继续停留，应按现行规定向有管辖权的出入境管理部门办理相关停留手续。"
     },
     {
-      "q":"What if my country is not on any visa-free list?",
-      "qZh":"我的国家不在任何免签清单该怎么办？",
-      "a":"You must apply for a Chinese tourist/business visa from Chinese embassies or consulates before travelling to China.",
-      "aZh":"你必须出行前在中国驻外使领馆申请中国旅游或商务类签证。"
+      "q": "What if my country is not on any visa-free list?",
+      "qZh": "我的国家不在任何免签清单该怎么办？",
+      "a": "You must apply for a Chinese tourist/business visa from Chinese embassies or consulates before travelling to China.",
+      "aZh": "你必须出行前在中国驻外使领馆申请中国旅游或商务类签证。"
     },
     {
-      "q":"What is the difference between unilateral and mutual visa-free?",
-      "qZh":"单方面免签与互免签证有什么区别？",
-      "a":"Unilateral visa-free: China allows foreign citizens entry visa-free, without reciprocal treatment for Chinese passport holders. Mutual visa-free: both countries grant visa-free access to each-other’s ordinary passport holders under bilateral treaties.",
-      "aZh":"单方面免签：中国单方面给予对方公民免签，中国护照持有人不一定享受对方免签；互免签证：两国通过双边协定互相给予普通护照持有人免签待遇。"
+      "q": "What is the difference between unilateral and mutual visa-free?",
+      "qZh": "单方面免签与互免签证有什么区别？",
+      "a": "Unilateral visa-free: China allows foreign citizens entry visa-free, without reciprocal treatment for Chinese passport holders. Mutual visa-free: both countries grant visa-free access to each-other’s ordinary passport holders under bilateral treaties.",
+      "aZh": "单方面免签：中国单方面给予对方公民免签，中国护照持有人不一定享受对方免签；互免签证：两国通过双边协定互相给予普通护照持有人免签待遇。"
     }
   ],
-  "navFaq":"FAQ",
-  "navFaqZh":"常见问题",
-  "navVisaGuide":"Apply for Visa",
-  "navVisaGuideZh":"签证申请指南"
+  "navFaq": "FAQ",
+  "navFaqZh": "常见问题",
+  "navVisaGuide": "Apply for Visa",
+  "navVisaGuideZh": "签证申请指南",
+  "hainanTitle": "30-Day Hainan Visa-Free Entry",
+  "hainanTitleZh": "海南30天入境免签",
+  "hainanDesc": "Nationals of 61 countries with ordinary passports may enter Hainan through its open ports and stay within Hainan Province for up to 30 days for covered short-term purposes. Work and study are excluded.",
+  "hainanDescZh": "61国普通护照持有人可从海南对外开放口岸免签入境，在海南省行政区域内停留不超过30天，适用于规定短期事由；工作、学习不适用。",
+  "hainanContinents": [
+    {
+      "name": "Europe",
+      "nameZh": "欧洲",
+      "countries": [
+        {
+          "code": "albania",
+          "name": "Albania",
+          "nameZh": "阿尔巴尼亚",
+          "days": "30"
+        },
+        {
+          "code": "austria",
+          "name": "Austria",
+          "nameZh": "奥地利",
+          "days": "30"
+        },
+        {
+          "code": "belarus",
+          "name": "Belarus",
+          "nameZh": "白俄罗斯",
+          "days": "30"
+        },
+        {
+          "code": "belgium",
+          "name": "Belgium",
+          "nameZh": "比利时",
+          "days": "30"
+        },
+        {
+          "code": "bosnia",
+          "name": "Bosnia and Herzegovina",
+          "nameZh": "波黑",
+          "days": "30"
+        },
+        {
+          "code": "bulgaria",
+          "name": "Bulgaria",
+          "nameZh": "保加利亚",
+          "days": "30"
+        },
+        {
+          "code": "croatia",
+          "name": "Croatia",
+          "nameZh": "克罗地亚",
+          "days": "30"
+        },
+        {
+          "code": "cyprus",
+          "name": "Cyprus",
+          "nameZh": "塞浦路斯",
+          "days": "30"
+        },
+        {
+          "code": "czechia",
+          "name": "Czech Republic",
+          "nameZh": "捷克",
+          "days": "30"
+        },
+        {
+          "code": "denmark",
+          "name": "Denmark",
+          "nameZh": "丹麦",
+          "days": "30"
+        },
+        {
+          "code": "estonia",
+          "name": "Estonia",
+          "nameZh": "爱沙尼亚",
+          "days": "30"
+        },
+        {
+          "code": "finland",
+          "name": "Finland",
+          "nameZh": "芬兰",
+          "days": "30"
+        },
+        {
+          "code": "france",
+          "name": "France",
+          "nameZh": "法国",
+          "days": "30"
+        },
+        {
+          "code": "germany",
+          "name": "Germany",
+          "nameZh": "德国",
+          "days": "30"
+        },
+        {
+          "code": "greece",
+          "name": "Greece",
+          "nameZh": "希腊",
+          "days": "30"
+        },
+        {
+          "code": "hungary",
+          "name": "Hungary",
+          "nameZh": "匈牙利",
+          "days": "30"
+        },
+        {
+          "code": "iceland",
+          "name": "Iceland",
+          "nameZh": "冰岛",
+          "days": "30"
+        },
+        {
+          "code": "ireland",
+          "name": "Ireland",
+          "nameZh": "爱尔兰",
+          "days": "30"
+        },
+        {
+          "code": "italy",
+          "name": "Italy",
+          "nameZh": "意大利",
+          "days": "30"
+        },
+        {
+          "code": "latvia",
+          "name": "Latvia",
+          "nameZh": "拉脱维亚",
+          "days": "30"
+        },
+        {
+          "code": "lithuania",
+          "name": "Lithuania",
+          "nameZh": "立陶宛",
+          "days": "30"
+        },
+        {
+          "code": "luxembourg",
+          "name": "Luxembourg",
+          "nameZh": "卢森堡",
+          "days": "30"
+        },
+        {
+          "code": "malta",
+          "name": "Malta",
+          "nameZh": "马耳他",
+          "days": "30"
+        },
+        {
+          "code": "monaco",
+          "name": "Monaco",
+          "nameZh": "摩纳哥",
+          "days": "30"
+        },
+        {
+          "code": "montenegro",
+          "name": "Montenegro",
+          "nameZh": "黑山",
+          "days": "30"
+        },
+        {
+          "code": "netherlands",
+          "name": "Netherlands",
+          "nameZh": "荷兰",
+          "days": "30"
+        },
+        {
+          "code": "northmacedonia",
+          "name": "North Macedonia",
+          "nameZh": "北马其顿",
+          "days": "30"
+        },
+        {
+          "code": "norway",
+          "name": "Norway",
+          "nameZh": "挪威",
+          "days": "30"
+        },
+        {
+          "code": "poland",
+          "name": "Poland",
+          "nameZh": "波兰",
+          "days": "30"
+        },
+        {
+          "code": "portugal",
+          "name": "Portugal",
+          "nameZh": "葡萄牙",
+          "days": "30"
+        },
+        {
+          "code": "romania",
+          "name": "Romania",
+          "nameZh": "罗马尼亚",
+          "days": "30"
+        },
+        {
+          "code": "russia",
+          "name": "Russia",
+          "nameZh": "俄罗斯",
+          "days": "30"
+        },
+        {
+          "code": "serbia",
+          "name": "Serbia",
+          "nameZh": "塞尔维亚",
+          "days": "30"
+        },
+        {
+          "code": "slovakia",
+          "name": "Slovakia",
+          "nameZh": "斯洛伐克",
+          "days": "30"
+        },
+        {
+          "code": "slovenia",
+          "name": "Slovenia",
+          "nameZh": "斯洛文尼亚",
+          "days": "30"
+        },
+        {
+          "code": "spain",
+          "name": "Spain",
+          "nameZh": "西班牙",
+          "days": "30"
+        },
+        {
+          "code": "sweden",
+          "name": "Sweden",
+          "nameZh": "瑞典",
+          "days": "30"
+        },
+        {
+          "code": "switzerland",
+          "name": "Switzerland",
+          "nameZh": "瑞士",
+          "days": "30"
+        },
+        {
+          "code": "ukraine",
+          "name": "Ukraine",
+          "nameZh": "乌克兰",
+          "days": "30"
+        },
+        {
+          "code": "uk",
+          "name": "United Kingdom",
+          "nameZh": "英国",
+          "days": "30"
+        }
+      ]
+    },
+    {
+      "name": "Americas",
+      "nameZh": "美洲",
+      "countries": [
+        {
+          "code": "argentina",
+          "name": "Argentina",
+          "nameZh": "阿根廷",
+          "days": "30"
+        },
+        {
+          "code": "brazil",
+          "name": "Brazil",
+          "nameZh": "巴西",
+          "days": "30"
+        },
+        {
+          "code": "canada",
+          "name": "Canada",
+          "nameZh": "加拿大",
+          "days": "30"
+        },
+        {
+          "code": "chile",
+          "name": "Chile",
+          "nameZh": "智利",
+          "days": "30"
+        },
+        {
+          "code": "mexico",
+          "name": "Mexico",
+          "nameZh": "墨西哥",
+          "days": "30"
+        },
+        {
+          "code": "usa",
+          "name": "United States",
+          "nameZh": "美国",
+          "days": "30"
+        }
+      ]
+    },
+    {
+      "name": "Oceania",
+      "nameZh": "大洋洲",
+      "countries": [
+        {
+          "code": "australia",
+          "name": "Australia",
+          "nameZh": "澳大利亚",
+          "days": "30"
+        },
+        {
+          "code": "newzealand",
+          "name": "New Zealand",
+          "nameZh": "新西兰",
+          "days": "30"
+        }
+      ]
+    },
+    {
+      "name": "Asia",
+      "nameZh": "亚洲",
+      "countries": [
+        {
+          "code": "brunei",
+          "name": "Brunei",
+          "nameZh": "文莱",
+          "days": "30"
+        },
+        {
+          "code": "indonesia",
+          "name": "Indonesia",
+          "nameZh": "印度尼西亚",
+          "days": "30"
+        },
+        {
+          "code": "japan",
+          "name": "Japan",
+          "nameZh": "日本",
+          "days": "30"
+        },
+        {
+          "code": "kazakhstan",
+          "name": "Kazakhstan",
+          "nameZh": "哈萨克斯坦",
+          "days": "30"
+        },
+        {
+          "code": "kyrgyzstan",
+          "name": "Kyrgyzstan",
+          "nameZh": "吉尔吉斯斯坦",
+          "days": "30"
+        },
+        {
+          "code": "malaysia",
+          "name": "Malaysia",
+          "nameZh": "马来西亚",
+          "days": "30"
+        },
+        {
+          "code": "philippines",
+          "name": "Philippines",
+          "nameZh": "菲律宾",
+          "days": "30"
+        },
+        {
+          "code": "qatar",
+          "name": "Qatar",
+          "nameZh": "卡塔尔",
+          "days": "30"
+        },
+        {
+          "code": "singapore",
+          "name": "Singapore",
+          "nameZh": "新加坡",
+          "days": "30"
+        },
+        {
+          "code": "korea",
+          "name": "South Korea",
+          "nameZh": "韩国",
+          "days": "30"
+        },
+        {
+          "code": "thailand",
+          "name": "Thailand",
+          "nameZh": "泰国",
+          "days": "30"
+        },
+        {
+          "code": "uae",
+          "name": "United Arab Emirates",
+          "nameZh": "阿联酋",
+          "days": "30"
+        },
+        {
+          "code": "vietnam",
+          "name": "Vietnam",
+          "nameZh": "越南",
+          "days": "30"
+        }
+      ]
+    }
+  ]
 }

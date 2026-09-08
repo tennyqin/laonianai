@@ -13,6 +13,7 @@
             <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#unilateral|" th:text="${lang=='en'?'Unilateral':'单方面免签'}"></a>
             <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#mutual|" th:text="${lang=='en'?'Mutual':'互免签证'}"></a>
             <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#transit|" th:text="${lang=='en'?'Transit':'过境免签'}"></a>
+            <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#hainan|" th:text="${lang=='en'?'Hainan':'海南免签'}"></a>
             <a th:href="@{/visa-guide(lang=${lang})}" th:classappend="${#request.requestURI=='/visa-guide'?'active':''}" th:text="${lang=='en'?'Visa Guide':'签证指南'}"></a>
             <a th:href="@{/articles(lang=${lang})}" th:classappend="${#request.requestURI.startsWith('/articles')?'active':''}" th:text="${lang=='en'?'Travel Guides':'旅行指南'}"></a>
             <div class="site-lang mobile-lang" aria-label="Language">

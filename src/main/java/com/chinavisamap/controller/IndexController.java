@@ -73,10 +73,12 @@ public class IndexController {
         List<Map<String, Object>> unilateralResult = Collections.emptyList();
         List<Map<String, Object>> mutualResult = Collections.emptyList();
         List<Map<String, Object>> transitResult = Collections.emptyList();
+        List<Map<String, Object>> hainanResult = Collections.emptyList();
         try {
             unilateralResult = searchAndSort((List<Map<String, Object>>) allData.get("continents"), kw, currentLang);
             mutualResult = searchAndSort((List<Map<String, Object>>) allData.get("mutualContinents"), kw, currentLang);
             transitResult = searchAndSort((List<Map<String, Object>>) allData.get("transitContinents"), kw, currentLang);
+            hainanResult = searchAndSort((List<Map<String, Object>>) allData.get("hainanContinents"), kw, currentLang);
         } catch (Exception ignored) {
             // Keep empty results as the safe fallback.
         }
@@ -84,8 +86,43 @@ public class IndexController {
         model.addAttribute("unilateralResult", unilateralResult);
         model.addAttribute("mutualResult", mutualResult);
         model.addAttribute("transitResult", transitResult);
-        model.addAttribute("searchResultCount", unilateralResult.size() + mutualResult.size() + transitResult.size());
+        model.addAttribute("hainanResult", hainanResult);
+
+        // Present search as a country decision hub rather than four duplicate policy lists.
+        // This keeps the journey: search -> country overview -> checker -> exact policy.
+        List<Map<String, Object>> searchCountryResults = mergeSearchCountries(
+                unilateralResult, mutualResult, transitResult, hainanResult);
+        model.addAttribute("searchCountryResults", searchCountryResults);
+        model.addAttribute("searchResultCount", searchCountryResults.size());
+        model.addAttribute("searchHasResults", !searchCountryResults.isEmpty());
         return "index";
+    }
+
+
+    private List<Map<String, Object>> mergeSearchCountries(List<Map<String, Object>>... groups) {
+        Map<String, Map<String, Object>> merged = new LinkedHashMap<>();
+        String[] typeNames = {"unilateral", "mutual", "transit", "hainan"};
+        for (int i = 0; i < groups.length; i++) {
+            List<Map<String, Object>> group = groups[i];
+            if (group == null) continue;
+            for (Map<String, Object> country : group) {
+                String code = normalize(country.get("code"));
+                if (code.isEmpty()) continue;
+                Map<String, Object> item = merged.computeIfAbsent(code, k -> {
+                    Map<String, Object> copy = new LinkedHashMap<>();
+                    copy.put("code", country.get("code"));
+                    copy.put("name", country.get("name"));
+                    copy.put("nameZh", country.get("nameZh"));
+                    copy.put("flag", country.get("flag"));
+                    copy.put("routeTypes", new ArrayList<String>());
+                    return copy;
+                });
+                @SuppressWarnings("unchecked")
+                List<String> routeTypes = (List<String>) item.get("routeTypes");
+                if (!routeTypes.contains(typeNames[i])) routeTypes.add(typeNames[i]);
+            }
+        }
+        return new ArrayList<>(merged.values());
     }
 
     private Map<String, String> buildCountryFlags() {
@@ -93,6 +130,7 @@ public class IndexController {
         addFlagsFromContinents(result, allData.get("continents"));
         addFlagsFromContinents(result, allData.get("mutualContinents"));
         addFlagsFromContinents(result, allData.get("transitContinents"));
+        addFlagsFromContinents(result, allData.get("hainanContinents"));
         return result;
     }
 

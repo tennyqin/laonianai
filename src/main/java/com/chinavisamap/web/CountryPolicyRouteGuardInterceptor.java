@@ -1,139 +1,35 @@
 package com.chinavisamap.web;
 
-import com.chinavisamap.entity.CountryDetail;
 import com.chinavisamap.service.CountryCodeResolver;
-import com.chinavisamap.service.CountryEligibilityService;
-import com.chinavisamap.service.StructuredDataService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 @Component
 public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
-    private static final Set<String> NOT_UNILATERAL = new HashSet<String>(Arrays.asList("kyrgyzstan", "vietnam"));
-
     private final CountryCodeResolver resolver;
-    private final CountryEligibilityService eligibilityService;
-    private final StructuredDataService structuredDataService;
 
-    public CountryPolicyRouteGuardInterceptor(CountryCodeResolver resolver,
-                                               CountryEligibilityService eligibilityService,
-                                               StructuredDataService structuredDataService) {
+    public CountryPolicyRouteGuardInterceptor(CountryCodeResolver resolver) {
         this.resolver = resolver;
-        this.eligibilityService = eligibilityService;
-        this.structuredDataService = structuredDataService;
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String path = request.getRequestURI();
-        if (path == null || !path.startsWith("/country/")) {
-            return true;
-        }
-
+        if (path == null || !path.startsWith("/country/")) return true;
         String[] parts = path.substring("/country/".length()).split("/");
-        if (parts.length >= 1 && parts[0] != null && !parts[0].isEmpty()) {
-            String requestedCode = parts[0];
-            String canonicalCode = resolver.routeCode(resolver.policyKey(requestedCode));
-            if (!requestedCode.equalsIgnoreCase(canonicalCode)) {
-                StringBuilder location = new StringBuilder("/country/").append(canonicalCode);
-                if (parts.length >= 2 && parts[1] != null && !parts[1].isEmpty()) {
-                    location.append('/').append(parts[1]);
-                } else {
-                    String legacyType = request.getParameter("type");
-                    if (legacyType != null && !legacyType.trim().isEmpty()) {
-                        location.append('/').append(legacyType.trim());
-                    }
-                }
-                String lang = safeLang(request.getParameter("lang"));
-                location.append("?lang=").append(lang);
-                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-                response.setHeader("Location", location.toString());
-                return false;
-            }
-        }
-
-        if (parts.length == 2 && "unilateral".equals(parts[1]) && NOT_UNILATERAL.contains(resolver.policyKey(parts[0]))) {
-            response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-            response.setHeader("Location", "/country/" + resolver.routeCode(parts[0]) + "?lang=" + safeLang(request.getParameter("lang")));
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-        if (modelAndView == null || !"country-home".equals(modelAndView.getViewName())) {
-            return;
-        }
-        String path = request.getRequestURI();
-        if (path == null || !path.startsWith("/country/")) {
-            return;
-        }
-        String code = path.substring("/country/".length());
-        String key = resolver.policyKey(code);
-        if (!NOT_UNILATERAL.contains(key)) {
-            return;
-        }
-
-        Object typesObject = modelAndView.getModel().get("availableTypes");
-        if (typesObject instanceof List) {
-            ((List<?>) typesObject).remove("unilateral");
-        }
-        Object policiesObject = modelAndView.getModel().get("availablePolicies");
-        if (policiesObject instanceof List) {
-            ((List<?>) policiesObject).removeIf(item -> item instanceof CountryDetail && "unilateral".equals(((CountryDetail) item).getPolicyType()));
-        }
-
-        Object typesAfter = modelAndView.getModel().get("availableTypes");
-        Object detailObject = modelAndView.getModel().get("detailCountry");
-        Object extraObject = modelAndView.getModel().get("countryExtraRoot");
-        Object langObject = modelAndView.getModel().get("lang");
-        Object canonicalObject = modelAndView.getModel().get("canonicalUrl");
-        if (detailObject instanceof CountryDetail && typesAfter instanceof List && extraObject instanceof Map) {
-            Map<String, CountryDetail> details = new LinkedHashMap<String, CountryDetail>();
-            Object policyObject = modelAndView.getModel().get("availablePolicies");
-            if (policyObject instanceof List) {
-                for (Object item : (List<?>) policyObject) {
-                    if (item instanceof CountryDetail) {
-                        CountryDetail detail = (CountryDetail) item;
-                        details.put(detail.getPolicyType(), detail);
-                    }
-                }
-            }
-            String lang = langObject == null ? "en" : String.valueOf(langObject);
-            String canonical = canonicalObject == null ? "" : String.valueOf(canonicalObject);
-            modelAndView.getModel().put("eligibilityConfig",
-                    eligibilityService.build(resolver.routeCode(code), toPolicyList(modelAndView.getModel().get("availablePolicies")), (Map<String, Object>) extraObject));
-            modelAndView.getModel().put("structuredData", structuredDataService.buildCountryHome(
-                    (CountryDetail) detailObject, lang, canonical, (Map<String, Object>) extraObject,
-                    (List<String>) typesAfter, details));
-        }
-    }
-
-    private List<CountryDetail> toPolicyList(Object value) {
-        List<CountryDetail> result = new java.util.ArrayList<CountryDetail>();
-        if (!(value instanceof List)) {
-            return result;
-        }
-        for (Object item : (List<?>) value) {
-            if (item instanceof CountryDetail) {
-                result.add((CountryDetail) item);
-            }
-        }
-        return result;
-    }
-
-    private String safeLang(String value) {
-        return "zh".equalsIgnoreCase(value) ? "zh" : "en";
+        if (parts.length == 0 || parts[0] == null || parts[0].isEmpty()) return true;
+        String requestedCode = parts[0];
+        String canonicalCode = resolver.routeCode(resolver.policyKey(requestedCode));
+        if (requestedCode.equals(canonicalCode)) return true;
+        StringBuilder location = new StringBuilder("/country/").append(canonicalCode);
+        if (parts.length >= 2 && parts[1] != null && !parts[1].isEmpty()) location.append('/').append(parts[1]);
+        String lang = "zh".equalsIgnoreCase(request.getParameter("lang")) ? "zh" : "en";
+        location.append("?lang=").append(lang);
+        response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+        response.setHeader("Location", location.toString());
+        return false;
     }
 }
