@@ -20,23 +20,7 @@
 <style>.related-article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.related-article{display:block;border:1px solid #e5e7eb;border-radius:12px;padding:14px;text-decoration:none;color:#1f2937;background:#fbfdfc}.related-article strong{display:block;line-height:1.5;margin-bottom:5px}.related-article small{display:block;color:#64748b;line-height:1.5}@media(max-width:640px){.related-article-list{grid-template-columns:1fr}}</style>
 </head>
 <body>
-<div class="header">
-    <div class="container header-inner">
-        <a th:href="|/?lang=${lang}|" class="logo">China Visa Free Guide 2026</a>
-        <div class="nav">
-            <a th:href="|/?lang=${lang}|" th:text="${lang=='en'?'Home':'首页'}"></a>
-            <a th:href="|/?lang=${lang}#unilateral|" th:text="${lang == 'en' ? 'Unilateral' : '单方面免签'}"></a>
-            <a th:href="|/?lang=${lang}#mutual|" th:text="${lang == 'en' ? 'Mutual' : '互免签证'}"></a>
-            <a th:href="|/?lang=${lang}#transit|" th:text="${lang == 'en' ? 'Transit' : '过境免签'}"></a>
-            <a th:href="|/articles?lang=${lang}|" style="color:#059669;font-weight:bold;" th:text="${lang == 'en' ? 'Travel Guides' : '旅行指南'}"></a>
-            <a th:href="|/visa-guide?lang=${lang}|" th:text="${lang == 'en' ? 'Apply for Visa' : '签证申请指南'}"></a>
-            <span class="lang">
-                <a th:href="@{${#request.requestURI}(lang='en')}" th:classappend="${lang == 'en' ? 'active' : ''}">EN</a> |
-                <a th:href="@{${#request.requestURI}(lang='zh')}" th:classappend="${lang == 'zh' ? 'active' : ''}">中文</a>
-            </span>
-        </div>
-    </div>
-</div>
+<div th:replace="~{common/header :: site-header}"></div>
 <div class="container">
     <div class="breadcrumb-wrap">
         <div class="breadcrumb">

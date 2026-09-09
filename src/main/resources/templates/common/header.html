@@ -10,10 +10,25 @@
         </button>
         <nav id="site-primary-nav" class="site-nav" aria-label="Primary navigation">
             <a th:href="@{/(lang=${lang})}" th:classappend="${#request.requestURI=='/'?'active':''}" th:text="${lang=='en'?'Home':'首页'}"></a>
-            <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#unilateral|" th:text="${lang=='en'?'Unilateral':'单方面免签'}"></a>
-            <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#mutual|" th:text="${lang=='en'?'Mutual':'互免签证'}"></a>
-            <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#transit|" th:text="${lang=='en'?'Transit':'过境免签'}"></a>
-            <a th:href="@{/(lang=${lang})}" th:attrappend="href=|#hainan|" th:text="${lang=='en'?'Hainan':'海南免签'}"></a>
+
+            <!-- The homepage already has the policy section tabs directly below the header.
+                 Keep the global policy links on all other pages so they return to the
+                 corresponding section of the homepage without duplicating the tabs on home. -->
+            <th:block th:if="${#request.requestURI != '/'}">
+                <a th:href="${'/?lang=' + lang + '#unilateral'}"
+                   th:classappend="${type=='unilateral'?'active':''}"
+                   th:text="${lang=='en'?'Unilateral':'单方面免签'}"></a>
+                <a th:href="${'/?lang=' + lang + '#mutual'}"
+                   th:classappend="${type=='mutual'?'active':''}"
+                   th:text="${lang=='en'?'Mutual':'互免签证'}"></a>
+                <a th:href="${'/?lang=' + lang + '#transit'}"
+                   th:classappend="${type=='transit'?'active':''}"
+                   th:text="${lang=='en'?'Transit':'过境免签'}"></a>
+                <a th:href="${'/?lang=' + lang + '#hainan'}"
+                   th:classappend="${type=='hainan'?'active':''}"
+                   th:text="${lang=='en'?'Hainan':'海南免签'}"></a>
+            </th:block>
+
             <a th:href="@{/visa-guide(lang=${lang})}" th:classappend="${#request.requestURI=='/visa-guide'?'active':''}" th:text="${lang=='en'?'Visa Guide':'签证指南'}"></a>
             <a th:href="@{/articles(lang=${lang})}" th:classappend="${#request.requestURI.startsWith('/articles')?'active':''}" th:text="${lang=='en'?'Travel Guides':'旅行指南'}"></a>
             <div class="site-lang mobile-lang" aria-label="Language">
