@@ -62,6 +62,24 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
                 if(priority!=null){
                     mergePriorityPresentation(base, priority);
                     mav.addObject("countryExtraRoot",base);
+                    // The priority content is the presentation/SEO override for the
+                    // selected high-value country pages. Keep the underlying policy
+                    // data in country-extra.json / policy JSONs, but make the final
+                    // rendered title and description use the same priority copy that
+                    // is already used for the page hero and structured data.
+                    if(priority.containsKey("homeSeoTitleEn")) mav.addObject("countrySeoTitleEn", priority.get("homeSeoTitleEn"));
+                    if(priority.containsKey("homeSeoTitleZh")) mav.addObject("countrySeoTitleZh", priority.get("homeSeoTitleZh"));
+                    if(priority.containsKey("homeSeoDescEn")) mav.addObject("countrySeoDescEn", priority.get("homeSeoDescEn"));
+                    if(priority.containsKey("homeSeoDescZh")) mav.addObject("countrySeoDescZh", priority.get("homeSeoDescZh"));
+                    Object intentObject=mav.getModel().get("countryIntent");
+                    if(intentObject instanceof Map){
+                        Map<String,Object> intent=new LinkedHashMap<>((Map<String,Object>)intentObject);
+                        List<Map<String,Object>> existingEn=faqList(intent.get("faqEn"));
+                        List<Map<String,Object>> existingZh=faqList(intent.get("faqZh"));
+                        if(priority.get("homeCustomFaqsEn") instanceof List) intent.put("faqEn", mergeFaqs((List<?>)priority.get("homeCustomFaqsEn"), existingEn, 5));
+                        if(priority.get("homeCustomFaqsZh") instanceof List) intent.put("faqZh", mergeFaqs((List<?>)priority.get("homeCustomFaqsZh"), existingZh, 5));
+                        mav.addObject("countryIntent", intent);
+                    }
                     Object profileObject=mav.getModel().get("countryProfile");
                     if(profileObject instanceof Map){
                         Map<String,Object> p=new LinkedHashMap<>((Map<String,Object>)profileObject);
@@ -100,6 +118,34 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
         for(String key:presentationKeys)if(priority.containsKey(key))base.put(key,priority.get(key));
         // Do not overwrite priority/tier/route identity or the canonical recommendation list.
         // Those remain owned by country-extra.json when present.
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<Map<String,Object>> faqList(Object value){
+        if(!(value instanceof List)) return new ArrayList<>();
+        List<Map<String,Object>> result=new ArrayList<>();
+        for(Object item:(List<?>)value) if(item instanceof Map) result.add(new LinkedHashMap<>((Map<String,Object>)item));
+        return result;
+    }
+
+    private List<Map<String,Object>> mergeFaqs(List<?> priorityFaqs,List<Map<String,Object>> existing,int limit){
+        List<Map<String,Object>> result=new ArrayList<>();
+        Set<String> questions=new LinkedHashSet<>();
+        for(Object item:priorityFaqs){
+            if(!(item instanceof Map)) continue;
+            Map<?,?> raw=(Map<?,?>)item; String q=String.valueOf(raw.get("q")==null?"":raw.get("q")).trim();
+            String a=String.valueOf(raw.get("a")==null?"":raw.get("a")).trim();
+            if(q.isEmpty()||a.isEmpty()||!questions.add(q)) continue;
+            Map<String,Object> faq=new LinkedHashMap<>(); faq.put("q",q); faq.put("a",a); result.add(faq);
+            if(result.size()>=limit) return result;
+        }
+        for(Map<String,Object> item:existing){
+            String q=String.valueOf(item.getOrDefault("q","")).trim();
+            if(q.isEmpty()||!questions.add(q)) continue;
+            result.add(item);
+            if(result.size()>=limit) break;
+        }
+        return result;
     }
 
     @SuppressWarnings("unchecked")
