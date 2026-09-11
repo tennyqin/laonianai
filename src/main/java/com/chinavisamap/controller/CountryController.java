@@ -35,6 +35,8 @@ public class CountryController {
     private final Map<String, CountryDetail> transitMap;
     private final Map<String, CountryDetail> hainanMap;
     private final Map<String, Map<String, Object>> countryExtraMap;
+    private final Map<String, Map<String, Object>> countryIntentMap;
+    private final List<Map<String, Object>> articles;
     private final CountryCodeResolver resolver;
     private final CountryEligibilityService eligibilityService;
     private final CountryFlagService flagService;
@@ -54,6 +56,8 @@ public class CountryController {
         this.transitMap = loadCountryMap(mapper, "transit.json");
         this.hainanMap = loadCountryMap(mapper, "hainan.json");
         this.countryExtraMap = loadExtraMap(mapper);
+        this.countryIntentMap = loadIntentMap(mapper);
+        this.articles = loadArticles(mapper);
     }
 
     @GetMapping(value = "/country/{code}", params = "type")
@@ -83,6 +87,8 @@ public class CountryController {
         String pageCode = routeCode(code);
         CountryDetail detailCountry = getAnyCountryDetail(code);
         Map<String, Object> extra = getCountryExtraRoot(code);
+        Map<String, Object> intentExtra = countryIntentMap.get(pageCode);
+        Map<String, Object> countryContent = mergeContent(extra, intentExtra);
         String path = "/country/" + pageCode;
         String canonical = seoService.canonical(path, normalizedLang);
         model.addAttribute("code", pageCode);
@@ -90,17 +96,26 @@ public class CountryController {
         model.addAttribute("detailCountry", detailCountry);
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("availableTypes", types);
-        model.addAttribute("countryExtraRoot", extra);
+        model.addAttribute("countryExtraRoot", countryContent);
+        Map<String, Object> countryIntent = buildCountryIntent(pageCode, detailCountry, types, availablePoliciesFor(code, types), extra);
         model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, extra));
+        model.addAttribute("countryIntent", countryIntent);
+        model.addAttribute("countrySeoTitleEn", countryIntent.get("seoTitleEn"));
+        model.addAttribute("countrySeoTitleZh", countryIntent.get("seoTitleZh"));
+        model.addAttribute("countrySeoDescEn", countryIntent.get("seoDescEn"));
+        model.addAttribute("countrySeoDescZh", countryIntent.get("seoDescZh"));
         List<CountryDetail> availablePolicies = buildAvailablePolicies(code, types);
+        model.addAttribute("relatedArticles", findRelatedArticles(detailCountry, pageCode, normalizedLang));
         model.addAttribute("availablePolicies", availablePolicies);
         model.addAttribute("countryNames", buildCountryNames());
         model.addAttribute("countryFlags", buildCountryFlags());
-        model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(extra));
+        model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(countryContent));
         model.addAttribute("eligibilityConfig", eligibilityService.build(pageCode, availablePolicies, extra));
         model.addAttribute("canonicalUrl", canonical);
         model.addAttribute("hreflang", seoService.hreflang(path));
-        model.addAttribute("structuredData", structuredDataService.buildCountryHome(detailCountry, normalizedLang, canonical, extra, types, buildPolicyDetails(code, types)));
+        Map<String,Object> schemaExtra = new LinkedHashMap<>(); if(countryContent!=null) schemaExtra.putAll(countryContent);
+        schemaExtra.put(normalizedLang.equals("en")?"homeCustomFaqsEn":"homeCustomFaqsZh", countryIntent.get(normalizedLang.equals("en")?"faqEn":"faqZh"));
+        model.addAttribute("structuredData", structuredDataService.buildCountryHome(detailCountry, normalizedLang, canonical, schemaExtra, types, buildPolicyDetails(code, types)));
         return "country-home";
     }
 
@@ -134,6 +149,8 @@ public class CountryController {
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("countryExtra", extra);
         model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, rootExtra));
+        model.addAttribute("countryIntent", buildPolicyIntent(pageCode, detailCountry, type, policy, rootExtra));
+        model.addAttribute("relatedArticles", findRelatedArticles(detailCountry, pageCode, normalizedLang));
         model.addAttribute("availableTypes", detectAvailableTypes(code));
         model.addAttribute("policyDetails", buildPolicyDetails(code, detectAvailableTypes(code)));
         return "country-detail";
@@ -154,6 +171,87 @@ public class CountryController {
         headers.setLocation(URI.create(location));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
+
+    private List<CountryDetail> availablePoliciesFor(String code, List<String> types) {
+        return buildAvailablePolicies(code, types);
+    }
+
+    private Map<String,Object> buildCountryIntent(String code, CountryDetail country, List<String> types,
+                                                   List<CountryDetail> policies, Map<String,Object> extra) {
+        Map<String,Object> m = new LinkedHashMap<>();
+        Map<String,Object> custom = countryIntentMap.get(routeCode(code));
+        if (custom != null) m.putAll(custom);
+        String enName=country.getName(), zhName=country.getNameZh();
+        boolean direct=types.contains("unilateral")||types.contains("mutual"), transit=types.contains("transit"), hainan=types.contains("hainan");
+        String routeEn = routeSummaryEn(types), routeZh = routeSummaryZh(types);
+        m.put("seoTitleEn", firstNonBlank(string(m,"seoTitleEn"), firstNonBlank(string(extra,"homeSeoTitleEn"), enName+" to China Visa Guide 2026 | Visa-Free & Entry Rules")));
+        m.put("seoTitleZh", firstNonBlank(string(m,"seoTitleZh"), firstNonBlank(string(extra,"homeSeoTitleZh"), zhName+"来华签证与免签指南 2026 | 入境政策与资格查询")));
+        m.put("seoDescEn", firstNonBlank(string(m,"seoDescEn"), firstNonBlank(string(extra,"homeSeoDescEn"), enName+" citizens: check whether a China visa is required, available visa-free routes, stay limits, permitted purposes and transit options.")));
+        m.put("seoDescZh", firstNonBlank(string(m,"seoDescZh"), firstNonBlank(string(extra,"homeSeoDescZh"), zhName+"公民来华查询是否需要签证、可用免签路径、最长停留、允许事由及过境政策。")));
+        m.put("intentSummaryEn", firstNonBlank(string(m,"intentSummaryEn"), "For "+enName+" passport holders, the main question is which China entry route matches the actual itinerary. "+routeEn));
+        m.put("intentSummaryZh", firstNonBlank(string(m,"intentSummaryZh"), "对于"+zhName+"护照持有人，最重要的是先判断实际行程对应哪一条中国入境路径。"+routeZh));
+        m.put("direct", direct); m.put("transit", transit); m.put("hainan", hainan);
+        if (!(m.get("faqEn") instanceof List)) m.put("faqEn", buildIntentFaqs(country, types, policies, false));
+        if (!(m.get("faqZh") instanceof List)) m.put("faqZh", buildIntentFaqs(country, types, policies, true));
+        m.put("checksEn", buildTravelChecks(country, types, policies, false));
+        m.put("checksZh", buildTravelChecks(country, types, policies, true));
+        return m;
+    }
+
+    private Map<String,Object> buildPolicyIntent(String code, CountryDetail country, String type, CountryPolicy policy, Map<String,Object> rootExtra) {
+        Map<String,Object> m=new LinkedHashMap<>();
+        String n=country.getName(), z=country.getNameZh();
+        m.put("intentSummaryEn", policyIntentSummary(country,type,policy,false));
+        m.put("intentSummaryZh", policyIntentSummary(country,type,policy,true));
+        m.put("faqEn", policy.getFaqsEn()); m.put("faqZh", policy.getFaqsZh());
+        m.put("seoTitleEn", firstNonBlank(string(rootExtra,"policySeoTitleEn"), n+" China "+policyLabel(type,false)+" 2026 | Rules & Requirements"));
+        m.put("seoTitleZh", firstNonBlank(string(rootExtra,"policySeoTitleZh"), z+"中国"+policyLabel(type,true)+" 2026 | 规则与入境要求"));
+        return m;
+    }
+
+    private String policyIntentSummary(CountryDetail c,String type,CountryPolicy p,boolean zh){
+        String n=zh?c.getNameZh():c.getName(); String stay=zh?(isBlank(c.getStayDays())?"政策规定期限":c.getStayDays()+"天"):(isBlank(c.getStayDays())?"the period stated by the policy":c.getStayDays()+" days");
+        if("unilateral".equals(type)) return zh?"这是一条针对"+n+"普通护照持有人的直接免签路径。页面重点回答是否免签、最长停留、允许事由、入境条件以及出发前需要核对什么。":"This is a direct visa-free route for eligible "+n+" ordinary-passport holders. The page focuses on visa-free eligibility, the maximum stay of "+stay+", permitted purposes and practical entry conditions.";
+        if("mutual".equals(type)) return zh?"这是一条基于中外互免签证协定的路径。不要只看“免签”三个字，还应核对护照类型、事由、停留期限、累计停留和入境次数等协定条件。":"This route is based on a bilateral visa-exemption agreement. Check the passport type, purpose, stay limits, cumulative-stay and entry conditions in the applicable agreement rather than treating it as a generic visa waiver.";
+        if("transit".equals(type)) return zh?"这是一条过境免签路径，核心不是“去中国旅游是否免签”，而是你的中国行程是否符合前往第三国或地区的过境条件。":"This is a transit route. The key question is not whether "+n+" citizens have a general tourist waiver, but whether the itinerary through China qualifies for the listed transit conditions.";
+        return zh?"这是海南区域免签路径，只适用于符合条件的海南行程，不应理解为可免签前往海南以外的中国大陆地区。":"This is a Hainan regional visa-free route. It applies only to qualifying Hainan itineraries and should not be treated as a general visa waiver for mainland China outside Hainan.";
+    }
+
+    private List<Map<String,String>> buildIntentFaqs(CountryDetail c,List<String> types,List<CountryDetail> policies,boolean zh){
+        List<Map<String,String>> r=new ArrayList<>(); String n=zh?c.getNameZh():c.getName();
+        if(types.contains("unilateral")){String stay=stayText(c,zh); addFaq(r,zh?n+"公民去中国需要签证吗？":"Do "+n+" citizens need a visa for China?",zh?"符合条件的普通护照持有人可按当前单方面免签政策入境，最长停留"+stay+"，但仍需满足适用事由及其他入境条件。":"Eligible ordinary-passport holders may use the current unilateral visa-free route for up to "+stay+", subject to the permitted-purpose and entry conditions.");
+            addFaq(r,zh?n+"护照去中国免签可以停留多久？":"How long can "+n+" passport holders stay in China visa-free?",zh?"最长停留以当前政策记录为准，目前为"+stay+"。":"The maximum stay follows the current policy record and is "+stay+".");
+            addFaq(r,zh?n+"公民来中国旅游可以免签吗？":"Can "+n+" citizens visit China for tourism without a visa?",zh?"如果旅游属于当前政策允许的出行目的，并满足护照、停留和其他条件，可以按该免签路径出行。":"If tourism is a permitted purpose under the current policy and the passport, stay and other conditions are met, the visa-free route may be used.");
+        } else if(types.contains("mutual")){addFaq(r,zh?n+"公民去中国免签吗？":"Can "+n+" citizens enter China visa-free?",zh?"是否免签取决于适用的中外互免签证协定以及护照、事由和停留条件。":"Visa exemption depends on the applicable bilateral agreement and its passport, purpose and stay conditions.");
+            addFaq(r,zh?"互免签证可以停留多久？":"How long can the mutual visa exemption be used?",zh?"停留期限以适用的中外互免签证协定和具体护照条件为准。":"The stay limit follows the applicable China bilateral visa-exemption agreement and passport conditions.");
+            addFaq(r,zh?n+"公民去中国旅游需要申请签证吗？":"Do "+n+" citizens need a visa for tourism in China?",zh?"先核对适用协定是否覆盖旅游目的，以及护照类型和停留条件。":"Check whether the applicable agreement covers tourism and whether the passport and stay conditions are met.");
+        } else {addFaq(r,zh?n+"公民去中国需要签证吗？":"Do "+n+" citizens need a visa for China?",zh?"不能只根据国籍下结论，应根据你的实际目的、停留时间和行程判断可用的免签、过境或签证路径。":"Do not decide from nationality alone; check the actual purpose, stay and itinerary to determine whether a visa-free, transit or regular visa route applies.");}
+        if(types.contains("transit")){addFaq(r,zh?n+"公民可以使用240小时过境免签吗？":"Can "+n+" citizens use China's 240-hour transit visa-free route?",zh?"如果你的行程符合前往第三国或地区的过境要求，并满足适用口岸、旅行证件和停留条件，可以进一步核对该路径。":"If your itinerary qualifies as transit to a third country or region and the passport, port and stay conditions are met, this route can be considered.");}
+        if(types.contains("hainan")){addFaq(r,zh?n+"公民可以使用海南30天免签吗？":"Can "+n+" citizens use the 30-day Hainan visa-free route?",zh?"符合当前海南区域免签国籍、护照、事由和停留条件时，可以进一步核对该路径；它是区域政策。":"If the nationality, passport, purpose and stay meet the current Hainan regional policy, this route can be considered; it is a regional policy.");}
+        addFaq(r,zh?"如果不符合直接免签，还能24小时过境吗？":"What if I do not qualify for a direct visa-free route?",zh?"如果实际行程是经中国前往第三国或地区，可以进一步检查24小时过境免签的旅行证件、联程客票和口岸限定区域条件。":"If the trip is genuinely transit to a third country or region, check the general 24-hour transit conditions for travel documents, confirmed onward travel and the port restricted area.");
+        return r.stream().limit(5).collect(Collectors.toList());
+    }
+
+    private void addFaq(List<Map<String,String>> r,String q,String a){Map<String,String> x=new LinkedHashMap<>();x.put("q",q);x.put("a",a);r.add(x);}
+    private String stayText(CountryDetail c,boolean zh){return isBlank(c.getStayDays())?(zh?"政策规定期限":"the period stated by the policy"):c.getStayDays()+(zh?"天":" days");}
+    private String routeSummaryEn(List<String> t){List<String> r=new ArrayList<>();if(t.contains("unilateral"))r.add("A direct unilateral visa-free route is listed.");if(t.contains("mutual"))r.add("A bilateral visa-exemption route is listed.");if(t.contains("transit"))r.add("A 240-hour transit route is listed.");if(t.contains("hainan"))r.add("A separate Hainan regional route is listed.");return String.join(" ",r);}
+    private String routeSummaryZh(List<String> t){List<String> r=new ArrayList<>();if(t.contains("unilateral"))r.add("当前有直接单方面免签路径。");if(t.contains("mutual"))r.add("当前有双边互免签证路径。");if(t.contains("transit"))r.add("当前有240小时过境免签路径。");if(t.contains("hainan"))r.add("另外有独立的海南区域免签路径。");return String.join("",r);}
+    private String policyLabel(String type,boolean zh){if("unilateral".equals(type))return zh?"单方面免签政策":"Unilateral Visa-Free Policy";if("mutual".equals(type))return zh?"互免签证政策":"Mutual Visa Exemption";if("transit".equals(type))return zh?"240小时过境免签政策":"240-Hour Transit Visa-Free Policy";return zh?"海南30天区域免签政策":"30-Day Hainan Visa-Free Policy";}
+    private List<Map<String,String>> buildTravelChecks(CountryDetail c,List<String> types,List<CountryDetail> p,boolean zh){List<Map<String,String>> r=new ArrayList<>();addCheck(r,zh?"护照":"Passport",zh?"确认使用的是适用的普通护照及符合政策要求的旅行证件。":"Confirm that your passport and travel document meet the applicable route requirements.");addCheck(r,zh?"出行目的":"Purpose",zh?"确认旅游、商务、探亲等目的属于对应政策允许范围。":"Confirm that the purpose of travel is covered by the selected route.");addCheck(r,zh?"停留时间":"Stay",zh?"不要超过对应政策记录的最长停留期限。":"Do not exceed the maximum stay listed for the selected route.");if(types.contains("transit"))addCheck(r,zh?"后续行程":"Onward itinerary",zh?"如果使用过境免签，确认前往第三国或地区的联程行程及适用口岸条件。":"For transit, confirm the onward itinerary to a third country or region and eligible port conditions.");return r;}
+    private void addCheck(List<Map<String,String>> r,String k,String v){Map<String,String>x=new LinkedHashMap<>();x.put("k",k);x.put("v",v);r.add(x);}
+
+    private List<Map<String,Object>> findRelatedArticles(CountryDetail country,String code,String lang){
+        List<Map<String,Object>> out=new ArrayList<>(); String route=routeCode(code);
+        for(Map<String,Object> a:articles){
+            Object related=a.get("relatedCountryCodes"); boolean hit=false;
+            if(related instanceof List){for(Object x:(List<?>)related){if(route.equals(routeCode(string(x)))){hit=true;break;}}}
+            if(!hit){String text=string(a.get("titleEn"))+" "+string(a.get("titleZh"))+" "+string(a.get("summaryEn"))+" "+string(a.get("summaryZh"));String[] needles={country.getName(),country.getNameZh()};for(String n:needles)if(!isBlank(n)&&text.toLowerCase(Locale.ROOT).contains(n.toLowerCase(Locale.ROOT))){hit=true;break;}}
+            if(hit){out.add(a);if(out.size()>=4)break;}
+        }
+        if(out.isEmpty()) for(Map<String,Object> a:articles){String cat=string(a.get("categoryEn"))+" "+string(a.get("categoryZh"));if(cat.toLowerCase(Locale.ROOT).contains("visa")||cat.contains("免签")){out.add(a);if(out.size()>=2)break;}}
+        return out;
+    }
+    private List<Map<String,Object>> loadArticles(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("articles.json").getInputStream(),new TypeReference<List<Map<String,Object>>>(){});}catch(Exception e){return new ArrayList<>();}}
 
     private Map<String, Object> buildCountryProfile(String code, CountryDetail detailCountry, Map<String, Object> extra) {
         Map<String, Object> profile = new LinkedHashMap<>();
@@ -324,6 +422,8 @@ public class CountryController {
     private List<String> buildRelatedCountryCodes(Map<String,Object> extra){List<String> r=new ArrayList<>();if(extra==null)return r;Object v=extra.get("relatedCountryCodes");if(!(v instanceof List))return r;for(Object item:(List<?>)v){String c=string(item);String canonical=routeCode(c);if(!isBlank(c)&&getAnyCountryDetail(c)!=null&&!r.contains(canonical))r.add(canonical);}return r;}
     private Map<String,CountryDetail> loadCountryMap(ObjectMapper mapper,String fileName){try{return mapper.readValue(new ClassPathResource(fileName).getInputStream(),new TypeReference<Map<String,CountryDetail>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load "+fileName,e);}}
     private Map<String,Map<String,Object>> loadExtraMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("country-extra.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-extra.json",e);}}
+    private Map<String,Map<String,Object>> loadIntentMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("country-intent.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-intent.json",e);}}
+    private Map<String,Object> mergeContent(Map<String,Object> base, Map<String,Object> overlay){Map<String,Object> r=new LinkedHashMap<>();if(base!=null)r.putAll(base);if(overlay!=null)for(Map.Entry<String,Object> e:overlay.entrySet())r.put(e.getKey(),e.getValue());return r;}
     private Map<String,Object> asMap(Object value){if(!(value instanceof Map))return new LinkedHashMap<>();Map<String,Object> r=new LinkedHashMap<>();for(Map.Entry<?,?>e:((Map<?,?>)value).entrySet())r.put(String.valueOf(e.getKey()),e.getValue());return r;}
     private String string(Map<String,Object> m,String k){return m==null?"":string(m.get(k));} private String string(Object v){return v==null?"":String.valueOf(v).trim();} private String firstNonBlank(String v,String f){return isBlank(v)?f:v;} private boolean isBlank(String v){return v==null||v.trim().isEmpty();} private int number(Object v,int f){try{return Integer.parseInt(string(v));}catch(Exception e){return f;}}
 }

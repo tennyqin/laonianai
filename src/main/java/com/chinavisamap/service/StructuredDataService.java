@@ -87,6 +87,7 @@ public class StructuredDataService {
         webpage.put("name", title);
         webpage.put("description", description);
         webpage.put("inLanguage", lang);
+        webpage.put("dateModified", "2026-09-09");
         Map<String, Object> about = new LinkedHashMap<>();
         about.put("@type", "Country");
         about.put("name", name);
@@ -152,6 +153,7 @@ public class StructuredDataService {
         page.put("name", title);
         page.put("description", description);
         page.put("inLanguage", lang);
+        page.put("dateModified", "2026-09-09");
         Map<String, Object> about = new LinkedHashMap<>();
         about.put("@type", "Country");
         about.put("name", name);
