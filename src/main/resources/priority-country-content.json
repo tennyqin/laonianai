@@ -43,20 +43,24 @@
     ],
     "homeCustomFaqsZh": [
       {
-        "q": "韩国公民去中国可以免签吗？",
-        "a": "符合条件的韩国普通护照持有人可适用当前30天直接免签；满足联程行程等条件时也可能适用240小时过境，海南另有独立的区域免签路径。"
+        "q": "韩国公民去中国需要签证吗？",
+        "a": "符合条件的韩国普通护照持有人可按当前直接免签政策免签来华，也可能根据行程适用240小时过境免签。"
       },
       {
-        "q": "韩国护照免签中国可以停留多久？",
-        "a": "符合条件的韩国普通护照持有人按当前直接免签政策来华，适用事由下最长可免签停留30天；具体允许事由及出行当日生效的规定应在出发前核对。"
+        "q": "韩国护照去中国免签可以停留多久？",
+        "a": "当前直接免签路径对符合条件的韩国普通护照持有人最长停留30天，具体以出行当日有效规定为准。"
       },
       {
-        "q": "韩国公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "韩国公民去中国旅游可以免签吗？",
+        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
       },
       {
-        "q": "韩国公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "韩国公民可以使用中国240小时过境免签吗？",
+        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+      },
+      {
+        "q": "韩国公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
       }
     ],
     "relatedCountryCodes": [
@@ -93,29 +97,45 @@
     "homeCustomFaqsEn": [
       {
         "q": "Do Japanese citizens need a visa for China?",
-        "a": "Eligible Japanese ordinary-passport holders may use the current 30-day direct visa-free route and may also qualify for 240-hour transit when its transit conditions are met. Hainan is a separate regional route."
+        "a": "Eligible Japanese ordinary-passport holders may use the current direct visa-free route for covered short-term purposes, subject to the rules in force on the travel date."
       },
       {
-        "q": "What should Japan citizens check before traveling to China?",
-        "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+        "q": "How long can Japanese passport holders stay in China visa-free?",
+        "a": "The current direct visa-free route allows eligible Japanese ordinary-passport holders to stay for up to 30 days for covered purposes."
       },
       {
-        "q": "Can Japan citizens use Hainan visa-free entry?",
-        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when the nationality, purpose, stay and other conditions are met; it is limited to Hainan."
+        "q": "Can Japanese citizens visit China for tourism without a visa?",
+        "a": "Tourism can use the direct visa-free route when the traveler meets the passport, purpose and other entry conditions."
+      },
+      {
+        "q": "Can Japanese citizens use China 240-hour visa-free transit?",
+        "a": "Yes, when the itinerary is a qualifying transit to a third country or region and the traveler meets the applicable passport, port and stay conditions."
+      },
+      {
+        "q": "Can Japanese citizens use Hainan visa-free entry?",
+        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when its nationality, purpose, stay and other conditions are met; it is limited to Hainan."
       }
     ],
     "homeCustomFaqsZh": [
       {
         "q": "日本公民去中国需要签证吗？",
-        "a": "符合条件的日本普通护照持有人可适用当前30天直接免签；满足过境条件时也可能适用240小时过境，海南另有独立的区域免签路径。"
+        "a": "符合条件的日本普通护照持有人可按当前直接免签政策免签来华，具体以出行当日有效规定为准。"
       },
       {
-        "q": "日本公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "日本护照去中国免签可以停留多久？",
+        "a": "当前直接免签路径对符合条件的日本普通护照持有人最长停留30天，仍需满足适用事由及其他入境条件。"
       },
       {
-        "q": "日本公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "日本公民去中国旅游可以免签吗？",
+        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
+      },
+      {
+        "q": "日本公民可以使用中国240小时过境免签吗？",
+        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+      },
+      {
+        "q": "日本公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径；它不等同于全国范围免签。"
       }
     ],
     "relatedCountryCodes": [
@@ -151,30 +171,46 @@
     ],
     "homeCustomFaqsEn": [
       {
-        "q": "Can US citizens enter China without a visa?",
-        "a": "Do not assume a general tourist visa waiver. Eligible US ordinary-passport holders may use 240-hour transit when all transit conditions are met; Hainan has a separate 30-day regional route, while ordinary mainland trips may require a visa."
+        "q": "Do US citizens need a visa for China?",
+        "a": "There is no general tourist visa waiver to assume for ordinary US passport holders. Check whether your itinerary qualifies for a separate transit or Hainan route; otherwise a regular visa may be required."
       },
       {
-        "q": "What should United States citizens check before traveling to China?",
-        "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+        "q": "Can US passport holders use China 240-hour visa-free transit?",
+        "a": "Eligible US ordinary-passport holders may use the 240-hour transit route when the onward itinerary to a third country or region and all other transit conditions are met."
       },
       {
-        "q": "Can United States citizens use Hainan visa-free entry?",
-        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when the nationality, purpose, stay and other conditions are met; it is limited to Hainan."
+        "q": "Can US citizens visit China visa-free for tourism?",
+        "a": "Do not assume ordinary mainland tourism is visa-free for US passport holders. Check the exact route and purpose before travel."
+      },
+      {
+        "q": "Can US citizens use Hainan visa-free entry?",
+        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when its nationality, purpose, stay and other conditions are met; it is limited to Hainan."
+      },
+      {
+        "q": "What should US passport holders check before traveling to China?",
+        "a": "Check passport type, purpose, route, maximum stay, onward itinerary where applicable and the rules in force on the travel date."
       }
     ],
     "homeCustomFaqsZh": [
       {
         "q": "美国公民去中国可以免签吗？",
-        "a": "不要默认美国公民普通赴华旅游享受通用免签。符合条件的美国普通护照持有人可在满足过境条件时使用240小时过境；海南另有30天区域免签，普通大陆行程可能需要签证。"
+        "a": "不要把美国普通护照来华普通旅游理解为全国范围免签。符合条件时可以核验240小时过境免签或海南区域免签等独立路径，否则普通行程可能需要申请相应签证。"
       },
       {
-        "q": "美国公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "美国护照可以使用中国240小时过境免签吗？",
+        "a": "如果美国普通护照持有人符合前往第三国或地区的过境行程、适用口岸及其他条件，可以核验240小时过境路径。"
       },
       {
-        "q": "美国公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "美国公民去中国旅游需要签证吗？",
+        "a": "普通大陆旅游行程不要默认免签，应根据实际目的、行程和可用政策核对是否需要申请相应中国签证。"
+      },
+      {
+        "q": "美国公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径；它不等同于全国范围免签。"
+      },
+      {
+        "q": "美国护照入境中国前需要确认什么？",
+        "a": "出发前应确认护照类型、出行目的、入境路径、最长停留、过境后续行程以及出行当日有效的官方规定。"
       }
     ],
     "relatedCountryCodes": [
@@ -225,15 +261,23 @@
     "homeCustomFaqsZh": [
       {
         "q": "马来西亚公民去中国需要签证吗？",
-        "a": "符合条件的马来西亚护照持有人在满足适用协定的护照、事由和停留条件时，可使用双边免签安排；海南另有独立的30天区域免签路径。"
+        "a": "符合条件的马来西亚护照持有人可按适用的中马互免签证安排出行，但需要核对护照、事由和停留条件。"
       },
       {
-        "q": "马来西亚公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "马来西亚护照去中国可以免签多久？",
+        "a": "停留期限应按适用的中马互免签证安排及具体护照、事由条件核对，不应把所有行程都按统一天数理解。"
       },
       {
-        "q": "马来西亚公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "马来西亚公民去中国旅游需要签证吗？",
+        "a": "先核对中马互免签证安排是否覆盖你的旅游目的、护照类型及停留条件。"
+      },
+      {
+        "q": "马来西亚公民可以使用240小时过境免签吗？",
+        "a": "如果实际行程符合经中国前往第三国或地区的过境条件，还可以单独核验240小时过境路径。"
+      },
+      {
+        "q": "马来西亚公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
       }
     ],
     "relatedCountryCodes": [
@@ -284,15 +328,23 @@
     "homeCustomFaqsZh": [
       {
         "q": "泰国公民去中国需要签证吗？",
-        "a": "符合条件的泰国护照持有人应核对中泰互免签证协定，包括护照类型、出行事由和累计停留期限；海南另有独立区域免签路径。"
+        "a": "符合条件的泰国护照持有人可按适用的中泰互免签证安排出行，但需要核对护照、事由和停留条件。"
       },
       {
-        "q": "泰国公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "泰国护照去中国可以免签多久？",
+        "a": "停留期限应按适用的中泰互免签证安排及具体护照、事由条件核对，并关注累计停留限制。"
       },
       {
-        "q": "泰国公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "泰国公民去中国旅游需要签证吗？",
+        "a": "先核对中泰互免签证安排是否覆盖你的旅游目的、护照类型及停留条件。"
+      },
+      {
+        "q": "泰国公民可以使用240小时过境免签吗？",
+        "a": "如果实际行程符合经中国前往第三国或地区的过境条件，还可以单独核验240小时过境路径。"
+      },
+      {
+        "q": "泰国公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
       }
     ],
     "relatedCountryCodes": [
@@ -343,15 +395,23 @@
     "homeCustomFaqsZh": [
       {
         "q": "俄罗斯公民去中国需要签证吗？",
-        "a": "符合条件的俄罗斯普通护照持有人可适用当前30天直接免签，也可能在满足条件时适用240小时过境；海南另有30天区域免签路径。"
+        "a": "符合条件的俄罗斯普通护照持有人可按当前直接免签政策免签来华，也可能根据行程适用240小时过境免签。"
       },
       {
-        "q": "俄罗斯公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "俄罗斯护照去中国免签可以停留多久？",
+        "a": "当前直接免签路径对符合条件的俄罗斯普通护照持有人最长停留30天，具体以出行当日有效规定为准。"
       },
       {
-        "q": "俄罗斯公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "俄罗斯公民去中国旅游可以免签吗？",
+        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
+      },
+      {
+        "q": "俄罗斯公民可以使用中国240小时过境免签吗？",
+        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+      },
+      {
+        "q": "俄罗斯公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
       }
     ],
     "relatedCountryCodes": [
@@ -401,16 +461,24 @@
     ],
     "homeCustomFaqsZh": [
       {
-        "q": "新加坡公民去中国可以免签吗？",
-        "a": "符合条件的新加坡护照持有人可根据适用双边免签安排来华，并可根据行程和条件进一步判断过境或海南区域路径。"
+        "q": "新加坡公民去中国需要签证吗？",
+        "a": "符合条件的新加坡护照持有人可按适用的中外互免签证安排出行，并可根据具体行程核验其他独立入境路径。"
       },
       {
-        "q": "新加坡公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "新加坡护照去中国可以免签多久？",
+        "a": "停留期限应按适用的互免签证安排及具体护照、事由条件核对，不要只根据“免签”两个字判断。"
       },
       {
-        "q": "新加坡公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "新加坡公民去中国旅游需要签证吗？",
+        "a": "先核对适用的互免签证安排是否覆盖你的旅游目的、护照类型和停留条件。"
+      },
+      {
+        "q": "新加坡公民可以使用240小时过境免签吗？",
+        "a": "如果实际行程符合经中国前往第三国或地区的过境条件，还可以单独核验240小时过境路径。"
+      },
+      {
+        "q": "新加坡公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
       }
     ],
     "relatedCountryCodes": [
@@ -447,29 +515,45 @@
     "homeCustomFaqsEn": [
       {
         "q": "Do Australian citizens need a visa for China?",
-        "a": "Eligible Australian ordinary-passport holders may use the current 30-day visa-free route and may also qualify for 240-hour transit; Hainan has a separate regional route."
+        "a": "Eligible Australian ordinary-passport holders may use the current direct visa-free route for covered short-term purposes, subject to the rules in force on the travel date."
       },
       {
-        "q": "What should Australia citizens check before traveling to China?",
-        "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+        "q": "How long can Australian passport holders stay in China visa-free?",
+        "a": "The current direct visa-free route allows eligible Australian ordinary-passport holders to stay for up to 30 days for covered purposes."
       },
       {
-        "q": "Can Australia citizens use Hainan visa-free entry?",
-        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when the nationality, purpose, stay and other conditions are met; it is limited to Hainan."
+        "q": "Can Australian citizens visit China for tourism without a visa?",
+        "a": "Tourism can use the direct visa-free route when the traveler meets the passport, purpose and other entry conditions."
+      },
+      {
+        "q": "Can Australian citizens use China 240-hour visa-free transit?",
+        "a": "Yes, when the itinerary is a qualifying transit to a third country or region and the traveler meets the applicable passport, port and stay conditions."
+      },
+      {
+        "q": "Can Australian citizens use Hainan visa-free entry?",
+        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when its nationality, purpose, stay and other conditions are met; it is limited to Hainan."
       }
     ],
     "homeCustomFaqsZh": [
       {
-        "q": "澳大利亚公民去中国需要签证吗？",
-        "a": "符合条件的澳大利亚普通护照持有人可适用当前30天免签，也可能在满足条件时使用240小时过境；海南另有独立区域免签。"
+        "q": "澳大利亚护照入境中国2026需要签证吗？",
+        "a": "符合条件的澳大利亚普通护照持有人可按当前直接免签政策免签来华，具体以出行当日有效规定为准。"
       },
       {
-        "q": "澳大利亚公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "澳大利亚护照去中国免签可以停留多久？",
+        "a": "当前直接免签路径对符合条件的澳大利亚普通护照持有人最长停留30天，仍需满足适用事由及其他入境条件。"
       },
       {
-        "q": "澳大利亚公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "澳大利亚公民去中国旅游可以免签吗？",
+        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
+      },
+      {
+        "q": "澳大利亚公民可以使用中国240小时过境免签吗？",
+        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+      },
+      {
+        "q": "澳大利亚公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径；它不等同于全国范围免签。"
       }
     ],
     "relatedCountryCodes": [
@@ -505,30 +589,46 @@
     ],
     "homeCustomFaqsEn": [
       {
-        "q": "Do British citizens need a visa for China?",
-        "a": "Eligible British ordinary-passport holders may use the current 30-day visa-free route and may also qualify for 240-hour transit when the itinerary meets the rules."
+        "q": "Do UK citizens need a visa for China?",
+        "a": "Eligible British ordinary-passport holders may use the current direct visa-free route for covered short-term purposes, subject to the rules in force on the travel date."
       },
       {
-        "q": "What should United Kingdom citizens check before traveling to China?",
-        "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+        "q": "How long can UK passport holders stay in China visa-free?",
+        "a": "The current direct visa-free route allows eligible UK ordinary-passport holders to stay for up to 30 days for covered purposes."
       },
       {
-        "q": "Can United Kingdom citizens use Hainan visa-free entry?",
-        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when the nationality, purpose, stay and other conditions are met; it is limited to Hainan."
+        "q": "Can UK citizens visit China for tourism without a visa?",
+        "a": "Tourism can use the direct visa-free route when the traveler meets the passport, purpose and other entry conditions."
+      },
+      {
+        "q": "Can UK citizens use China 240-hour visa-free transit?",
+        "a": "Yes, when the itinerary is a qualifying transit to a third country or region and the traveler meets the applicable passport, port and stay conditions."
+      },
+      {
+        "q": "Can UK citizens use Hainan visa-free entry?",
+        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when its nationality, purpose, stay and other conditions are met; it is limited to Hainan."
       }
     ],
     "homeCustomFaqsZh": [
       {
         "q": "英国公民去中国需要签证吗？",
-        "a": "符合条件的英国普通护照持有人可适用当前30天免签；满足规定行程时也可能适用240小时过境。"
+        "a": "符合条件的英国普通护照持有人可按当前直接免签政策免签来华，具体以出行当日有效规定为准。"
       },
       {
-        "q": "英国公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "英国护照去中国免签可以停留多久？",
+        "a": "当前直接免签路径对符合条件的英国普通护照持有人最长停留30天，仍需满足适用事由及其他入境条件。"
       },
       {
-        "q": "英国公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "英国公民去中国旅游可以免签吗？",
+        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
+      },
+      {
+        "q": "英国公民可以使用中国240小时过境免签吗？",
+        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+      },
+      {
+        "q": "英国公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径；它不等同于全国范围免签。"
       }
     ],
     "relatedCountryCodes": [
@@ -579,15 +679,23 @@
     "homeCustomFaqsZh": [
       {
         "q": "加拿大公民去中国需要签证吗？",
-        "a": "符合条件的加拿大普通护照持有人可适用当前30天免签，也可能在满足全部过境条件时适用240小时过境。"
+        "a": "符合条件的加拿大普通护照持有人可按当前直接免签政策免签来华，具体以出行当日有效规定为准。"
       },
       {
-        "q": "加拿大公民来中国前需要确认什么？",
-        "a": "出发前应确认适用入境路径、护照类型、允许事由、最长停留期限以及行程相关条件。"
+        "q": "加拿大护照去中国免签可以停留多久？",
+        "a": "当前直接免签路径对符合条件的加拿大普通护照持有人最长停留30天，仍需满足适用事由及其他入境条件。"
       },
       {
-        "q": "加拿大公民可以使用海南免签吗？",
-        "a": "符合条件的普通护照持有人可进一步判断独立的海南区域免签，但该政策仅适用于海南省行政区域内的规定条件。"
+        "q": "加拿大公民去中国旅游可以免签吗？",
+        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
+      },
+      {
+        "q": "加拿大公民可以使用中国240小时过境免签吗？",
+        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+      },
+      {
+        "q": "加拿大公民可以使用海南30天免签吗？",
+        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
       }
     ],
     "relatedCountryCodes": [

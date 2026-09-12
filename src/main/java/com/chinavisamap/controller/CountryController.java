@@ -115,6 +115,7 @@ public class CountryController {
         model.addAttribute("hreflang", seoService.hreflang(path));
         Map<String,Object> schemaExtra = new LinkedHashMap<>(); if(countryContent!=null) schemaExtra.putAll(countryContent);
         schemaExtra.put(normalizedLang.equals("en")?"homeCustomFaqsEn":"homeCustomFaqsZh", countryIntent.get(normalizedLang.equals("en")?"faqEn":"faqZh"));
+        schemaExtra.put("lastVerified", latestVerified(code, types, countryContent));
         model.addAttribute("structuredData", structuredDataService.buildCountryHome(detailCountry, normalizedLang, canonical, schemaExtra, types, buildPolicyDetails(code, types)));
         return "country-home";
     }
@@ -138,9 +139,15 @@ public class CountryController {
         Map<String, Object> extra = asMap(getCountryExtraItem(code, type));
         Map<String, Object> rootExtra = getCountryExtraRoot(code);
         CountryPolicy policy = buildCountryPolicy(pageCode, type, detailCountry, extra);
+        Map<String,Object> policyIntent = buildPolicyIntent(pageCode, detailCountry, type, policy, rootExtra);
+        Map<String,Object> schemaExtra = new LinkedHashMap<>(extra);
+        schemaExtra.put("policySeoTitleEn", policyIntent.get("seoTitleEn"));
+        schemaExtra.put("policySeoTitleZh", policyIntent.get("seoTitleZh"));
+        schemaExtra.put("policySeoDescEn", policyIntent.get("seoDescEn"));
+        schemaExtra.put("policySeoDescZh", policyIntent.get("seoDescZh"));
         model.addAttribute("canonicalUrl", canonical);
         model.addAttribute("hreflang", seoService.hreflang(path));
-        model.addAttribute("structuredData", structuredDataService.buildCountry(detailCountry, normalizedLang, canonical, policy, extra));
+        model.addAttribute("structuredData", structuredDataService.buildCountry(detailCountry, normalizedLang, canonical, policy, schemaExtra));
         model.addAttribute("detail", detailCountry);
         model.addAttribute("policy", policy);
         model.addAttribute("code", pageCode);
@@ -149,11 +156,21 @@ public class CountryController {
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("countryExtra", extra);
         model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, rootExtra));
-        model.addAttribute("countryIntent", buildPolicyIntent(pageCode, detailCountry, type, policy, rootExtra));
+        model.addAttribute("countryIntent", policyIntent);
         model.addAttribute("relatedArticles", findRelatedArticles(detailCountry, pageCode, normalizedLang));
         model.addAttribute("availableTypes", detectAvailableTypes(code));
         model.addAttribute("policyDetails", buildPolicyDetails(code, detectAvailableTypes(code)));
         return "country-detail";
+    }
+
+    private String latestVerified(String code, List<String> types, Map<String,Object> fallback) {
+        String latest = string(fallback, "lastVerified");
+        for (String type : types) {
+            Map<String,Object> item = asMap(getCountryExtraItem(code, type));
+            String value = string(item, "lastVerified");
+            if (!isBlank(value) && value.compareTo(latest) > 0) latest = value;
+        }
+        return isBlank(latest) ? VERIFIED_DATE : latest;
     }
 
     private ResponseEntity<Void> redirectToCountryHome(String code, String lang) {
@@ -180,6 +197,7 @@ public class CountryController {
                                                    List<CountryDetail> policies, Map<String,Object> extra) {
         Map<String,Object> m = new LinkedHashMap<>();
         Map<String,Object> custom = countryIntentMap.get(routeCode(code));
+        if (custom == null) custom = countryIntentMap.get(resolver.policyKey(code));
         if (custom != null) m.putAll(custom);
         String enName=country.getName(), zhName=country.getNameZh();
         boolean direct=types.contains("unilateral")||types.contains("mutual"), transit=types.contains("transit"), hainan=types.contains("hainan");
@@ -191,8 +209,19 @@ public class CountryController {
         m.put("intentSummaryEn", firstNonBlank(string(m,"intentSummaryEn"), "For "+enName+" passport holders, the main question is which China entry route matches the actual itinerary. "+routeEn));
         m.put("intentSummaryZh", firstNonBlank(string(m,"intentSummaryZh"), "对于"+zhName+"护照持有人，最重要的是先判断实际行程对应哪一条中国入境路径。"+routeZh));
         m.put("direct", direct); m.put("transit", transit); m.put("hainan", hainan);
-        if (!(m.get("faqEn") instanceof List)) m.put("faqEn", buildIntentFaqs(country, types, policies, false));
-        if (!(m.get("faqZh") instanceof List)) m.put("faqZh", buildIntentFaqs(country, types, policies, true));
+        // One country-home FAQ source only. Prefer curated country-intent/extra content;
+        // generate intent FAQs only when no curated list exists. This prevents the old
+        // "Country-specific questions" + "Common questions" duplication.
+        if (!(m.get("faqEn") instanceof List)) {
+            List<Map<String,Object>> curated = toFaqObjects(extra == null ? null : extra.get("homeCustomFaqsEn"));
+            m.put("faqEn", curated.isEmpty() ? buildIntentFaqs(country, types, policies, false) : curated);
+        }
+        if (!(m.get("faqZh") instanceof List)) {
+            List<Map<String,Object>> curated = toFaqObjects(extra == null ? null : extra.get("homeCustomFaqsZh"));
+            m.put("faqZh", curated.isEmpty() ? buildIntentFaqs(country, types, policies, true) : curated);
+        }
+        m.put("faqEn", dedupeFaqs(faqObjects(m.get("faqEn")), 5));
+        m.put("faqZh", dedupeFaqs(faqObjects(m.get("faqZh")), 5));
         m.put("checksEn", buildTravelChecks(country, types, policies, false));
         m.put("checksZh", buildTravelChecks(country, types, policies, true));
         return m;
@@ -204,8 +233,35 @@ public class CountryController {
         m.put("intentSummaryEn", policyIntentSummary(country,type,policy,false));
         m.put("intentSummaryZh", policyIntentSummary(country,type,policy,true));
         m.put("faqEn", policy.getFaqsEn()); m.put("faqZh", policy.getFaqsZh());
-        m.put("seoTitleEn", firstNonBlank(string(rootExtra,"policySeoTitleEn"), n+" China "+policyLabel(type,false)+" 2026 | Rules & Requirements"));
-        m.put("seoTitleZh", firstNonBlank(string(rootExtra,"policySeoTitleZh"), z+"中国"+policyLabel(type,true)+" 2026 | 规则与入境要求"));
+        String defaultTitleEn;
+        String defaultTitleZh;
+        String defaultDescEn;
+        String defaultDescZh;
+        if ("transit".equals(type)) {
+            defaultTitleEn = n + " China 240-Hour Transit Visa-Free | Rules & Requirements";
+            defaultTitleZh = z + "中国240小时过境免签 | 规则与入境要求";
+            defaultDescEn = n + " citizens: check China 240-hour transit visa-free eligibility, onward itinerary, passport, eligible ports and stay conditions.";
+            defaultDescZh = z + "公民查询中国240小时过境免签资格、后续行程、护照、适用口岸及停留条件。";
+        } else if ("hainan".equals(type)) {
+            defaultTitleEn = n + " to Hainan Visa-Free | 30-Day Rules & Requirements";
+            defaultTitleZh = z + "赴海南免签 | 30天政策规则与入境要求";
+            defaultDescEn = n + " citizens: check the 30-day Hainan regional visa-free route, permitted purposes, passport and activity restrictions.";
+            defaultDescZh = z + "公民查询海南30天区域免签、允许事由、护照要求及活动范围限制。";
+        } else if ("mutual".equals(type)) {
+            defaultTitleEn = n + " China Visa-Free Agreement 2026 | Stay & Entry Rules";
+            defaultTitleZh = z + "中国互免签证协定 2026 | 停留与入境规则";
+            defaultDescEn = n + " citizens: check the China visa-exemption agreement, passport type, permitted purpose, stay limit and entry conditions.";
+            defaultDescZh = z + "公民查询中外互免签证协定、护照类型、允许事由、停留期限及入境条件。";
+        } else {
+            defaultTitleEn = n + " to China Visa-Free 2026 | Stay, Purpose & Entry Rules";
+            defaultTitleZh = z + "来华免签 2026 | 停留、事由与入境规则";
+            defaultDescEn = n + " citizens: check China visa-free eligibility, permitted purposes, maximum stay and entry conditions for this route.";
+            defaultDescZh = z + "公民查询本项来华免签资格、允许事由、最长停留期限及入境条件。";
+        }
+        m.put("seoTitleEn", firstNonBlank(string(rootExtra,"policySeoTitleEn"), defaultTitleEn));
+        m.put("seoTitleZh", firstNonBlank(string(rootExtra,"policySeoTitleZh"), defaultTitleZh));
+        m.put("seoDescEn", firstNonBlank(string(rootExtra,"policySeoDescEn"), defaultDescEn));
+        m.put("seoDescZh", firstNonBlank(string(rootExtra,"policySeoDescZh"), defaultDescZh));
         return m;
     }
 
@@ -264,42 +320,48 @@ public class CountryController {
         profile.put("heroAnswerZh", firstNonBlank(string(extra, "homeHeroAnswerZh"), defaultHeroAnswer(detailCountry, code, true)));
         profile.put("introEn", firstNonBlank(string(extra, "homeIntroEn"), defaultIntro(detailCountry, code, false)));
         profile.put("introZh", firstNonBlank(string(extra, "homeIntroZh"), defaultIntro(detailCountry, code, true)));
-        profile.put("homeFaqsEn", buildHomeFaqs(detailCountry, code, extra, false));
-        profile.put("homeFaqsZh", buildHomeFaqs(detailCountry, code, extra, true));
         return profile;
     }
 
-    private List<Map<String,Object>> buildHomeFaqs(CountryDetail detail, String code, Map<String,Object> extra, boolean zh) {
-        String customKey = zh ? "homeCustomFaqsZh" : "homeCustomFaqsEn";
+    private List<Map<String,Object>> toFaqObjects(Object value) {
         List<Map<String,Object>> result = new ArrayList<>();
-        Object custom = extra == null ? null : extra.get(customKey);
-        if (custom instanceof List) {
-            for (Object item : (List<?>) custom) {
-                if (!(item instanceof Map)) continue;
-                Map<?,?> m = (Map<?,?>) item;
-                String q = string(m.get("q")); String a = string(m.get("a"));
-                if (!q.isEmpty() && !a.isEmpty()) {
-                    Map<String,Object> faq = new LinkedHashMap<>(); faq.put("q", q); faq.put("a", a); faq.put("first", result.isEmpty()); result.add(faq);
-                }
-            }
+        if (!(value instanceof List)) return result;
+        for (Object item : (List<?>) value) {
+            if (!(item instanceof Map)) continue;
+            Map<?,?> raw = (Map<?,?>) item;
+            String q = string(raw.get("q"));
+            String a = string(raw.get("a"));
+            if (isBlank(q) || isBlank(a)) continue;
+            Map<String,Object> faq = new LinkedHashMap<>();
+            faq.put("q", q.trim()); faq.put("a", a.trim());
+            result.add(faq);
         }
-        List<String> types = detectAvailableTypes(code);
-        String n = zh ? detail.getNameZh() : detail.getName();
-        addHomeFaq(result, zh ? n+"公民去中国需要签证吗？" : "Do "+n+" citizens need a visa for China?",
-                types.contains("unilateral") ? (zh ? "符合条件的普通护照持有人可按现行单方面免签政策免签停留最长30天，具体事由和期限以出行当日有效规定为准。" : "Eligible ordinary-passport holders may use the current unilateral visa-free route for up to 30 days for covered purposes, subject to the rules in force on the travel date.") :
-                types.contains("mutual") ? (zh ? "是否免签取决于适用的中外互免签证协定，需核对护照类型、事由和停留条件。" : "Visa exemption depends on the applicable China bilateral agreement, including passport, purpose and stay conditions.") :
-                types.contains("transit") ? (zh ? "普通护照持有人可能适用240小时过境免签，但必须满足第三国或地区联程行程、口岸和活动区域等条件。" : "Eligible ordinary-passport holders may use the 240-hour transit route only when the onward itinerary, port and permitted-area conditions are met.") :
-                (zh ? "该国目前主要适用海南区域免签路径，请按实际行程核对。" : "This country is currently covered mainly by the Hainan regional visa-free route; check the conditions for your actual itinerary."));
-        addHomeFaq(result, zh ? "如果不符合本国的直接免签，过境中国24小时还可以免签吗？" : "Can I still transit China visa-free for 24 hours if my nationality has no direct visa-free route?", zh ? "可以考虑。国家移民管理局规定，中国所有对外开放口岸对世界各国人员实施24小时过境免签；但必须是经中国前往第三国或地区，持有效国际旅行证件和已确定座位的国际联程客票，并且不离开口岸限定区域。如需离开限定区域，应先申请临时入境许可。" : "Possibly. China applies a 24-hour visa-free transit policy to nationals of all countries at open ports, but you must be transiting to a third country or region with valid international travel documents and confirmed onward international travel, and remain in the port restricted area. A temporary entry permit is required if you need to leave that restricted area.");
-        if (types.contains("transit")) addHomeFaq(result, zh ? "可以把240小时过境免签当作普通旅游免签吗？" : "Can I use 240-hour transit visa-free entry like a normal tourist visa?", zh ? "不可以。它要求从中国过境前往第三国或地区，并满足确定日期和行程的联程客票、适用口岸及活动区域等条件。" : "No. It is a transit arrangement to a third country or region and requires the specified onward itinerary, eligible port and permitted-area conditions.");
-        if (types.contains("hainan")) addHomeFaq(result, zh ? "这个国家可以使用海南30天免签吗？" : "Can this nationality use Hainan's 30-day visa-free route?", zh ? "持普通护照且符合规定短期事由的人员可以申请适用；工作、学习等不属于该政策范围，活动范围限于海南省行政区域。" : "Eligible ordinary-passport holders may use the route for covered short-term purposes; work and study are excluded and activities are limited to Hainan Province.");
-        addHomeFaq(result, zh ? "如果我要在中国工作或学习怎么办？" : "What if I plan to work or study in China?", zh ? "不要把普通免签路径用于工作或学习。请根据实际目的提前申请相应签证或向官方渠道核实。" : "Do not use an ordinary visa-free route for work or study. Apply for the appropriate visa in advance or verify with the official authorities.");
-        return result.stream().limit(5).collect(Collectors.toList());
+        return result;
     }
 
-    private void addHomeFaq(List<Map<String,Object>> list, String q, String a) {
-        for (Map<String,Object> item : list) if (q.equals(item.get("q"))) return;
-        Map<String,Object> faq = new LinkedHashMap<>(); faq.put("q", q); faq.put("a", a); faq.put("first", list.isEmpty()); list.add(faq);
+    private List<Map<String,Object>> faqObjects(Object value) {
+        if (value instanceof List) return toFaqObjects(value);
+        return new ArrayList<>();
+    }
+
+    private List<Map<String,Object>> dedupeFaqs(List<Map<String,Object>> input, int limit) {
+        List<Map<String,Object>> result = new ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        for (Map<String,Object> item : input) {
+            String key = normalizeFaqQuestion(string(item.get("q")));
+            if (key.isEmpty() || !seen.add(key)) continue;
+            Map<String,Object> faq = new LinkedHashMap<>(item);
+            faq.put("first", result.isEmpty());
+            result.add(faq);
+            if (result.size() >= limit) break;
+        }
+        return result;
+    }
+
+    private String normalizeFaqQuestion(String value) {
+        return value == null ? "" : value.toLowerCase(Locale.ROOT)
+                .replaceAll("[\\p{Punct}\\p{P}\\p{S}]", "")
+                .replaceAll("\\s+", "").trim();
     }
 
     private String defaultHeroAnswer(CountryDetail detail, String code, boolean zh) {
@@ -349,18 +411,28 @@ public class CountryController {
         List<CountryPolicy.PolicyFaq> zh = toFaqs(extra.get("customFaqsZh"));
         String stay = isBlank(detailCountry.getStayDays()) ? "the period stated by the policy" : detailCountry.getStayDays() + " days";
         String stayZh = isBlank(detailCountry.getStayDays()) ? "政策规定期限" : detailCountry.getStayDays() + "天";
+        // Policy-detail FAQs must answer route-specific implementation questions.
+        // The country-home page already answers the high-level "do I need a visa?" intent.
         if ("hainan".equals(type)) {
-            addIfMissing(en, "Can " + detailCountry.getName() + " citizens use the 30-day Hainan visa-free policy?", "Eligible ordinary-passport holders may enter Hainan visa-free for up to 30 days for covered short-term purposes, subject to the regional restrictions and current policy.");
-            addIfMissing(zh, detailCountry.getNameZh() + "公民可以使用海南30天免签吗？", "符合条件的普通护照持有人可按现行海南区域免签政策免签停留最长30天，但仅限海南省行政区域及规定事由。" );
+            addIfMissing(en, "What purposes are allowed under the 30-day Hainan visa-free route?",
+                    "Check the permitted purposes recorded for this route and the current Hainan regional rules before departure.");
+            addIfMissing(zh, "海南30天免签可以用于哪些出行目的？",
+                    "请按本页面记录的允许事由以及出行当日有效的海南区域规定核对，工作、学习等长期目的不能直接按普通旅游免签理解。");
         } else if ("transit".equals(type)) {
-            addIfMissing(en, "How long can " + detailCountry.getName() + " citizens stay under this transit route?", "The current policy record allows up to " + stay + ", subject to the qualifying transit itinerary and entry record.");
-            addIfMissing(zh, detailCountry.getNameZh() + "公民过境免签可以停留多久？", "当前政策记录允许最长停留" + stayZh + "，具体以符合条件的过境行程和入境记录为准。");
+            addIfMissing(en, "What onward itinerary is required for this transit route?",
+                    "You must meet the qualifying transit itinerary to a third country or region, together with the applicable passport, port and stay conditions.");
+            addIfMissing(zh, "使用这条过境免签需要什么后续行程？",
+                    "需要满足前往第三国或地区的符合条件的过境联程行程，并同时满足适用护照、口岸和停留条件。");
         } else if ("mutual".equals(type)) {
-            addIfMissing(en, "Do " + detailCountry.getName() + " citizens need a visa under this agreement?", "A visa may be waived when the passport and purpose meet the applicable bilateral agreement.");
-            addIfMissing(zh, detailCountry.getNameZh() + "公民按照互免协定去中国需要签证吗？", "满足适用双边互免签证协定条件时，可以免办签证入境。");
+            addIfMissing(en, "Which passport and purpose conditions apply to this visa-exemption agreement?",
+                    "Use the passport type, permitted purpose and stay conditions recorded for this agreement; do not treat the exemption as a general waiver for every trip.");
+            addIfMissing(zh, "这项互免签证协定有哪些护照和出行目的限制？",
+                    "请按本协定对应的护照类型、允许事由和停留条件核对，不要把协定理解成适用于所有行程的普遍免签。");
         } else {
-            addIfMissing(en, "Can " + detailCountry.getName() + " citizens enter China without a visa?", "They may qualify when the ordinary passport, purpose and stay conditions of the current policy are met.");
-            addIfMissing(zh, detailCountry.getNameZh() + "公民可以免签进入中国吗？", "满足当前普通护照、出行目的和停留条件时，可能适用中国免签安排。");
+            addIfMissing(en, "What purposes are covered by this visa-free route?",
+                    "Check the permitted purposes and maximum stay recorded for this route, and verify the rules in force on the travel date.");
+            addIfMissing(zh, "这项免签政策允许哪些出行目的？",
+                    "请按本页面记录的允许事由和最长停留期限核对，并以出行当日有效规定为准。");
         }
         policy.setFaqsEn(en); policy.setFaqsZh(zh);
     }

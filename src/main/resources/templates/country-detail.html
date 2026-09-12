@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title th:text="${lang=='en'?countryIntent['seoTitleEn']:countryIntent['seoTitleZh']}"></title>
-<meta name="description" th:content="${lang=='en'?detail.seoDesc:detail.seoDescZh}">
+<meta name="description" th:content="${lang=='en'?countryIntent['seoDescEn']:countryIntent['seoDescZh']}">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="index,follow">
 <script type="application/ld+json" th:utext="${structuredData}"></script>

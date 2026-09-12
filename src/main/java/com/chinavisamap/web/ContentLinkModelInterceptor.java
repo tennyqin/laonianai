@@ -131,21 +131,27 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
     private List<Map<String,Object>> mergeFaqs(List<?> priorityFaqs,List<Map<String,Object>> existing,int limit){
         List<Map<String,Object>> result=new ArrayList<>();
         Set<String> questions=new LinkedHashSet<>();
-        for(Object item:priorityFaqs){
-            if(!(item instanceof Map)) continue;
-            Map<?,?> raw=(Map<?,?>)item; String q=String.valueOf(raw.get("q")==null?"":raw.get("q")).trim();
-            String a=String.valueOf(raw.get("a")==null?"":raw.get("a")).trim();
-            if(q.isEmpty()||a.isEmpty()||!questions.add(q)) continue;
-            Map<String,Object> faq=new LinkedHashMap<>(); faq.put("q",q); faq.put("a",a); result.add(faq);
-            if(result.size()>=limit) return result;
-        }
-        for(Map<String,Object> item:existing){
-            String q=String.valueOf(item.getOrDefault("q","")).trim();
-            if(q.isEmpty()||!questions.add(q)) continue;
-            result.add(item);
-            if(result.size()>=limit) break;
-        }
+        addUniqueFaqs(result,questions,priorityFaqs,limit);
+        addUniqueFaqs(result,questions,existing,limit);
         return result;
+    }
+
+    private void addUniqueFaqs(List<Map<String,Object>> result,Set<String> questions,Object source,int limit){
+        if(source instanceof List){
+            for(Object item:(List<?>)source){
+                if(!(item instanceof Map)||result.size()>=limit)continue;
+                Map<?,?> raw=(Map<?,?>)item;
+                String q=String.valueOf(raw.get("q")==null?"":raw.get("q")).trim();
+                String a=String.valueOf(raw.get("a")==null?"":raw.get("a")).trim();
+                String key=normalizeFaqQuestion(q);
+                if(q.isEmpty()||a.isEmpty()||key.isEmpty()||!questions.add(key))continue;
+                Map<String,Object> faq=new LinkedHashMap<>();faq.put("q",q);faq.put("a",a);faq.put("first",result.isEmpty());result.add(faq);
+            }
+        }
+    }
+
+    private String normalizeFaqQuestion(String value){
+        return value==null?"":value.toLowerCase(Locale.ROOT).replaceAll("[\\p{Punct}\\p{P}\\p{S}]","").replaceAll("\\s+","").trim();
     }
 
     @SuppressWarnings("unchecked")

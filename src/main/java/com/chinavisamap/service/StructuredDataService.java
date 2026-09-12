@@ -87,7 +87,7 @@ public class StructuredDataService {
         webpage.put("name", title);
         webpage.put("description", description);
         webpage.put("inLanguage", lang);
-        webpage.put("dateModified", "2026-09-09");
+        webpage.put("dateModified", verifiedDate(extra));
         Map<String, Object> about = new LinkedHashMap<>();
         about.put("@type", "Country");
         about.put("name", name);
@@ -102,27 +102,6 @@ public class StructuredDataService {
         elements.add(breadcrumbItem(3, title, canonicalUrl));
         breadcrumb.put("itemListElement", elements);
         graph.add(breadcrumb);
-
-        if (policy != null) {
-            List<CountryPolicy.PolicyFaq> faqs = "zh".equals(lang) ? policy.getFaqsZh() : policy.getFaqsEn();
-            if (faqs != null && !faqs.isEmpty()) {
-                Map<String, Object> faqPage = new LinkedHashMap<>();
-                faqPage.put("@type", "FAQPage");
-                List<Map<String, Object>> entities = new ArrayList<>();
-                for (CountryPolicy.PolicyFaq faq : faqs) {
-                    Map<String, Object> question = new LinkedHashMap<>();
-                    question.put("@type", "Question");
-                    question.put("name", faq.getQ());
-                    Map<String, Object> answer = new LinkedHashMap<>();
-                    answer.put("@type", "Answer");
-                    answer.put("text", faq.getA());
-                    question.put("acceptedAnswer", answer);
-                    entities.add(question);
-                }
-                faqPage.put("mainEntity", entities);
-                graph.add(faqPage);
-            }
-        }
 
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("@context", "https://schema.org");
@@ -153,7 +132,7 @@ public class StructuredDataService {
         page.put("name", title);
         page.put("description", description);
         page.put("inLanguage", lang);
-        page.put("dateModified", "2026-09-09");
+        page.put("dateModified", verifiedDate(extra));
         Map<String, Object> about = new LinkedHashMap<>();
         about.put("@type", "Country");
         about.put("name", name);
@@ -185,32 +164,6 @@ public class StructuredDataService {
         }
         itemList.put("itemListElement", listItems);
         graph.add(itemList);
-
-        Object faqValue = extra.get("zh".equals(lang) ? "homeCustomFaqsZh" : "homeCustomFaqsEn");
-        if (faqValue instanceof List && !((List<?>) faqValue).isEmpty()) {
-            Map<String, Object> faqPage = new LinkedHashMap<>();
-            faqPage.put("@type", "FAQPage");
-            List<Map<String, Object>> entities = new ArrayList<>();
-            for (Object item : (List<?>) faqValue) {
-                if (!(item instanceof Map)) continue;
-                Map<?, ?> raw = (Map<?, ?>) item;
-                String q = stringValue(raw.get("q"));
-                String a = stringValue(raw.get("a"));
-                if (isBlank(q) || isBlank(a)) continue;
-                Map<String, Object> question = new LinkedHashMap<>();
-                question.put("@type", "Question");
-                question.put("name", q);
-                Map<String, Object> answer = new LinkedHashMap<>();
-                answer.put("@type", "Answer");
-                answer.put("text", a);
-                question.put("acceptedAnswer", answer);
-                entities.add(question);
-            }
-            if (!entities.isEmpty()) {
-                faqPage.put("mainEntity", entities);
-                graph.add(faqPage);
-            }
-        }
 
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("@context", "https://schema.org");
@@ -270,6 +223,14 @@ public class StructuredDataService {
         graph.put("@context", "https://schema.org");
         graph.put("@graph", Arrays.asList(data, breadcrumb));
         return toJson(graph);
+    }
+
+    private String verifiedDate(Map<String,Object> extra){
+        if(extra!=null){
+            String value=stringValue(extra.get("lastVerified"));
+            if(!isBlank(value)) return value;
+        }
+        return "2026-09-09";
     }
 
     private String canonicalCountryRoute(String code) {
