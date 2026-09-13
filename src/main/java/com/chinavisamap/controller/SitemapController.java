@@ -18,6 +18,7 @@ import java.util.*;
 public class SitemapController {
 
     private static final String BASE_URL = "https://chinavisamap.com";
+    private static final String SITE_UPDATE = "2026-09-13";
 
     private final Map<String, CountryDetail> unilateralMap;
     private final Map<String, CountryDetail> mutualMap;
@@ -41,7 +42,7 @@ public class SitemapController {
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">");
 
-        addMultilingualUrl(xml, "/", "homepage");
+        addMultilingualUrl(xml, "/", "homepage", SITE_UPDATE);
 
         Set<String> countryCodes = new TreeSet<>();
         addCanonicalCodes(countryCodes, unilateralMap.keySet());
@@ -49,7 +50,7 @@ public class SitemapController {
         addCanonicalCodes(countryCodes, transitMap.keySet());
         addCanonicalCodes(countryCodes, hainanMap.keySet());
         for (String code : countryCodes) {
-            addMultilingualUrl(xml, "/country/" + code, "country");
+            addMultilingualUrl(xml, "/country/" + code, "country", null);
         }
 
         addCountryTypeUrls(xml, unilateralMap, "unilateral");
@@ -57,12 +58,12 @@ public class SitemapController {
         addCountryTypeUrls(xml, transitMap, "transit");
         addCountryTypeUrls(xml, hainanMap, "hainan");
 
-        addMultilingualUrl(xml, "/articles", "articles");
+        addMultilingualUrl(xml, "/articles", "articles", SITE_UPDATE);
         for (Map<String, Object> article : articles) {
             Object id = article.get("id");
-            if (id != null) addMultilingualUrl(xml, "/articles/" + id, "article");
+            if (id != null) addMultilingualUrl(xml, "/articles/" + id, "article", articleLastMod(article));
         }
-        addMultilingualUrl(xml, "/visa-guide", "visa-guide");
+        addMultilingualUrl(xml, "/visa-guide", "visa-guide", SITE_UPDATE);
 
         xml.append("</urlset>");
         return ResponseEntity.ok()
@@ -71,33 +72,42 @@ public class SitemapController {
     }
 
     private void addCanonicalCodes(Set<String> target, Set<String> source) {
-        for (String code : source) {
-            target.add(resolver.routeCode(resolver.policyKey(code)));
-        }
+        for (String code : source) target.add(resolver.routeCode(resolver.policyKey(code)));
     }
 
     private void addCountryTypeUrls(StringBuilder xml, Map<String, CountryDetail> map, String type) {
         if (map == null) return;
         for (String code : map.keySet()) {
             String canonicalCode = resolver.routeCode(resolver.policyKey(code));
-            addMultilingualUrl(xml, "/country/" + canonicalCode + "/" + type, "country-detail");
+            addMultilingualUrl(xml, "/country/" + canonicalCode + "/" + type, "country-detail", null);
         }
     }
 
-    private void addMultilingualUrl(StringBuilder xml, String path, String type) {
+    private void addMultilingualUrl(StringBuilder xml, String path, String type, String lastmod) {
         String en = BASE_URL + path + "?lang=en";
         String zh = BASE_URL + path + "?lang=zh";
-        addUrl(xml, en, "en", zh);
-        addUrl(xml, zh, "zh", en);
+        addUrl(xml, en, "en", zh, lastmod);
+        addUrl(xml, zh, "zh", en, lastmod);
     }
 
-    private void addUrl(StringBuilder xml, String loc, String lang, String alternate) {
+    private void addUrl(StringBuilder xml, String loc, String lang, String alternate, String lastmod) {
         xml.append("<url>");
         xml.append("<loc>").append(xmlEscape(loc)).append("</loc>");
+        if (lastmod != null && !lastmod.trim().isEmpty()) {
+            xml.append("<lastmod>").append(xmlEscape(lastmod.trim())).append("</lastmod>");
+        }
         xml.append("<xhtml:link rel=\"alternate\" hreflang=\"").append(lang).append("\" href=\"").append(xmlEscape(loc)).append("\"/>");
         xml.append("<xhtml:link rel=\"alternate\" hreflang=\"").append("zh".equals(lang) ? "en" : "zh").append("\" href=\"").append(xmlEscape(alternate)).append("\"/>");
         xml.append("<xhtml:link rel=\"alternate\" hreflang=\"x-default\" href=\"").append(xmlEscape("en".equals(lang) ? loc : alternate)).append("\"/>");
         xml.append("</url>");
+    }
+
+    private String articleLastMod(Map<String,Object> article) {
+        String modified = String.valueOf(article.getOrDefault("dateModified", "")).trim();
+        if (!modified.isEmpty()) return modified.length() >= 10 ? modified.substring(0,10) : modified;
+        String published = String.valueOf(article.getOrDefault("publishAt", "")).trim();
+        if (!published.isEmpty()) return published.length() >= 10 ? published.substring(0,10) : published;
+        return null;
     }
 
     private Map<String, CountryDetail> loadCountryMap(ObjectMapper objectMapper, String file) {

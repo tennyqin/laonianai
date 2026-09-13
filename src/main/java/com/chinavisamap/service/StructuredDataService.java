@@ -183,6 +183,8 @@ public class StructuredDataService {
         data.put("url", canonicalUrl);
         data.put("inLanguage", lang);
         if (!isBlank(publishAt)) data.put("datePublished", publishAt);
+        String dateModified = stringValue(article.get("dateModified"));
+        if (!isBlank(dateModified)) data.put("dateModified", dateModified);
         String category = stringValue(article.get("categoryEn"));
         if (!isBlank(category)) data.put("articleSection", category);
         Object tags = article.get("tagsEn");
@@ -230,7 +232,7 @@ public class StructuredDataService {
             String value=stringValue(extra.get("lastVerified"));
             if(!isBlank(value)) return value;
         }
-        return "2026-09-09";
+        return "2026-09-13";
     }
 
     private String canonicalCountryRoute(String code) {

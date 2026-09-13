@@ -36,6 +36,7 @@ public class ArticleController {
         temp.add(category("China Life & Apps", "中国生活与APP"));
         temp.add(category("Travel Customs", "旅行风俗文化"));
         temp.add(category("Border-Inspection Pitfalls", "边检出入境踩坑"));
+        temp.add(category("Country Visa Guides", "国家签证指南"));
         ALL_CATEGORIES = Collections.unmodifiableList(temp);
     }
 
@@ -89,6 +90,17 @@ public class ArticleController {
                     }
                 } else {
                     art.put("displayPublishDate", "");
+                }
+                String modifiedRaw = text(art, "dateModified");
+                if (StringUtils.isNotBlank(modifiedRaw)) {
+                    try {
+                        LocalDateTime md = LocalDateTime.parse(modifiedRaw.length() == 10 ? modifiedRaw + "T00:00:00" : modifiedRaw, isoFormatter);
+                        art.put("displayModifiedDate", md.format(displayFormatter));
+                    } catch (Exception ignored) {
+                        art.put("displayModifiedDate", modifiedRaw);
+                    }
+                } else {
+                    art.put("displayModifiedDate", "");
                 }
             }
 

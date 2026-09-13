@@ -32,7 +32,8 @@
       "japan",
       "korea",
       "uk"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "can-i-work-internship-china-visafree",
@@ -65,7 +66,8 @@
       "usa",
       "canada",
       "australia"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "24h-accommodation-registration-china",
@@ -98,7 +100,8 @@
       "thailand",
       "singapore",
       "malaysia"
-    ]
+    ],
+    "topicCluster": "entry-preparation"
   },
   {
     "id": "calculate-visafree-stay-days-china",
@@ -129,7 +132,8 @@
       "spain",
       "portugal",
       "italy"
-    ]
+    ],
+    "topicCluster": "stay-calculation"
   },
   {
     "id": "passport-lost-expired-inside-china",
@@ -159,7 +163,8 @@
     "relatedCountryCodes": [
       "russia",
       "belarus"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "transit-visafree-rejection-reasons",
@@ -190,7 +195,8 @@
       "japan",
       "korea",
       "usa"
-    ]
+    ],
+    "topicCluster": "transit"
   },
   {
     "id": "can-i-extend-visafree-stay-inside-china",
@@ -221,7 +227,8 @@
       "france",
       "germany",
       "uk"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "return-onward-ticket-china-visafree",
@@ -252,7 +259,8 @@
       "norway",
       "denmark",
       "sweden"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "mutual-visa-exemption-misunderstandings",
@@ -283,7 +291,8 @@
       "uae",
       "kazakhstan",
       "serbia"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "pre-departure-checklist-china-visafree",
@@ -314,7 +323,8 @@
       "brazil",
       "argentina",
       "chile"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "must-have-apps-for-foreigners-china",
@@ -341,7 +351,8 @@
     ],
     "contentEn": "<h3>Maps & Navigation</h3><p>Amap (Gaode Maps) and Baidu Maps are the most stable and widely-used navigation services within mainland-China. Google Maps functionality is heavily limited under local network environment. If you plan to travel to remote mountain / plateau regions, download offline-map packages for target cities before you arrive. Both Amap and Baidu support English-language interface.</p><h3>Translation tools</h3><p>DeepL, iFlytek Translation app support real-time voice-translation, camera-photo-translation. Very practical for street-chatting, restaurant-ordering, reading public-sign-boards when you have limited Chinese-language ability.</p><h3>Transport & taxi / ride-hailing</h3><p>Didi is the dominant ride-hailing platform in China. Overseas users can bind international credit-cards (Visa / Mastercard) inside Didi App without needing Chinese domestic bank-card.</p><h3>Government-service official app for foreigners</h3><p>“Immigration 12367” App / mini-program: for online foreign-visitor accommodation-registration, immigration-related consultation, multilingual-service hotline-entrance.</p><h3>Important registration-note</h3><p>Certain domestic Chinese-apps require mainland-China mobile-phone-number for full-feature registration. After landing in China you can purchase local-SIM-card or activate e-SIM to obtain Chinese phone-number for registration purpose.</p>",
     "contentZh": "<h3>地图导航</h3><p>高德地图、百度地图，是中国大陆环境下最稳定普及的导航软件；谷歌地图在本地网络环境功能受限。计划前往山区、高原等偏远地区，建议抵达前下载目标城市离线地图包。高德、百度均支持英文界面。</p><h3>翻译工具</h3><p>DeepL、讯飞翻译APP，支持实时语音翻译、拍照翻译。中文能力有限时，逛街沟通、餐厅点餐、识别公共标识都非常实用。</p><h3>交通网约车</h3><p>滴滴出行是国内主流网约车平台，海外用户无需内地银行卡，可以直接绑定Visa/Mastercard境外信用卡使用。</p><h3>面向外国人的政务官方APP</h3><p>移民局12367 APP/小程序：支持线上办理外国人住宿登记、出入境业务咨询、多语种服务热线入口。</p><h3>注册重要提示</h3><p>部分国内APP完整功能注册，需要中国大陆手机号。抵达中国之后，可以办理本地实体SIM卡或者eSIM虚拟卡获取国内手机号完成注册。</p>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "mobile-internet-sim-esim-china-travel",
@@ -368,7 +379,8 @@
     ],
     "contentEn": "<h3>Three mainstream mobile-internet solutions comparison table</h3><table><thead><tr><th>Solution</th><th>Pros</th><th>Cons</th><th>Suitable-Crowd</th></tr></thead><tbody><tr><td>International roaming (home-country SIM-card)</td><td>No card swap needed; simple activation before departure</td><td>High data-traffic cost; data-package often expensive for long-stay</td><td>Short-stopover within 1-3 days, minimal-data-usage</td></tr><tr><td>Local physical SIM-card (China operator)</td><td>Affordable data-price; stable domestic network</td><td>Phone must be network-unlocked; requires real-name registration with passport at airport / retail-store</td><td>Medium-long-term travel, budget-conscious visitors</td></tr><tr><td>e-SIM virtual-card</td><td>No physical-card-swap; can purchase & activate online before departure</td><td>Only supported by e-SIM-compatible modern smartphones</td><td>Most-recommended for modern-smartphone users</td></tr></tbody></table><h3>Purchase-channel tips</h3><ul><li>Physical SIM-card: Main-arrival-halls of major international airports have telecom-operator retail-kiosks; you need to show your passport for real-name-registration as required by Chinese regulation.</li><li>e-SIM: Purchase from authorised overseas-vendor websites before you fly to China; activate after you land inside mainland-China.</li></ul><h3>Critical regulatory reminder</h3><p>According to Chinese network-regulation rules, private-individual use of VPN service is not permitted inside mainland-China. Global overseas-social-media platforms cannot be accessed without authorised official-approved channels.</p>",
     "contentZh": "<h3>三大主流上网方案对比表</h3><table><thead><tr><th>上网方案</th><th>优点</th><th>缺点</th><th>适合人群</th></tr></thead><tbody><tr><td>本国SIM卡国际漫游</td><td>无需换卡，出发前简单开通即可</td><td>流量资费偏高，长期停留成本高</td><td>1-3天短暂中转、流量消耗很小的旅客</td></tr><tr><td>中国运营商本地实体SIM卡</td><td>流量价格实惠，国内网络稳定</td><td>手机必须无锁；凭护照实名登记，机场/线下门店办理</td><td>中长时间旅行，对预算敏感游客</td></tr><tr><td>eSIM虚拟卡</td><td>不用更换实体卡片，出发前线上购买</td><td>仅支持具备eSIM功能的新款智能手机</td><td>手机支持eSIM的游客，优先推荐</td></tr></tbody></table><h3>购买渠道实操提示</h3><ul><li>实体SIM卡：大型国际机场到达大厅设有运营商售卖柜台；按照国内法规，必须出示护照完成实名登记。</li><li>eSIM：来华前在正规海外服务商网站购买，抵达中国大陆之后再完成激活。</li></ul><h3>重要法规提醒</h3><p>依据中国网络相关法规，中国大陆境内个人私自使用VPN属于违规行为。境外海外社交平台，无法通过非官方合规渠道访问。</p>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "cash-mobile-payment-china-foreign-tourist",
@@ -395,7 +407,8 @@
     ],
     "contentEn": "<h3>Carry small-amount RMB cash for emergency scenarios</h3><p>Small street-side shops, old-style taxis, small-scale local-street-vendors often cannot process card or QR-code payment. Always keep small-denomination RMB bank-notes in your wallet for unexpected-situations.</p><h3>Visa / Mastercard credit-card acceptance scope</h3><ul><li>✅ Supported: Large-scale shopping-malls, international-brand hotels, high-end chain-restaurants, major-airport-retail-shops.</li><li>❌ Usually NOT supported: Small local-family-run restaurants, street-food-stalls, small-community-shops, regular-city-taxis.</li></ul><h3>Special tourist-oriented digital-payment solutions (no mainland-bank-account required)</h3><ul><li>Alipay Tour Card: Overseas-visitor version of Alipay, supports binding international credit-cards for QR-code consumption.</li><li>WeChat Tourist Wallet: WeChat special tourist-mode wallet for overseas-passport-holders, supports international-card top-up for QR-code payment.</li></ul><h3>Practical spending advice</h3><ul><li>Exchange a small-amount of Chinese Yuan cash right after airport-arrival for emergency-purpose. Do NOT exchange huge-amount cash all-at-once.</li><li>Do not fully rely solely on credit-card or mobile QR-payment; always prepare cash-backup.</li></ul>",
     "contentZh": "<h3>常备小额人民币现金应对应急场景</h3><p>街边小店、老式出租车、小型路边摊贩，很多不支持刷卡或者二维码支付。钱包常备小面额人民币纸币，应对突发无法扫码付款场景。</p><h3>Visa/Mastercard信用卡受理范围</h3><ul><li>✅可以使用：大型购物中心、国际品牌酒店、高端连锁餐厅、机场大型商铺。</li><li>❌大多无法使用：本地小家庭餐馆、路边小吃摊、社区小店、普通城市出租车。</li></ul><h3>面向境外游客专属数字支付方案（无需内地银行卡）</h3><ul><li>支付宝境外游客版（Alipay Tour Card）：海外游客模式，可绑定境外信用卡实现二维码消费。</li><li>微信游客钱包：专门面向持外国护照来华游客，支持境外信用卡充值，完成二维码付款。</li></ul><h3>实操消费建议</h3><ul><li>抵达机场之后兑换少量人民币现金留作应急，不要一次性兑换大额现金。</li><li>不要完全依赖信用卡或者手机扫码支付，务必准备现金作为备用。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "chinese-dining-etiquette-for-foreign-visitors",
@@ -422,7 +435,8 @@
     ],
     "contentEn": "<h3>Chopstick manners & taboos</h3><ul><li>Never stick chopsticks vertically upright into rice bowl, this gesture is associated with traditional funeral rituals and considered inauspicious.</li><li>Do not tap bowls with chopsticks; do not wave chopsticks around while talking.</li></ul><h3>Tipping culture in mainland China</h3><p>Tipping is NOT a mainstream custom across mainland China. You do not need to give extra cash tips for restaurant waiters, taxi drivers or hotel housekeeping staff. Extra tipping may even make local people feel uncomfortable.</p><h3>Shared-dishes & serving chopsticks custom</h3><p>Most Chinese-style restaurants adopt shared-dining culture, dishes are placed in middle of table for everyone to share. Many restaurants will provide separate public serving-chopsticks and spoons for picking food from shared plates, please use them when available.</p><h3>Toasting custom at banquets</h3><p>At formal dinners or banquets, local people may propose toasts. You have full right to politely decline alcohol drinks. You can use tea, juice or mineral water as replacement beverage for toasting.</p><h3>Extra practical dining FAQ</h3><ul><li><strong>Q:</strong> Is it rude to leave some food unfinished on plate?<br><strong>A:</strong> Leaving small portion food is acceptable; finishing every bite completely does not mean you must order more dishes.</li></ul>",
     "contentZh": "<h3>筷子用法与忌讳</h3><ul><li>不要把筷子竖直插在米饭碗当中，该手势和传统丧葬习俗相关，属于不吉利的忌讳。</li><li>不要拿筷子敲打碗碟；交谈的时候不要挥舞筷子。</li></ul><h3>中国大陆小费文化</h3><p>在中国大陆没有给小费的主流习俗。餐厅服务员、出租车司机、酒店保洁都不需要额外支付小费，主动多给小费有时反而会让当地人感到局促。</p><h3>合餐与公筷习惯</h3><p>绝大多数中餐厅实行合餐文化，菜品放置桌子中央供所有人分享。不少餐厅会专门提供公筷公勺用来夹取大盘菜品，有提供的情况下建议优先使用。</p><h3>宴席敬酒习俗</h3><p>正式聚餐、宴会场合会出现敬酒环节。你完全可以礼貌委婉拒绝饮酒，可以用茶水、果汁、矿泉水代替酒水回敬。</p><h3>用餐额外常见问答</h3><ul><li><strong>问：盘子里面剩菜是否不礼貌？</strong><br><strong>答：</strong>少量剩余饭菜属于正常，不需要为了光盘强行多点菜品。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "public-transport-tips-china-subway-high-speed-rail",
@@ -449,7 +463,8 @@
     ],
     "contentEn": "<h3>High-speed rail ticket purchase & real-name check</h3><p>China high-speed railway implements strict real-name-ID system. Foreign visitors can buy train tickets with original passport at railway-station manual ticket counters. Some third-party travel platforms support foreign-passport booking online. When boarding trains you must present your physical original-passport for identity verification; passport photo or screenshot is generally invalid.</p><h3>High-speed-rail carry-on luggage restrictions</h3><table><thead><tr><th>Item Category</th><th>Requirement</th></tr></thead><tbody><tr><td>Carry-on luggage weight</td><td>Adults max 20 kg per passenger</td></tr><tr><td>Sum of length-width-height</td><td>Total dimension shall not exceed 130 cm</td></tr><tr><td>Prohibited carry-on</td><td>Sharp dangerous goods, large-size liquids, flammable articles</td></tr></tbody></table><h3>City subway / metro usage</h3><p>Most urban subway systems support QR-code ride-codes. To obtain tourist-oriented ride-code you may need to complete real-name registration with passport. You can also buy one-time-use paper metro tickets at station vending-machines.</p><h3>Important station arrival reminder</h3><p>Major high-speed-rail stations cover huge area, security-check and walking distance take long time. Arrive at station at least 30 minutes before your train departure time. Boarding gates will close several minutes prior to departure.</p><h3>Common mistake warning</h3><p>Do not forget to bring physical passport when you take high-speed-trains; electronic copy cannot pass gate inspection.</p>",
     "contentZh": "<h3>高铁购票与实名核验</h3><p>中国高铁执行严格实名制度。外国游客可以在火车站人工窗口凭护照原件购买火车票；部分第三方旅行平台支持使用外国护照线上订票。乘车检票时，必须出示实体护照原件，护照照片、截图一般不能通过闸机核验。</p><h3>高铁随身行李限制</h3><table><thead><tr><th>项目分类</th><th>具体要求</th></tr></thead><tbody><tr><td>随身行李重量</td><td>成人每位最多20公斤</td></tr><tr><td>长宽高三边之和</td><td>总和不超过130厘米</td></tr><tr><td>禁止随身携带</td><td>尖锐危险品、大瓶液态物品、易燃易爆物件</td></tr></tbody></table><h3>城市地铁使用</h3><p>绝大多数城市地铁支持二维码乘车码。申领游客乘车码，有可能需要使用护照完成实名登记；也可以在车站自助机购买纸质单程地铁票。</p><h3>到站重要提醒</h3><p>大型高铁站占地面积很大，安检加上站内步行耗时久，请至少发车前30分钟抵达车站。列车发车前数分钟检票闸机就会关闭。</p><h3>高频错误提醒</h3><p>乘坐高铁务必携带实体护照原件，电子副本无法过闸机。</p>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "tourist-scam-avoid-china-foreign-traveler",
@@ -476,7 +491,8 @@
     ],
     "contentEn": "<h3>Typical tourist-traps targeting overseas-visitors</h3><ul><li><strong>Tea-house / art-gallery scam:</strong> Strangers on street start friendly small-talk, invite you for tea-tasting or art-appreciation, afterwards charge extremely high fees for drinks or artwork.</li><li><strong>Unlicensed taxi / black-car overcharging:</strong> Near scenic-spots, unlicensed private-car drivers quote sky-high prices for short-distance rides.</li><li><strong>Fake-souvenir overpricing:</strong> Street vendors sell counterfeit antiques or handicrafts with inflated price to foreign-looking tourists.</li></ul><h3>Safety & response advice</h3><ul><li>Politely but firmly reject unsolicited invitations and small-talk from unknown strangers on street.</li><li>Prefer official Didi ride-hailing service; avoid taking unlicensed private black-cars around scenic-areas.</li><li>Save important emergency-numbers inside your mobile-phone: local police 110, hotel front-desk contact, 12367 national immigration hotline.</li><li>If you get trapped in scam-conflict, move to crowded public-place first and dial 110 for police assistance.</li></ul><h3>Quick-reference emergency-number note</h3><p>110 is China universal police-emergency number; you may dial it for disputes, fraud and personal-safety-related incidents.</p>",
     "contentZh": "<h3>专门针对海外游客的典型旅游陷阱</h3><ul><li><strong>茶馆画廊骗局：</strong>街头陌生人主动搭话闲聊，邀请品茶、看画展，之后向你收取高额茶水或者艺术品费用。</li><li><strong>黑车漫天要价：</strong>景区周边无资质私车司机，短途行程报虚高车费。</li><li><strong>纪念品虚高售卖：</strong>路边摊贩向外国游客高价兜售仿冒古董、劣质手工艺品。</li></ul><h3>安全与应对建议</h3><ul><li>对于街头陌生人主动搭讪邀约，礼貌并且坚决拒绝。</li><li>优先使用官方滴滴网约车，景区周边不要乘坐无资质黑私车。</li><li>手机保存关键紧急号码：报警110、酒店前台联系方式、国家移民12367热线。</li><li>一旦陷入骗局纠纷，优先移动到人多公共场所，拨打110寻求警方帮助。</li></ul><h3>紧急号码速查</h3><p>110是中国通用报警电话，遭遇纠纷、诈骗、人身安全事件均可拨打。</p>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "what-to-do-if-you-get-sick-while-traveling-china",
@@ -503,7 +519,8 @@
     ],
     "contentEn": "<h3>Two main types of medical institutions</h3><table><thead><tr><th>Hospital Type</th><th>Advantages</th><th>Disadvantages</th></tr></thead><tbody><tr><td>Public general hospital</td><td>Complete medical departments, wide-range treatment capabilities, relatively reasonable price</td><td>Limited English-speaking staff; large patient-flow, long waiting-time during peak hours</td></tr><tr><td>International clinic / Sino-foreign medical centre</td><td>English-speaking medical staff, more comfortable service-experience</td><td>Service price is significantly higher than public hospitals</td></tr></tbody></table><h3>Travel medical-insurance suggestion</h3><p>Strongly recommend purchasing travel-insurance covering overseas-medical-expense before departing your home-country. Many visa-free visitors overlook medical-insurance preparation. Double-check that policy coverage includes mainland-China territory.</p><h3>Important practical reminders for hospital-visit</h3><ul><li>Bring your original passport for hospital registration procedures.</li><li>Keep all medical invoices, examination reports and receipts safely, these documents are required for insurance-claim reimbursement.</li><li>For severe emergency-medical-situation you can dial 120 China national ambulance emergency-number.</li></ul>",
     "contentZh": "<h3>两类主要医疗机构对比</h3><table><thead><tr><th>医院类型</th><th>优点</th><th>缺点</th></tr></thead><tbody><tr><td>公立综合医院</td><td>科室齐全，诊疗能力全面，价格相对合理</td><td>会说英语工作人员有限；人流量大，高峰时段等候久</td></tr><tr><td>国际诊所/中外医疗中心</td><td>医护可使用英语沟通，服务体验更舒适</td><td>收费显著高于公立医院</td></tr></tbody></table><h3>旅行医疗保险建议</h3><p>强烈建议出发前购买覆盖海外医疗开销的旅行保险，不少免签来华游客会忽略保险准备。务必确认保险保障地域包含中国大陆。</p><h3>就医实操重要提醒</h3><ul><li>就医挂号登记需要携带护照原件。</li><li>妥善保管全部医疗发票、检查报告单，保险理赔需要用到这些凭证。</li><li>遇到危重医疗紧急情况，可以拨打中国救护车急救号码120。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "china-tourist-souvenir-shopping-tips",
@@ -530,7 +547,8 @@
     ],
     "contentEn": "<h3>Bargaining rules for different shopping-scenarios</h3><ul><li>✅ Open-air local street-markets, small independent-vendor stalls: bargaining is common and expected, you can negotiate price moderately.</li><li>❌ Large-scale shopping-malls, brand-chain-stores, official museum-gift-shops: fixed-price only, price negotiation is not accepted.</li></ul><h3>Critical customs-export restrictions you must know</h3><ul><li>Antique cultural-relics without formal export-approval documents cannot be taken out of China.</li><li>Wild-animal-related protected products are strictly prohibited for export.</li><li>Do not purchase so-called “ancient antiques” from unlicensed street-side vendors; many are counterfeit and you risk customs confiscation.</li></ul><h3>Receipt preservation advice</h3><p>Keep shopping receipts and invoices especially for expensive handicrafts, art-works or specialty-goods. Customs officers may request to check purchase-documents when you depart China.</p><h3>Extra shopping FAQ</h3><ul><li><strong>Q:</strong> Can I buy Chinese tea and take it back home?<br><strong>A:</strong> Dried tea-leaves are generally allowed for personal carry-on, subject to import quarantine-rules of your home-country.</li></ul>",
     "contentZh": "<h3>不同购物场景砍价规则</h3><ul><li>✅露天本地集市、个体小摊贩摊位：普遍可以砍价，可以适度协商价格。</li><li>❌大型购物中心、品牌连锁门店、博物馆官方礼品店：明码标价，不接受议价。</li></ul><h3>必须了解的海关出境限制</h3><ul><li>没有正规出口审批文件的文物古董，不能携带出境。</li><li>受保护野生动物相关制品严禁携带出境。</li><li>不要在无资质街边摊贩处购买所谓古董，很多属于仿品，还存在被海关没收风险。</li></ul><h3>票据保存建议</h3><p>贵重手工艺品、艺术品、特产务必保留购物小票和发票，出境海关有可能核验购买凭证。</p><h3>购物补充问答</h3><ul><li><strong>问：可以买茶叶带回本国吗？</strong><br><strong>答：</strong>干茶叶个人携带出境一般允许，但要遵守你本国的进口检疫规定。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "weather-clothing-preparation-china-different-regions",
@@ -557,7 +575,8 @@
     ],
     "contentEn": "<h3>Regional climate overview & packing tips</h3><table><thead><tr><th>Region</th><th>Climate Characteristic</th><th>Clothing & gear suggestion</th></tr></thead><tbody><tr><td>South-China / Southeast-China</td><td>Hot & humid summer; heavy rainfall, typhoon risk June-September</td><td>Light breathable summer-clothes, raincoat / folding umbrella, anti-sun accessories</td></tr><tr><td>North-China (Beijing, Tianjin etc.)</td><td>Big day-night temperature gap in spring-autumn; cold freezing winter</td><td>Layer-style dressing; thick warm outer-coat for winter-season</td></tr><tr><td>Western plateau (Qinghai, Tibet)</td><td>Strong ultraviolet radiation; large temperature difference between day and night even in summer</td><td>Sunscreen, sun-hat, sunglasses; long-sleeve layers even during summer months</td></tr><tr><td>South-West mountain area</td><td>High humidity, frequent light-rain all-year-round</td><td>Water-proof footwear, portable rain-gear</td></tr></tbody></table><h3>Practical travel tip</h3><p>Weather can change rapidly. Before travelling to each new city, look up multi-day local weather forecast in advance and adjust your clothing-packing accordingly.</p><h3>Warning note</h3><p>Even summer-season on plateau areas, nights can drop to quite low temperature; do not only bring short-sleeve garments.</p>",
     "contentZh": "<h3>各区域气候概况与行李穿搭建议</h3><table><thead><tr><th>地区</th><th>气候特点</th><th>衣物装备建议</th></tr></thead><tbody><tr><td>华南/东南地区</td><td>夏季湿热；6-9月多雨，存在台风风险</td><td>轻薄透气夏装、雨衣/折叠雨伞、防晒用品</td></tr><tr><td>华北地区（北京、天津等）</td><td>春秋昼夜温差巨大；冬季严寒结冰</td><td>分层穿搭；冬季准备厚实保暖外套</td></tr><tr><td>西部高原（青海、西藏）</td><td>紫外线极强，即便夏天昼夜温差也很大</td><td>防晒霜、遮阳帽、太阳镜；夏季也需要备长袖分层衣物</td></tr><tr><td>西南山区</td><td>湿度高，全年经常小雨</td><td>防水鞋子、便携雨具</td></tr></tbody></table><h3>实操出行提示</h3><p>天气变化速度快。每去往一座新城市，提前查询当地多日天气预报，灵活调整携带衣物。</p><h3>重要提醒</h3><p>高原区域即便夏季，夜间气温会降得很低，不要只带短袖类服饰。</p>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "photography-rules-china-tourist-foreign-visitor",
@@ -584,7 +603,8 @@
     ],
     "contentEn": "<h3>Locations where photography is strictly prohibited</h3><ul><li>Military facilities, military-bases, military-controlled airports and national-defense-related installations.</li><li>Museum exhibition-halls with clear “No Photography” warning-signs (some relics cannot be photographed even without-flash).</li><li>Special security-sensitive government-related restricted-installations.</li></ul><h3>Locations you are allowed to take photos</h3><p>Ordinary scenic-spots, city streets, public squares, historical-monuments, commercial pedestrian-streets are all permitted for tourist-photography.</p><h3>Portrait-right etiquette reminder</h3><ul><li>Do not take close-up portrait photos of random strangers without obtaining their explicit consent.</li><li>If you want to take photo of local residents, politely ask for permission in advance.</li></ul><h3>Common-misunderstanding FAQ</h3><ul><li><strong>Q:</strong> Can I take photos of police-officers on public-street?<br><strong>A:</strong> Avoid close-up shooting of police-officers performing official-duty; distant street-scene background-shots are generally fine.</li></ul>",
     "contentZh": "<h3>严格禁止拍照的场所</h3><ul><li>军事设施、军事基地、军用机场以及国防相关装置设施。</li><li>张贴明确禁止拍照标识的博物馆展厅；部分文物展厅即使关闭闪光灯也不允许拍摄。</li><li>特殊安保敏感的政府管控设施。</li></ul><h3>可以正常拍照的地点</h3><p>普通旅游景区、城市街道、公共广场、历史古迹、商业步行街，都允许游客拍照留念。</p><h3>肖像权礼仪提醒</h3><ul><li>未经明确许可，不要对陌生路人进行特写人像拍摄。</li><li>如果想要拍摄当地居民，建议提前礼貌征得对方同意。</li></ul><h3>常见误区问答</h3><ul><li><strong>问：街上执勤警察可以拍照吗？</strong><br><strong>答：</strong>不要近距离特写拍摄正在执行公务的警务人员；远景城市环境背景取景一般没有问题。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "customs-declaration-items-bring-into-china",
@@ -611,7 +631,8 @@
     ],
     "contentEn": "<h3>Key declaration thresholds</h3><ul><li>Cash & negotiable securities: When carrying cash equivalent to <strong>5000 US-dollars or above</strong>, you must make customs declaration upon arrival.</li><li>Goods exceeding personal-use quantity or value limit should go through red-channel for declaration.</li></ul><h3>Typical restricted & prohibited import items table</h3><table><thead><tr><th>Category</th><th>Regulation Description</th></tr></thead><tbody><tr><td>Fresh food & plant-derived goods</td><td>Fresh fruits, raw meat, unpasteurized dairy products are generally prohibited import for biosecurity purpose; processed packaged food still needs inspection.</td></tr><tr><td>Hazardous articles</td><td>Narcotic drugs, weapons, ammunition, explosive substances are strictly forbidden.</td></tr><tr><td>Print & media</td><td>Obscene, reactionary publications and video materials are prohibited from entering mainland China.</td></tr></tbody></table><h3>Green Channel vs Red Channel</h3><ul><li><strong>Green Channel (no-declaration):</strong> Only use if you carry zero-declaration-required articles, all goods are within personal-use scope.</li><li><strong>Red Channel (declaration-required):</strong> Use this channel whenever you hold items that need to be declared; fill-in customs-declaration form (paper or electronic).</li></ul><h3>Practical travel advice</h3><ul><li>When you are uncertain whether your belongings need declaration, choose Red Channel to avoid subsequent penalty risk.</li><li>You may use WeChat / Alipay mini-program for pre-arrival electronic customs declaration before landing.</li><li>Customs hotline 12360 is available for multilingual policy consultation.</li></ul><h3>FAQ</h3><ul><li><strong>Q:</strong> Do I need to declare my personal laptop and camera?<br><strong>A:</strong> Personal-use electronic devices you will take out upon departure generally do not require declaration.</li></ul>",
     "contentZh": "<h3>核心申报门槛</h3><ul><li>现金及有价证券：携带<strong>等值5000美元及以上</strong>现金，入境时必须向海关进行申报。</li><li>超出个人自用数量、价值限额的物品，需要走红色申报通道。</li></ul><h3>常见受限、禁止入境物品一览表</h3><table><thead><tr><th>品类</th><th>规则说明</th></tr></thead><tbody><tr><td>生鲜食品、动植物制品</td><td>新鲜水果、生肉、未灭菌乳制品，出于生物安全管控一般禁止入境；预包装加工食品仍有可能接受查验。</td></tr><tr><td>危险物品</td><td>毒品、武器弹药、爆炸类物品严禁携带入境。</td></tr><tr><td>出版物音像制品</td><td>淫秽、反动的书籍影音资料禁止带入中国大陆。</td></tr></tbody></table><h3>海关红绿通道区分</h3><ul><li><strong>绿色通道（无申报）：</strong>仅当你完全没有需要申报物品，全部行李属于个人自用，才可走此通道。</li><li><strong>红色通道（需申报）：</strong>只要携带需要申报物品，务必走红色通道，填写纸质或电子申报单。</li></ul><h3>实操出行建议</h3><ul><li>拿不准行李物品是否要申报，优先选择红色申报通道，规避后续罚款风险。</li><li>落地前可以通过微信、支付宝小程序提前完成电子海关申报。</li><li>海关咨询热线12360，可多语种咨询政策。</li></ul><h3>高频问答</h3><ul><li><strong>问：个人笔记本电脑、相机需要申报吗？</strong><br><strong>答：</strong>属于个人自用、离境会随身带走的电子设备，一般不需要申报。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "travel-insurance-suggestion-for-china-visafree-visitor",
@@ -640,7 +661,8 @@
       "france",
       "germany",
       "japan"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "short-term-rental-apartment-china-foreign-tourist",
@@ -667,7 +689,8 @@
     ],
     "contentEn": "<h3>Statutory legal obligation for private short-term rental</h3><p>If you stay in non-hotel private short-term apartment / homestay, <strong>either the foreign guest or the host landlord must complete foreign-national accommodation-registration within 24 hours upon check-in</strong> at local police-station or via official 12367 immigration mini-program.</p><blockquote>Note: This legal requirement applies regardless of booking platform you use (OTA platform, private direct-deal).</blockquote><h3>Common booking-risks you need to confirm before paying deposit</h3><table><thead><tr><th>Risk Item</th><th>Verification Advice before booking</th></tr></thead><tbody><tr><td>Host cannot receive foreign-passport holders</td><td>Explicitly inform host you hold foreign passport, confirm apartment can accept foreign guests before placing order.</td></tr><tr><td>Host unfamiliar with registration rules</td><td>Communicate in advance who will handle 24-hour accommodation-registration procedure (host or yourself).</td></tr><tr><td>Housing location outside police-station service coverage</td><td>Confirm address belongs to valid local police-jurisdiction for foreign-resident registration.</td></tr></tbody></table><h3>Consequence of missed registration in homestay</h3><p>Failing to finish accommodation-registration within 24-hours can result in warning or administrative fine for both tenant and host. You may also face obstacles when you need to go through exit-formalities.</p><h3>Practical booking-tip</h3><p>Prefer properties whose host has previous experience receiving foreign guests. Avoid homestays whose host refuses to handle registration related-matters.</p>",
     "contentZh": "<h3>私人短租的法定义务</h3><p>入住非酒店的私人短租公寓、民宿，<strong>外籍住客本人或者房东，必须在入住24小时之内完成外国人住宿登记</strong>，办理渠道为辖区派出所或者官方移民12367小程序。</p><blockquote>提示：无论你通过哪个平台预订（OTA平台、私下直租），这条法律义务均生效。</blockquote><h3>付定金前务必确认的常见预订风险</h3><table><thead><tr><th>风险项</th><th>下单前核实建议</th></tr></thead><tbody><tr><td>房源不接待外国护照持有人</td><td>提前明确告知房东你持外国护照，确认该民宿可以接待外籍客人再下单。</td></tr><tr><td>房东不懂住宿登记规则</td><td>提前沟通好由谁（房东或者你本人）完成24小时住宿登记手续。</td></tr><tr><td>房屋地址无法做外籍登记</td><td>确认房屋地址属于派出所可以办理外国人住宿登记的管辖范围。</td></tr></tbody></table><h3>民宿漏登记带来的后果</h3><p>24小时之内没有完成住宿登记，租客与房东都有可能被警告或者处以行政罚款，后续出境手续也有可能遭遇阻碍。</p><h3>预订实操建议</h3><p>优先选择有接待外国人过往经验的房源。如果房东明确拒绝配合登记相关事宜，请不要预订该套民宿。</p>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "entry-preparation"
   },
   {
     "id": "airport-security-check-china-for-overseas-passenger",
@@ -694,7 +717,8 @@
     ],
     "contentEn": "<h3>Carry-on liquid regulation</h3><p>For hand-carry luggage: every single liquid container volume cannot exceed <strong>100 ml container capacity</strong>. All large-volume liquid bottles must go into checked-baggage. Liquid volume refers to container marking capacity, not remaining-liquid-amount inside bottle.</p><h3>Identity-document requirement for domestic flights inside China</h3><p>Foreign citizens taking domestic flights within mainland-China must present <strong>original physical passport</strong>. Digital photo, scanned copy or screenshot of passport are generally NOT accepted for boarding-verification.</p><h3>Power-bank (portable charger) rules table</h3><table><thead><tr><th>Power-bank specification</th><th>Transport rule</th></tr></thead><tbody><tr><td>≤100Wh</td><td>Allowed in carry-on baggage; forbidden inside checked luggage.</td></tr><tr><td>100-160Wh</td><td>Needs airline-approval before flight; can only be carried-on, cannot check-in.</td></tr><tr><td>＞160Wh</td><td>Strictly prohibited for air-transport.</td></tr></tbody></table><h3>Extra practical reminder</h3><ul><li>Arrive at airport earlier for domestic flights; allow enough waiting-time for security-check and identity-verification.</li><li>Sharp objects such as large scissors, knives cannot go into hand-carry luggage and must be checked-in.</li></ul>",
     "contentZh": "<h3>随身液态物品规定</h3><p>随身手提行李：每一个液态物品容器容积<strong>不得超过100毫升（容器标注容积，不是瓶内剩余液体量）</strong>。大瓶液体全部需要放入托运行李。</p><h3>中国境内国内航班证件要求</h3><p>外国人乘坐中国大陆境内国内航班，必须出示<strong>实体护照原件</strong>。护照照片、扫描件、截图，一般不允许作为登机核验凭证。</p><h3>充电宝（移动电源）运输规则表</h3><table><thead><tr><th>充电宝规格</th><th>运输规定</th></tr></thead><tbody><tr><td>≤100瓦时</td><td>仅允许随身携带；严禁放入托运行李。</td></tr><tr><td>100-160瓦时</td><td>需要航司提前审批；只能随身携带，禁止托运。</td></tr><tr><td>＞160瓦时</td><td>严禁航空运输。</td></tr></tbody></table><h3>额外实操提醒</h3><ul><li>乘坐国内航班建议适当提早抵达机场，预留充足安检、证件核验等待时间。</li><li>大剪刀、刀具等尖锐物品不可以随身带上飞机，必须办理托运。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "entry-preparation"
   },
   {
     "id": "public-holiday-china-travel-peak-warning-foreign-tourist",
@@ -721,7 +745,8 @@
     ],
     "contentEn": "<h3>Three largest domestic travel-rush periods in China</h3><ul><li>Spring Festival (Chinese Lunar New Year holiday)</li><li>May Day Labour Day holiday (May 1-5 every year)</li><li>National Day holiday (Oct 1-7 every year)</li></ul><h3>Real-world travel-impact during peak-holiday periods</h3><table><thead><tr><th>Travel Item</th><th>Peak-Holiday Phenomenon</th></tr></thead><tbody><tr><td>High-speed-rail tickets</td><td>Popular-route tickets sell-out within minutes once released; hard to get last-minute-tickets.</td></tr><tr><td>Hotel accommodation</td><td>Room rates may rise 2-3 times compared with normal weekday price.</td></tr><tr><td>Famous scenic-spots</td><td>Massive tourist-flow; advance real-name reservation required for most attractions.</td></tr></tbody></table><h3>Practical travel-suggestions for foreign-visitors</h3><ul><li>If possible, arrange travel-schedule to avoid these three major holiday-windows.</li><li>If you have to travel during holiday period: book train-tickets and hotel accommodation several weeks ahead of schedule.</li><li>Many scenic-spots require real-name advance-reservation; check official-booking-channel before you visit.</li></ul><h3>FAQ</h3><ul><li><strong>Q:</strong> Can I buy high-speed-rail ticket on-site during national-day holiday?<br><strong>A:</strong> Very risky; popular-routes are usually sold-out in advance, almost no walk-up-tickets available.</li></ul>",
     "contentZh": "<h3>国内三大旅游高峰节假日</h3><ul><li>春节（农历新年假期）</li><li>五一劳动节假期（每年5月1-5日）</li><li>十一国庆节假期（每年10月1-7日）</li></ul><h3>节假日高峰对出行的实际影响</h3><table><thead><tr><th>出行项目</th><th>节假日高峰现象</th></tr></thead><tbody><tr><td>高铁车票</td><td>热门线路车票放票后短时间抢光；临近出行很难买到票。</td></tr><tr><td>酒店住宿</td><td>房费相比平日上涨2-3倍属于常见情况。</td></tr><tr><td>知名景区</td><td>游客流量巨大；绝大多数景点要求提前实名预约。</td></tr></tbody></table><h3>外国游客实操出行建议</h3><ul><li>条件允许，尽量避开这三大节假日窗口规划行程。</li><li>如果节假日必须出行，提前数周预订火车票与酒店。</li><li>大量景区实行实名预约制度，出行前查询官方预约渠道。</li></ul><h3>问答</h3><ul><li><strong>问：国庆期间到车站现场能买到高铁票吗？</strong><br><strong>答：</strong>风险很高，热门线路一般提前售罄，几乎无现场余票。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "overstay-consequence-china-visafree-visitor",
@@ -752,7 +777,8 @@
       "uk",
       "france",
       "germany"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "children-minor-entry-china-visa-free-rules",
@@ -782,7 +808,8 @@
     "relatedCountryCodes": [
       "usa",
       "canada"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "mental-physical-health-tips-long-distance-travel-china",
@@ -809,7 +836,8 @@
     ],
     "contentEn": "<h3>Jet-lag adjustment tips for long-haul-flight</h3><ul><li>Gradually shift your sleep-wake-schedule several days before departure to adapt to China local-time zone in advance.</li><li>Drink sufficient plain-water on-board flight; reduce alcohol and caffeine intake during long-distance-flight.</li><li>After landing, try to expose yourself to natural daylight in daytime; avoid oversleeping in daytime to fix circadian rhythm quickly.</li></ul><h3>Food-adaptation & food-allergy preparation</h3><p>Chinese-cuisine has huge regional flavour-differences (spicy, oily, salty etc.). If you suffer from food-allergy (nuts, seafood, gluten etc.), prepare <strong>bilingual allergy-warning card</strong> showing your allergen information to show restaurant-staff for ordering meals safely.</p><h3>Mental adjustment for culture-shock</h3><ul><li>Culture-shock feeling (confusion, fatigue, slight anxiety) is very normal for cross-border-travel, do not feel worried when you experience it.</li><li>Arrange low-intensity rest-days within your travel-itinerary; avoid packing too-many sightseeing-tasks each single-day.</li><li>Keep simple over-the-counter personal-medicine for minor cold, stomach upset in your hand-luggage.</li></ul><h3>FAQ</h3><ul><li><strong>Q:</strong> How many days does jet-lag usually last for long-haul-flight to China?<br><strong>A:</strong> Typically takes 2-4 days for most travellers to fully adapt to local time-zone.</li></ul>",
     "contentZh": "<h3>长途航班时差调整技巧</h3><ul><li>出发前数天逐步调整作息，提前适配中国本地时区。</li><li>飞机上足量饮用白开水；长途飞行少摄入酒精、咖啡因饮品。</li><li>落地之后白天多接触自然光，不要白天长时间昏睡，帮助生物钟快速复位。</li></ul><h3>饮食适应与食物过敏准备</h3><p>中国各地菜系口味差异巨大（辛辣、重油、重盐等）。如果你存在食物过敏（坚果、海鲜、麸质等），准备<strong>中英双语过敏提示卡片</strong>，点餐出示给餐厅工作人员，保障用餐安全。</p><h3>文化冲击心理调节</h3><ul><li>出现文化冲击感受（迷茫、疲惫、轻微焦虑）属于跨境旅行非常正常现象，不必过度担心。</li><li>行程里面安排低强度休息日，不要把每一天观光任务排得过于饱和。</li><li>随身手提行李备好少量个人常用非处方药物，应对轻微感冒、肠胃不适。</li></ul><h3>问答</h3><ul><li><strong>问：长途飞中国，时差一般多久可以调整过来？</strong><br><strong>答：</strong>大部分游客一般需要2-4天完全适应当地时区。</li></ul>",
-    "relatedCountryCodes": []
+    "relatedCountryCodes": [],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "difference-between-hongkong-macau-mainland-china-visa-rules",
@@ -840,7 +868,8 @@
       "japan",
       "korea",
       "singapore"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "china-visafree-multiple-entry-rules",
@@ -872,7 +901,8 @@
       "korea",
       "singapore",
       "malaysia"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "china-visafree-invitation-letter-requirement",
@@ -904,7 +934,8 @@
       "france",
       "uk",
       "italy"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "china-foreign-tourist-departure-process-guide",
@@ -935,7 +966,8 @@
       "thailand",
       "indonesia",
       "philippines"
-    ]
+    ],
+    "topicCluster": "entry-preparation"
   },
   {
     "id": "china-visafree-conference-exhibition-participation-rules",
@@ -966,7 +998,8 @@
       "usa",
       "germany",
       "korea"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "china-foreign-tourist-train-ticket-refund-change-rules",
@@ -997,7 +1030,8 @@
       "france",
       "spain",
       "portugal"
-    ]
+    ],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "china-visafree-medical-treatment-stay-rule",
@@ -1028,7 +1062,8 @@
       "russia",
       "kazakhstan",
       "uae"
-    ]
+    ],
+    "topicCluster": "purpose-and-activity"
   },
   {
     "id": "china-visafree-pet-entry-rules",
@@ -1059,7 +1094,8 @@
       "uk",
       "canada",
       "australia"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "china-tourist-vat-tax-refund-guide-foreign-visitor",
@@ -1090,7 +1126,8 @@
       "italy",
       "switzerland",
       "norway"
-    ]
+    ],
+    "topicCluster": "general-visa-free"
   },
   {
     "id": "china-visa-free-phone-sim-registration-rules-foreigners",
@@ -1121,7 +1158,8 @@
       "singapore",
       "malaysia",
       "thailand"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "china-cultural-event-participation-visafree-rules",
@@ -1152,7 +1190,8 @@
       "france",
       "spain",
       "japan"
-    ]
+    ],
+    "topicCluster": "direct-eligibility"
   },
   {
     "id": "japan-china-direct-eligibility-2026",
@@ -1183,13 +1222,15 @@
     ],
     "cluster": "japan-2026-country-cluster",
     "primaryCountryCode": "japan",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "japan-china-stay-calculation-2026",
@@ -1220,13 +1261,15 @@
     ],
     "cluster": "japan-2026-country-cluster",
     "primaryCountryCode": "japan",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "stay-calculation",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "japan-china-transit-2026",
@@ -1257,13 +1300,15 @@
     ],
     "cluster": "japan-2026-country-cluster",
     "primaryCountryCode": "japan",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "japan-china-entry-docs-2026",
@@ -1294,13 +1339,15 @@
     ],
     "cluster": "japan-2026-country-cluster",
     "primaryCountryCode": "japan",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "korea-china-direct-2026",
@@ -1331,13 +1378,15 @@
     ],
     "cluster": "korea-2026-country-cluster",
     "primaryCountryCode": "korea",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "korea-china-transit-2026",
@@ -1368,13 +1417,15 @@
     ],
     "cluster": "korea-2026-country-cluster",
     "primaryCountryCode": "korea",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "korea-china-hainan-2026",
@@ -1405,13 +1456,15 @@
     ],
     "cluster": "korea-2026-country-cluster",
     "primaryCountryCode": "korea",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "korea-china-purpose-2026",
@@ -1442,13 +1495,15 @@
     ],
     "cluster": "korea-2026-country-cluster",
     "primaryCountryCode": "korea",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "purpose-and-activity",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "usa-china-visa-decision-2026",
@@ -1479,13 +1534,15 @@
     ],
     "cluster": "usa-2026-country-cluster",
     "primaryCountryCode": "usa",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://en.nia.gov.cn/",
       "https://toronto.china-consulate.gov.cn/eng/vp/VISA/202512/t20251204_11766986.htm"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "usa-china-transit-2026",
@@ -1516,13 +1573,15 @@
     ],
     "cluster": "usa-2026-country-cluster",
     "primaryCountryCode": "usa",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://en.nia.gov.cn/",
       "https://toronto.china-consulate.gov.cn/eng/vp/VISA/202512/t20251204_11766986.htm"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "usa-china-hainan-2026",
@@ -1553,13 +1612,15 @@
     ],
     "cluster": "usa-2026-country-cluster",
     "primaryCountryCode": "usa",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://en.nia.gov.cn/",
       "https://toronto.china-consulate.gov.cn/eng/vp/VISA/202512/t20251204_11766986.htm"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "usa-china-regular-visa-2026",
@@ -1590,13 +1651,15 @@
     ],
     "cluster": "usa-2026-country-cluster",
     "primaryCountryCode": "usa",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://en.nia.gov.cn/",
       "https://toronto.china-consulate.gov.cn/eng/vp/VISA/202512/t20251204_11766986.htm"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "malaysia-china-agreement-2026",
@@ -1627,13 +1690,15 @@
     ],
     "cluster": "malaysia-2026-country-cluster",
     "primaryCountryCode": "malaysia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://my.china-embassy.gov.cn/eng/fwzc/lsyw/qz/202508/t20250801_11681401.htm",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "malaysia-china-90-180-2026",
@@ -1664,13 +1729,15 @@
     ],
     "cluster": "malaysia-2026-country-cluster",
     "primaryCountryCode": "malaysia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://my.china-embassy.gov.cn/eng/fwzc/lsyw/qz/202508/t20250801_11681401.htm",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "malaysia-china-medical-private-2026",
@@ -1701,13 +1768,15 @@
     ],
     "cluster": "malaysia-2026-country-cluster",
     "primaryCountryCode": "malaysia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://my.china-embassy.gov.cn/eng/fwzc/lsyw/qz/202508/t20250801_11681401.htm",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "purpose-and-activity",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "malaysia-china-hainan-2026",
@@ -1738,13 +1807,15 @@
     ],
     "cluster": "malaysia-2026-country-cluster",
     "primaryCountryCode": "malaysia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://my.china-embassy.gov.cn/eng/fwzc/lsyw/qz/202508/t20250801_11681401.htm",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "thailand-china-agreement-2026",
@@ -1775,13 +1846,15 @@
     ],
     "cluster": "thailand-2026-country-cluster",
     "primaryCountryCode": "thailand",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240129_11234802.html",
       "https://th.china-embassy.gov.cn/zgqz/1w1/202609/t20260902_12014754.html"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "thailand-china-transit-2026",
@@ -1812,13 +1885,15 @@
     ],
     "cluster": "thailand-2026-country-cluster",
     "primaryCountryCode": "thailand",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240129_11234802.html",
       "https://th.china-embassy.gov.cn/zgqz/1w1/202609/t20260902_12014754.html"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "thailand-china-hainan-2026",
@@ -1849,13 +1924,15 @@
     ],
     "cluster": "thailand-2026-country-cluster",
     "primaryCountryCode": "thailand",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240129_11234802.html",
       "https://th.china-embassy.gov.cn/zgqz/1w1/202609/t20260902_12014754.html"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "thailand-china-myth-2026",
@@ -1886,13 +1963,15 @@
     ],
     "cluster": "thailand-2026-country-cluster",
     "primaryCountryCode": "thailand",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240129_11234802.html",
       "https://th.china-embassy.gov.cn/zgqz/1w1/202609/t20260902_12014754.html"
-    ]
+    ],
+    "topicCluster": "policy-misconception",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "russia-china-expiry-2026",
@@ -1923,13 +2002,15 @@
     ],
     "cluster": "russia-2026-country-cluster",
     "primaryCountryCode": "russia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202605/t20260520_11914502.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "agreement-and-duration",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "russia-china-transit-2026",
@@ -1960,13 +2041,15 @@
     ],
     "cluster": "russia-2026-country-cluster",
     "primaryCountryCode": "russia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202605/t20260520_11914502.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "russia-china-purpose-2026",
@@ -1997,13 +2080,15 @@
     ],
     "cluster": "russia-2026-country-cluster",
     "primaryCountryCode": "russia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202605/t20260520_11914502.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "purpose-and-activity",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "russia-china-hainan-2026",
@@ -2034,13 +2119,15 @@
     ],
     "cluster": "russia-2026-country-cluster",
     "primaryCountryCode": "russia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202605/t20260520_11914502.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "singapore-china-agreement-2026",
@@ -2071,13 +2158,15 @@
     ],
     "cluster": "singapore-2026-country-cluster",
     "primaryCountryCode": "singapore",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240125_11233014.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "singapore-china-transit-2026",
@@ -2108,13 +2197,15 @@
     ],
     "cluster": "singapore-2026-country-cluster",
     "primaryCountryCode": "singapore",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240125_11233014.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "singapore-china-hainan-2026",
@@ -2145,13 +2236,15 @@
     ],
     "cluster": "singapore-2026-country-cluster",
     "primaryCountryCode": "singapore",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240125_11233014.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "singapore-china-purpose-2026",
@@ -2182,13 +2275,15 @@
     ],
     "cluster": "singapore-2026-country-cluster",
     "primaryCountryCode": "singapore",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240125_11233014.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "purpose-and-activity",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "australia-china-direct-2026",
@@ -2219,13 +2314,15 @@
     ],
     "cluster": "australia-2026-country-cluster",
     "primaryCountryCode": "australia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "australia-china-transit-2026",
@@ -2256,13 +2353,15 @@
     ],
     "cluster": "australia-2026-country-cluster",
     "primaryCountryCode": "australia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "australia-china-hainan-2026",
@@ -2293,13 +2392,15 @@
     ],
     "cluster": "australia-2026-country-cluster",
     "primaryCountryCode": "australia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "australia-china-entry-2026",
@@ -2330,13 +2431,15 @@
     ],
     "cluster": "australia-2026-country-cluster",
     "primaryCountryCode": "australia",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "uk-china-direct-2026",
@@ -2367,13 +2470,15 @@
     ],
     "cluster": "uk-2026-country-cluster",
     "primaryCountryCode": "uk",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "uk-china-transit-2026",
@@ -2404,13 +2509,15 @@
     ],
     "cluster": "uk-2026-country-cluster",
     "primaryCountryCode": "uk",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "uk-china-hainan-2026",
@@ -2441,13 +2548,15 @@
     ],
     "cluster": "uk-2026-country-cluster",
     "primaryCountryCode": "uk",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "uk-china-entry-2026",
@@ -2478,13 +2587,15 @@
     ],
     "cluster": "uk-2026-country-cluster",
     "primaryCountryCode": "uk",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "canada-china-direct-2026",
@@ -2515,13 +2626,15 @@
     ],
     "cluster": "canada-2026-country-cluster",
     "primaryCountryCode": "canada",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "canada-china-transit-2026",
@@ -2552,13 +2665,15 @@
     ],
     "cluster": "canada-2026-country-cluster",
     "primaryCountryCode": "canada",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "transit",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "canada-china-hainan-2026",
@@ -2589,13 +2704,15 @@
     ],
     "cluster": "canada-2026-country-cluster",
     "primaryCountryCode": "canada",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "hainan",
+    "dateModified": "2026-09-13"
   },
   {
     "id": "canada-china-entry-2026",
@@ -2626,12 +2743,14 @@
     ],
     "cluster": "canada-2026-country-cluster",
     "primaryCountryCode": "canada",
-    "publishAt": "2026-09-12T10:00:00",
+    "publishAt": "2026-09-13T10:00:00",
     "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration/foreign ministry information before travel.",
     "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
     "officialSources": [
       "https://www.mfa.gov.cn/eng/xw/fyrbt/202602/t20260215_11860467.html",
       "https://en.nia.gov.cn/"
-    ]
+    ],
+    "topicCluster": "direct-eligibility",
+    "dateModified": "2026-09-13"
   }
 ]

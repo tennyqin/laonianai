@@ -41,6 +41,10 @@
         <div class="article-meta">
             <span th:text="${lang == 'en' ? 'Published: ' : '发布时间：'}"></span>
             <span th:text="${article['displayPublishDate']}"></span>
+            <th:block th:if="${article['displayModifiedDate'] != null and !#strings.isEmpty(article['displayModifiedDate'])}">
+                <span style="margin-left:10px;" th:text="${lang == 'en' ? 'Updated: ' : '更新：'}"></span>
+                <span th:text="${article['displayModifiedDate']}"></span>
+            </th:block>
         </div>
         <div class="article-content" th:utext="${lang == 'en' ? article.contentEn : article.contentZh}"></div>
     </div>
