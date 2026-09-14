@@ -50,7 +50,7 @@ public class SitemapController {
         addCanonicalCodes(countryCodes, transitMap.keySet());
         addCanonicalCodes(countryCodes, hainanMap.keySet());
         for (String code : countryCodes) {
-            addMultilingualUrl(xml, "/country/" + code, "country", null);
+            addMultilingualUrl(xml, "/country/" + code, "country", SITE_UPDATE);
         }
 
         addCountryTypeUrls(xml, unilateralMap, "unilateral");
@@ -79,7 +79,7 @@ public class SitemapController {
         if (map == null) return;
         for (String code : map.keySet()) {
             String canonicalCode = resolver.routeCode(resolver.policyKey(code));
-            addMultilingualUrl(xml, "/country/" + canonicalCode + "/" + type, "country-detail", null);
+            addMultilingualUrl(xml, "/country/" + canonicalCode + "/" + type, "country-detail", SITE_UPDATE);
         }
     }
 

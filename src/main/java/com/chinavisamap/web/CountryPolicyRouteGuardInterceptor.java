@@ -6,6 +6,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 @Component
 public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
@@ -23,10 +24,28 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
         if (parts.length == 0 || parts[0] == null || parts[0].isEmpty()) return true;
         String requestedCode = parts[0];
         String canonicalCode = resolver.routeCode(resolver.policyKey(requestedCode));
+        String lang = "zh".equalsIgnoreCase(request.getParameter("lang")) ? "zh" : "en";
+
+        // Normalize the old query-form policy URLs, e.g.
+        // /country/japan?type=unilateral -> /country/japan/unilateral?lang=zh
+        // This prevents search engines from retaining multiple URL forms for the same policy page.
+        if (parts.length == 1) {
+            String legacyType = request.getParameter("type");
+            if (legacyType != null && !legacyType.trim().isEmpty()) {
+                String type = legacyType.trim().toLowerCase(Locale.ROOT);
+                if ("unilateral".equals(type) || "mutual".equals(type) || "transit".equals(type) || "hainan".equals(type)) {
+                    StringBuilder location = new StringBuilder("/country/").append(canonicalCode).append('/').append(type);
+                    location.append("?lang=").append(lang);
+                    response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                    response.setHeader("Location", location.toString());
+                    return false;
+                }
+            }
+        }
+
         if (requestedCode.equals(canonicalCode)) return true;
         StringBuilder location = new StringBuilder("/country/").append(canonicalCode);
         if (parts.length >= 2 && parts[1] != null && !parts[1].isEmpty()) location.append('/').append(parts[1]);
-        String lang = "zh".equalsIgnoreCase(request.getParameter("lang")) ? "zh" : "en";
         location.append("?lang=").append(lang);
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", location.toString());

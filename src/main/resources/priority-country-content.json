@@ -68,7 +68,21 @@
       "singapore",
       "malaysia",
       "australia"
-    ]
+    ],
+    "policySeo": {
+      "unilateral": {
+        "titleEn": "South Korea to China Visa-Free 30 Days | Korean Passport Entry Rules",
+        "titleZh": "韩国护照来华30天免签 | 入境条件与停留规则"
+      },
+      "transit": {
+        "titleEn": "South Korea China 240-Hour Transit Visa-Free | Korean Passport Rules",
+        "titleZh": "韩国护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "South Korea to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "韩国公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "japan": {
     "priority": 2,
@@ -143,7 +157,21 @@
       "singapore",
       "australia",
       "usa"
-    ]
+    ],
+    "policySeo": {
+      "unilateral": {
+        "titleEn": "Japan to China Visa-Free 30 Days | Japanese Passport Entry Rules",
+        "titleZh": "日本护照来华30天免签 | 入境条件与停留规则"
+      },
+      "transit": {
+        "titleEn": "Japan China 240-Hour Transit Visa-Free | Japanese Passport Rules",
+        "titleZh": "日本护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "Japan to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "日本公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "usa": {
     "priority": 3,
@@ -218,7 +246,17 @@
       "korea",
       "japan",
       "australia"
-    ]
+    ],
+    "policySeo": {
+      "transit": {
+        "titleEn": "USA to China 240-Hour Transit Visa-Free | US Passport Rules",
+        "titleZh": "美国护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "USA to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "美国公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "malaysia": {
     "priority": 4,
@@ -285,7 +323,17 @@
       "thailand",
       "indonesia",
       "japan"
-    ]
+    ],
+    "policySeo": {
+      "mutual": {
+        "titleEn": "Malaysia China Visa-Free Agreement | Malaysian Passport Stay Rules",
+        "titleZh": "马来西亚与中国互免签证 | 护照与停留规则"
+      },
+      "hainan": {
+        "titleEn": "Malaysia to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "马来西亚公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "thailand": {
     "priority": 5,
@@ -352,7 +400,17 @@
       "singapore",
       "indonesia",
       "australia"
-    ]
+    ],
+    "policySeo": {
+      "mutual": {
+        "titleEn": "Thailand China Visa-Free Agreement | Thai Passport Stay Rules",
+        "titleZh": "泰国与中国互免签证 | 护照与停留规则"
+      },
+      "hainan": {
+        "titleEn": "Thailand to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "泰国公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "russia": {
     "priority": 6,
@@ -419,7 +477,21 @@
       "germany",
       "france",
       "japan"
-    ]
+    ],
+    "policySeo": {
+      "unilateral": {
+        "titleEn": "Russia to China Visa-Free 30 Days | Russian Passport Entry Rules",
+        "titleZh": "俄罗斯护照来华30天免签 | 入境条件与停留规则"
+      },
+      "transit": {
+        "titleEn": "Russia China 240-Hour Transit Visa-Free | Russian Passport Rules",
+        "titleZh": "俄罗斯护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "Russia to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "俄罗斯公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "singapore": {
     "priority": 7,
@@ -486,7 +558,21 @@
       "japan",
       "korea",
       "australia"
-    ]
+    ],
+    "policySeo": {
+      "mutual": {
+        "titleEn": "Singapore to China Visa-Free | Singapore Passport Stay & Entry Rules",
+        "titleZh": "新加坡护照来华免签 | 停留期限与入境规则"
+      },
+      "transit": {
+        "titleEn": "Singapore China 240-Hour Transit Visa-Free | Singapore Passport Rules",
+        "titleZh": "新加坡护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "Singapore to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "新加坡公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "australia": {
     "priority": 8,
@@ -561,7 +647,21 @@
       "uk",
       "usa",
       "japan"
-    ]
+    ],
+    "policySeo": {
+      "unilateral": {
+        "titleEn": "Australia to China Visa-Free 30 Days | Australian Passport Entry Rules",
+        "titleZh": "澳大利亚护照来华30天免签 | 入境条件与停留规则"
+      },
+      "transit": {
+        "titleEn": "Australia China 240-Hour Transit Visa-Free | Australian Passport Rules",
+        "titleZh": "澳大利亚护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "Australia to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "澳大利亚公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "uk": {
     "priority": 9,
@@ -636,7 +736,21 @@
       "australia",
       "canada",
       "singapore"
-    ]
+    ],
+    "policySeo": {
+      "unilateral": {
+        "titleEn": "UK to China Visa-Free 30 Days | British Passport Entry Rules",
+        "titleZh": "英国护照来华30天免签 | 入境条件与停留规则"
+      },
+      "transit": {
+        "titleEn": "UK China 240-Hour Transit Visa-Free | British Passport Rules",
+        "titleZh": "英国护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "UK to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "英国公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   },
   "canada": {
     "priority": 10,
@@ -703,6 +817,20 @@
       "uk",
       "australia",
       "japan"
-    ]
+    ],
+    "policySeo": {
+      "unilateral": {
+        "titleEn": "Canada to China Visa-Free 30 Days | Canadian Passport Entry Rules",
+        "titleZh": "加拿大护照来华30天免签 | 入境条件与停留规则"
+      },
+      "transit": {
+        "titleEn": "Canada China 240-Hour Transit Visa-Free | Canadian Passport Rules",
+        "titleZh": "加拿大护照中国240小时过境免签 | 行程与入境条件"
+      },
+      "hainan": {
+        "titleEn": "Canada to Hainan Visa-Free | 30-Day Regional Entry Rules",
+        "titleZh": "加拿大公民赴海南30天免签 | 区域入境规则"
+      }
+    }
   }
 }

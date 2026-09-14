@@ -413,7 +413,7 @@ public class CountryController {
         String n=country.getName(), z=country.getNameZh();
         m.put("intentSummaryEn", policyIntentSummary(country,type,policy,false));
         m.put("intentSummaryZh", policyIntentSummary(country,type,policy,true));
-        m.put("faqEn", policy.getFaqsEn()); m.put("faqZh", policy.getFaqsZh());
+        m.put("faqEn", dedupeFaqs(faqObjects(policy.getFaqsEn()), 6)); m.put("faqZh", dedupeFaqs(faqObjects(policy.getFaqsZh()), 6));
         String defaultTitleEn;
         String defaultTitleZh;
         String defaultDescEn;
@@ -439,8 +439,18 @@ public class CountryController {
             defaultDescEn = n + " citizens: check China visa-free eligibility, permitted purposes, maximum stay and entry conditions for this route.";
             defaultDescZh = z + "公民查询本项来华免签资格、允许事由、最长停留期限及入境条件。";
         }
-        m.put("seoTitleEn", firstNonBlank(string(rootExtra,"policySeoTitleEn"), defaultTitleEn));
-        m.put("seoTitleZh", firstNonBlank(string(rootExtra,"policySeoTitleZh"), defaultTitleZh));
+        Map<String,Object> priority = countryIntentMap.get(resolver.policyKey(code));
+        Object policySeo = priority == null ? null : priority.get("policySeo");
+        String priorityTitleEn = "", priorityTitleZh = "";
+        if (policySeo instanceof Map) {
+            Object item = ((Map<?,?>) policySeo).get(type);
+            if (item instanceof Map) {
+                priorityTitleEn = String.valueOf(((Map<?,?>) item).get("titleEn") == null ? "" : ((Map<?,?>) item).get("titleEn"));
+                priorityTitleZh = String.valueOf(((Map<?,?>) item).get("titleZh") == null ? "" : ((Map<?,?>) item).get("titleZh"));
+            }
+        }
+        m.put("seoTitleEn", firstNonBlank(priorityTitleEn, firstNonBlank(string(rootExtra,"policySeoTitleEn"), defaultTitleEn)));
+        m.put("seoTitleZh", firstNonBlank(priorityTitleZh, firstNonBlank(string(rootExtra,"policySeoTitleZh"), defaultTitleZh)));
         m.put("seoDescEn", firstNonBlank(string(rootExtra,"policySeoDescEn"), defaultDescEn));
         m.put("seoDescZh", firstNonBlank(string(rootExtra,"policySeoDescZh"), defaultDescZh));
         return m;
