@@ -125,6 +125,10 @@ public class CountryController {
         model.addAttribute("countryFlags", buildCountryFlags());
         model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(countryContent));
         model.addAttribute("eligibilityConfig", eligibilityService.build(pageCode, availablePolicies, extra));
+        // The country-page 24-hour transit CTA must carry the intended checker state
+        // so the purpose and entry-route selects are populated when the user lands
+        // on the checker, instead of silently falling back to direct entry.
+        model.addAttribute("transit24CheckerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&purpose=transit&entryMode=transit24#eligibility-checker");
         model.addAttribute("canonicalUrl", canonical);
         model.addAttribute("hreflang", seoService.hreflang(path));
         Map<String,Object> schemaExtra = new LinkedHashMap<>(); if(countryContent!=null) schemaExtra.putAll(countryContent);

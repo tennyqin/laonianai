@@ -51,7 +51,7 @@
 <div class="pd-check">
 <strong th:text="${lang=='en'?'Use the checker to screen the 24-hour route':'使用资格检查器核验24小时过境路径'}"></strong>
 <p class="help" th:text="${lang=='en'?'Choose Transit as your purpose and the 24-hour transit route. A positive screening result still needs confirmation against the official port rules.':'将出行目的选择为“过境”，再选择24小时过境路径。即使基础检查通过，出发前仍需按官方口岸规则最终核验。'}"></p>
-<a class="pd-cta" th:href="${'#eligibility-checker'}" style="margin-top:10px;display:block;text-align:center;padding:11px;border-radius:10px;background:#059669;color:#fff;text-decoration:none;font-weight:750;" th:text="${lang=='en'?'Check 24-hour transit →':'检查24小时过境 →'}"></a>
+<a class="pd-cta" th:href="${transit24CheckerUrl}" style="margin-top:10px;display:block;text-align:center;padding:11px;border-radius:10px;background:#059669;color:#fff;text-decoration:none;font-weight:750;" th:text="${lang=='en'?'Check 24-hour transit →':'检查24小时过境 →'}"></a>
 </div>
 </section>
 <section class="box" th:if="${relatedCountryCodes!=null && !relatedCountryCodes.isEmpty()}"><h2 th:text="${lang=='en'?'Related country guides':'相关国家指南'}"></h2><div class="related"><a th:each="c:${relatedCountryCodes}" th:href="@{/country/{code}(code=${c},lang=${lang})}"><span aria-hidden="true" th:text="${countryFlags[c] != null ? countryFlags[c] : '🌐'}"></span> <span th:text="${countryNames[c]!=null?countryNames[c]:c}"></span></a></div></section>
