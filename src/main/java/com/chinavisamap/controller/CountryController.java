@@ -80,7 +80,11 @@ public class CountryController {
     }
 
     @GetMapping("/country/{code}")
-    public String countryHome(@PathVariable String code, @RequestParam(defaultValue = "en") String lang, Model model) {
+    public String countryHome(@PathVariable String code,
+                              @RequestParam(defaultValue = "en") String lang,
+                              @RequestParam(required = false) String purpose,
+                              @RequestParam(required = false) String entryMode,
+                              Model model) {
         String normalizedLang = seoService.normalizeLang(lang);
         List<String> types = detectAvailableTypes(code);
         if (types.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Country not found");
@@ -93,6 +97,10 @@ public class CountryController {
         String canonical = seoService.canonical(path, normalizedLang);
         model.addAttribute("code", pageCode);
         model.addAttribute("lang", normalizedLang);
+        // Preserve an explicitly requested checker route when a policy page links
+        // back to the country checker (for example, the general 24-hour transit route).
+        model.addAttribute("selectedPurpose", "transit".equalsIgnoreCase(purpose) ? "transit" : "");
+        model.addAttribute("selectedEntryMode", "transit24".equalsIgnoreCase(entryMode) ? "transit24" : "");
         model.addAttribute("detailCountry", detailCountry);
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("availableTypes", types);
@@ -169,6 +177,7 @@ public class CountryController {
         model.addAttribute("policyDetails", buildPolicyDetails(code, availableTypes));
         model.addAttribute("policyNavItems", buildPolicyNavItems(pageCode, availableTypes, normalizedLang));
         model.addAttribute("checkerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "#eligibility-checker");
+        model.addAttribute("transit24CheckerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&purpose=transit&entryMode=transit24#eligibility-checker");
         model.addAttribute("policyDecisionEn", policyDecision(detailCountry, type, policy, false));
         model.addAttribute("policyDecisionZh", policyDecision(detailCountry, type, policy, true));
         model.addAttribute("policyDecisionTone", policyDecisionTone(type));
@@ -188,7 +197,9 @@ public class CountryController {
         model.addAttribute("decisionNote", "yes-direct".equals(policyDecisionTone(type))
                 ? (normalizedLang.equals("en") ? "This is the direct visa-free route listed for this passport." : "这是当前该护照对应的直接免签路径。")
                 : (normalizedLang.equals("en") ? "This route exists, but you must meet the specific conditions below." : "这条路径确实存在，但需要满足下方列出的具体条件。"));
-        model.addAttribute("detailPolicyTypeText", normalizedLang.equals("en") ? detailCountry.getPolicyType() : detailCountry.getPolicyTypeZh());
+        // Keep the breadcrumb label independent from JSON policyType text.
+        // This prevents an English Hainan label from leaking into the Chinese route.
+        model.addAttribute("detailPolicyTypeText", policyLabel(type, "zh".equals(normalizedLang)));
         model.addAttribute("detailPurposeText", normalizedLang.equals("en") ? detailCountry.getPurpose() : detailCountry.getPurposeZh());
         model.addAttribute("detailStayText", "mutual".equals(type) ? (normalizedLang.equals("en") ? "See agreement" : "以协定为准") : String.valueOf(detailCountry.getStayDays()) + (normalizedLang.equals("en") ? " days" : " 天"));
         model.addAttribute("detailRuleText", normalizedLang.equals("en") ? detailCountry.getRule() : detailCountry.getRuleZh());
@@ -449,8 +460,16 @@ public class CountryController {
                 priorityTitleZh = String.valueOf(((Map<?,?>) item).get("titleZh") == null ? "" : ((Map<?,?>) item).get("titleZh"));
             }
         }
-        m.put("seoTitleEn", firstNonBlank(priorityTitleEn, firstNonBlank(string(rootExtra,"policySeoTitleEn"), defaultTitleEn)));
-        m.put("seoTitleZh", firstNonBlank(priorityTitleZh, firstNonBlank(string(rootExtra,"policySeoTitleZh"), defaultTitleZh)));
+        String seoTitleEn = firstNonBlank(priorityTitleEn, firstNonBlank(string(rootExtra,"policySeoTitleEn"), defaultTitleEn));
+        String seoTitleZh = firstNonBlank(priorityTitleZh, firstNonBlank(string(rootExtra,"policySeoTitleZh"), defaultTitleZh));
+        // Never let an English-only source value leak into the Chinese <title>.
+        // If a localized value contains no Chinese characters, use the route-specific
+        // Chinese title generated above.
+        if (!containsChinese(seoTitleZh)) {
+            seoTitleZh = defaultTitleZh;
+        }
+        m.put("seoTitleEn", seoTitleEn);
+        m.put("seoTitleZh", seoTitleZh);
         // Policy pages need their own search intent. Do not reuse the country-home
         // description because direct entry, bilateral exemption, transit and Hainan
         // answer materially different queries.
@@ -459,6 +478,16 @@ public class CountryController {
         m.put("policyHeadingEn", policyHeading(country, type, false));
         m.put("policyHeadingZh", policyHeading(country, type, true));
         return m;
+    }
+
+    private boolean containsChinese(String value) {
+        if (value == null) return false;
+        for (int i = 0; i < value.length(); ) {
+            int cp = value.codePointAt(i);
+            if ((cp >= 0x3400 && cp <= 0x4DBF) || (cp >= 0x4E00 && cp <= 0x9FFF)) return true;
+            i += Character.charCount(cp);
+        }
+        return false;
     }
 
     private String policyHeading(CountryDetail c, String type, boolean zh) {

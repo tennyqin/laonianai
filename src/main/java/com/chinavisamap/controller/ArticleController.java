@@ -161,19 +161,24 @@ public class ArticleController {
         }
 
         int total = source.size();
-        int totalPages = (int) Math.ceil((double) total / currentSize);
-        if (total > 0 && currentPage > totalPages) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article page not found");
-        }
-        int offset = (currentPage - 1) * currentSize;
+        int totalPages = total == 0 ? 0 : (int) Math.ceil((double) total / currentSize);
+
+        // Pagination is a list resource, not an article resource. Any page number
+        // beyond the available range must still render /articles with an empty list
+        // state instead of being converted into a 404. Use long arithmetic so even
+        // very large user-supplied page values cannot overflow the offset.
+        long offset = ((long) currentPage - 1L) * currentSize;
 
         List<Map<String, Object>> pageData;
         if (offset >= total) {
             pageData = Collections.emptyList();
         } else {
-            int end = Math.min(offset + currentSize, total);
-            pageData = source.subList(offset, end);
+            int start = (int) offset;
+            int end = Math.min(start + currentSize, total);
+            pageData = source.subList(start, end);
         }
+
+        model.addAttribute("outOfRangePage", total > 0 && currentPage > totalPages);
 
         model.addAttribute("lang", currentLang);
         model.addAttribute("keyword", keyword);
