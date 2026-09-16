@@ -451,9 +451,42 @@ public class CountryController {
         }
         m.put("seoTitleEn", firstNonBlank(priorityTitleEn, firstNonBlank(string(rootExtra,"policySeoTitleEn"), defaultTitleEn)));
         m.put("seoTitleZh", firstNonBlank(priorityTitleZh, firstNonBlank(string(rootExtra,"policySeoTitleZh"), defaultTitleZh)));
-        m.put("seoDescEn", firstNonBlank(string(rootExtra,"policySeoDescEn"), defaultDescEn));
-        m.put("seoDescZh", firstNonBlank(string(rootExtra,"policySeoDescZh"), defaultDescZh));
+        // Policy pages need their own search intent. Do not reuse the country-home
+        // description because direct entry, bilateral exemption, transit and Hainan
+        // answer materially different queries.
+        m.put("seoDescEn", policySeoDescription(country, type, policy, false));
+        m.put("seoDescZh", policySeoDescription(country, type, policy, true));
+        m.put("policyHeadingEn", policyHeading(country, type, false));
+        m.put("policyHeadingZh", policyHeading(country, type, true));
         return m;
+    }
+
+    private String policyHeading(CountryDetail c, String type, boolean zh) {
+        String n = zh ? c.getNameZh() : c.getName();
+        if ("transit".equals(type)) return zh ? n + "护照中国240小时过境免签 | 行程与入境条件" : n + " to China 240-Hour Transit Visa-Free | Itinerary & Entry Rules";
+        if ("hainan".equals(type)) return zh ? n + "赴海南30天免签 | 区域入境规则" : n + " to Hainan Visa-Free | 30-Day Regional Entry Rules";
+        if ("mutual".equals(type)) return zh ? n + "与中国互免签证 | 护照、事由与停留规则" : n + "–China Mutual Visa Exemption | Passport, Purpose & Stay Rules";
+        String stay = isBlank(c.getStayDays()) ? (zh ? "政策规定期限" : "the listed stay period") : c.getStayDays() + (zh ? "天" : " days");
+        return zh ? n + "护照来华" + stay + "免签 | 入境条件与停留规则" : n + " to China " + stay + " Visa-Free Entry | Eligibility & Stay Rules";
+    }
+
+    private String policySeoDescription(CountryDetail c, String type, CountryPolicy p, boolean zh) {
+        String n = zh ? c.getNameZh() : c.getName();
+        if ("transit".equals(type)) {
+            return zh ? n + "公民查询中国240小时过境免签的联程行程、普通护照、适用口岸、停留期限及可从事活动等条件。"
+                    : n + " citizens: check China 240-hour transit visa-free eligibility, onward itinerary, ordinary passport, eligible ports, stay limits and permitted activities.";
+        }
+        if ("hainan".equals(type)) {
+            return zh ? n + "普通护照持有人查询海南30天区域免签的适用事由、活动范围、入境口岸和停留条件；该政策仅适用于海南。"
+                    : n + " ordinary-passport holders: check the 30-day Hainan regional visa-free route, permitted purposes, activity area, entry ports and stay conditions.";
+        }
+        if ("mutual".equals(type)) {
+            return zh ? "中国与" + n + "的互免签证协定页面：核对适用护照类别、出行事由、停留期限、入境次数及协定条件。"
+                    : "China–" + n + " mutual visa exemption: check the covered passport category, permitted purpose, stay limits, entry conditions and agreement terms.";
+        }
+        String stay = isBlank(c.getStayDays()) ? (zh ? "政策规定期限" : "the listed stay period") : c.getStayDays() + (zh ? "天" : " days");
+        return zh ? n + "普通护照来华" + stay + "单方面免签政策：查询允许事由、护照要求、停留期限及入境条件。"
+                : n + " ordinary-passport holders: check the China unilateral visa-free route, permitted purposes, maximum stay of " + stay + ", passport and entry conditions.";
     }
 
     private String policyIntentSummary(CountryDetail c,String type,CountryPolicy p,boolean zh){

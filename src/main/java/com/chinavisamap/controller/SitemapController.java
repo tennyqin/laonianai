@@ -18,7 +18,7 @@ import java.util.*;
 public class SitemapController {
 
     private static final String BASE_URL = "https://chinavisamap.com";
-    private static final String SITE_UPDATE = "2026-09-13";
+    private static final String SITE_UPDATE = "2026-09-16";
 
     private final Map<String, CountryDetail> unilateralMap;
     private final Map<String, CountryDetail> mutualMap;

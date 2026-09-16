@@ -55,7 +55,12 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
         String uri=request.getRequestURI(); String lang="zh".equals(request.getParameter("lang"))?"zh":"en";
         if(uri.startsWith("/country/")){
             String[] parts=uri.split("/"); String code=parts.length>2?resolver.routeCode(resolver.policyKey(parts[2])):""; String type=parts.length>3?parts[3]:"";
-            mav.addObject("relatedArticles",relatedArticles(code,type)); mav.addObject("contentLinkLang",lang);
+            List<Map<String,Object>> countryRelated=relatedArticles(code,type);
+            for(Map<String,Object> item:countryRelated){
+                String id=String.valueOf(item.getOrDefault("id",""));
+                item.put("url","/articles/"+id+"?lang="+lang);
+            }
+            mav.addObject("relatedArticles",countryRelated); mav.addObject("contentLinkLang",lang);
             if("country-home".equals(mav.getViewName())){
                 Map<String,Object> base=mav.getModel().get("countryExtraRoot") instanceof Map?new LinkedHashMap<>((Map<String,Object>)mav.getModel().get("countryExtraRoot")):new LinkedHashMap<>();
                 Map<String,Object> priority=priorityContent.get(resolver.policyKey(code));
@@ -170,7 +175,46 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
     }
 
     private int partsCount(String uri){return(int)Arrays.stream(uri.split("/",-1)).filter(s->!s.isEmpty()).count();}
-    private List<Map<String,Object>> relatedArticles(String code,String type){return articles.stream().filter(a->belongsToCountry(a,code)).sorted((a,b)->{int byScore=Integer.compare(score(b,code,type),score(a,code,type));if(byScore!=0)return byScore;String bt=String.valueOf(b.getOrDefault("publishAt","")),at=String.valueOf(a.getOrDefault("publishAt",""));int byDate=bt.compareTo(at);if(byDate!=0)return byDate;return String.valueOf(a.getOrDefault("id","")).compareTo(String.valueOf(b.getOrDefault("id","")));}).limit(6).collect(Collectors.toList());}
+    /**
+     * Build a small, route-aware article cluster for country pages.
+     *
+     * First prefer articles explicitly linked to the country. If a country has
+     * fewer than four such articles, fill the remaining slots with globally
+     * relevant articles for the selected route/topic. This keeps the internal
+     * link graph dense for long-tail countries without pretending that a generic
+     * article is country-specific.
+     */
+    private List<Map<String,Object>> relatedArticles(String code,String type){
+        List<Map<String,Object>> ranked = new ArrayList<>(articles);
+        ranked.sort((a,b)->{
+            int sb=score(b,code,type), sa=score(a,code,type);
+            if(sb!=sa)return Integer.compare(sb,sa);
+            String bt=String.valueOf(b.getOrDefault("publishAt","")),at=String.valueOf(a.getOrDefault("publishAt",""));
+            int byDate=bt.compareTo(at);
+            if(byDate!=0)return byDate;
+            return String.valueOf(a.getOrDefault("id","")).compareTo(String.valueOf(b.getOrDefault("id","")));
+        });
+        List<Map<String,Object>> out=new ArrayList<>();
+        Set<String> used=new LinkedHashSet<>();
+        // Keep at least the strongest country-specific matches at the top.
+        for(Map<String,Object> a:ranked){
+            if(!belongsToCountry(a,code)) continue;
+            Map<String,Object> copy=new LinkedHashMap<>(a);
+            out.add(copy); used.add(String.valueOf(a.getOrDefault("id","")));
+            if(out.size()>=4) break;
+        }
+        // Fill the cluster with route-relevant articles when country coverage is thin.
+        for(Map<String,Object> a:ranked){
+            if(out.size()>=6) break;
+            String id=String.valueOf(a.getOrDefault("id",""));
+            if(used.contains(id)) continue;
+            if(score(a,code,type)<15) continue;
+            Map<String,Object> copy=new LinkedHashMap<>(a);
+            out.add(copy); used.add(id);
+        }
+        return out;
+    }
+
     private boolean belongsToCountry(Map<String,Object> article,String code){Object raw=article.get("relatedCountryCodes");if(!(raw instanceof List))return false;for(Object item:(List<?>)raw)if(resolver.routeCode(resolver.policyKey(String.valueOf(item))).equals(code))return true;return false;}
     private int score(Map<String,Object>a,String code,String type){int score=0;String category=String.valueOf(a.getOrDefault("categoryEn",""));String text=(String.valueOf(a.getOrDefault("titleEn",""))+" "+String.valueOf(a.getOrDefault("titleZh",""))+" "+String.valueOf(a.getOrDefault("summaryEn",""))+" "+String.valueOf(a.getOrDefault("summaryZh",""))).toLowerCase(Locale.ROOT);String cluster=String.valueOf(a.getOrDefault("topicCluster",""));if("transit".equals(type)){if(category.toLowerCase(Locale.ROOT).contains("visa"))score+=20;if(containsTag(a,"Transit"))score+=30;if(containsTag(a,"240-hour"))score+=30;if("transit".equals(cluster))score+=45;if(text.contains("transit")||text.contains("过境"))score+=15;}else if("hainan".equals(type)){if("hainan".equals(cluster))score+=45;if(text.contains("hainan")||text.contains("海南"))score+=20;}else if("unilateral".equals(type)||"mutual".equals(type)){if(category.toLowerCase(Locale.ROOT).contains("visa-free")||category.toLowerCase(Locale.ROOT).contains("country visa"))score+=15;if(containsTag(a,"Visa-Free"))score+=25;if("direct-eligibility".equals(cluster)||"agreement-and-duration".equals(cluster)||"purpose-and-activity".equals(cluster))score+=20;if(text.contains("visa-free")||text.contains("免签"))score+=15;}Map<String,Object> priority=priorityContent.get(resolver.policyKey(code));if(priority!=null)score+=Math.max(0,20-number(priority.get("priority"),999)/10);return score;}
     private int number(Object value,int fallback){try{return Integer.parseInt(String.valueOf(value));}catch(Exception e){return fallback;}}

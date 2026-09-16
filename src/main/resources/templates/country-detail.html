@@ -22,7 +22,7 @@
     <section class="pd-hero">
         <div class="pd-country-heading"><div>
             <div class="pd-kicker" th:text="${lang=='en'?'The answer first':'先看结论'}"></div>
-            <h1 th:text="${lang=='en'?countryIntent['homeHeroQuestionEn']:countryIntent['homeHeroQuestionZh']}"></h1>
+            <h1 th:text="${lang=='en'?countryIntent['policyHeadingEn']:countryIntent['policyHeadingZh']}"></h1>
         </div></div>
         <div class="pd-answer" th:classappend="${decisionClass}">
             <span class="yes" th:text="${decisionLabel}"></span>

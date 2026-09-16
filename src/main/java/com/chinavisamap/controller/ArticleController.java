@@ -162,6 +162,9 @@ public class ArticleController {
 
         int total = source.size();
         int totalPages = (int) Math.ceil((double) total / currentSize);
+        if (total > 0 && currentPage > totalPages) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article page not found");
+        }
         int offset = (currentPage - 1) * currentSize;
 
         List<Map<String, Object>> pageData;

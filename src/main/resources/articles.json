@@ -2752,5 +2752,116 @@
     ],
     "topicCluster": "direct-eligibility",
     "dateModified": "2026-09-13"
+  },
+  {
+    "categoryEn": "Country Visa Guides",
+    "categoryZh": "国家签证指南",
+    "topicCluster": "direct-eligibility",
+    "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration and foreign ministry information before travel.",
+    "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
+    "officialSources": [
+      "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "https://www.nia.gov.cn/"
+    ],
+    "dateModified": "2026-09-16",
+    "id": "netherlands-china-direct-2026",
+    "titleEn": "Netherlands Passport to China in 2026: 30-Day Visa-Free Entry Rules",
+    "titleZh": "荷兰护照去中国2026免签吗？30天免签条件与入境规则",
+    "summaryEn": "A Netherlands-specific guide to China’s 30-day unilateral visa-free route, including permitted purposes, stay limits and what to check before departure.",
+    "summaryZh": "针对荷兰普通护照的中国30天单方面免签指南，覆盖允许事由、停留期限及出发前需要核对的条件。",
+    "relatedCountryCodes": [
+      "netherlands"
+    ],
+    "tagsEn": [
+      "Visa-Free",
+      "Netherlands",
+      "China visa 2026",
+      "Entry rules"
+    ],
+    "tagsZh": [
+      "免签",
+      "荷兰",
+      "中国签证2026",
+      "入境规则"
+    ],
+    "cluster": "netherlands-2026-country-cluster",
+    "primaryCountryCode": "netherlands",
+    "publishAt": "2026-09-16T09:00:00",
+    "contentEn": "<p>荷兰普通护照持有人目前属于中国单方面免签政策覆盖范围。符合经商、旅游、探亲访友、交流访问、过境等短期事由的，可免签入境中国，最长停留30天。</p><p>The visa-free rule is purpose-specific. A Netherlands passport does not by itself make every activity visa-free. Work and study are not covered by the ordinary short-term waiver, so travelers should check the appropriate visa route when the actual activity requires one.</p><p>The current Chinese government FAQ states that the unilateral visa-free arrangement for the countries in the current 50-country list, other than Brunei, is in force through December 31, 2026. Check the official policy again before departure because entry rules can change.</p><p>If China is only a stop on a Netherlands → China → third-country or region itinerary, compare the separate 240-hour transit policy rather than assuming the direct 30-day route is the only applicable route.</p><h3>Useful links</h3><p><a href=\"/country/netherlands?lang=en\">Open the Netherlands China visa decision guide</a></p><p><a href=\"/country/netherlands/unilateral?lang=en\">Check the Netherlands 30-day visa-free policy</a></p><p><a href=\"/articles/china-visafree-multiple-entry-rules?lang=en\">Related guide: Multiple-Entry Under China Visa-Free Rules</a></p><h3>Official sources</h3><ul><li><a href=\"https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/\">China Ministry of Foreign Affairs visa-free FAQ</a></li><li><a href=\"https://www.nia.gov.cn/n741440/n741577/c1731205/content.html\">China National Immigration Administration transit policy</a></li></ul>",
+    "contentZh": "<p>荷兰普通护照持有人目前属于中国单方面免签政策覆盖范围。符合经商、旅游、探亲访友、交流访问、过境等短期事由的，可免签入境中国，最长停留30天。</p><p>免签政策仍然与出行事由有关。持有荷兰护照并不意味着所有活动都可以免签；工作、学习等不属于普通短期免签范围的活动，应根据实际情况提前办理相应签证。</p><p>中国外交部当前免签常见问题显示，现行50国单方面免签名单中，除文莱外的其余国家目前执行至2026年12月31日。出发前应再次核对官方当日有效规定。</p><p>如果你的实际行程是荷兰→中国→第三国或地区，中国只是中转站，则应另外核验240小时过境免签，不要把直接30天免签和过境政策混为一谈。</p><h3>相关入口</h3><p><a href=\"/country/netherlands?lang=zh\">打开荷兰来华政策决策页</a></p><p><a href=\"/country/netherlands/unilateral?lang=zh\">查看荷兰30天免签政策</a></p><p><a href=\"/articles/china-visafree-multiple-entry-rules?lang=zh\">相关指南：来华免签能否多次入境？</a></p><h3>官方参考</h3><ul><li><a href=\"https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/\">中国外交部免签常见问题</a></li><li><a href=\"https://www.nia.gov.cn/n741440/n741577/c1731205/content.html\">中国国家移民管理局过境免签政策</a></li></ul>"
+  },
+  {
+    "categoryEn": "Country Visa Guides",
+    "categoryZh": "国家签证指南",
+    "topicCluster": "direct-eligibility",
+    "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration and foreign ministry information before travel.",
+    "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
+    "officialSources": [
+      "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "https://www.nia.gov.cn/"
+    ],
+    "dateModified": "2026-09-16",
+    "id": "germany-china-direct-2026",
+    "titleEn": "Germany Passport to China in 2026: 30-Day Visa-Free Entry Rules",
+    "titleZh": "德国护照去中国2026免签吗？30天免签条件与入境规则",
+    "summaryEn": "A Germany-specific guide to China’s 30-day unilateral visa-free route, including permitted purposes, stay limits and what to check before departure.",
+    "summaryZh": "针对德国普通护照的中国30天单方面免签指南，覆盖允许事由、停留期限及出发前需要核对的条件。",
+    "relatedCountryCodes": [
+      "germany"
+    ],
+    "tagsEn": [
+      "Visa-Free",
+      "Germany",
+      "China visa 2026",
+      "Entry rules"
+    ],
+    "tagsZh": [
+      "免签",
+      "德国",
+      "中国签证2026",
+      "入境规则"
+    ],
+    "cluster": "germany-2026-country-cluster",
+    "primaryCountryCode": "germany",
+    "publishAt": "2026-09-16T09:05:00",
+    "contentEn": "<p>德国普通护照持有人目前属于中国单方面免签政策覆盖范围。符合经商、旅游、探亲访友、交流访问、过境等短期事由的，可免签入境中国，最长停留30天。</p><p>The exemption is not a blanket permission for every activity. Germany passport holders should distinguish ordinary short-term travel from activities such as work or study that require a different immigration route.</p><p>The current Chinese government FAQ lists Germany among the countries covered by the unilateral visa-free program and states that the current arrangement for the relevant countries is effective through December 31, 2026, subject to the policy terms in force on the travel date.</p><p>If the actual itinerary is Germany → China → a third country or region, check the separate 240-hour transit rules as well because transit has its own onward itinerary and entry conditions.</p><h3>Useful links</h3><p><a href=\"/country/de?lang=en\">Open the Germany China visa decision guide</a></p><p><a href=\"/country/de/unilateral?lang=en\">Check the Germany 30-day visa-free policy</a></p><p><a href=\"/country/de/transit?lang=en\">Check Germany 240-hour transit eligibility</a></p><h3>Official sources</h3><ul><li><a href=\"https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/\">China Ministry of Foreign Affairs visa-free FAQ</a></li><li><a href=\"https://www.nia.gov.cn/n741440/n741577/c1731205/content.html\">China National Immigration Administration transit policy</a></li></ul>",
+    "contentZh": "<p>德国普通护照持有人目前属于中国单方面免签政策覆盖范围。符合经商、旅游、探亲访友、交流访问、过境等短期事由的，可免签入境中国，最长停留30天。</p><p>这不是对所有活动的普遍免签。德国护照持有人应区分普通短期旅行与工作、学习等需要其他入境手续的活动。</p><p>中国外交部当前免签常见问题将德国列入现行单方面免签国家，并说明相关国家目前执行至2026年12月31日，具体仍应以出行当日生效的政策条件为准。</p><p>如果实际行程是德国→中国→第三国或地区，还应单独检查240小时过境免签，因为过境政策有独立的后续行程和入境条件。</p><h3>相关入口</h3><p><a href=\"/country/de?lang=zh\">打开德国来华政策决策页</a></p><p><a href=\"/country/de/unilateral?lang=zh\">查看德国30天免签政策</a></p><p><a href=\"/country/de/transit?lang=zh\">查看德国240小时过境免签</a></p><h3>官方参考</h3><ul><li><a href=\"https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/\">中国外交部免签常见问题</a></li><li><a href=\"https://www.nia.gov.cn/n741440/n741577/c1731205/content.html\">中国国家移民管理局过境免签政策</a></li></ul>"
+  },
+  {
+    "categoryEn": "Country Visa Guides",
+    "categoryZh": "国家签证指南",
+    "topicCluster": "direct-eligibility",
+    "sourceNoteEn": "Policy facts should be rechecked against current official Chinese immigration and foreign ministry information before travel.",
+    "sourceNoteZh": "政策事实出行前应再次以中国外交部、国家移民管理局等官方当日有效信息为准。",
+    "officialSources": [
+      "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "https://www.nia.gov.cn/"
+    ],
+    "dateModified": "2026-09-16",
+    "id": "spain-china-direct-2026",
+    "titleEn": "Spain Passport to China in 2026: 30-Day Visa-Free Entry Rules",
+    "titleZh": "西班牙护照去中国2026免签吗？30天免签条件与入境规则",
+    "summaryEn": "A Spain-specific guide to China’s 30-day unilateral visa-free route, including permitted purposes, stay limits and what to check before departure.",
+    "summaryZh": "针对西班牙普通护照的中国30天单方面免签指南，覆盖允许事由、停留期限及出发前需要核对的条件。",
+    "relatedCountryCodes": [
+      "spain"
+    ],
+    "tagsEn": [
+      "Visa-Free",
+      "Spain",
+      "China visa 2026",
+      "Entry rules"
+    ],
+    "tagsZh": [
+      "免签",
+      "西班牙",
+      "中国签证2026",
+      "入境规则"
+    ],
+    "cluster": "spain-2026-country-cluster",
+    "primaryCountryCode": "spain",
+    "publishAt": "2026-09-16T09:10:00",
+    "contentEn": "<p>西班牙普通护照持有人目前属于中国单方面免签政策覆盖范围。符合旅游、经商、探亲访友、交流访问、过境等短期事由的，可免签入境中国，最长停留30天。</p><p>The exemption is not a blanket permission for every activity. Spain passport holders should distinguish ordinary short-term travel from activities such as work or study that require a different immigration route.</p><p>The current Chinese government FAQ lists Spain among the countries covered by the unilateral visa-free program and states that the current arrangement for the relevant countries is effective through December 31, 2026, subject to the policy terms in force on the travel date.</p><p>If the actual itinerary is Spain → China → a third country or region, check the separate 240-hour transit rules as well because transit has its own onward itinerary and entry conditions.</p><h3>Useful links</h3><p><a href=\"/country/spain?lang=en\">Open the Spain China visa decision guide</a></p><p><a href=\"/country/spain/unilateral?lang=en\">Check the Spain 30-day visa-free policy</a></p><p><a href=\"/country/spain/transit?lang=en\">Check Spain 240-hour transit eligibility</a></p><h3>Official sources</h3><ul><li><a href=\"https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/\">China Ministry of Foreign Affairs visa-free FAQ</a></li><li><a href=\"https://www.nia.gov.cn/n741440/n741577/c1731205/content.html\">China National Immigration Administration transit policy</a></li></ul>",
+    "contentZh": "<p>西班牙普通护照持有人目前属于中国单方面免签政策覆盖范围。符合旅游、经商、探亲访友、交流访问、过境等短期事由的，可免签入境中国，最长停留30天。</p><p>这不是对所有活动的普遍免签。西班牙护照持有人应区分普通短期旅行与工作、学习等需要其他入境手续的活动。</p><p>中国外交部当前免签常见问题将西班牙列入现行单方面免签国家，并说明相关国家目前执行至2026年12月31日，具体仍应以出行当日生效的政策条件为准。</p><p>如果实际行程是西班牙→中国→第三国或地区，还应单独检查240小时过境免签，因为过境政策有独立的后续行程和入境条件。</p><h3>相关入口</h3><p><a href=\"/country/spain?lang=zh\">打开西班牙来华政策决策页</a></p><p><a href=\"/country/spain/unilateral?lang=zh\">查看西班牙30天免签政策</a></p><p><a href=\"/country/spain/transit?lang=zh\">查看西班牙240小时过境免签</a></p><h3>官方参考</h3><ul><li><a href=\"https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/\">中国外交部免签常见问题</a></li><li><a href=\"https://www.nia.gov.cn/n741440/n741577/c1731205/content.html\">中国国家移民管理局过境免签政策</a></li></ul>"
   }
 ]
