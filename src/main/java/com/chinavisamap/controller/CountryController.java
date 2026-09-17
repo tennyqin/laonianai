@@ -118,7 +118,7 @@ public class CountryController {
         model.addAttribute("availablePolicies", availablePolicies);
         model.addAttribute("routeChecks", buildRouteChecks(pageCode, detailCountry, types, normalizedLang));
         model.addAttribute("routeCountText", buildRouteCountText(detailCountry, types, normalizedLang));
-        model.addAttribute("directDecisionYes", hasAnyVisaFreeRoute(types));
+        model.addAttribute("directDecisionYes", hasDirectVisaFreeRoute(types));
         model.addAttribute("countryDecisionTitle", buildCountryDecisionTitle(detailCountry, types, normalizedLang));
         model.addAttribute("countryDecisionText", buildCountryDecisionText(detailCountry, types, normalizedLang));
         model.addAttribute("countryNames", buildCountryNames());
@@ -185,6 +185,12 @@ public class CountryController {
         model.addAttribute("policyDecisionEn", policyDecision(detailCountry, type, policy, false));
         model.addAttribute("policyDecisionZh", policyDecision(detailCountry, type, policy, true));
         model.addAttribute("policyDecisionTone", policyDecisionTone(type));
+        model.addAttribute("decisionLabelEn", policyDecisionLabel(type, false));
+        model.addAttribute("decisionLabelZh", policyDecisionLabel(type, true));
+        model.addAttribute("decisionTitleEn", policyDecisionTitle(detailCountry, type, false));
+        model.addAttribute("decisionTitleZh", policyDecisionTitle(detailCountry, type, true));
+        model.addAttribute("decisionNoteEn", policyDecisionNote(type, false));
+        model.addAttribute("decisionNoteZh", policyDecisionNote(type, true));
         List<Map<String,Object>> otherRoutes = buildOtherRoutes(pageCode, detailCountry, availableTypes, type, normalizedLang);
         model.addAttribute("otherRoutes", otherRoutes);
         model.addAttribute("otherRoutesTitle", buildOtherRoutesTitle(detailCountry, otherRoutes.size(), normalizedLang));
@@ -196,11 +202,7 @@ public class CountryController {
         model.addAttribute("hasPolicyExplain", !isBlank(normalizedLang.equals("en") ? string(extra, "policyExplainEn") : string(extra, "policyExplainZh")));
         model.addAttribute("policyFaqList", normalizedLang.equals("en") ? policy.getFaqsEn() : policy.getFaqsZh());
         model.addAttribute("policyFaqsAvailable", normalizedLang.equals("en") ? policy.getFaqsEn() != null && !policy.getFaqsEn().isEmpty() : policy.getFaqsZh() != null && !policy.getFaqsZh().isEmpty());
-        model.addAttribute("decisionLabel", "YES");
-        model.addAttribute("decisionClass", "yes-direct".equals(policyDecisionTone(type)) ? "pd-answer-direct" : "pd-answer-conditional");
-        model.addAttribute("decisionNote", "yes-direct".equals(policyDecisionTone(type))
-                ? (normalizedLang.equals("en") ? "This is the direct visa-free route listed for this passport." : "这是当前该护照对应的直接免签路径。")
-                : (normalizedLang.equals("en") ? "This route exists, but you must meet the specific conditions below." : "这条路径确实存在，但需要满足下方列出的具体条件。"));
+        model.addAttribute("decisionClass", policyDecisionTone(type));
         // Keep the breadcrumb label independent from JSON policyType text.
         // This prevents an English Hainan label from leaking into the Chinese route.
         model.addAttribute("detailPolicyTypeText", policyLabel(type, "zh".equals(normalizedLang)));
@@ -234,21 +236,28 @@ public class CountryController {
 
     private String buildCountryDecisionTitle(CountryDetail country, List<String> types, String lang) {
         String n = "en".equals(lang) ? country.getName() : country.getNameZh();
-        boolean direct = hasAnyVisaFreeRoute(types);
+        boolean direct = hasDirectVisaFreeRoute(types);
         return "en".equals(lang)
                 ? (direct ? n + " passport holders can enter China visa-free" : n + " passport holders: no general direct visa-free entry")
-                : (direct ? n + "护照可以免签进入中国" : n + "护照目前不能直接免签进入中国");
+                : (direct ? n + "护照可以直接免签进入中国" : n + "护照目前不能直接免签进入中国");
     }
 
     private String buildCountryDecisionText(CountryDetail country, List<String> types, String lang) {
         int count = types.size();
         String n = "en".equals(lang) ? country.getName() : country.getNameZh();
+        boolean direct = hasDirectVisaFreeRoute(types);
         if ("en".equals(lang)) {
-            if (hasAnyVisaFreeRoute(types)) return "A visa-free route is available for " + n + ". " + count + " route" + (count == 1 ? " is" : "s are") + " currently available to check below.";
-            return "There is no general direct visa-free route listed for " + n + ". " + count + " other route" + (count == 1 ? " is" : "s are") + " currently available to check below.";
+            if (direct) return "A direct visa-free route is currently listed for " + n + ". Other entry routes are shown below where available.";
+            if (types.contains("transit") || types.contains("hainan")) {
+                return "There is no general direct visa-free entry route listed for " + n + ". " + count + " special route" + (count == 1 ? " is" : "s are") + " shown below, including transit or regional entry where applicable.";
+            }
+            return "There is no general direct visa-free entry route listed for " + n + ".";
         }
-        if (hasAnyVisaFreeRoute(types)) return n + "目前有可用的免签入境路径。下面列出 " + count + " 种可核对的入境路径。";
-        return n + "目前没有一般性的直接免签政策记录，但下面仍有 " + count + " 种可核对的入境路径。";
+        if (direct) return n + "目前有直接免签入境路径。其他可用入境路径见下方。";
+        if (types.contains("transit") || types.contains("hainan")) {
+            return n + "目前没有一般性的直接免签入境路径，但下面列有 " + count + " 种特殊路径，包括适用时的过境或区域免签政策。";
+        }
+        return n + "目前没有一般性的直接免签入境路径。";
     }
 
     private String policyDecision(CountryDetail country, String type, CountryPolicy policy, boolean zh) {
@@ -270,7 +279,34 @@ public class CountryController {
     }
 
     private String policyDecisionTone(String type) {
-        return "unilateral".equals(type) || "mutual".equals(type) ? "yes-direct" : "yes-conditional";
+        if ("unilateral".equals(type) || "mutual".equals(type)) return "pd-answer-direct";
+        if ("transit".equals(type)) return "pd-answer-transit";
+        if ("hainan".equals(type)) return "pd-answer-regional";
+        return "pd-answer-conditional";
+    }
+
+    private String policyDecisionLabel(String type, boolean zh) {
+        if ("unilateral".equals(type) || "mutual".equals(type)) return "YES";
+        if ("transit".equals(type)) return zh ? "可使用" : "ELIGIBLE";
+        if ("hainan".equals(type)) return zh ? "可使用" : "ELIGIBLE";
+        return zh ? "请核对" : "CHECK";
+    }
+
+    private String policyDecisionTitle(CountryDetail country, String type, boolean zh) {
+        String n = zh ? country.getNameZh() : country.getName();
+        if ("unilateral".equals(type)) return zh ? "直接免签入境中国" : "Direct visa-free entry to China";
+        if ("mutual".equals(type)) return zh ? "依据互免签证协定免签入境" : "Visa-free entry under the bilateral agreement";
+        if ("transit".equals(type)) return zh ? "240小时过境免签" : "240-hour visa-free transit";
+        if ("hainan".equals(type)) return zh ? "海南30天区域免签" : "30-day Hainan regional visa-free entry";
+        return zh ? n + "护照对应的入境路径" : "Entry route for " + n + " passport holders";
+    }
+
+    private String policyDecisionNote(String type, boolean zh) {
+        if ("unilateral".equals(type)) return "";
+        if ("mutual".equals(type)) return zh ? "免签依据适用的中外互免签证协定，具体以协定中的护照、事由和停留条件为准。" : "The exemption is based on the applicable bilateral agreement; passport, purpose and stay conditions follow the agreement.";
+        if ("transit".equals(type)) return zh ? "这是过境免签，不是普通的直接免签入境；需要满足前往第三国或地区等过境条件。" : "This is a transit route, not general direct visa-free entry; the required onward itinerary and other transit conditions must be met.";
+        if ("hainan".equals(type)) return zh ? "这是海南区域性免签，仅适用于符合条件的海南行程，不等于海南以外的中国大陆地区也可免签。" : "This is a regional Hainan route for qualifying Hainan itineraries; it does not provide general visa-free entry to mainland China outside Hainan.";
+        return zh ? "请根据下方规则核对具体入境条件。" : "Check the detailed conditions below for the applicable entry requirements.";
     }
 
     private List<Map<String,Object>> buildRouteChecks(String code, CountryDetail country, List<String> types, String lang) {
@@ -312,8 +348,8 @@ public class CountryController {
     private String buildOtherRoutesIntro(CountryDetail country, int count, String lang) {
         if (count <= 0) return "";
         return "en".equals(lang)
-                ? "If this route does not match your itinerary, these are the other routes currently listed for this passport."
-                : "如果当前这条路径和你的行程不完全匹配，下面就是这个护照目前还能核对的其他路径。";
+                ? "Other entry options currently listed for this passport."
+                : "该护照目前还有以下入境路径。";
     }
 
     private List<Map<String,Object>> buildOtherRoutes(String code, CountryDetail country, List<String> types,
@@ -548,17 +584,20 @@ public class CountryController {
     private void addFaq(List<Map<String,String>> r,String q,String a){Map<String,String> x=new LinkedHashMap<>();x.put("q",q);x.put("a",a);r.add(x);}
     private String stayText(CountryDetail c,boolean zh){return isBlank(c.getStayDays())?(zh?"政策规定期限":"the period stated by the policy"):c.getStayDays()+(zh?"天":" days");}
     private String buildHomeDecisionAnswer(String name, List<String> types, boolean zh) {
-        boolean direct = hasAnyVisaFreeRoute(types);
-        int count = types.size();
-        String routeWord = zh ? "种路径" : (count == 1 ? "route" : "routes");
+        boolean direct = hasDirectVisaFreeRoute(types);
         if (direct) {
             return zh
-                    ? "YES — " + name + "普通护照符合条件时可以直接免签入境中国；目前还可以核对 " + count + " " + routeWord + "。"
-                    : "YES — Eligible " + name + " ordinary-passport holders can enter China directly without a visa; " + count + " " + routeWord + " are currently listed to check.";
+                    ? "YES — " + name + "普通护照符合条件时可以直接免签入境中国。"
+                    : "YES — Eligible " + name + " ordinary-passport holders can enter China directly without a visa.";
+        }
+        if (types.contains("transit") || types.contains("hainan")) {
+            return zh
+                    ? "NO — " + name + "普通护照目前不能直接免签进入中国，但符合条件时仍可核对过境或海南区域免签路径。"
+                    : "NO — " + name + " ordinary-passport holders do not have a general direct visa-free route, but qualifying transit or Hainan regional routes may still apply.";
         }
         return zh
-                ? "NO — " + name + "普通护照目前不能按一般直接免签入境中国；但仍有 " + count + " " + routeWord + " 可以根据实际行程核对。"
-                : "NO — " + name + " ordinary-passport holders do not have a general direct visa-free route into China; " + count + " specific " + routeWord + " may still apply depending on the itinerary.";
+                ? "NO — " + name + "普通护照目前没有一般性的直接免签入境路径。"
+                : "NO — " + name + " ordinary-passport holders do not have a general direct visa-free entry route.";
     }
 
     private String routeSummaryEn(List<String> t){List<String> r=new ArrayList<>();if(t.contains("unilateral"))r.add("A direct unilateral visa-free route is listed.");if(t.contains("mutual"))r.add("A bilateral visa-exemption route is listed.");if(t.contains("transit"))r.add("A 240-hour transit route is listed.");if(t.contains("hainan"))r.add("A separate Hainan regional route is listed.");return String.join(" ",r);}
@@ -647,7 +686,7 @@ public class CountryController {
 
     private String defaultIntro(CountryDetail detail, String code, boolean zh) {
         String n = zh ? detail.getNameZh() : detail.getName();
-        return zh ? "本页面汇总目前与"+n+"护照持有人相关的中国入境路径。建议先使用资格检查器，再进入与实际行程相符的政策详情。" : "This page brings together the China entry routes currently relevant to "+n+" passport holders. Start with the checker, then open the route matching your itinerary.";
+        return zh ? "下面列出目前与"+n+"护照持有人相关的中国免签及其他入境路径。直接免签、互免、海南区域免签和过境免签的适用条件不同，请按实际行程查看对应政策。" : "Current visa-free and related entry routes for "+n+" passport holders are listed below. Direct visa-free entry, bilateral exemption, Hainan regional entry and transit routes have different conditions.";
     }
 
     private CountryPolicy buildCountryPolicy(String code, String type, CountryDetail detailCountry, Map<String, Object> extra) {
@@ -726,19 +765,21 @@ public class CountryController {
     }
 
     /**
-     * Returns true when this passport has at least one currently listed visa-free route.
-     * This intentionally includes direct, mutual, transit and Hainan regional routes.
+     * The country-page YES/NO answers the narrow question: does this passport
+     * have a general/direct visa-free entry route into China?
+     * Transit and Hainan regional routes are intentionally excluded because
+     * they do not mean general direct visa-free entry into mainland China.
      */
-    private boolean hasAnyVisaFreeRoute(List<String> types) {
-        return types != null && !types.isEmpty();
+    private boolean hasDirectVisaFreeRoute(List<String> types) {
+        return types != null && (types.contains("unilateral") || types.contains("mutual"));
     }
 
     private List<String> detectAvailableTypes(String code) {
         String key = resolver.policyKey(code); List<String> result = new ArrayList<>();
         if (unilateralMap.containsKey(key)) result.add("unilateral");
         if (mutualMap.containsKey(key)) result.add("mutual");
-        if (transitMap.containsKey(key)) result.add("transit");
         if (hainanMap.containsKey(key)) result.add("hainan");
+        if (transitMap.containsKey(key)) result.add("transit");
         return result;
     }
 
