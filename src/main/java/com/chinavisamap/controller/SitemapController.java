@@ -39,10 +39,11 @@ public class SitemapController {
     @GetMapping(value = "/sitemap.xml", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sitemap() {
         StringBuilder xml = new StringBuilder();
+        Set<String> emittedUrls = new LinkedHashSet<>();
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">");
 
-        addMultilingualUrl(xml, "/", "homepage", SITE_UPDATE);
+        addMultilingualUrl(xml, emittedUrls, "/", "homepage", SITE_UPDATE);
 
         Set<String> countryCodes = new TreeSet<>();
         addCanonicalCodes(countryCodes, unilateralMap.keySet());
@@ -50,20 +51,20 @@ public class SitemapController {
         addCanonicalCodes(countryCodes, transitMap.keySet());
         addCanonicalCodes(countryCodes, hainanMap.keySet());
         for (String code : countryCodes) {
-            addMultilingualUrl(xml, "/country/" + code, "country", SITE_UPDATE);
+            addMultilingualUrl(xml, emittedUrls, "/country/" + code, "country", SITE_UPDATE);
         }
 
-        addCountryTypeUrls(xml, unilateralMap, "unilateral");
-        addCountryTypeUrls(xml, mutualMap, "mutual");
-        addCountryTypeUrls(xml, transitMap, "transit");
-        addCountryTypeUrls(xml, hainanMap, "hainan");
+        addCountryTypeUrls(xml, emittedUrls, countryCodes, unilateralMap, "unilateral");
+        addCountryTypeUrls(xml, emittedUrls, countryCodes, mutualMap, "mutual");
+        addCountryTypeUrls(xml, emittedUrls, countryCodes, transitMap, "transit");
+        addCountryTypeUrls(xml, emittedUrls, countryCodes, hainanMap, "hainan");
 
-        addMultilingualUrl(xml, "/articles", "articles", SITE_UPDATE);
+        addMultilingualUrl(xml, emittedUrls, "/articles", "articles", SITE_UPDATE);
         for (Map<String, Object> article : articles) {
             Object id = article.get("id");
-            if (id != null) addMultilingualUrl(xml, "/articles/" + id, "article", articleLastMod(article));
+            if (id != null) if (id != null && !String.valueOf(id).trim().isEmpty()) addMultilingualUrl(xml, emittedUrls, "/articles/" + id, "article", articleLastMod(article));
         }
-        addMultilingualUrl(xml, "/visa-guide", "visa-guide", SITE_UPDATE);
+        addMultilingualUrl(xml, emittedUrls, "/visa-guide", "visa-guide", SITE_UPDATE);
 
         xml.append("</urlset>");
         return ResponseEntity.ok()
@@ -75,22 +76,23 @@ public class SitemapController {
         for (String code : source) target.add(resolver.routeCode(resolver.policyKey(code)));
     }
 
-    private void addCountryTypeUrls(StringBuilder xml, Map<String, CountryDetail> map, String type) {
-        if (map == null) return;
+    private void addCountryTypeUrls(StringBuilder xml, Set<String> emittedUrls, Set<String> validCountryCodes, Map<String, CountryDetail> map, String type) {
+        if (map == null || map.isEmpty()) return;
         for (String code : map.keySet()) {
             String canonicalCode = resolver.routeCode(resolver.policyKey(code));
-            addMultilingualUrl(xml, "/country/" + canonicalCode + "/" + type, "country-detail", SITE_UPDATE);
+            if (validCountryCodes.contains(canonicalCode)) addMultilingualUrl(xml, emittedUrls, "/country/" + canonicalCode + "/" + type, "country-detail", SITE_UPDATE);
         }
     }
 
-    private void addMultilingualUrl(StringBuilder xml, String path, String type, String lastmod) {
+    private void addMultilingualUrl(StringBuilder xml, Set<String> emittedUrls, String path, String type, String lastmod) {
         String en = BASE_URL + path + "?lang=en";
         String zh = BASE_URL + path + "?lang=zh";
-        addUrl(xml, en, "en", zh, lastmod);
-        addUrl(xml, zh, "zh", en, lastmod);
+        addUrl(xml, emittedUrls, en, "en", zh, lastmod);
+        addUrl(xml, emittedUrls, zh, "zh", en, lastmod);
     }
 
-    private void addUrl(StringBuilder xml, String loc, String lang, String alternate, String lastmod) {
+    private void addUrl(StringBuilder xml, Set<String> emittedUrls, String loc, String lang, String alternate, String lastmod) {
+        if (!emittedUrls.add(loc)) return;
         xml.append("<url>");
         xml.append("<loc>").append(xmlEscape(loc)).append("</loc>");
         if (lastmod != null && !lastmod.trim().isEmpty()) {
@@ -114,7 +116,7 @@ public class SitemapController {
         try {
             return objectMapper.readValue(new ClassPathResource(file).getInputStream(), new TypeReference<Map<String, CountryDetail>>() {});
         } catch (Exception e) {
-            return Collections.emptyMap();
+            throw new IllegalStateException("Failed to load required sitemap resource: " + file, e);
         }
     }
 
@@ -127,7 +129,7 @@ public class SitemapController {
                 if (content.isTextual()) return objectMapper.readValue(content.asText(), new TypeReference<List<Map<String, Object>>>() {});
                 return objectMapper.convertValue(content, new TypeReference<List<Map<String, Object>>>() {});
             }
-            return Collections.emptyList();
+            throw new IllegalStateException("Failed to load required sitemap resource: articles.json");
         } catch (Exception e) {
             return Collections.emptyList();
         }
