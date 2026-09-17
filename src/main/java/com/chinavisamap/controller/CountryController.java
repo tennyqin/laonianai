@@ -118,7 +118,7 @@ public class CountryController {
         model.addAttribute("availablePolicies", availablePolicies);
         model.addAttribute("routeChecks", buildRouteChecks(pageCode, detailCountry, types, normalizedLang));
         model.addAttribute("routeCountText", buildRouteCountText(detailCountry, types, normalizedLang));
-        model.addAttribute("directDecisionYes", types.contains("unilateral") || types.contains("mutual"));
+        model.addAttribute("directDecisionYes", hasAnyVisaFreeRoute(types));
         model.addAttribute("countryDecisionTitle", buildCountryDecisionTitle(detailCountry, types, normalizedLang));
         model.addAttribute("countryDecisionText", buildCountryDecisionText(detailCountry, types, normalizedLang));
         model.addAttribute("countryNames", buildCountryNames());
@@ -234,7 +234,7 @@ public class CountryController {
 
     private String buildCountryDecisionTitle(CountryDetail country, List<String> types, String lang) {
         String n = "en".equals(lang) ? country.getName() : country.getNameZh();
-        boolean direct = types.contains("unilateral") || types.contains("mutual");
+        boolean direct = hasAnyVisaFreeRoute(types);
         return "en".equals(lang)
                 ? (direct ? n + " passport holders can enter China visa-free" : n + " passport holders: no general direct visa-free entry")
                 : (direct ? n + "护照可以免签进入中国" : n + "护照目前不能直接免签进入中国");
@@ -244,10 +244,10 @@ public class CountryController {
         int count = types.size();
         String n = "en".equals(lang) ? country.getName() : country.getNameZh();
         if ("en".equals(lang)) {
-            if (types.contains("unilateral") || types.contains("mutual")) return "A direct visa-free route is listed for " + n + ". " + count + " route" + (count == 1 ? " is" : "s are") + " currently available to check below.";
+            if (hasAnyVisaFreeRoute(types)) return "A visa-free route is available for " + n + ". " + count + " route" + (count == 1 ? " is" : "s are") + " currently available to check below.";
             return "There is no general direct visa-free route listed for " + n + ". " + count + " other route" + (count == 1 ? " is" : "s are") + " currently available to check below.";
         }
-        if (types.contains("unilateral") || types.contains("mutual")) return n + "目前有直接免签政策记录。下面列出 " + count + " 种可核对的入境路径。";
+        if (hasAnyVisaFreeRoute(types)) return n + "目前有可用的免签入境路径。下面列出 " + count + " 种可核对的入境路径。";
         return n + "目前没有一般性的直接免签政策记录，但下面仍有 " + count + " 种可核对的入境路径。";
     }
 
@@ -548,7 +548,7 @@ public class CountryController {
     private void addFaq(List<Map<String,String>> r,String q,String a){Map<String,String> x=new LinkedHashMap<>();x.put("q",q);x.put("a",a);r.add(x);}
     private String stayText(CountryDetail c,boolean zh){return isBlank(c.getStayDays())?(zh?"政策规定期限":"the period stated by the policy"):c.getStayDays()+(zh?"天":" days");}
     private String buildHomeDecisionAnswer(String name, List<String> types, boolean zh) {
-        boolean direct = types.contains("unilateral") || types.contains("mutual");
+        boolean direct = hasAnyVisaFreeRoute(types);
         int count = types.size();
         String routeWord = zh ? "种路径" : (count == 1 ? "route" : "routes");
         if (direct) {
@@ -723,6 +723,14 @@ public class CountryController {
             if (!isBlank(question) && !isBlank(answer)) result.add(new CountryPolicy.PolicyFaq(question, answer));
         }
         return result;
+    }
+
+    /**
+     * Returns true when this passport has at least one currently listed visa-free route.
+     * This intentionally includes direct, mutual, transit and Hainan regional routes.
+     */
+    private boolean hasAnyVisaFreeRoute(List<String> types) {
+        return types != null && !types.isEmpty();
     }
 
     private List<String> detectAvailableTypes(String code) {
