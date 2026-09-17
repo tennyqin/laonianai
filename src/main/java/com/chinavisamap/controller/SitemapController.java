@@ -62,7 +62,9 @@ public class SitemapController {
         addMultilingualUrl(xml, emittedUrls, "/articles", "articles", SITE_UPDATE);
         for (Map<String, Object> article : articles) {
             Object id = article.get("id");
-            if (id != null) if (id != null && !String.valueOf(id).trim().isEmpty()) addMultilingualUrl(xml, emittedUrls, "/articles/" + id, "article", articleLastMod(article));
+            if (id != null && !String.valueOf(id).trim().isEmpty()) {
+                addMultilingualUrl(xml, emittedUrls, "/articles/" + id, "article", articleLastMod(article));
+            }
         }
         addMultilingualUrl(xml, emittedUrls, "/visa-guide", "visa-guide", SITE_UPDATE);
 

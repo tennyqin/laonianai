@@ -54,13 +54,16 @@ public class VisaGuideController {
                 seoService.hreflang(path)
         );
 
+        @SuppressWarnings("unchecked")
+        Map<String, Object> meta = vgData.get("meta") instanceof Map
+                ? (Map<String, Object>) vgData.get("meta")
+                : java.util.Collections.emptyMap();
         String title = "zh".equals(lang)
-                ? "中国签证指南 2026"
-                : "China Visa Guide 2026";
-
+                ? String.valueOf(meta.getOrDefault("pageTitleZh", "中国签证指南 2026"))
+                : String.valueOf(meta.getOrDefault("pageTitleEn", "China Visa Guide 2026"));
         String description = "zh".equals(lang)
-                ? "中国签证、免签、过境免签及入境政策完整指南。"
-                : "Complete guide to China visas, visa-free entry, transit visa-free policies and entry requirements.";
+                ? String.valueOf(meta.getOrDefault("pageDescZh", "中国签证、免签、过境免签及入境政策完整指南。"))
+                : String.valueOf(meta.getOrDefault("pageDescEn", "Complete guide to China visas, visa-free entry, transit visa-free policies and entry requirements."));
 
         model.addAttribute(
                 "structuredData",

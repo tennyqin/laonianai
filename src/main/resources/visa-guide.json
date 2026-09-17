@@ -2,16 +2,16 @@
   "meta": {
     "pageTitleEn": "How to Apply for a Chinese Visa | Requirements & Process 2026",
     "pageTitleZh": "中国签证申请完整指南｜材料、流程、常见问题 2026",
-    "pageDescEn": "Complete guide to apply for Chinese tourist / business visa. Documents, application steps, processing time, FAQs for foreign citizens who are not eligible for China visa-free entry.",
-    "pageDescZh": "不享受中国免签政策外籍人士办理中国旅游、商务签证完整指南，申请材料、办理流程、时效、常见问题。",
+    "pageDescEn": "Check whether you need a China visa first, then review visa-free routes, 24-hour or 240-hour transit, Hainan entry, visa types, documents and application steps. Official rules can vary by nationality and location.",
+    "pageDescZh": "先判断是否需要中国签证，再核对单方面免签、互免签证、24小时或240小时过境、海南免签，以及签证类型、材料和申请流程。具体要求以适用官方机构为准。",
     "lastUpdateHintEn": "For reference only, subject to consulate official announcements",
     "lastUpdateHintZh": "仅供参考，以使领馆官方公告为准"
   },
   "intro": {
     "titleEn": "Applying for a Chinese Visa",
     "titleZh": "申请中国签证",
-    "para1En": "If your nationality is NOT covered by unilateral visa-free, mutual visa exemption or 240-hour transit visa-free schemes, you must obtain a proper Chinese visa before travelling to mainland China. This guide summarizes official requirements published by the National Immigration Administration and Chinese overseas diplomatic missions.",
-    "para1Zh": "如果您的国籍不属于单方面免签、互免签证、240小时过境免签范围，前往中国大陆出行前必须提前办妥中国签证。本指南汇总国家移民管理局及中国驻外使领馆公开官方要求。",
+    "para1En": "Do not start with a visa application. First check whether your nationality and itinerary qualify for a visa-free route: unilateral visa-free entry, a mutual exemption agreement, general 24-hour transit, 240-hour transit, or Hainan regional visa-free entry. If none applies, choose the appropriate Chinese visa type and apply before travel.",
+    "para1Zh": "不要先急着办签证。第一步应先判断您的国籍和行程是否符合单方面免签、互免签证、24小时过境免签、240小时过境免签或海南区域免签；如果这些路径都不适用，再选择对应的中国签证类型并按要求提前申请。",
     "para2En": "Important note: This website serves as informational reference only. Final rules, forms and decisions belong to Chinese embassies, consulates-general and visa service centres.",
     "para2Zh": "重要提示：本站仅作资讯参考；最终申请要求、表格、审批结果以中国驻外大使馆、总领事馆及签证申请中心为准。"
   },
@@ -19,62 +19,86 @@
   "visaTypesTitleZh": "外籍访客常用签证类型",
   "visaTypes": [
     {
-      "titleEn": "L-Visa (Tourist)",
+      "titleEn": "L Visa (Tourism)",
       "titleZh": "L类（旅游签证）",
-      "descEn": "For sightseeing, travel, family visiting purposes.",
-      "descZh": "用于观光旅游、探亲访问。"
+      "descEn": "For tourism and sightseeing. Check the current consular requirements for itinerary, accommodation and other supporting documents.",
+      "descZh": "用于旅游观光。行程、住宿及其他支持材料以受理地最新要求为准。"
     },
     {
-      "titleEn": "M-Visa (Business)",
-      "titleZh": "M类（商务签证）",
-      "descEn": "For commercial-trade activities, business meetings and negotiations.",
-      "descZh": "从事商贸活动、商务会谈洽谈。"
+      "titleEn": "M Visa (Commercial Trade)",
+      "titleZh": "M类（商贸签证）",
+      "descEn": "For commercial and trade activities. Supporting documents may include an invitation or business-related documents.",
+      "descZh": "用于商贸活动。通常需要根据受理地要求提供邀请函或商务相关材料。"
     },
     {
-      "titleEn": "Q-Visa (Family Reunion)",
-      "titleZh": "Q类（团聚签证）",
-      "descEn": "For visiting Chinese family members.",
-      "descZh": "探望中国亲属。"
+      "titleEn": "F Visa (Exchange / Visit)",
+      "titleZh": "F类（交流、访问等）",
+      "descEn": "For non-commercial exchanges, visits, study tours and other qualifying activities.",
+      "descZh": "用于交流、访问、考察等符合规定的非商业活动。"
     },
     {
-      "titleEn": "Z-Visa (Work)",
-      "titleZh": "Z类（工作签证）",
-      "descEn": "For paid employment in China; requires pre-approval.",
-      "descZh": "来华务工就业，需要提前取得就业许可。"
+      "titleEn": "Q1 / Q2 Visa (Family Visit)",
+      "titleZh": "Q1 / Q2类（探亲、团聚）",
+      "descEn": "Q1 is generally for family reunion or long-term family residence; Q2 is generally for short-term family visits.",
+      "descZh": "Q1通常用于长期探亲、团聚等情形；Q2通常用于短期探亲访问。"
     },
     {
-      "titleEn": "X-Visa (Study)",
-      "titleZh": "X类（学习签证）",
-      "descEn": "For long-term study in China.",
-      "descZh": "来华长期留学学习。"
+      "titleEn": "X1 / X2 Visa (Study)",
+      "titleZh": "X1 / X2类（学习）",
+      "descEn": "X1 is generally for long-term study and X2 for short-term study. Supporting admission or study documents are typically required.",
+      "descZh": "X1通常用于长期学习，X2通常用于短期学习；一般需按要求提供录取或学习相关材料。"
+    },
+    {
+      "titleEn": "Z Visa (Work)",
+      "titleZh": "Z类（工作）",
+      "descEn": "For employment in China. Required work authorization and supporting documents must be handled according to the applicable rules.",
+      "descZh": "用于在中国工作。需按适用规定办理工作许可等前置手续并提供相关材料。"
+    },
+    {
+      "titleEn": "S1 / S2 Visa (Private Affairs)",
+      "titleZh": "S1 / S2类（私人事务）",
+      "descEn": "For qualifying private affairs, including visits to family members working or studying in China, subject to the relevant conditions.",
+      "descZh": "用于符合规定的私人事务，例如探望在中国工作或学习的亲属等，具体以适用条件为准。"
+    },
+    {
+      "titleEn": "J1 / J2 Visa (Journalism)",
+      "titleZh": "J1 / J2类（新闻）",
+      "descEn": "For qualifying foreign journalists. Additional approval and supporting documents may be required.",
+      "descZh": "用于符合规定的外国记者来华采访等活动，可能涉及额外审批和材料要求。"
+    },
+    {
+      "titleEn": "G / C / D / R and Other Categories",
+      "titleZh": "G / C / D / R等其他类别",
+      "descEn": "Transit, crew, permanent-residence and other special-purpose categories have their own conditions. Use the official consular guidance for the exact category.",
+      "descZh": "过境、乘务、永久居留及其他特殊类别各有适用条件，应按官方受理机构要求确认具体类别。"
     }
   ],
   "docCheckTitleEn": "Basic Required Documents",
   "docCheckTitleZh": "基础必备申请材料",
   "docList": [
     {
-      "titleEn": "Valid Passport",
+      "titleEn": "Valid passport",
       "titleZh": "有效护照",
-      "descEn": "Original passport with at least 6-month remaining validity and ≥2 blank visa pages.",
-      "descZh": "护照原件，有效期大于6个月，至少2页空白签证页。"
+      "descEn": "A passport meeting the validity and blank-page requirements of the place and visa category. Many visa centers ask for at least six months validity and two blank visa pages, but requirements can vary.",
+      "descZh": "符合受理地和签证类别要求的护照。许多签证中心要求护照有效期通常不少于6个月并有至少2页空白签证页，但具体要求可能因地点和类别而异。"
     },
     {
-      "titleEn": "Visa Application Form & Photo",
-      "titleZh": "签证申请表+证件照",
-      "descEn": "Completed online application form, recent passport-style photograph.",
-      "descZh": "在线填写完整签证申请表，近期证件照片。"
+      "titleEn": "Visa application form and photo",
+      "titleZh": "签证申请表和证件照",
+      "descEn": "Complete the current application form and provide a compliant recent photo according to the official instructions.",
+      "descZh": "按最新官方要求完整填写申请表，并提供符合规定的近期证件照片。"
     },
     {
-      "titleEn": "Proof of travel itinerary",
-      "titleZh": "行程证明",
-      "descEn": "Flight booking records, planned travel schedule in China.",
-      "descZh": "往返机票预订单、在华行程计划表。"
+      "titleEn": "Purpose-specific supporting documents",
+      "titleZh": "与出行事由对应的支持材料",
+      "descEn": "Depending on the visa, this can include an invitation letter, admission notice, employment/work authorization, family relationship proof or other documents.",
+      "descZh": "根据签证类别，可能包括邀请函、录取通知书、工作许可、亲属关系证明等材料。"
     },
     {
-      "titleEn": "Supporting documents per visa category",
-      "titleZh": "对应类别支持材料",
-      "descEn": "Invitation letter, business letter, family relation proof or admission notice depending on visa type.",
-      "descZh": "邀请函、商务公函、亲属关系证明或录取通知书，根据签证类型提供。"
+      "titleEn": "Travel and status documents when required",
+      "titleZh": "必要时提供行程及身份相关材料",
+      "descEn": "Some locations or categories may request itinerary, accommodation, residence-status or other additional documents. Check the local official checklist.",
+      "descZh": "部分受理地或签证类别可能要求行程、住宿、合法居留身份等额外材料，应核对当地官方材料清单。"
     }
   ],
   "processTitleEn": "Standard Application Process",
@@ -82,68 +106,81 @@
   "processSteps": [
     {
       "num": 1,
-      "titleEn": "Prepare documents",
-      "titleZh": "准备材料",
-      "descEn": "Gather passport, photos and supporting papers according to visa type.",
-      "descZh": "按签证类型准备护照、照片以及各类证明材料。"
+      "titleEn": "Check whether you need a visa",
+      "titleZh": "先判断是否需要签证",
+      "descEn": "Check your nationality, passport type, purpose, destination and itinerary against the applicable visa-free or transit routes.",
+      "descZh": "结合国籍、护照类型、出行目的、目的地和行程，先核对是否存在适用的免签或过境路径。"
     },
     {
       "num": 2,
-      "titleEn": "Fill out visa application form",
-      "titleZh": "填写签证申请表",
-      "descEn": "Complete official Chinese visa application form online.",
-      "descZh": "在线填写中国签证官方申请表。"
+      "titleEn": "Choose the correct visa category",
+      "titleZh": "选择正确的签证类别",
+      "descEn": "If a visa is required, select the category that matches the actual purpose of travel and check the local official checklist.",
+      "descZh": "如果确实需要签证，应根据实际出行目的选择类别，并核对受理地官方材料清单。"
     },
     {
       "num": 3,
-      "titleEn": "Submit application",
-      "titleZh": "递交申请",
-      "descEn": "Submit at Chinese Embassy / Consulate-General or authorized Visa Application Service Center.",
-      "descZh": "向中国驻外使领馆或授权签证申请中心递交申请。"
+      "titleEn": "Complete the official application",
+      "titleZh": "填写官方申请表",
+      "descEn": "Complete the current application form and prepare the required supporting documents.",
+      "descZh": "填写当前有效的官方申请表，并准备对应的支持材料。"
     },
     {
       "num": 4,
-      "titleEn": "Payment & Waiting",
-      "titleZh": "缴费与等待",
-      "descEn": "Pay visa fee, wait for processing. Normal processing time varies by location.",
-      "descZh": "缴纳签证费用，等待审核，普通办理时效各地使领馆存在差异。"
+      "titleEn": "Submit at the designated place",
+      "titleZh": "向指定受理机构递交",
+      "descEn": "Submit to the Chinese embassy/consulate or an authorized visa application service center, as applicable to your place of application.",
+      "descZh": "根据您所在地区和适用规则，向中国使领馆或授权签证申请中心递交申请。"
     },
     {
       "num": 5,
-      "titleEn": "Collect passport with visa",
-      "titleZh": "取回护照签证",
-      "descEn": "Collect your passport; check visa entries, duration of stay for correctness.",
-      "descZh": "取回护照，核对签证入境次数、停留期限信息。"
+      "titleEn": "Pay, wait and collect",
+      "titleZh": "缴费、等待并取证",
+      "descEn": "Pay the applicable fee, complete any requested follow-up procedure, and collect your passport when instructed. Processing times and fees vary by location and service.",
+      "descZh": "按要求缴费并完成后续程序，在通知时间取回护照。办理时效和费用会因受理地及服务类型而不同。"
+    },
+    {
+      "num": 6,
+      "titleEn": "Check the issued visa before travel",
+      "titleZh": "出行前核对签证信息",
+      "descEn": "Check entries, validity dates, duration of stay and other information on the issued visa before departure.",
+      "descZh": "出行前核对签证上的入境次数、有效期、停留期限等信息。"
     }
   ],
-  "processingNoteEn": "Processing Time Reminder: Standard service usually takes 4-7 working days. Express or urgent service may be available subject to consulate availability.",
-  "processingNoteZh": "办理时效提醒：普通受理一般4-7个工作日；加急服务视使领馆业务情况提供。",
+  "processingNoteEn": "Processing times and fees are not a single nationwide standard. Check the current notice of the Chinese embassy, consulate-general or authorized visa application center handling your application.",
+  "processingNoteZh": "办理时效和费用并非全国统一固定标准，应以负责受理您申请的中国使领馆或授权签证申请中心当前公告为准。",
   "faqTitleEn": "Frequently Asked Questions",
   "faqTitleZh": "常见问题",
   "visaFaqs": [
     {
-      "qEn": "Can I apply for Chinese visa on-arrival?",
-      "qZh": "我可以抵达中国口岸再申请签证吗？",
-      "aEn": "Ordinary foreign visitors cannot obtain tourist/business visa upon arrival. You must apply overseas before departure.",
-      "aZh": "普通外籍旅客不能口岸落地办理旅游商务签证，必须出境前在海外申请。"
+      "qEn": "Can I enter China and get an ordinary tourist or business visa at the border?",
+      "qZh": "可以到了中国口岸再办理普通旅游或商务签证吗？",
+      "aEn": "Do not assume that a regular tourist or business visa can be issued on arrival. Ordinary visa applicants should normally complete the required application process before travel. Limited special arrangements may exist in specific circumstances, so check the competent Chinese authority for your case.",
+      "aZh": "不要默认普通旅游或商务签证可以到口岸落地办理。普通签证申请人通常应在出行前完成规定的申请程序；个别特殊情形可能另有安排，应向适用的中国主管机构核实。"
     },
     {
-      "qEn": "What should I do if my visa application gets rejected?",
-      "qZh": "签证申请被拒怎么办？",
-      "aEn": "Embassies-consulates do not disclose detailed rejection reasons. You may re-apply after improving supporting documentation.",
-      "aZh": "使领馆一般不披露具体拒签理由；完善材料后可以重新递交。"
+      "qEn": "Does a visa guarantee entry?",
+      "qZh": "拿到签证就一定可以入境吗？",
+      "aEn": "No. A visa permits you to seek entry under its conditions; border inspection authorities make the final entry decision at the port.",
+      "aZh": "不一定。签证是在符合其条件下申请入境的许可文件之一，最终是否准予入境由口岸边检机关依法作出决定。"
     },
     {
-      "qEn": "Does holding a visa guarantee entry into China?",
-      "qZh": "拿到签证就一定可以入境中国吗？",
-      "aEn": "A Chinese visa only permits you to apply for entry. Final admission decision is made by China border inspection authorities at port of arrival.",
-      "aZh": "签证仅代表申请入境资格；最终是否允许入境由中国口岸边检机关判定。"
+      "qEn": "Can I extend my stay after entering China?",
+      "qZh": "入境中国后可以延长停留时间吗？",
+      "aEn": "Depending on the circumstances and visa/status, an application may be possible through the local Exit-Entry Administration before the permitted stay expires. Approval is not automatic.",
+      "aZh": "根据具体情况和签证/居留身份，部分人员可在停留期限届满前向当地出入境管理部门申请相关手续，但并非自动获批。"
     },
     {
-      "qEn": "Can I extend my Chinese visa after entering mainland China?",
-      "qZh": "入境中国后可以在境内延期签证吗？",
-      "aEn": "Certain visa categories can apply for extension at local Exit-Entry Administration before expiry. Extension approval is not guaranteed.",
-      "aZh": "部分签证类型可在到期前于出入境管理局申请延期，延期审批不一定通过。"
+      "qEn": "Do visa requirements differ by country of application?",
+      "qZh": "不同国家递交签证，要求会不一样吗？",
+      "aEn": "Yes. Forms, appointment rules, document checklists, fees, processing times and whether a visa center is used can vary by location and applicant status.",
+      "aZh": "会。申请表、预约方式、材料清单、费用、办理时效以及是否通过签证中心受理，都可能因申请地点和申请人身份而不同。"
+    },
+    {
+      "qEn": "Where should I verify the final requirements?",
+      "qZh": "最终应该在哪里核对要求？",
+      "aEn": "Use the official Chinese embassy or consulate, authorized visa application service center, and National Immigration Administration information applicable to your route.",
+      "aZh": "应以中国驻当地使领馆、授权签证申请中心以及国家移民管理局针对相应入境路径发布的官方信息为准。"
     }
   ]
 }
