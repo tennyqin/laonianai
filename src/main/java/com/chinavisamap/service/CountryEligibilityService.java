@@ -87,8 +87,17 @@ public class CountryEligibilityService {
             if (type.isEmpty()) continue;
             Map<String, Object> item = new LinkedHashMap<>();
             item.put("type", type);
-            item.put("stayDays", parseSimpleDays(policy.getStayDays()));
+            Integer listedStayDays = parseSimpleDays(policy.getStayDays());
+            item.put("stayDays", listedStayDays);
             item.put("stayText", safe(policy.getStayDays()));
+            // Mutual agreements can contain both per-entry and cumulative limits.
+            // Keep those constraints explicit so the browser checker never treats
+            // a cumulative rule as a simple single-trip allowance.
+            StayRule stayRule = parseStayRule(policy.getRule(), listedStayDays, "mutual".equals(type));
+            item.put("perEntryDays", stayRule.perEntryDays);
+            item.put("cumulativeDays", stayRule.cumulativeDays);
+            item.put("cumulativeWindowDays", stayRule.cumulativeWindowDays);
+            item.put("requiresCumulativeCheck", stayRule.cumulativeDays != null);
             item.put("purposes", purposeCodes(policy.getPurpose()));
             item.put("requiresOnward", "transit".equals(type));
             item.put("ordinaryPassportOnly", true);
@@ -101,6 +110,31 @@ public class CountryEligibilityService {
             result.add(item);
         }
         return result;
+    }
+
+
+    private StayRule parseStayRule(String rule, Integer listedStayDays, boolean mutual) {
+        StayRule r = new StayRule();
+        if (!mutual) {
+            r.perEntryDays = listedStayDays;
+            return r;
+        }
+        String text = safe(rule).toLowerCase(Locale.ROOT);
+        java.util.regex.Matcher perEntry = java.util.regex.Pattern.compile("(\\d+)\\s*days?\\s+per\\s+entry").matcher(text);
+        if (perEntry.find()) r.perEntryDays = Integer.valueOf(perEntry.group(1));
+        else r.perEntryDays = listedStayDays;
+        java.util.regex.Matcher cumulative = java.util.regex.Pattern.compile("(\\d+)\\s*days?\\s+cumulatively\\s+within\\s+any\\s+(\\d+)\\s*[- ]?day").matcher(text);
+        if (cumulative.find()) {
+            r.cumulativeDays = Integer.valueOf(cumulative.group(1));
+            r.cumulativeWindowDays = Integer.valueOf(cumulative.group(2));
+        }
+        return r;
+    }
+
+    private static class StayRule {
+        Integer perEntryDays;
+        Integer cumulativeDays;
+        Integer cumulativeWindowDays;
     }
 
     private Map<String, Object> findPolicy(List<Map<String, Object>> rules, String type) {

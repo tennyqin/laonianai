@@ -74,6 +74,15 @@ public class StructuredDataService {
         String name = "zh".equals(lang) ? detail.getNameZh() : detail.getName();
         String description = "zh".equals(lang) ? detail.getSeoDescZh() : detail.getSeoDesc();
         String title = "zh".equals(lang) ? detail.getSeoTitleZh() : detail.getSeoTitle();
+        // Policy-detail SEO is resolved by CountryController after applying
+        // country-intent / priority overrides. JSON-LD must use the same final
+        // title and description as the HTML <title> and meta description.
+        if (extra != null) {
+            String resolvedTitle = stringValue(extra.get("zh".equals(lang) ? "policySeoTitleZh" : "policySeoTitleEn"));
+            String resolvedDesc = stringValue(extra.get("zh".equals(lang) ? "policySeoDescZh" : "policySeoDescEn"));
+            if (!isBlank(resolvedTitle)) title = resolvedTitle;
+            if (!isBlank(resolvedDesc)) description = resolvedDesc;
+        }
         if (isBlank(title)) title = name + " China Visa-Free Policy 2026";
         if (isBlank(description)) description = name + " China visa-free policy, stay duration, requirements and entry information.";
 

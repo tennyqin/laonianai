@@ -84,6 +84,13 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
                         if(priority.get("homeCustomFaqsEn") instanceof List) intent.put("faqEn", mergeFaqs((List<?>)priority.get("homeCustomFaqsEn"), existingEn, 5));
                         if(priority.get("homeCustomFaqsZh") instanceof List) intent.put("faqZh", mergeFaqs((List<?>)priority.get("homeCustomFaqsZh"), existingZh, 5));
                         mav.addObject("countryIntent", intent);
+                        // The hero answer is rendered from this final countryIntent map.
+                        // Refresh the standalone model attribute as well so the controller
+                        // cannot leave a stale pre-interceptor answer on priority pages.
+                        String finalAnswerKey = "zh".equals(lang) ? "homeHeroAnswerZh" : "homeHeroAnswerEn";
+                        if (intent.containsKey(finalAnswerKey)) {
+                            mav.addObject("countryDecisionAnswer", intent.get(finalAnswerKey));
+                        }
                     }
                     Object profileObject=mav.getModel().get("countryProfile");
                     if(profileObject instanceof Map){

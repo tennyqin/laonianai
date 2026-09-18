@@ -121,6 +121,9 @@ public class CountryController {
         model.addAttribute("directDecisionYes", hasDirectVisaFreeRoute(types));
         model.addAttribute("countryDecisionTitle", buildCountryDecisionTitle(detailCountry, types, normalizedLang));
         model.addAttribute("countryDecisionText", buildCountryDecisionText(detailCountry, types, normalizedLang));
+        model.addAttribute("countryDecisionAnswer", normalizedLang.equals("en")
+                ? countryIntent.get("homeHeroAnswerEn")
+                : countryIntent.get("homeHeroAnswerZh"));
         model.addAttribute("countryNames", buildCountryNames());
         model.addAttribute("countryFlags", buildCountryFlags());
         model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(countryContent));
@@ -439,8 +442,10 @@ public class CountryController {
         m.put("direct", direct); m.put("transit", transit); m.put("hainan", hainan);
         m.put("homeHeroQuestionEn", firstNonBlank(string(m,"homeHeroQuestionEn"), enName + " passport: can I enter China without a visa?"));
         m.put("homeHeroQuestionZh", firstNonBlank(string(m,"homeHeroQuestionZh"), zhName + "护照来中国免签吗？"));
-        m.put("homeHeroAnswerEn", buildHomeDecisionAnswer(enName, types, false));
-        m.put("homeHeroAnswerZh", buildHomeDecisionAnswer(zhName, types, true));
+        // Keep curated country-intent answers when they exist. The generated answer is
+        // only a fallback, so high-value country copy is not silently discarded.
+        m.put("homeHeroAnswerEn", firstNonBlank(string(m, "homeHeroAnswerEn"), buildHomeDecisionAnswer(enName, types, false)));
+        m.put("homeHeroAnswerZh", firstNonBlank(string(m, "homeHeroAnswerZh"), buildHomeDecisionAnswer(zhName, types, true)));
         // One country-home FAQ source only. Prefer curated country-intent/extra content;
         // generate intent FAQs only when no curated list exists. This prevents the old
         // "Country-specific questions" + "Common questions" duplication.
@@ -677,8 +682,12 @@ public class CountryController {
     private String defaultHeroAnswer(CountryDetail detail, String code, boolean zh) {
         List<String> types = detectAvailableTypes(code);
         String n = zh ? detail.getNameZh() : detail.getName();
-        if (types.contains("unilateral") && types.contains("transit")) return zh ? "符合条件的"+n+"普通护照持有人可能适用30天直接免签，也可能适用240小时过境免签；两条路径条件不同，请按实际行程判断。" : "Eligible "+n+" ordinary-passport holders may have both a direct 30-day visa-free route and a separate 240-hour transit route; the correct route depends on the itinerary.";
-        if (types.contains("unilateral")) return zh ? "符合条件的"+n+"普通护照持有人可按现行单方面免签政策来华最长30天，具体以出行当日规定为准。" : "Eligible "+n+" ordinary-passport holders may enter China visa-free for up to 30 days for covered short-term purposes, subject to the current policy.";
+        CountryDetail directDetail = null;
+        if (types.contains("unilateral")) directDetail = unilateralMap.get(resolver.policyKey(code));
+        if (directDetail == null && types.contains("mutual")) directDetail = mutualMap.get(resolver.policyKey(code));
+        String stay = directDetail == null || isBlank(directDetail.getStayDays()) ? (zh ? "政策规定期限" : "the listed stay period") : directDetail.getStayDays() + (zh ? "天" : " days");
+        if (types.contains("unilateral") && types.contains("transit")) return zh ? "符合条件的"+n+"普通护照持有人可适用"+stay+"直接免签，也可能适用240小时过境免签；两条路径条件不同，请按实际行程判断。" : "Eligible "+n+" ordinary-passport holders may have a direct visa-free route for up to "+stay+" and a separate 240-hour transit route; the correct route depends on the itinerary.";
+        if (types.contains("unilateral")) return zh ? "符合条件的"+n+"普通护照持有人可按现行单方面免签政策来华最长"+stay+"，具体以出行当日规定为准。" : "Eligible "+n+" ordinary-passport holders may enter China visa-free for up to "+stay+" for covered short-term purposes, subject to the current policy.";
         if (types.contains("mutual")) return zh ? n+"公民应根据适用的双边互免签证协定核对护照、事由和停留条件。" : n+" citizens should use the bilateral visa-exemption route only when their passport, purpose and stay meet the applicable agreement.";
         if (types.contains("transit")) return zh ? "符合条件的"+n+"普通护照持有人仅在经中国前往第三国或地区且满足全部过境条件时，才可能适用240小时过境免签。" : "Eligible "+n+" ordinary-passport holders may use 240-hour transit only when traveling through China to a third country or region and meeting all transit conditions.";
         return zh ? n+"公民符合普通护照及事由条件时，可使用海南30天区域免签路径。" : n+" citizens may use the 30-day Hainan regional visa-free route when the ordinary-passport and purpose conditions are met.";
