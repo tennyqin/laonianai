@@ -2,11 +2,7 @@ package com.chinavisamap.controller;
 
 import com.chinavisamap.entity.CountryDetail;
 import com.chinavisamap.entity.CountryPolicy;
-import com.chinavisamap.service.CountryCodeResolver;
-import com.chinavisamap.service.CountryEligibilityService;
-import com.chinavisamap.service.CountryFlagService;
-import com.chinavisamap.service.SeoService;
-import com.chinavisamap.service.StructuredDataService;
+import com.chinavisamap.service.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
@@ -28,7 +24,6 @@ import java.util.stream.Collectors;
 @Controller
 public class CountryController {
     private static final String NIA_SOURCE = "https://en.nia.gov.cn/";
-    private static final String VERIFIED_DATE = "2026-09-13";
 
     private final Map<String, CountryDetail> unilateralMap;
     private final Map<String, CountryDetail> mutualMap;
@@ -42,21 +37,26 @@ public class CountryController {
     private final CountryFlagService flagService;
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
+    private final SiteMetadataService siteMetadataService;
+    private final Map<String, Map<String, Object>> priorityContentMap;
 
     public CountryController(ObjectMapper mapper, CountryCodeResolver resolver,
                              CountryEligibilityService eligibilityService, CountryFlagService flagService,
-                             SeoService seoService, StructuredDataService structuredDataService) {
+                             SeoService seoService, StructuredDataService structuredDataService,
+                             SiteMetadataService siteMetadataService) {
         this.resolver = resolver;
         this.eligibilityService = eligibilityService;
         this.flagService = flagService;
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
+        this.siteMetadataService = siteMetadataService;
         this.unilateralMap = loadCountryMap(mapper, "unilateral.json");
         this.mutualMap = loadCountryMap(mapper, "mutual.json");
         this.transitMap = loadCountryMap(mapper, "transit.json");
         this.hainanMap = loadCountryMap(mapper, "hainan.json");
         this.countryExtraMap = loadExtraMap(mapper);
         this.countryIntentMap = loadIntentMap(mapper);
+        this.priorityContentMap = loadPriorityContentMap(mapper);
         this.articles = loadArticles(mapper);
     }
 
@@ -401,7 +401,7 @@ public class CountryController {
             String value = string(item, "lastVerified");
             if (!isBlank(value) && value.compareTo(latest) > 0) latest = value;
         }
-        return isBlank(latest) ? VERIFIED_DATE : latest;
+        return isBlank(latest) ? siteMetadataService.lastVerified() : latest;
     }
 
     private ResponseEntity<Void> redirectToCountryHome(String code, String lang) {
@@ -495,7 +495,7 @@ public class CountryController {
             defaultDescEn = n + " citizens: check China visa-free eligibility, permitted purposes, maximum stay and entry conditions for this route.";
             defaultDescZh = z + "公民查询本项来华免签资格、允许事由、最长停留期限及入境条件。";
         }
-        Map<String,Object> priority = countryIntentMap.get(resolver.policyKey(code));
+        Map<String,Object> priority = priorityContentMap.get(resolver.policyKey(code));
         Object policySeo = priority == null ? null : priority.get("policySeo");
         String priorityTitleEn = "", priorityTitleZh = "";
         if (policySeo instanceof Map) {
@@ -702,7 +702,7 @@ public class CountryController {
         CountryPolicy policy = new CountryPolicy();
         policy.setDetail(detailCountry); policy.setCountryCode(code); policy.setPolicyType(type);
         policy.setOfficialSource(firstNonBlank(string(extra, "officialSource"), NIA_SOURCE));
-        policy.setLastVerified(firstNonBlank(string(extra, "lastVerified"), VERIFIED_DATE));
+        policy.setLastVerified(firstNonBlank(string(extra, "lastVerified"), siteMetadataService.lastVerified()));
         policy.setPolicyExpiry(firstNonBlank(string(extra, "policyExpiry"), detailCountry.getPolicyExpiry()));
         policy.setPermittedPurposesEn(firstNonBlank(string(extra, "permittedPurposesEn"), detailCountry.getPurpose()));
         policy.setPermittedPurposesZh(firstNonBlank(string(extra, "permittedPurposesZh"), detailCountry.getPurposeZh()));
@@ -824,6 +824,7 @@ public class CountryController {
     private Map<String,CountryDetail> loadCountryMap(ObjectMapper mapper,String fileName){try{return mapper.readValue(new ClassPathResource(fileName).getInputStream(),new TypeReference<Map<String,CountryDetail>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load "+fileName,e);}}
     private Map<String,Map<String,Object>> loadExtraMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("country-extra.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-extra.json",e);}}
     private Map<String,Map<String,Object>> loadIntentMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("country-intent.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load country-intent.json",e);}}
+    private Map<String,Map<String,Object>> loadPriorityContentMap(ObjectMapper mapper){try{return mapper.readValue(new ClassPathResource("priority-country-content.json").getInputStream(),new TypeReference<Map<String,Map<String,Object>>>(){});}catch(Exception e){throw new IllegalStateException("Failed to load priority-country-content.json",e);}}
     private Map<String,Object> mergeContent(Map<String,Object> base, Map<String,Object> overlay){Map<String,Object> r=new LinkedHashMap<>();if(base!=null)r.putAll(base);if(overlay!=null)for(Map.Entry<String,Object> e:overlay.entrySet())r.put(e.getKey(),e.getValue());return r;}
     private Map<String,Object> asMap(Object value){if(!(value instanceof Map))return new LinkedHashMap<>();Map<String,Object> r=new LinkedHashMap<>();for(Map.Entry<?,?>e:((Map<?,?>)value).entrySet())r.put(String.valueOf(e.getKey()),e.getValue());return r;}
     private String string(Map<String,Object> m,String k){return m==null?"":string(m.get(k));} private String string(Object v){return v==null?"":String.valueOf(v).trim();} private String firstNonBlank(String v,String f){return isBlank(v)?f:v;} private boolean isBlank(String v){return v==null||v.trim().isEmpty();} private int number(Object v,int f){try{return Integer.parseInt(string(v));}catch(Exception e){return f;}}

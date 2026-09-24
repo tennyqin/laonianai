@@ -15,11 +15,14 @@ public class StructuredDataService {
 
     private final ObjectMapper objectMapper;
     private final CountryCodeResolver countryCodeResolver;
+    private final SiteMetadataService siteMetadataService;
 
     public StructuredDataService(ObjectMapper objectMapper,
-                                 CountryCodeResolver countryCodeResolver) {
+                                 CountryCodeResolver countryCodeResolver,
+                                 SiteMetadataService siteMetadataService) {
         this.objectMapper = objectMapper;
         this.countryCodeResolver = countryCodeResolver;
+        this.siteMetadataService = siteMetadataService;
     }
 
     public String buildHome(String lang, String siteName, String title, String description) {
@@ -241,7 +244,7 @@ public class StructuredDataService {
             String value=stringValue(extra.get("lastVerified"));
             if(!isBlank(value)) return value;
         }
-        return "2026-09-13";
+        return siteMetadataService.lastVerified();
     }
 
     private String canonicalCountryRoute(String code) {
