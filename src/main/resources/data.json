@@ -1,26 +1,26 @@
 {
   "siteName": "China Visa Free Guide 2026",
-  "siteTitle": "China Visa-Free Policy 2026 | 50 Unilateral & 29 Mutual & 240H Transit",
-  "siteTitleZh": "2026中国免签政策指南 | 单方面50国·互免29国·240小时过境",
-  "siteDesc": "Official 2026 China visa-free guide: 50 unilateral 30-day visa-free, 29 mutual visa exemption, 240-hour transit visa-free for 57 countries at 65 ports across 24 provinces.",
-  "siteDescZh": "2026中国官方免签政策：50国单方面30天免签、29国互免签证、57国240小时过境免签，覆盖24省份65个口岸。",
-  "lastUpdate": "Last Updated: September 13, 2026 | Checked against current official NIA/MFA public information",
-  "lastUpdateZh": "最后更新：2026年09月13日 | 已根据国家移民管理局、中国外交部最新公开信息核对",
-  "siteDataLastVerified": "2026-09-13",
-  "siteContentLastModified": "2026-09-24",
+  "siteTitle": "China Visa-Free Checker 2026 | 30-Day Entry & 240-Hour Transit",
+  "siteTitleZh": "外国人来华免签查询2026｜国家名单、停留天数与入境条件",
+  "siteDesc": "Independent China visa-free guide based on official MFA and NIA sources. Check nationality, 30-day entry, bilateral agreements, 240-hour transit and Hainan rules.",
+  "siteDescZh": "依据外交部、国家移民管理局官方信息整理的独立来华免签指南。查询国籍、30天免签、双边互免、240小时过境和海南区域政策。",
+  "lastUpdate": "Updated: October 11, 2026 | Core lists checked against MFA/NIA sources; bilateral stay clauses require agreement-specific checks",
+  "lastUpdateZh": "更新：2026年10月11日｜已核对外交部、移民局主要名单；互免停留条款仍须按具体协定核验",
+  "siteDataLastVerified": "2026-10-11",
+  "siteContentLastModified": "2026-10-11",
   "siteSitemapBaselineLastModified": "2026-09-16",
   "heroTitle": "China Visa-Free Policies 2026",
   "heroTitleZh": "中国免签政策 2026",
-  "heroDesc": "Official 2026 update: 50 Unilateral 30-day visa-free, 29 mutual visa exemption, 240-hour transit visa-free for 57 countries, and 24-hour transit visa-free for all nationalities. Data source: National Immigration Administration.",
-  "heroDescZh": "2026权威更新：单方面免签50国、互免签证29国、240小时过境免签57国，以及面向所有国家的24小时过境免签，一站式查询。数据来源：国家移民管理局。",
+  "heroDesc": "Check China entry routes by nationality and itinerary: unilateral visa-free, bilateral exemptions, 240-hour transit, Hainan entry and general 24-hour transit. Each route has separate conditions. This is an independent guide based on official sources.",
+  "heroDescZh": "按国籍和行程查询单方面免签、双边互免、240小时过境、海南区域免签及一般24小时过境，各路径条件不同。本站为依据官方信息整理的独立指南。",
   "unilateralTitle": "Unilateral 30-Day Visa-Free (50 Countries)",
   "unilateralTitleZh": "单方面免签（50国）",
   "unilateralDesc": "Ordinary passport holders from 50 countries may enter China visa-free for up to 30 days for covered short-term purposes. Brunei has no stated expiry date; Russia is currently valid through Dec 31, 2027; the other 48 countries are currently stated through Dec 31, 2026.",
   "unilateralDescZh": "50国普通护照持有人符合条件时可免签来华最长30天。文莱目前未设截止日期；俄罗斯现行政策至2027年12月31日；其余48国现行政策至2026年12月31日。",
   "mutualTitle": "Mutual Visa Exemption (29 Countries)",
   "mutualTitleZh": "互免签证协定（29国）",
-  "mutualDesc": "Official bilateral agreements: citizens of both sides enjoy visa-free entry. Subject to latest government announcements.",
-  "mutualDescZh": "依据双边协议，双方公民互相免签入境。最终以官方公告为准。",
+  "mutualDesc": "Foreign ordinary-passport holders may qualify for visa-free entry into China under the applicable bilateral agreement. Passport categories, stay limits and any suspension affecting either direction must be checked separately.",
+  "mutualDescZh": "外国普通护照持有人可按适用双边协定核对来华免签。护照类别、停留期限及任一方向的暂停措施须分别核验，不应直接推断完全对称。",
   "transitTitle": "240-Hour Transit Visa-Free (57 Countries)",
   "transitTitleZh": "240小时过境免签（57国）",
   "transitDesc": "57-country 240-hour visa-free transit: 65 designated ports in 24 provinces, autonomous regions and municipalities. Transit must be to a third country or region and all current conditions must be met.",
@@ -359,7 +359,7 @@
           "code": "thailand",
           "name": "Thailand",
           "nameZh": "泰国",
-          "days": "60",
+          "days": "30",
           "passport": "Ordinary Passport"
         },
         {
@@ -494,23 +494,9 @@
           "passport": "Ordinary Passport"
         },
         {
-          "code": "mauritius",
-          "name": "Mauritius",
-          "nameZh": "毛里求斯",
-          "days": "60",
-          "passport": "Ordinary Passport"
-        },
-        {
           "code": "samoa",
           "name": "Samoa",
           "nameZh": "萨摩亚",
-          "days": "30",
-          "passport": "Ordinary Passport"
-        },
-        {
-          "code": "seychelles",
-          "name": "Seychelles",
-          "nameZh": "塞舌尔",
           "days": "30",
           "passport": "Ordinary Passport"
         },
@@ -525,6 +511,26 @@
           "code": "tonga",
           "name": "Tonga",
           "nameZh": "汤加",
+          "days": "30",
+          "passport": "Ordinary Passport"
+        }
+      ]
+    },
+    {
+      "name": "Africa",
+      "nameZh": "非洲",
+      "countries": [
+        {
+          "code": "mauritius",
+          "name": "Mauritius",
+          "nameZh": "毛里求斯",
+          "days": "60",
+          "passport": "Ordinary Passport"
+        },
+        {
+          "code": "seychelles",
+          "name": "Seychelles",
+          "nameZh": "塞舌尔",
           "days": "30",
           "passport": "Ordinary Passport"
         }
@@ -914,8 +920,8 @@
   "introPara1Zh": "本独立信息站根据国家移民管理局（NIA）和中国外交部（MFA）公开信息整理来华免签路径，并明确区分单方面免签、双边互免签证、240小时过境免签和海南区域免签，避免混淆不同政策。",
   "introPara2": "Use the checker and country page that match your nationality and itinerary. A visa-free listing is not a guarantee of admission; passport type, purpose, itinerary, stay calculation, port and regional restrictions can all matter.",
   "introPara2Zh": "请根据国籍和实际行程使用对应的检查器及国家页面。列入免签名单不等于保证入境；护照类型、来华事由、行程、停留计算、口岸和地区限制都可能影响最终结果。",
-  "disclaimer": "Disclaimer: This site is an independent informational reference, NOT an official government website. All information is compiled from NIA public releases. Confirm entry rules with official sources before travel.",
-  "disclaimerZh": "免责声明：本站仅为独立资讯参考网站，并非政府官方站点。全部信息整理自国家移民管理局公开公告，出行前请以官方渠道核实入境规则。",
+  "disclaimer": "Disclaimer: This is an independent informational guide, not a government website. Information is compiled from MFA and NIA public sources. Verify the policy applicable to your travel date and itinerary before departure.",
+  "disclaimerZh": "免责声明：本站为独立资讯指南，并非政府网站。信息依据外交部、国家移民管理局公开来源整理，出发前请核验实际旅行日期与行程适用的政策。",
   "expiryNote": "Policy expiry: Brunei has no stated expiry date; Russia is valid through 31-Dec-2027; the other 48 unilateral visa-free countries are currently stated through 31-Dec-2026. Re-check before travel.",
   "expiryNoteZh": "政策期限：文莱目前未设截止日期；俄罗斯现行单方面免签至2027-12-31；其余48国目前公布至2026-12-31。出行前请再次核对。",
   "compareTableTitle": "Overview of Three China Visa-Free Schemes",
@@ -944,18 +950,18 @@
     {
       "label": "Applicable Purpose",
       "labelZh": "适用目的",
-      "col1": "Tourism, business, family visit",
-      "col1Zh": "旅游、商务、探亲",
-      "col2": "Tourism, business, family visit",
-      "col2Zh": "旅游、商务、探亲",
+      "col1": "Business, tourism, family/friends visits, exchange and transit; eligible conferences, sports and short study tours are covered",
+      "col1Zh": "经商、旅游、探亲访友、交流、过境；符合条件的会议、体育及短期研学可适用",
+      "col2": "Purposes covered by the applicable agreement",
+      "col2Zh": "以适用双边协定覆盖事由为准",
       "col3": "Transit to a third country/region only",
       "col3Zh": "仅限过境前往第三国/地区"
     },
     {
       "label": "Policy Nature",
       "labelZh": "政策性质",
-      "col1": "China unilateral policy (expiring)",
-      "col1Zh": "中国单方面政策（有到期日）",
+      "col1": "China unilateral policy; expiry depends on nationality",
+      "col1Zh": "中国单方面政策；有效期限按国籍区分",
       "col2": "Bilateral government agreement",
       "col2Zh": "双边政府协定",
       "col3": "Transit-specific entry facilitation",
@@ -972,8 +978,8 @@
     {
       "q": "Can I work or study under visa-free status?",
       "qZh": "免签入境可以工作或者读书吗？",
-      "a": "No. Visa-free entry cannot be used for paid work, employment, internships or formal study. You must apply for the corresponding Chinese visa before arrival for these activities.",
-      "aZh": "不可以。免签入境禁止务工、受雇、实习、正式留学；从事以上活动必须提前办理对应类型中国签证。"
+      "a": "Work, formal study, news reporting and other activities requiring approval need the appropriate visa or authorization. Under the unilateral policy, eligible short study tours and summer/winter camps are covered by the MFA FAQ and should not be confused with formal study.",
+      "aZh": "工作、正式留学、新闻报道及其他须批准的活动，应办理相应签证或许可。单方面免签FAQ覆盖符合条件的短期研学、冬夏令营，不应与正式留学混淆。"
     },
     {
       "q": "Can I extend my visa-free stay after arriving in China?",
@@ -984,14 +990,14 @@
     {
       "q": "What if my country is not on any visa-free list?",
       "qZh": "我的国家不在任何免签清单该怎么办？",
-      "a": "You must apply for a Chinese tourist/business visa from Chinese embassies or consulates before travelling to China.",
-      "aZh": "你必须出行前在中国驻外使领馆申请中国旅游或商务类签证。"
+      "a": "Check all applicable routes separately. General 24-hour transit is available to nationals of all countries subject to its document, onward-ticket and restricted-area conditions; regional group policies may also apply. If no exemption covers your trip, obtain the appropriate visa before travel.",
+      "aZh": "应分别核对所有适用路径。一般24小时过境面向世界各国人员，但须符合旅行证件、联程客票及口岸限定区域条件；部分区域旅行团政策也可能适用。如没有覆盖实际行程的免签安排，应提前办理相应签证。"
     },
     {
       "q": "What is the difference between unilateral and mutual visa-free?",
       "qZh": "单方面免签与互免签证有什么区别？",
-      "a": "Unilateral visa-free: China allows foreign citizens entry visa-free, without reciprocal treatment for Chinese passport holders. Mutual visa-free: both countries grant visa-free access to each-other’s ordinary passport holders under bilateral treaties.",
-      "aZh": "单方面免签：中国单方面给予对方公民免签，中国护照持有人不一定享受对方免签；互免签证：两国通过双边协定互相给予普通护照持有人免签待遇。"
+      "a": "Unilateral exemptions are granted by China to specified foreign passport holders and do not determine Chinese citizens’ entry rules abroad. Bilateral exemptions follow the applicable agreement; covered passport categories, conditions and any direction-specific suspension must be checked separately.",
+      "aZh": "单方面免签由中国给予特定外国护照持有人，不决定中国公民出境前往对方国家的规则。双边互免按适用协定执行，护照类别、条件及任一方向的暂停措施须分别核验。"
     }
   ],
   "navFaq": "FAQ",

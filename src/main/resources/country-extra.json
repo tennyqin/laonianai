@@ -370,7 +370,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "antigua": {
     "priority": 999,
@@ -389,7 +402,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "argentina": {
     "priority": 999,
@@ -408,7 +424,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "armenia": {
     "priority": 999,
@@ -427,7 +466,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "austria": {
     "priority": 999,
@@ -446,7 +488,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "azerbaijan": {
     "priority": 999,
@@ -465,7 +530,10 @@
       "georgia",
       "kazakhstan",
       "qatar"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "bahamas": {
     "priority": 999,
@@ -484,7 +552,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "bahrain": {
     "priority": 999,
@@ -503,7 +574,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "barbados": {
     "priority": 999,
@@ -522,7 +606,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "belarus": {
     "priority": 999,
@@ -541,7 +628,20 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "belgium": {
     "priority": 999,
@@ -560,7 +660,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "bosnia": {
     "priority": 999,
@@ -579,7 +702,20 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "brazil": {
     "priority": 999,
@@ -598,7 +734,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "brunei": {
     "priority": 999,
@@ -617,7 +776,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": null,
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "bulgaria": {
     "priority": 999,
@@ -636,7 +818,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "canada": {
     "priority": 999,
@@ -655,7 +860,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "chile": {
     "priority": 999,
@@ -674,7 +902,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "croatia": {
     "priority": 999,
@@ -693,7 +944,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "cyprus": {
     "priority": 999,
@@ -712,7 +986,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "denmark": {
     "priority": 999,
@@ -731,7 +1028,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "dominica": {
     "priority": 999,
@@ -750,7 +1070,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "ecuador": {
     "priority": 999,
@@ -769,7 +1092,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "estonia": {
     "priority": 999,
@@ -788,7 +1114,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "fiji": {
     "priority": 999,
@@ -807,7 +1156,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "finland": {
     "priority": 999,
@@ -826,7 +1178,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "france": {
     "priority": 999,
@@ -845,7 +1220,30 @@
       "italy",
       "netherlands",
       "spain"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "georgia": {
     "priority": 999,
@@ -864,7 +1262,10 @@
       "azerbaijan",
       "kazakhstan",
       "qatar"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "greece": {
     "priority": 999,
@@ -883,7 +1284,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "grenada": {
     "priority": 999,
@@ -902,7 +1326,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "hungary": {
     "priority": 999,
@@ -921,7 +1348,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "iceland": {
     "priority": 999,
@@ -940,7 +1390,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "indonesia": {
     "priority": 999,
@@ -959,7 +1432,17 @@
       "austria",
       "belgium",
       "bosnia"
-    ]
+    ],
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "ireland": {
     "priority": 999,
@@ -978,7 +1461,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "italy": {
     "priority": 999,
@@ -997,7 +1503,30 @@
       "de",
       "netherlands",
       "spain"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "kazakhstan": {
     "priority": 999,
@@ -1016,7 +1545,14 @@
       "azerbaijan",
       "georgia",
       "qatar"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "kuwait": {
     "priority": 999,
@@ -1035,7 +1571,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "kyrgyzstan": {
     "priority": 999,
@@ -1054,7 +1603,17 @@
       "austria",
       "belgium",
       "bosnia"
-    ]
+    ],
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "latvia": {
     "priority": 999,
@@ -1073,7 +1632,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "liechtenstein": {
     "priority": 999,
@@ -1092,7 +1674,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "lithuania": {
     "priority": 999,
@@ -1111,7 +1706,17 @@
       "austria",
       "belgium",
       "bosnia"
-    ]
+    ],
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "luxembourg": {
     "priority": 999,
@@ -1130,7 +1735,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "maldives": {
     "priority": 999,
@@ -1149,7 +1777,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "malta": {
     "priority": 999,
@@ -1168,7 +1799,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "mauritius": {
     "priority": 999,
@@ -1187,7 +1841,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "mexico": {
     "priority": 999,
@@ -1206,7 +1863,17 @@
       "austria",
       "belgium",
       "bosnia"
-    ]
+    ],
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "monaco": {
     "priority": 999,
@@ -1225,7 +1892,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "montenegro": {
     "priority": 999,
@@ -1244,7 +1934,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "netherlands": {
     "priority": 999,
@@ -1263,7 +1976,30 @@
       "de",
       "italy",
       "spain"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "newzealand": {
     "priority": 999,
@@ -1282,7 +2018,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "northmacedonia": {
     "priority": 999,
@@ -1301,7 +2060,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "norway": {
     "priority": 999,
@@ -1320,7 +2102,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "oman": {
     "priority": 999,
@@ -1339,7 +2144,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "peru": {
     "priority": 999,
@@ -1358,7 +2176,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "philippines": {
     "priority": 999,
@@ -1377,7 +2208,11 @@
       "argentina",
       "au",
       "austria"
-    ]
+    ],
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "portugal": {
     "priority": 999,
@@ -1396,7 +2231,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "qatar": {
     "priority": 999,
@@ -1415,7 +2273,20 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "romania": {
     "priority": 999,
@@ -1434,7 +2305,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "russia": {
     "priority": 7,
@@ -1453,7 +2347,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2027-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "samoa": {
     "priority": 999,
@@ -1472,7 +2389,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "sanmarino": {
     "priority": 999,
@@ -1491,7 +2411,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "saudi": {
     "priority": 999,
@@ -1510,7 +2433,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "serbia": {
     "priority": 999,
@@ -1529,7 +2465,20 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "seychelles": {
     "priority": 999,
@@ -1548,7 +2497,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "slovakia": {
     "priority": 999,
@@ -1567,7 +2519,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "slovenia": {
     "priority": 999,
@@ -1586,7 +2561,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "solomon": {
     "priority": 999,
@@ -1605,7 +2603,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "korea": {
     "priority": 3,
@@ -1624,7 +2625,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "spain": {
     "priority": 999,
@@ -1643,7 +2667,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "suriname": {
     "priority": 999,
@@ -1662,7 +2709,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "sweden": {
     "priority": 999,
@@ -1681,7 +2731,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "switzerland": {
     "priority": 999,
@@ -1700,7 +2773,30 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "thailand": {
     "priority": 6,
@@ -1719,7 +2815,14 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "tonga": {
     "priority": 999,
@@ -1738,7 +2841,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "ukraine": {
     "priority": 999,
@@ -1757,7 +2863,17 @@
       "austria",
       "belgium",
       "bosnia"
-    ]
+    ],
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "uae": {
     "priority": 999,
@@ -1776,7 +2892,20 @@
       "georgia",
       "kazakhstan",
       "qatar"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "uruguay": {
     "priority": 999,
@@ -1795,7 +2924,20 @@
       "de",
       "italy",
       "netherlands"
-    ]
+    ],
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    }
   },
   "uzbekistan": {
     "priority": 999,
@@ -1814,7 +2956,10 @@
       "azerbaijan",
       "georgia",
       "kazakhstan"
-    ]
+    ],
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    }
   },
   "vietnam": {
     "priority": 999,
@@ -1833,7 +2978,17 @@
       "austria",
       "belgium",
       "bosnia"
-    ]
+    ],
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   },
   "ca": {
     "priority": 10,
@@ -1841,5 +2996,193 @@
     "routeCode": "ca",
     "homeHeroQuestionEn": "Can Canadian citizens enter China without a visa?",
     "homeHeroQuestionZh": "加拿大公民去中国可以免签吗？"
+  },
+  "germany": {
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "poland": {
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "uk": {
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "japan": {
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "australia": {
+    "unilateral": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "lastVerified": "2026-10-11",
+      "policyExpiry": "2026-12-31",
+      "permittedPurposesEn": "Business, tourism, family or friends visits, exchange visits (including conferences, exhibitions, sports competitions and eligible study tours or summer/winter camps), transit",
+      "permittedPurposesZh": "经商、旅游观光、探亲访友、交流访问（含会议展览、体育赛事及符合条件的研学、冬夏令营）、过境",
+      "passportValidityEn": "Your ordinary passport must remain valid for your intended stay in China; the MFA FAQ does not impose a universal six-month validity requirement for this policy.",
+      "passportValidityZh": "普通护照有效期须覆盖拟在华停留时间；外交部该政策FAQ未统一要求六个月有效期。",
+      "entryCountEn": "The current unilateral-policy FAQ sets no limit on entry count or total days of stay. Each stay must comply with its permitted period and purpose; this does not override bilateral-agreement limits.",
+      "entryCountZh": "现行单方面免签FAQ未限制入境次数及累计停留天数；每次停留仍须符合期限和事由。该说明不取代双边互免协定的累计限制。",
+      "accommodationEn": "The MFA recommends accommodation details or bookings as supporting evidence where relevant. For non-hotel stays, the visitor or host must complete accommodation registration within 24 hours; hotels register guests.",
+      "accommodationZh": "外交部建议按实际事由准备住宿信息或订单。非旅馆住宿由本人或留宿人在入住24小时内办理住宿登记；旅馆负责登记住客。"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "malaysia": {
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "singapore": {
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "albania": {
+    "mutual": {
+      "officialSource": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "czechia": {
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
+  },
+  "usa": {
+    "transit": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "lastVerified": "2026-10-11",
+      "onwardTicketEn": "A confirmed onward ticket with date and seat to a third country or region is required. The preceding departure country/region and onward destination must differ; nationality is not a substitute for the departure point.",
+      "onwardTicketZh": "须持前往第三国或地区且日期、座位已确定的联程客票。前段出发国家或地区须与后续目的地不同；护照国籍不能替代实际出发地。"
+    },
+    "hainan": {
+      "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "lastVerified": "2026-10-11"
+    }
   }
 }
