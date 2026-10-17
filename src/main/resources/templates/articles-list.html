@@ -2,7 +2,7 @@
 <html th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${lang == 'en' ? 'Travel Guides | China Travel & Visa-Free Tips' : '旅行指南｜来华旅行与免签提示'}"></title>
+    <title th:text="${(lang == 'en' ? 'China Travel & Visa-Free Guides' : '来华旅行与免签指南') + (page>1 ? (lang=='en'?' | Page ':'｜第')+page+(lang=='en'?'':'页') : '')}"></title>
     <meta name="description" th:content="${lang == 'en' ? 'Practical travel articles for visitors to China: visa-free rules, mobile apps, local customs, border-inspection pitfalls and real-world travel advice.' : '面向来华外籍游客实用旅行文章库：免签政策、手机APP使用、本地风俗文化、出入境避坑、出行实操建议'}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots"

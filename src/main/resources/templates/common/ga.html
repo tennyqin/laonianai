@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <!-- Google Analytics 全局埋点片段 → 所有页面共用 -->
-<div th:fragment="google-analytics">
+<th:block th:fragment="google-analytics" th:if="${@environment.getProperty('analytics.enabled', 'true') == 'true'}">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-829K3T2NNP"></script>
 <script>
@@ -11,7 +11,22 @@
     gtag('js', new Date());
 
     gtag('config', 'G-829K3T2NNP');
+    window.visaTrack = function(name, values) {
+        try {
+            var allowed=['country_code','route','language','result_status','result_reason','action','content_id'];
+            var safe={measurement_version:'20261017'}; values=values||{};
+            allowed.forEach(function(k){if(typeof values[k]==='string' && values[k].length<=80)safe[k]=values[k];});
+            gtag('event',name,safe);
+        } catch(ignored) { /* Analytics must never interrupt eligibility checks. */ }
+    };
+    document.addEventListener('click',function(e){
+        var a=e.target.closest ? e.target.closest('a') : null;if(!a)return;
+        var action=a.dataset.action;
+        if(!action){try{var u=new URL(a.href);if(u.protocol==='https:' && /(^|\.)(nia\.gov\.cn|mfa\.gov\.cn|china-embassy\.gov\.cn|china-consulate\.gov\.cn)$/.test(u.hostname))action='official_source_click';}catch(ignored){}}
+        if(!action && a.closest('#next-steps, #next-step-guides'))action='next_step_click';
+        if(action)window.visaTrack(action,{language:document.documentElement.lang==='zh'?'zh':'en',content_id:document.body.dataset.contentId||'',country_code:a.dataset.countryCode||''});
+    });
 </script>
-</div>
+</th:block>
 
 </html>

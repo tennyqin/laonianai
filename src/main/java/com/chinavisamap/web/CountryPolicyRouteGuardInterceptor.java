@@ -47,6 +47,9 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
         StringBuilder location = new StringBuilder("/country/").append(canonicalCode);
         if (parts.length >= 2 && parts[1] != null && !parts[1].isEmpty()) location.append('/').append(parts[1]);
         location.append("?lang=").append(lang);
+        String mode=request.getParameter("entryMode");
+        if (java.util.Arrays.asList("auto","direct","transit24","transit240","hainan").contains(mode)) location.append("&entryMode=").append(mode);
+        if ("transit".equals(request.getParameter("purpose"))) location.append("&purpose=transit");
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", location.toString());
         return false;

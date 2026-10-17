@@ -33,6 +33,19 @@ public class SeoService {
         return buildUrl(path, normalizeLang(lang));
     }
 
+    public String articleListCanonical(String lang, int page) {
+        String url = canonical("/articles", lang);
+        return page > 1 ? url + "&page=" + page : url;
+    }
+
+    public Map<String, String> articleListHreflang(int page) {
+        Map<String, String> links = new LinkedHashMap<>();
+        links.put("en", articleListCanonical("en", page));
+        links.put("zh", articleListCanonical("zh", page));
+        links.put("x-default", articleListCanonical("en", page));
+        return links;
+    }
+
     /**
      * 生成 hreflang
      */

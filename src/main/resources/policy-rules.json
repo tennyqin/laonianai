@@ -1,0 +1,112 @@
+{
+  "version": "2026-10-17",
+  "verifiedAsOf": "2026-10-17",
+  "defaults": {
+    "unilateral": {
+      "purposes": [
+        "tourism",
+        "business",
+        "family",
+        "exchange",
+        "conference",
+        "sports",
+        "study_tour",
+        "transit"
+      ],
+      "perEntryDays": 30,
+      "countingMethod": "next_day_calendar",
+      "noPublishedExpiry": false,
+      "limitsVerified": true,
+      "source": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
+      "verifiedAsOf": "2026-10-17"
+    },
+    "mutual": {
+      "purposes": [],
+      "countingMethod": "unverified",
+      "limitsVerified": false,
+      "noPublishedExpiry": true,
+      "source": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+    },
+    "transit": {
+      "purposes": [
+        "tourism",
+        "business",
+        "family",
+        "transit",
+        "visit"
+      ],
+      "perEntryDays": 10,
+      "countingMethod": "unverified",
+      "limitsVerified": true,
+      "noPublishedExpiry": true,
+      "portDatasetVerified": false,
+      "source": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
+      "verifiedAsOf": "2026-10-17"
+    },
+    "hainan": {
+      "purposes": [
+        "tourism",
+        "business",
+        "family",
+        "exchange",
+        "medical",
+        "conference",
+        "sports",
+        "visit"
+      ],
+      "perEntryDays": 30,
+      "countingMethod": "next_day_calendar",
+      "limitsVerified": true,
+      "noPublishedExpiry": true,
+      "source": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
+      "verifiedAsOf": "2026-10-17"
+    }
+  },
+  "countries": {
+    "brunei": {
+      "unilateral": {
+        "noPublishedExpiry": true
+      }
+    },
+    "thailand": {
+      "mutual": {
+        "purposes": [
+          "tourism",
+          "family",
+          "business",
+          "exchange",
+          "transit"
+        ],
+        "perEntryDays": 30,
+        "cumulativeDays": 90,
+        "cumulativeWindowDays": 180,
+        "limitsVerified": true
+      }
+    },
+    "malaysia": {
+      "mutual": {
+        "purposes": [
+          "tourism",
+          "family",
+          "business",
+          "exchange",
+          "transit",
+          "medical"
+        ],
+        "perEntryDays": 30,
+        "cumulativeDays": 90,
+        "cumulativeWindowDays": 180,
+        "limitsVerified": true,
+        "source": "https://my.china-embassy.gov.cn/eng/fwzc/lsyw/qz/202508/t20250801_11681401.htm",
+        "verifiedAsOf": "2026-10-17",
+        "minimumPassportMonths": 6
+      }
+    }
+  },
+  "ports": {
+    "verified": false,
+    "entries": [],
+    "note": "A complete officially verified port/area dataset is not yet included. Transit screenings must remain pending."
+  },
+  "knownFrom": "2026-10-11"
+}

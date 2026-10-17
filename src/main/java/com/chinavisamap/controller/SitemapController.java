@@ -27,12 +27,10 @@ public class SitemapController {
     private final List<Map<String, Object>> articles;
     private final CountryCodeResolver resolver;
     private final SiteMetadataService siteMetadataService;
-    private final Map<String, Map<String, Object>> priorityContentMap;
 
     public SitemapController(ObjectMapper objectMapper, CountryCodeResolver resolver, SiteMetadataService siteMetadataService) {
         this.resolver = resolver;
         this.siteMetadataService = siteMetadataService;
-        priorityContentMap = loadPriorityContentMap(objectMapper);
         unilateralMap = loadCountryMap(objectMapper, "unilateral.json");
         mutualMap = loadCountryMap(objectMapper, "mutual.json");
         transitMap = loadCountryMap(objectMapper, "transit.json");
@@ -48,6 +46,7 @@ public class SitemapController {
         xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">");
 
         addMultilingualUrl(xml, emittedUrls, "/", "homepage", siteMetadataService.sitemapBaselineLastModified());
+        addMultilingualUrl(xml, emittedUrls, "/transit-check", "transit-check", siteMetadataService.contentLastModified());
 
         Set<String> countryCodes = new TreeSet<>();
         addCanonicalCodes(countryCodes, unilateralMap.keySet());
@@ -55,7 +54,7 @@ public class SitemapController {
         addCanonicalCodes(countryCodes, transitMap.keySet());
         addCanonicalCodes(countryCodes, hainanMap.keySet());
         for (String code : countryCodes) {
-            addMultilingualUrl(xml, emittedUrls, "/country/" + code, "country", siteMetadataService.sitemapBaselineLastModified());
+            addMultilingualUrl(xml, emittedUrls, "/country/" + code, "country", siteMetadataService.contentLastModified());
         }
 
         addCountryTypeUrls(xml, emittedUrls, countryCodes, unilateralMap, "unilateral");
@@ -63,7 +62,9 @@ public class SitemapController {
         addCountryTypeUrls(xml, emittedUrls, countryCodes, transitMap, "transit");
         addCountryTypeUrls(xml, emittedUrls, countryCodes, hainanMap, "hainan");
 
-        addMultilingualUrl(xml, emittedUrls, "/articles", "articles", siteMetadataService.sitemapBaselineLastModified());
+        String articlesModified = articles.stream().map(this::articleLastMod).filter(Objects::nonNull)
+                .max(String::compareTo).orElse(siteMetadataService.sitemapBaselineLastModified());
+        addMultilingualUrl(xml, emittedUrls, "/articles", "articles", articlesModified);
         for (Map<String, Object> article : articles) {
             Object id = article.get("id");
             if (id != null && !String.valueOf(id).trim().isEmpty()) {
@@ -71,6 +72,7 @@ public class SitemapController {
             }
         }
         addMultilingualUrl(xml, emittedUrls, "/visa-guide", "visa-guide", siteMetadataService.sitemapBaselineLastModified());
+        addMultilingualUrl(xml, emittedUrls, "/about", "about", siteMetadataService.contentLastModified());
 
         xml.append("</urlset>");
         return ResponseEntity.ok()
@@ -87,9 +89,8 @@ public class SitemapController {
         for (String code : map.keySet()) {
             String canonicalCode = resolver.routeCode(resolver.policyKey(code));
             if (validCountryCodes.contains(canonicalCode)) {
-                String lastmod = priorityContentMap.containsKey(canonicalCode) && priorityHasPolicySeo(canonicalCode, type)
-                        ? siteMetadataService.contentLastModified()
-                        : siteMetadataService.sitemapBaselineLastModified();
+                // Shared policy-page presentation changed in this release as well.
+                String lastmod = siteMetadataService.contentLastModified();
                 addMultilingualUrl(xml, emittedUrls, "/country/" + canonicalCode + "/" + type, "country-detail", lastmod);
             }
         }
@@ -113,25 +114,6 @@ public class SitemapController {
         xml.append("<xhtml:link rel=\"alternate\" hreflang=\"").append("zh".equals(lang) ? "en" : "zh").append("\" href=\"").append(xmlEscape(alternate)).append("\"/>");
         xml.append("<xhtml:link rel=\"alternate\" hreflang=\"x-default\" href=\"").append(xmlEscape("en".equals(lang) ? loc : alternate)).append("\"/>");
         xml.append("</url>");
-    }
-
-    private boolean priorityHasPolicySeo(String code, String type) {
-        Map<String,Object> priority = priorityContentMap.get(code);
-        if (priority == null) return false;
-        Object policySeo = priority.get("policySeo");
-        if (!(policySeo instanceof Map)) return false;
-        Object item = ((Map<?,?>) policySeo).get(type);
-        if (!(item instanceof Map)) return false;
-        Object titleEn = ((Map<?,?>) item).get("titleEn");
-        return titleEn != null && !String.valueOf(titleEn).trim().isEmpty();
-    }
-
-    private Map<String,Map<String,Object>> loadPriorityContentMap(ObjectMapper objectMapper) {
-        try {
-            return objectMapper.readValue(new ClassPathResource("priority-country-content.json").getInputStream(), new TypeReference<Map<String,Map<String,Object>>>() {});
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to load priority-country-content.json", e);
-        }
     }
 
     private String articleLastMod(Map<String,Object> article) {
@@ -161,7 +143,7 @@ public class SitemapController {
             }
             throw new IllegalStateException("Failed to load required sitemap resource: articles.json");
         } catch (Exception e) {
-            return Collections.emptyList();
+            throw new IllegalStateException("Failed to load articles for sitemap", e);
         }
     }
 

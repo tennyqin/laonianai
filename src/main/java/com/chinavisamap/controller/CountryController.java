@@ -34,6 +34,7 @@ public class CountryController {
     private final List<Map<String, Object>> articles;
     private final CountryCodeResolver resolver;
     private final CountryEligibilityService eligibilityService;
+    private final PolicyRuleEngine ruleEngine;
     private final CountryFlagService flagService;
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
@@ -43,8 +44,9 @@ public class CountryController {
     public CountryController(ObjectMapper mapper, CountryCodeResolver resolver,
                              CountryEligibilityService eligibilityService, CountryFlagService flagService,
                              SeoService seoService, StructuredDataService structuredDataService,
-                             SiteMetadataService siteMetadataService) {
+                             SiteMetadataService siteMetadataService, PolicyRuleEngine ruleEngine) {
         this.resolver = resolver;
+        this.ruleEngine = ruleEngine;
         this.eligibilityService = eligibilityService;
         this.flagService = flagService;
         this.seoService = seoService;
@@ -100,7 +102,7 @@ public class CountryController {
         // Preserve an explicitly requested checker route when a policy page links
         // back to the country checker (for example, the general 24-hour transit route).
         model.addAttribute("selectedPurpose", "transit".equalsIgnoreCase(purpose) ? "transit" : "");
-        model.addAttribute("selectedEntryMode", "transit24".equalsIgnoreCase(entryMode) ? "transit24" : "");
+        model.addAttribute("selectedEntryMode", Arrays.asList("auto","direct","transit240","transit24","hainan").contains(entryMode) ? entryMode : "");
         model.addAttribute("detailCountry", detailCountry);
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("availableTypes", types);
@@ -117,17 +119,27 @@ public class CountryController {
         model.addAttribute("relatedArticles", findRelatedArticles(detailCountry, pageCode, normalizedLang));
         model.addAttribute("availablePolicies", availablePolicies);
         model.addAttribute("routeChecks", buildRouteChecks(pageCode, detailCountry, types, normalizedLang));
-        model.addAttribute("routeCountText", buildRouteCountText(detailCountry, types, normalizedLang));
-        model.addAttribute("directDecisionYes", hasDirectVisaFreeRoute(types));
+        model.addAttribute("routeCountText", "en".equals(normalizedLang)?types.size()+" listed routes — check conditions":types.size()+"条名单路径，请分别核对条件");
+        model.addAttribute("directDecisionYes", hasDirectVisaFreeRoute(types, pageCode));
         model.addAttribute("countryDecisionTitle", buildCountryDecisionTitle(detailCountry, types, normalizedLang));
         model.addAttribute("countryDecisionText", buildCountryDecisionText(detailCountry, types, normalizedLang));
-        model.addAttribute("countryDecisionAnswer", normalizedLang.equals("en")
-                ? countryIntent.get("homeHeroAnswerEn")
-                : countryIntent.get("homeHeroAnswerZh"));
+        boolean currentUnilateral=ruleEngine.policyAvailableToday(pageCode,"unilateral");
+        model.addAttribute("countryDecisionAnswer", currentUnilateral
+                ? (normalizedLang.equals("en")?"Eligible ordinary-passport holders can visit for up to 30 days under the current unilateral policy. Check your travel date and purpose below.":"符合条件的普通护照持有人可按当前单方面政策免签来华最长30天。请在下方按实际出行日期和目的检查。")
+                : buildCountryDecisionText(detailCountry,types,normalizedLang));
         model.addAttribute("countryNames", buildCountryNames());
+        Map<String,String> translatedNames=new LinkedHashMap<>();
+        for(String nameCode:buildCountryNames().keySet()){CountryDetail named=getAnyCountryDetail(nameCode);translatedNames.put(nameCode,"zh".equals(normalizedLang)?named.getNameZh():named.getName());}
+        model.addAttribute("relatedCountryNames",translatedNames);
         model.addAttribute("countryFlags", buildCountryFlags());
         model.addAttribute("relatedCountryCodes", buildRelatedCountryCodes(countryContent));
         model.addAttribute("eligibilityConfig", eligibilityService.build(pageCode, availablePolicies, extra));
+        model.addAttribute("todayChina", ruleEngine.today());
+        model.addAttribute("calculatorAvailable", types.contains("unilateral"));
+        List<Map<String,String>> itineraryCountries=new ArrayList<>();
+        for(String iso:Locale.getISOCountries()){if("CN".equals(iso))continue;Map<String,String> option=new LinkedHashMap<>();option.put("code",iso);Locale place=new Locale("",iso);option.put("name",place.getDisplayCountry("zh".equals(normalizedLang)?Locale.SIMPLIFIED_CHINESE:Locale.ENGLISH));itineraryCountries.add(option);}
+        itineraryCountries.sort(Comparator.comparing(o->o.get("name")));
+        model.addAttribute("itineraryCountries", itineraryCountries);
         // The country-page 24-hour transit CTA must carry the intended checker state
         // so the purpose and entry-route selects are populated when the user lands
         // on the checker, instead of silently falling back to direct entry.
@@ -183,13 +195,16 @@ public class CountryController {
         model.addAttribute("availableTypes", availableTypes);
         model.addAttribute("policyDetails", buildPolicyDetails(code, availableTypes));
         model.addAttribute("policyNavItems", buildPolicyNavItems(pageCode, availableTypes, normalizedLang));
-        model.addAttribute("checkerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "#eligibility-checker");
+        String checkerMode="transit".equals(type)?"transit240":"hainan".equals(type)?"hainan":"direct";
+        model.addAttribute("checkerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&entryMode=" + checkerMode + "#eligibility-checker");
+        model.addAttribute("calculatorUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&entryMode=direct#stay-calculator");
+        model.addAttribute("calculatorAvailable", "unilateral".equals(type));
         model.addAttribute("transit24CheckerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&purpose=transit&entryMode=transit24#eligibility-checker");
         model.addAttribute("policyDecisionEn", policyDecision(detailCountry, type, policy, false));
         model.addAttribute("policyDecisionZh", policyDecision(detailCountry, type, policy, true));
         model.addAttribute("policyDecisionTone", policyDecisionTone(type));
-        model.addAttribute("decisionLabelEn", policyDecisionLabel(type, false));
-        model.addAttribute("decisionLabelZh", policyDecisionLabel(type, true));
+        model.addAttribute("decisionLabelEn", "Listed policy — check dates and conditions");
+        model.addAttribute("decisionLabelZh", "名单所列政策 · 请核对日期与条件");
         model.addAttribute("decisionTitleEn", policyDecisionTitle(detailCountry, type, false));
         model.addAttribute("decisionTitleZh", policyDecisionTitle(detailCountry, type, true));
         model.addAttribute("decisionNoteEn", policyDecisionNote(type, false));
@@ -239,7 +254,7 @@ public class CountryController {
 
     private String buildCountryDecisionTitle(CountryDetail country, List<String> types, String lang) {
         String n = "en".equals(lang) ? country.getName() : country.getNameZh();
-        boolean direct = hasDirectVisaFreeRoute(types);
+        boolean direct = hasDirectVisaFreeRoute(types, country.getCode());
         return "en".equals(lang)
                 ? (direct ? n + " passport holders can enter China visa-free" : n + " passport holders: no general direct visa-free entry")
                 : (direct ? n + "护照可以直接免签进入中国" : n + "护照目前不能直接免签进入中国");
@@ -248,23 +263,27 @@ public class CountryController {
     private String buildCountryDecisionText(CountryDetail country, List<String> types, String lang) {
         int count = types.size();
         String n = "en".equals(lang) ? country.getName() : country.getNameZh();
-        boolean direct = hasDirectVisaFreeRoute(types);
+        boolean direct = hasDirectVisaFreeRoute(types, country.getCode());
         if ("en".equals(lang)) {
             if (direct) return "A direct visa-free route is currently listed for " + n + ". Other entry routes are shown below where available.";
             if (types.contains("transit") || types.contains("hainan")) {
-                return "There is no general direct visa-free entry route listed for " + n + ". " + count + " special route" + (count == 1 ? " is" : "s are") + " shown below, including transit or regional entry where applicable.";
+                return "This dataset does not confirm a general direct visa-free route for " + n + ". " + count + " special route" + (count == 1 ? " is" : "s are") + " shown below, including transit or regional entry where applicable.";
             }
             return "There is no general direct visa-free entry route listed for " + n + ".";
         }
         if (direct) return n + "目前有直接免签入境路径。其他可用入境路径见下方。";
         if (types.contains("transit") || types.contains("hainan")) {
-            return n + "目前没有一般性的直接免签入境路径，但下面列有 " + count + " 种特殊路径，包括适用时的过境或区域免签政策。";
+            return n + "当前数据未确认一般性的直接免签入境路径，但下面列有 " + count + " 种特殊路径，包括适用时的过境或区域免签政策。";
         }
-        return n + "目前没有一般性的直接免签入境路径。";
+        return n + "当前数据未确认一般性的直接免签入境路径。";
     }
 
     private String policyDecision(CountryDetail country, String type, CountryPolicy policy, boolean zh) {
         String n = zh ? country.getNameZh() : country.getName();
+        if (!ruleEngine.policyAvailableToday(country.getCode(), type)) {
+            return zh ? "本页列示已记录的政策；当前日期的适用性尚未确认。请核对官方更新，并按计划入境日期检查，勿仅凭名单安排行程。"
+                      : "This page describes the recorded policy. Availability for the current date is not confirmed. Check official updates and your planned entry date before arranging travel.";
+        }
         if ("unilateral".equals(type)) {
             return zh ? "符合当前单方面免签条件的普通护照持有人，可以按这一路径免签入境中国。"
                       : "Eligible ordinary-passport holders can use this unilateral visa-free route under the current conditions.";
@@ -589,20 +608,7 @@ public class CountryController {
     private void addFaq(List<Map<String,String>> r,String q,String a){Map<String,String> x=new LinkedHashMap<>();x.put("q",q);x.put("a",a);r.add(x);}
     private String stayText(CountryDetail c,boolean zh){return isBlank(c.getStayDays())?(zh?"政策规定期限":"the period stated by the policy"):c.getStayDays()+(zh?"天":" days");}
     private String buildHomeDecisionAnswer(String name, List<String> types, boolean zh) {
-        boolean direct = hasDirectVisaFreeRoute(types);
-        if (direct) {
-            return zh
-                    ? "YES — " + name + "普通护照符合条件时可以直接免签入境中国。"
-                    : "YES — Eligible " + name + " ordinary-passport holders can enter China directly without a visa.";
-        }
-        if (types.contains("transit") || types.contains("hainan")) {
-            return zh
-                    ? "NO — " + name + "普通护照目前不能直接免签进入中国，但符合条件时仍可核对过境或海南区域免签路径。"
-                    : "NO — " + name + " ordinary-passport holders do not have a general direct visa-free route, but qualifying transit or Hainan regional routes may still apply.";
-        }
-        return zh
-                ? "NO — " + name + "普通护照目前没有一般性的直接免签入境路径。"
-                : "NO — " + name + " ordinary-passport holders do not have a general direct visa-free entry route.";
+        return zh ? name+"护照有以下名单路径，是否适用须按日期和实际行程核验。" : "Listed routes for "+name+" passports require date and itinerary checks.";
     }
 
     private String routeSummaryEn(List<String> t){List<String> r=new ArrayList<>();if(t.contains("unilateral"))r.add("A direct unilateral visa-free route is listed.");if(t.contains("mutual"))r.add("A bilateral visa-exemption route is listed.");if(t.contains("transit"))r.add("A 240-hour transit route is listed.");if(t.contains("hainan"))r.add("A separate Hainan regional route is listed.");return String.join(" ",r);}
@@ -703,6 +709,9 @@ public class CountryController {
         policy.setDetail(detailCountry); policy.setCountryCode(code); policy.setPolicyType(type);
         policy.setOfficialSource(firstNonBlank(string(extra, "officialSource"), NIA_SOURCE));
         policy.setLastVerified(firstNonBlank(string(extra, "lastVerified"), siteMetadataService.lastVerified()));
+        Map<String,Object> verifiedRule=ruleEngine.rule(detailCountry);
+        policy.setOfficialSource(String.valueOf(verifiedRule.get("source")));
+        policy.setLastVerified(String.valueOf(verifiedRule.get("verifiedAsOf")));
         policy.setPolicyExpiry(firstNonBlank(string(extra, "policyExpiry"), detailCountry.getPolicyExpiry()));
         policy.setPermittedPurposesEn(firstNonBlank(string(extra, "permittedPurposesEn"), detailCountry.getPurpose()));
         policy.setPermittedPurposesZh(firstNonBlank(string(extra, "permittedPurposesZh"), detailCountry.getPurposeZh()));
@@ -779,8 +788,8 @@ public class CountryController {
      * Transit and Hainan regional routes are intentionally excluded because
      * they do not mean general direct visa-free entry into mainland China.
      */
-    private boolean hasDirectVisaFreeRoute(List<String> types) {
-        return types != null && (types.contains("unilateral") || types.contains("mutual"));
+    private boolean hasDirectVisaFreeRoute(List<String> types, String code) {
+        return types != null && ruleEngine.currentDirectRoute(code);
     }
 
     private List<String> detectAvailableTypes(String code) {
@@ -813,7 +822,22 @@ public class CountryController {
     }
 
     private String routeCode(String code) { return resolver.routeCode(resolver.policyKey(code)); }
-    private Map<String,Object> getCountryExtraRoot(String code) { Map<String,Object> m=countryExtraMap.get(code); return m!=null?m:countryExtraMap.get(routeCode(code)); }
+    private Map<String,Object> getCountryExtraRoot(String code) {
+        String key=resolver.policyKey(code);
+        Map<String,Object> out=new LinkedHashMap<>();
+        Map<String,Object> facts=countryExtraMap.get(key);
+        if(facts!=null)out.putAll(facts);
+        Map<String,Object> legacy=countryExtraMap.get(routeCode(key));
+        if(legacy!=null && legacy!=facts){
+            for(Map.Entry<String,Object> e:legacy.entrySet()){
+                if(out.get(e.getKey()) instanceof Map && e.getValue() instanceof Map){
+                    Map<String,Object> nested=new LinkedHashMap<>(asMap(out.get(e.getKey())));
+                    nested.putAll(asMap(e.getValue()));out.put(e.getKey(),nested);
+                }else out.put(e.getKey(),e.getValue());
+            }
+        }
+        return out;
+    }
     private Object getCountryExtraItem(String code,String type) { Map<String,Object> m=getCountryExtraRoot(code); return m==null?null:m.get(type); }
     private List<CountryDetail> buildAvailablePolicies(String code,List<String> types) { List<CountryDetail> r=new ArrayList<>(); for(String type:types){CountryDetail d=getCountryDetail(code,type);if(d!=null)r.add(d);}return r; }
     private Map<String,CountryDetail> buildPolicyDetails(String code,List<String> types){Map<String,CountryDetail> r=new LinkedHashMap<>();for(String type:types){CountryDetail d=getCountryDetail(code,type);if(d!=null)r.put(type,d);}return r;}

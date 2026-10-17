@@ -162,6 +162,15 @@ public class ArticleController {
 
         int total = source.size();
         int totalPages = total == 0 ? 0 : (int) Math.ceil((double) total / currentSize);
+        // Real pagination contains different articles, so it is not a duplicate
+        // of page one. Search/filter variants and empty pages remain noindex.
+        boolean standardPage = StringUtils.isBlank(keyword) && StringUtils.isBlank(category)
+                && currentSize == 10 && currentPage <= Math.max(1, totalPages);
+        if (standardPage) {
+            model.addAttribute("noIndex", false);
+            model.addAttribute("canonicalUrl", seoService.articleListCanonical(currentLang, currentPage));
+            model.addAttribute("hreflang", seoService.articleListHreflang(currentPage));
+        }
 
         // Pagination is a list resource, not an article resource. Any page number
         // beyond the available range must still render /articles with an empty list
@@ -279,6 +288,9 @@ public class ArticleController {
         Map<String, Object> article = opt.get();
         model.addAttribute("lang", currentLang);
         model.addAttribute("article", article);
+        // Tool intent is editorial data, independent from visa eligibility rules.
+        Object tool = article.get("toolIntent");
+        model.addAttribute("articleToolIntent", tool == null ? "country" : String.valueOf(tool));
         model.addAttribute("structuredData", structuredDataService.buildArticle(
                 article,
                 currentLang,

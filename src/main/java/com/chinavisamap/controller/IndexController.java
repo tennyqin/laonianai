@@ -1,6 +1,7 @@
 package com.chinavisamap.controller;
 
 import com.chinavisamap.service.CountryFlagService;
+import com.chinavisamap.service.CountryCodeResolver;
 import com.chinavisamap.service.SeoService;
 import com.chinavisamap.service.StructuredDataService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -22,12 +23,14 @@ public class IndexController {
     private final SeoService seoService;
     private final StructuredDataService structuredDataService;
     private final CountryFlagService countryFlagService;
+    private final CountryCodeResolver countryCodeResolver;
 
     public IndexController(SeoService seoService, StructuredDataService structuredDataService,
-                           CountryFlagService countryFlagService) {
+                           CountryFlagService countryFlagService, CountryCodeResolver countryCodeResolver) {
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
         this.countryFlagService = countryFlagService;
+        this.countryCodeResolver = countryCodeResolver;
         try {
             allData.putAll(new ObjectMapper().readValue(
                     new ClassPathResource("data.json").getInputStream(),
@@ -53,6 +56,13 @@ public class IndexController {
         model.addAttribute("canonicalUrl", seoService.canonical("/", currentLang));
         model.addAttribute("hreflang", seoService.hreflang("/"));
         model.addAttribute("countryFlags", buildCountryFlags());
+        List<Map<String, Object>> countries = mergeSearchCountries(
+                searchAndSort((List<Map<String, Object>>) allData.get("continents"), "", currentLang),
+                searchAndSort((List<Map<String, Object>>) allData.get("mutualContinents"), "", currentLang),
+                searchAndSort((List<Map<String, Object>>) allData.get("transitContinents"), "", currentLang),
+                searchAndSort((List<Map<String, Object>>) allData.get("hainanContinents"), "", currentLang));
+        countries.sort(Comparator.comparing(c -> displayName(c, currentLang), String.CASE_INSENSITIVE_ORDER));
+        model.addAttribute("checkerCountries", countries);
 
         String siteName = String.valueOf(allData.getOrDefault("siteName", "China Visa Free Guide 2026"));
         String title = "zh".equals(currentLang)
@@ -106,11 +116,11 @@ public class IndexController {
             List<Map<String, Object>> group = groups[i];
             if (group == null) continue;
             for (Map<String, Object> country : group) {
-                String code = normalize(country.get("code"));
+                String code = countryCodeResolver.routeCode(countryCodeResolver.policyKey(normalize(country.get("code"))));
                 if (code.isEmpty()) continue;
                 Map<String, Object> item = merged.computeIfAbsent(code, k -> {
                     Map<String, Object> copy = new LinkedHashMap<>();
-                    copy.put("code", country.get("code"));
+                    copy.put("code", code);
                     copy.put("name", country.get("name"));
                     copy.put("nameZh", country.get("nameZh"));
                     copy.put("flag", country.get("flag"));
@@ -178,7 +188,8 @@ public class IndexController {
         String n = normalize(c.get("name"));
         String z = normalize(c.get("nameZh"));
         String code = normalize(c.get("code"));
-        return n.contains(kw) || z.contains(kw) || code.contains(kw);
+        return n.contains(kw) || z.contains(kw) || code.contains(kw)
+                || countryCodeResolver.policyKey(code).equals(countryCodeResolver.policyKey(kw));
     }
 
     private int score(Map<String, Object> c, String kw, String lang) {

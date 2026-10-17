@@ -19,7 +19,7 @@
     <div th:replace="~{common/ga :: google-analytics}"></div>
 <style>.related-article-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.related-article{display:block;border:1px solid #e5e7eb;border-radius:12px;padding:14px;text-decoration:none;color:#1f2937;background:#fbfdfc}.related-article strong{display:block;line-height:1.5;margin-bottom:5px}.related-article small{display:block;color:#64748b;line-height:1.5}@media(max-width:640px){.related-article-list{grid-template-columns:1fr}}</style>
 </head>
-<body>
+<body th:attr="data-content-id=${article.id}">
 <div th:replace="~{common/header :: site-header}"></div>
 <div class="container">
     <div class="breadcrumb-wrap">
@@ -46,6 +46,17 @@
                 <span th:text="${article['displayModifiedDate']}"></span>
             </th:block>
         </div>
+        <aside class="article-task" th:if="${articleToolIntent!='none'}" aria-label="Trip tools">
+            <strong th:text="${articleToolIntent=='dates'?(lang=='en'?'Apply the counting rule to your travel dates':'按你的出行日期核对停留期限'):(articleToolIntent=='transit24'?(lang=='en'?'Check your actual connection':'检查你的实际中转行程'):(lang=='en'?'Check how these rules apply to your trip':'检查这些规则是否适用于你的行程'))}"></strong>
+            <p th:text="${lang=='en'?'Your passport, dates and route matter. A general guide cannot confirm your individual entry permission.':'护照、日期与行程决定适用路径；通用文章不能确认个人入境许可。'}"></p>
+            <a th:if="${articleToolIntent=='transit24'}" th:href="@{/transit-check(lang=${lang})}" data-action="article_tool_open" th:text="${lang=='en'?'Check a connection up to 24 hours →':'检查不超过24小时的中转 →'}"></a>
+            <a th:unless="${articleToolIntent=='transit24'}" th:href="@{/(lang=${lang})}+'#trip-start-title'" data-action="article_tool_open" th:text="${lang=='en'?'Choose my passport nationality →':'选择我的护照国籍 →'}"></a>
+            <th:block th:if="${articleToolIntent!='transit24' and relatedCountryNames!=null}">
+                <a th:each="entry,loop:${relatedCountryNames}" th:if="${loop.index<4}" th:href="@{/country/{code}(code=${entry.key},lang=${lang})}+'#eligibility-checker'" data-action="article_tool_open" th:attr="data-country-code=${entry.key}" th:text="${entry.value}"></a>
+            </th:block>
+            <a th:href="@{/about(lang=${lang})}" th:text="${lang=='en'?'How we verify policy information':'我们如何核验政策'}"></a>
+        </aside>
+        <style>.article-task{margin:18px 0;padding:18px;border:1px solid #a7f3d0;border-radius:12px;background:#f0fdf4;line-height:1.7}.article-task a{display:inline-block;margin:5px 20px 5px 0;color:#047857;font-weight:700;min-height:30px}.article-task p{margin:8px 0}#trip-start-title{scroll-margin-top:90px}</style>
         <div class="article-content" th:utext="${lang == 'en' ? article.contentEn : article.contentZh}"></div>
     </div>
     <div class="card" th:if="${relatedCountryNames != null and !relatedCountryNames.isEmpty()}">

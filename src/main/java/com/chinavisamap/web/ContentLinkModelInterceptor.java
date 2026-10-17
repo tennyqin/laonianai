@@ -89,7 +89,8 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
                         // cannot leave a stale pre-interceptor answer on priority pages.
                         String finalAnswerKey = "zh".equals(lang) ? "homeHeroAnswerZh" : "homeHeroAnswerEn";
                         if (intent.containsKey(finalAnswerKey)) {
-                            mav.addObject("countryDecisionAnswer", intent.get(finalAnswerKey));
+                            // Keep the rule-engine-backed answer from CountryController.
+                            // Presentation copy must not replace its date-aware policy conclusion.
                         }
                     }
                     Object profileObject=mav.getModel().get("countryProfile");
@@ -113,6 +114,11 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
                     Object related=base.get("relatedCountryCodes");
                     if(related instanceof List)mav.addObject("relatedCountryCodes",normalizeRelatedCodes((List<?>)related,code));
                 }
+                Object finalRelated=mav.getModel().get("relatedCountryCodes");
+                Map<String,String> guideNames=new LinkedHashMap<>();
+                if(finalRelated instanceof List)for(Object raw:(List<?>)finalRelated){String relatedCode=String.valueOf(raw);String[] names=countryNames.get(relatedCode);if(names!=null)guideNames.put(relatedCode,"zh".equals(lang)?names[1]:names[0]);}
+                mav.addObject("relatedCountryGuideNames",guideNames);
+                mav.addObject("relatedCountryNames",guideNames);
             }
         }else if(uri.startsWith("/articles/")&&partsCount(uri)==2){
             String id=uri.substring("/articles/".length()); Map<String,Object> article=findArticle(id);
@@ -216,6 +222,7 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
             String id=String.valueOf(a.getOrDefault("id",""));
             if(used.contains(id)) continue;
             if(score(a,code,type)<15) continue;
+            if(a.get("primaryCountryCode")!=null && !resolver.policyKey(String.valueOf(a.get("primaryCountryCode"))).equals(resolver.policyKey(code))) continue;
             Map<String,Object> copy=new LinkedHashMap<>(a);
             out.add(copy); used.add(id);
         }

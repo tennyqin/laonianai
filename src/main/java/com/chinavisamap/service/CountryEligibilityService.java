@@ -14,10 +14,12 @@ import java.util.Map;
 @Service
 public class CountryEligibilityService {
     private final CountryCodeResolver resolver;
+    private final PolicyRuleEngine ruleEngine;
     private final Map<String, CountryDetail> hainanMap;
 
-    public CountryEligibilityService(CountryCodeResolver resolver, com.fasterxml.jackson.databind.ObjectMapper mapper) {
+    public CountryEligibilityService(CountryCodeResolver resolver, com.fasterxml.jackson.databind.ObjectMapper mapper, PolicyRuleEngine ruleEngine) {
         this.resolver = resolver;
+        this.ruleEngine = ruleEngine;
         try {
             this.hainanMap = mapper.readValue(new org.springframework.core.io.ClassPathResource("hainan.json").getInputStream(), new com.fasterxml.jackson.core.type.TypeReference<Map<String, CountryDetail>>() {});
         } catch (Exception e) {
@@ -29,7 +31,8 @@ public class CountryEligibilityService {
         String normalized = resolver.policyKey(countryCode);
         List<Map<String, Object>> rules = buildPolicies(policies);
         Map<String, Object> root = new LinkedHashMap<>();
-        root.put("version", "2026-09-09");
+        root.put("version", "2026-10-17");
+        root.put("todayChina", ruleEngine.today());
         root.put("countryCode", resolver.routeCode(normalized));
         root.put("policySource", "unilateral.json / mutual.json / transit.json / hainan.json");
         root.put("policies", rules);
@@ -39,12 +42,12 @@ public class CountryEligibilityService {
         boolean hainanEnabled = hainanDetail != null;
         hainan.put("enabled", hainanEnabled);
         hainan.put("maxStayDays", hainanEnabled ? 30 : null);
-        hainan.put("purposes", hainanEnabled ? purposeCodes(hainanDetail.getPurpose()) : Collections.emptyList());
+        hainan.put("purposes", hainanEnabled ? ruleEngine.rule(hainanDetail).get("purposes") : Collections.emptyList());
         hainan.put("restrictedToHainan", true);
         hainan.put("requiresOrdinaryPassport", hainanEnabled);
         hainan.put("requiresThirdCountryOrRegion", false);
-        hainan.put("verificationRequired", !hainanEnabled);
-        hainan.put("officialSource", hainanEnabled ? "https://en.nia.gov.cn/" : null);
+        hainan.put("verificationRequired", true);
+        hainan.put("officialSource", hainanEnabled ? ruleEngine.rule(hainanDetail).get("source") : null);
         hainan.put("policyUrl", hainanEnabled ? "/country/" + resolver.routeCode(normalized) + "/hainan" : null);
         root.put("hainan", hainan);
 
@@ -57,8 +60,8 @@ public class CountryEligibilityService {
         transit240.put("requiresOrdinaryPassport", transitEnabled);
         transit240.put("requiresThirdCountryOrRegion", transitEnabled);
         transit240.put("requiresConfirmedOnwardTicket", transitEnabled);
-        transit240.put("verificationRequired", !transitEnabled);
-        transit240.put("officialSource", transitEnabled ? "https://en.nia.gov.cn/" : null);
+        transit240.put("verificationRequired", true);
+        transit240.put("officialSource", "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html");
         transit240.put("policyUrl", transitEnabled ? transitPolicy.get("policyUrl") : null);
         root.put("transit240", transit240);
 
@@ -71,7 +74,7 @@ public class CountryEligibilityService {
         transit24.put("thirdCountryOrRegionRequired", true);
         transit24.put("restrictedAreaOnly", true);
         transit24.put("verificationRequired", true);
-        transit24.put("officialSource", "https://en.nia.gov.cn/");
+        transit24.put("officialSource", "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html");
         root.put("transit24", transit24);
 
         root.put("priority", extra == null ? 999 : number(extra.get("priority"), 999));
@@ -93,12 +96,12 @@ public class CountryEligibilityService {
             // Mutual agreements can contain both per-entry and cumulative limits.
             // Keep those constraints explicit so the browser checker never treats
             // a cumulative rule as a simple single-trip allowance.
-            StayRule stayRule = parseStayRule(policy.getRule(), listedStayDays, "mutual".equals(type));
-            item.put("perEntryDays", stayRule.perEntryDays);
-            item.put("cumulativeDays", stayRule.cumulativeDays);
-            item.put("cumulativeWindowDays", stayRule.cumulativeWindowDays);
-            item.put("requiresCumulativeCheck", stayRule.cumulativeDays != null);
-            item.put("purposes", purposeCodes(policy.getPurpose()));
+            Map<String,Object> normalizedRule = ruleEngine.rule(policy);
+            item.put("perEntryDays", normalizedRule.get("perEntryDays"));
+            item.put("cumulativeDays", normalizedRule.get("cumulativeDays"));
+            item.put("cumulativeWindowDays", normalizedRule.get("cumulativeWindowDays"));
+            item.put("requiresCumulativeCheck", normalizedRule.get("cumulativeDays") != null);
+            item.put("purposes", normalizedRule.get("purposes"));
             item.put("requiresOnward", "transit".equals(type));
             item.put("ordinaryPassportOnly", true);
             item.put("policyUrl", "/country/" + resolver.routeCode(policy.getCode()) + "/" + type);
@@ -107,35 +110,12 @@ public class CountryEligibilityService {
             item.put("policyCode", resolver.policyKey(policy.getCode()));
             item.put("policyExpiry", policy.getPolicyExpiry());
             item.put("validFrom", policy.getValidFrom());
+            item.put("ruleMetadata", normalizedRule);
             result.add(item);
         }
         return result;
     }
 
-
-    private StayRule parseStayRule(String rule, Integer listedStayDays, boolean mutual) {
-        StayRule r = new StayRule();
-        if (!mutual) {
-            r.perEntryDays = listedStayDays;
-            return r;
-        }
-        String text = safe(rule).toLowerCase(Locale.ROOT);
-        java.util.regex.Matcher perEntry = java.util.regex.Pattern.compile("(\\d+)\\s*days?\\s+per\\s+entry").matcher(text);
-        if (perEntry.find()) r.perEntryDays = Integer.valueOf(perEntry.group(1));
-        else r.perEntryDays = listedStayDays;
-        java.util.regex.Matcher cumulative = java.util.regex.Pattern.compile("(\\d+)\\s*days?\\s+cumulatively\\s+within\\s+any\\s+(\\d+)\\s*[- ]?day").matcher(text);
-        if (cumulative.find()) {
-            r.cumulativeDays = Integer.valueOf(cumulative.group(1));
-            r.cumulativeWindowDays = Integer.valueOf(cumulative.group(2));
-        }
-        return r;
-    }
-
-    private static class StayRule {
-        Integer perEntryDays;
-        Integer cumulativeDays;
-        Integer cumulativeWindowDays;
-    }
 
     private Map<String, Object> findPolicy(List<Map<String, Object>> rules, String type) {
         for (Map<String, Object> rule : rules) if (type.equals(rule.get("type"))) return rule;

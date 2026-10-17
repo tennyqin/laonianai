@@ -44,7 +44,24 @@
 </nav>
 <div class="container">
     <div class="hero"><h1 th:text="${lang == 'en' ? heroTitle : heroTitleZh}"></h1><p th:text="${lang == 'en' ? heroDesc : heroDescZh}"></p></div>
-    <form method="get" class="search-box">
+    <section class="trip-start" th:if="${!searched}" aria-labelledby="trip-start-title">
+        <h2 id="trip-start-title" th:text="${lang=='en'?'Can I visit China without a visa?':'我去中国可以免签吗？'}"></h2>
+        <p th:text="${lang=='en'?'Choose your passport nationality. Then check your travel dates, purpose and route.':'先选择护照国籍，再核对出行日期、事由和行程。'}"></p>
+        <form id="country-start-form" action="/" method="get" class="trip-start-form">
+            <input type="hidden" name="lang" th:value="${lang}">
+            <label for="passport-country" th:text="${lang=='en'?'Passport nationality':'护照国籍'}"></label>
+            <select id="passport-country" name="keyword" required>
+                <option value="" th:text="${lang=='en'?'Choose nationality':'请选择国籍'}"></option>
+                <option th:each="c:${checkerCountries}" th:value="${c.code}" th:text="${lang=='en'?c.name:c.nameZh}"></option>
+            </select>
+            <button type="submit" class="search-btn" th:text="${lang=='en'?'Check my entry options':'查询我的入境路径'}"></button>
+        </form>
+        <p><a th:href="@{/transit-check(lang=${lang})}" data-action="transit_checker_open" th:text="${lang=='en'?'Nationality not listed? Check a connection of up to 24 hours →':'国籍不在名单？检查不超过24小时的中转行程 →'}"></a></p>
+        <small th:text="${lang=='en'?'For foreign passport holders entering mainland China. Hong Kong, Macao and Taiwan have separate entry rules. A listed route is not an entry approval.':'面向持外国护照进入中国大陆的旅客；香港、澳门和台湾入境规则不同。列有适用路径不等于获准入境。'}"></small>
+    </section>
+    <style>.trip-start{padding:24px;border:1px solid #a7f3d0;border-radius:16px;background:#f0fdf4;margin:20px 0}.trip-start h2{margin-top:0}.trip-start p,.trip-start small{line-height:1.7}.trip-start-form{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.trip-start select{flex:1;min-width:180px;max-width:100%;padding:13px;border:1px solid #94a3b8;border-radius:8px;background:white;font-size:16px}.trip-start a{color:#047857}.trip-start small{display:block;color:#475569}@media(max-width:640px){.trip-start{padding:18px}.trip-start-form{flex-direction:column;align-items:stretch}.trip-start select{width:100%;box-sizing:border-box}}</style>
+    <script th:inline="javascript">(function(){var f=document.getElementById('country-start-form');if(!f)return;f.addEventListener('submit',function(e){var c=document.getElementById('passport-country').value;if(!c)return;e.preventDefault();if(window.visaTrack)window.visaTrack('country_selected',{country_code:c,language:/*[[${lang}]]*/'en',action:'home_checker'});window.location.assign('/country/'+encodeURIComponent(c)+'?lang='+encodeURIComponent(/*[[${lang}]]*/'en')+'#eligibility-checker');});}());</script>
+    <form method="get" class="search-box" role="search">
         <input type="hidden" name="lang" th:value="${lang}">
         <input type="text" name="keyword" class="search-input" th:placeholder="${lang == 'en' ? 'Search country...' : '搜索国家名称或代码...'}" th:value="${keyword}">
         <button class="search-btn" type="submit" th:text="${lang == 'en' ? 'Search' : '搜索'}"></button>
@@ -79,6 +96,10 @@
         </div>
     </div>
 
+    <section class="section" th:if="${!searched and taskGuides!=null}" aria-labelledby="practical-questions">
+        <h2 id="practical-questions" th:text="${lang=='en'?'Plan the next step':'继续准备你的行程'}"></h2>
+        <div class="grid"><a class="card" th:each="g:${taskGuides}" th:href="@{/articles/{id}(id=${g.id},lang=${lang})}" data-action="home_guide_open" th:text="${lang=='en'?g.titleEn:g.titleZh}"></a></div>
+    </section>
     <div th:if="${!searched}">
         <div class="intro-block"><p th:text="${lang == 'en' ? introPara1 : introPara1Zh}"></p><p th:text="${lang == 'en' ? introPara2 : introPara2Zh}"></p></div>
         <div class="alert-block expiry-block"><strong th:text="${lang == 'en' ? '⚠️ Policy Expiry Reminder' : '⚠️ 政策到期提醒'}"></strong><p th:text="${lang == 'en' ? expiryNote : expiryNoteZh}"></p></div>

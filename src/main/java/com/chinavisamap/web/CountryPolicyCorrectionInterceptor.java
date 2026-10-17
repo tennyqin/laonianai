@@ -35,7 +35,7 @@ public class CountryPolicyCorrectionInterceptor implements HandlerInterceptor {
             CountryPolicy policy = (CountryPolicy) policyObject;
             CountryDetail detail = (CountryDetail) policyDetailObject;
             applyCorrection(resolver.policyKey(detail.getCode()), detail, policy);
-            policy.setLastVerified(VERIFIED);
+            // Preserve the source-specific verification date supplied by the controller.
             String lang = String.valueOf(modelAndView.getModel().get("lang"));
             String canonical = String.valueOf(modelAndView.getModel().get("canonicalUrl"));
             Object extraObject = modelAndView.getModel().get("countryExtra");
@@ -97,7 +97,7 @@ public class CountryPolicyCorrectionInterceptor implements HandlerInterceptor {
         }
         if ("hainan".equals(detail.getPolicyType())) {
             detail.setStayDays("30");
-            detail.setValidFrom("2026-08-20");
+            // The list publication date is not every nationality's effective date.
             detail.setPolicyTypeZh("海南30天入境免签");
             detail.setPurpose("Tourism, business, visits, family visits, medical treatment, conferences and exhibitions, sports competitions and other short-term activities");
             detail.setPurposeZh("旅游、商贸、访问、探亲、就医、会展、体育竞技等短期活动");
