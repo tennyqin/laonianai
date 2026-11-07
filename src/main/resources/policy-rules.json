@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-17",
-  "verifiedAsOf": "2026-10-17",
+  "version": "2026-11-01",
+  "verifiedAsOf": "2026-11-01",
   "defaults": {
     "unilateral": {
       "purposes": [
@@ -18,14 +18,15 @@
       "noPublishedExpiry": false,
       "limitsVerified": true,
       "source": "https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/",
-      "verifiedAsOf": "2026-10-17"
+      "verifiedAsOf": "2026-11-01"
     },
     "mutual": {
       "purposes": [],
       "countingMethod": "unverified",
       "limitsVerified": false,
       "noPublishedExpiry": true,
-      "source": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html"
+      "source": "https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html",
+      "verifiedAsOf": "2026-11-01"
     },
     "transit": {
       "purposes": [
@@ -41,7 +42,7 @@
       "noPublishedExpiry": true,
       "portDatasetVerified": false,
       "source": "https://www.nia.gov.cn/n741440/n741577/c1731205/content.html",
-      "verifiedAsOf": "2026-10-17"
+      "verifiedAsOf": "2026-11-01"
     },
     "hainan": {
       "purposes": [
@@ -59,7 +60,7 @@
       "limitsVerified": true,
       "noPublishedExpiry": true,
       "source": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
-      "verifiedAsOf": "2026-10-17"
+      "verifiedAsOf": "2026-11-01"
     }
   },
   "countries": {
@@ -80,7 +81,9 @@
         "perEntryDays": 30,
         "cumulativeDays": 90,
         "cumulativeWindowDays": 180,
-        "limitsVerified": true
+        "limitsVerified": true,
+        "source": "https://www.mfa.gov.cn/wjbzwfwpt/kzx/tzgg/202401/t20240129_11234802.html",
+        "verifiedAsOf": "2026-11-01"
       }
     },
     "malaysia": {
@@ -98,7 +101,7 @@
         "cumulativeWindowDays": 180,
         "limitsVerified": true,
         "source": "https://my.china-embassy.gov.cn/eng/fwzc/lsyw/qz/202508/t20250801_11681401.htm",
-        "verifiedAsOf": "2026-10-17",
+        "verifiedAsOf": "2026-11-01",
         "minimumPassportMonths": 6
       }
     }

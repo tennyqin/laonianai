@@ -3,18 +3,43 @@
 
 <!-- Google Analytics 全局埋点片段 → 所有页面共用 -->
 <th:block th:fragment="google-analytics" th:if="${@environment.getProperty('analytics.enabled', 'true') == 'true'}">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-829K3T2NNP"></script>
-<script>
+<script id="site-analytics" data-allowed-hosts="chinavisamap.com,www.chinavisamap.com"
+        th:attr="data-allowed-hosts=${@environment.getProperty('analytics.allowed-hosts', 'chinavisamap.com,www.chinavisamap.com')}">
+(function () {
+    var script = document.currentScript;
+    var allowedHosts = (script.getAttribute('data-allowed-hosts') || '').split(',').map(function(host){return host.trim().toLowerCase();});
+    // Check before requesting the SDK: previews and local browsing must not enter production GA.
+    if (allowedHosts.indexOf(window.location.hostname.toLowerCase()) < 0) return;
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    window.gtag = function(){window.dataLayer.push(arguments);};
     gtag('js', new Date());
 
     gtag('config', 'G-829K3T2NNP');
     window.visaTrack = function(name, values) {
         try {
-            var allowed=['country_code','route','language','result_status','result_reason','action','content_id'];
-            var safe={measurement_version:'20261017'}; values=values||{};
+            var allowed=['country_code','route','language','result_status','result_reason','action','content_id','page_kind','tool_task','faq_index'];
+            var body=document.body ? document.body.dataset : {};
+            var safe={measurement_version:'20261107',language:document.documentElement.lang==='zh'?'zh':'en'};
+            // Preserve the immediately preceding site page in tool events, without
+            // changing GA attribution or collecting a referrer query/form dates.
+            if(document.referrer){
+                try {
+                    var previous=new URL(document.referrer);
+                    if(previous.origin===window.location.origin){
+                        var article=previous.pathname.match(/^\/articles\/([a-z0-9-]{1,80})\/?$/);
+                        if(article){safe.entry_page_kind='article';safe.entry_content_id=article[1];}
+                        else if(previous.pathname==='/')safe.entry_page_kind='home';
+                        else if(previous.pathname==='/visa-guide')safe.entry_page_kind='visa-guide';
+                        else if(/^\/country\/[a-z-]+\/[a-z]+$/.test(previous.pathname))safe.entry_page_kind='policy';
+                        else if(/^\/country\/[a-z-]+$/.test(previous.pathname))safe.entry_page_kind='country';
+                    }
+                }catch(ignored){}
+            }
+            ['country_code','route','content_id','page_kind'].forEach(function(k){
+                var attr={country_code:'countryCode',route:'route',content_id:'contentId',page_kind:'pageKind'}[k];
+                if(body[attr])safe[k]=body[attr];
+            });
+            values=values||{};
             allowed.forEach(function(k){if(typeof values[k]==='string' && values[k].length<=80)safe[k]=values[k];});
             gtag('event',name,safe);
         } catch(ignored) { /* Analytics must never interrupt eligibility checks. */ }
@@ -24,8 +49,37 @@
         var action=a.dataset.action;
         if(!action){try{var u=new URL(a.href);if(u.protocol==='https:' && /(^|\.)(nia\.gov\.cn|mfa\.gov\.cn|china-embassy\.gov\.cn|china-consulate\.gov\.cn)$/.test(u.hostname))action='official_source_click';}catch(ignored){}}
         if(!action && a.closest('#next-steps, #next-step-guides'))action='next_step_click';
-        if(action)window.visaTrack(action,{language:document.documentElement.lang==='zh'?'zh':'en',content_id:document.body.dataset.contentId||'',country_code:a.dataset.countryCode||''});
+        if(action){
+            var values={};
+            if(a.dataset.countryCode)values.country_code=a.dataset.countryCode;
+            if(a.dataset.route)values.route=a.dataset.route;
+            window.visaTrack(action,values);
+        }
     });
+    document.addEventListener('submit',function(e){
+        try {
+            var form=e.target, country=form.querySelector('select[name="country"]');
+            if(form.dataset.action && country && country.value){
+                window.visaTrack(form.dataset.action,{country_code:country.value,tool_task:form.dataset.toolTask||'country'});
+            }
+        }catch(ignored){ /* A tracking failure must not prevent native submission. */ }
+    });
+    function trackFaqs() {
+        document.querySelectorAll('details.pd-faq, details.guide-faq, .faq details, details.faq-item').forEach(function(details, index){
+            var wasOpen = details.open;
+            details.addEventListener('toggle', function(){
+                if (details.open && !wasOpen) window.visaTrack('faq_open', {faq_index:String(index + 1)});
+                wasOpen = details.open;
+            });
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', trackFaqs, {once:true});
+    else trackFaqs();
+    var sdk = document.createElement('script');
+    sdk.async = true;
+    sdk.src = 'https://www.googletagmanager.com/gtag/js?id=G-829K3T2NNP';
+    document.head.appendChild(sdk);
+}());
 </script>
 </th:block>
 

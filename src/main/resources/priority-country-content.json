@@ -3,10 +3,10 @@
     "priority": 1,
     "tier": "A",
     "routeCode": "korea",
-    "homeSeoTitleEn": "South Korean Passport to China: Visa-Free Entry & Transit Rules",
-    "homeSeoDescEn": "Check direct visa-free entry for a South Korean ordinary passport, its travel purposes and validity. Compare transit only when your onward itinerary requires it.",
-    "homeSeoTitleZh": "韩国护照入境中国免签2026｜30天条件与过境区别",
-    "homeSeoDescZh": "韩国普通护照入境中国，先核对30天直接免签的事由与有效期；仅在过境行程需要时比较240小时政策。查询出行日期、停留天数和官方依据。",
+    "homeSeoTitleEn": "South Korean Passport: China Visa-Free Eligibility & Trip Checker 2026",
+    "homeSeoDescEn": "Check a South Korean ordinary-passport trip to China by purpose, entry date and stay. Compare the 30-day direct route with transit and Hainan only when the itinerary requires it.",
+    "homeSeoTitleZh": "韩国护照入境中国免签查询2026｜资格、日期与行程检查",
+    "homeSeoDescZh": "按韩国普通护照、实际事由、入境日期与停留时间检查来华行程。一般短期访问先核对30天直接免签，需要时再比较240小时过境与海南区域条件。",
     "homeHeroQuestionEn": "Can South Korean citizens enter China without a visa?",
     "homeHeroQuestionZh": "韩国公民去中国可以免签吗？",
     "homeHeroAnswerEn": "Eligible South Korean ordinary-passport holders may use the current 30-day direct visa-free route and may also qualify for 240-hour transit when the onward itinerary and other conditions are met. Hainan has a separate regional route.",
@@ -25,42 +25,46 @@
     ],
     "homeCustomFaqsEn": [
       {
-        "q": "Can South Korean citizens enter China without a visa?",
-        "a": "Eligible South Korean ordinary-passport holders may use the current 30-day direct visa-free route and may also qualify for 240-hour transit when the onward itinerary and other conditions are met. Hainan has a separate regional route."
+        "q": "Do South Korean passport holders need a visa to visit China?",
+        "a": "Eligible ordinary-passport holders may use the recorded unilateral route for covered short-term visits of up to 30 days. Check the actual purpose and travel date; the current record runs through December 31, 2026."
       },
       {
-        "q": "How long can South Korean passport holders stay in China visa-free?",
-        "a": "Eligible South Korean ordinary-passport holders may stay in China visa-free for up to 30 days under the current direct visa-free route for covered short-term purposes. Check the permitted purpose and rules in force on the travel date."
+        "q": "How do I count the 30-day stay?",
+        "a": "Count from 00:00 on the day after entry, using China local dates. For entry on October 20, 2026, the 30th day is November 19. Follow the permitted period actually granted by immigration."
       },
       {
-        "q": "What should South Korea citizens check before traveling to China?",
-        "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+        "q": "Does Seoul–China–Seoul qualify for 240-hour transit?",
+        "a": "The preceding and onward countries or regions are the same, so this itinerary does not meet that transit condition. Check the separate direct 30-day route if the visit fits its rules."
       },
       {
-        "q": "Can South Korea citizens use Hainan visa-free entry?",
-        "a": "Eligible ordinary-passport holders may use the separate Hainan regional route when the nationality, purpose, stay and other conditions are met; it is limited to Hainan."
+        "q": "Can I work or formally study on this waiver?",
+        "a": "The short-term waiver does not authorize employment or formal study. Eligible short study tours and exchange visits have separate conditions. Check the appropriate visa or authorization for the real activity."
+      },
+      {
+        "q": "What if I enter after the recorded policy expiry?",
+        "a": "An extension is not assumed. Check the official policy for the planned entry date; the checker leaves an unconfirmed date pending."
       }
     ],
     "homeCustomFaqsZh": [
       {
-        "q": "韩国公民去中国需要签证吗？",
-        "a": "符合条件的韩国普通护照持有人可按当前直接免签政策免签来华，也可能根据行程适用240小时过境免签。"
+        "q": "韩国护照持有人去中国需要签证吗？",
+        "a": "符合条件的普通护照持有人可按现有单方面免签政策从事规定的短期访问，最长停留30天。须核对实际事由和入境日期，当前政策记录执行至2026年12月31日。"
       },
       {
-        "q": "韩国护照去中国免签可以停留多久？",
-        "a": "当前直接免签路径对符合条件的韩国普通护照持有人最长停留30天，具体以出行当日有效规定为准。"
+        "q": "来华免签30天从哪天开始算？",
+        "a": "使用中国当地日期，从入境次日0时开始计算。2026年10月20日入境，第30天为11月19日；仍以边检实际准许的停留期限为准。"
       },
       {
-        "q": "韩国公民去中国旅游可以免签吗？",
-        "a": "旅游属于当前直接免签路径覆盖的短期事由时，可以按该路径出行，但仍需满足护照和入境条件。"
+        "q": "首尔→中国→首尔符合240小时过境吗？",
+        "a": "前后国家或地区相同，不满足这项过境条件。符合条件的短期来华访问，可另行核对30天直接免签。"
       },
       {
-        "q": "韩国公民可以使用中国240小时过境免签吗？",
-        "a": "如果行程符合经中国前往第三国或地区的过境条件，并满足适用护照、口岸及停留要求，可以进一步核验240小时过境路径。"
+        "q": "可以免签来华工作或正式留学吗？",
+        "a": "短期免签不授予工作或正式留学许可。符合条件的短期研学、交流访问有独立条件，应按实际活动核对相应签证或授权。"
       },
       {
-        "q": "韩国公民可以使用海南30天免签吗？",
-        "a": "符合当前海南区域免签的国籍、普通护照、事由和停留条件时，可以使用该区域路径。"
+        "q": "在当前政策截止日期之后入境怎么办？",
+        "a": "不能提前假定政策续期。应核对计划入境日期对应的官方规定；检查器对尚未确认的日期保留待核验结果。"
       }
     ],
     "relatedCountryCodes": [
@@ -270,8 +274,8 @@
     "homeHeroQuestionZh": "马来西亚公民去中国需要签证吗？",
     "homeHeroAnswerEn": "Eligible Malaysian passport holders may use the applicable bilateral visa-exemption arrangement when its passport, purpose and stay conditions are met. Hainan has a separate regional 30-day route.",
     "homeHeroAnswerZh": "符合条件的马来西亚护照持有人在满足适用协定的护照、事由和停留条件时，可使用双边免签安排；海南另有独立的30天区域免签路径。",
-    "homeIntroEn": "Check the bilateral agreement first for a direct trip. Do not mix its rules with the 240-hour transit or Hainan route.",
-    "homeIntroZh": "直接赴华先核对中马互免协定，不要把双边免签规则与240小时过境或海南区域免签混用。",
+    "homeIntroEn": "Check the bilateral exemption for a direct trip. Malaysian passports are outside the current 57-country 240-hour transit list; a third-country ticket does not change that. Hainan has a separate regional route.",
+    "homeIntroZh": "直接来华先核对双边互免。马来西亚护照不在现行57国240小时过境免签名单中，持第三国客票也不会因此取得资格；海南另有区域免签路径。",
     "homeImportantNotesEn": [
       "Bilateral exemption terms can differ from unilateral visa-free rules.",
       "Confirm the permitted purpose and stay limit.",
@@ -290,6 +294,10 @@
       {
         "q": "What should Malaysia citizens check before traveling to China?",
         "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+      },
+      {
+        "q": "Can Malaysian passport holders use 240-hour visa-free transit?",
+        "a": "No. Malaysian passports are outside the current 57-country 240-hour list. Check the bilateral exemption or, for a short connection, the separate 24-hour transit conditions."
       },
       {
         "q": "Can Malaysia citizens use Hainan visa-free entry?",
@@ -311,7 +319,7 @@
       },
       {
         "q": "马来西亚公民可以使用240小时过境免签吗？",
-        "a": "如果实际行程符合经中国前往第三国或地区的过境条件，还可以单独核验240小时过境路径。"
+        "a": "不可以。马来西亚护照不在现行57国240小时过境免签名单中。可核对双边互免；短时中转也可另行核对24小时过境条件。"
       },
       {
         "q": "马来西亚公民可以使用海南30天免签吗？",
@@ -339,16 +347,16 @@
     "priority": 5,
     "tier": "A",
     "routeCode": "thailand",
-    "homeSeoTitleEn": "Thailand to China Visa Guide 2026 | Mutual Visa Exemption & Hainan 30-Day",
-    "homeSeoDescEn": "Thai citizens: check the China-Thailand mutual visa exemption, its stay conditions, Hainan regional entry and transit alternatives.",
-    "homeSeoTitleZh": "泰国来华签证与免签指南 2026 | 互免签证与海南30天免签",
-    "homeSeoDescZh": "泰国公民来华查询中泰互免签证、停留条件、海南区域免签及过境路径。",
+    "homeSeoTitleEn": "Thai Passport to China 2026 | 30-Day Visa-Free & 90/180 Rules",
+    "homeSeoDescEn": "Thai ordinary-passport holders: check China visa-free entry for up to 30 days per visit and 90 days in any 180 days, permitted purposes and the 240-hour exclusion.",
+    "homeSeoTitleZh": "泰国护照来中国2026免签吗？30天互免与90/180规则",
+    "homeSeoDescZh": "泰国普通护照来中国，符合协定的单次免签不超过30天，每180日累计不超过90天。核对适用事由、累计额度与海南路径；泰国不在240小时名单内。",
     "homeHeroQuestionEn": "Do Thai citizens need a visa for China?",
     "homeHeroQuestionZh": "泰国公民去中国需要签证吗？",
     "homeHeroAnswerEn": "Eligible Thai passport holders should check the China-Thailand bilateral visa-exemption terms, including passport type, purpose and cumulative stay. Hainan has a separate regional route.",
     "homeHeroAnswerZh": "符合条件的泰国护照持有人应核对中泰互免签证协定，包括护照类型、出行事由和累计停留期限；海南另有独立区域免签路径。",
-    "homeIntroEn": "For a direct trip, start with the bilateral agreement. If your itinerary is actually transit to a third country or region, assess the separate transit route.",
-    "homeIntroZh": "直接赴华先看中泰互免协定；如果实际行程是经中国前往第三国或地区，再判断独立的过境路径。",
+    "homeIntroEn": "Check the bilateral exemption for a direct trip. Thai passports are outside the current 57-country 240-hour transit list; a third-country ticket does not change that. Hainan has a separate regional route.",
+    "homeIntroZh": "直接来华先核对双边互免。泰国护照不在现行57国240小时过境免签名单中，持第三国客票也不会因此取得资格；海南另有区域免签路径。",
     "homeImportantNotesEn": [
       "Check the bilateral agreement rather than assuming a 30-day unilateral rule.",
       "Cumulative-stay and entry conditions may matter.",
@@ -365,8 +373,12 @@
         "a": "Eligible Thai passport holders should check the China-Thailand bilateral visa-exemption terms, including passport type, purpose and cumulative stay. Hainan has a separate regional route."
       },
       {
-        "q": "What should Thailand citizens check before traveling to China?",
-        "a": "Check the applicable entry route, passport type, permitted purpose, maximum stay and any itinerary conditions before departure."
+        "q": "How long can a Thai ordinary-passport holder stay visa-free?",
+        "a": "Up to 30 days per entry and 90 days in any 180-day period under the bilateral agreement. Earlier visa-free stays reduce the remaining allowance; leaving and re-entering does not reset it."
+      },
+      {
+        "q": "Can Thai passport holders use 240-hour visa-free transit?",
+        "a": "No. Thai passports are outside the current 57-country 240-hour list. Check the bilateral exemption or, for a short connection, the separate 24-hour transit conditions."
       },
       {
         "q": "Can Thailand citizens use Hainan visa-free entry?",
@@ -380,7 +392,7 @@
       },
       {
         "q": "泰国护照去中国可以免签多久？",
-        "a": "停留期限应按适用的中泰互免签证安排及具体护照、事由条件核对，并关注累计停留限制。"
+        "a": "符合中泰互免协定的，单次停留不超过30日，每180日累计停留不超过90日。此前免签停留占用累计额度，出境再入境不会清零。"
       },
       {
         "q": "泰国公民去中国旅游需要签证吗？",
@@ -388,7 +400,7 @@
       },
       {
         "q": "泰国公民可以使用240小时过境免签吗？",
-        "a": "如果实际行程符合经中国前往第三国或地区的过境条件，还可以单独核验240小时过境路径。"
+        "a": "不可以。泰国护照不在现行57国240小时过境免签名单中。可核对双边互免；短时中转也可另行核对24小时过境条件。"
       },
       {
         "q": "泰国公民可以使用海南30天免签吗？",
@@ -756,16 +768,16 @@
     "priority": 10,
     "tier": "A",
     "routeCode": "ca",
-    "homeSeoTitleEn": "Canada to China Visa Guide 2026 | 30-Day Visa-Free Entry & 240-Hour Transit",
-    "homeSeoDescEn": "Canadian citizens: check 30-day visa-free entry, 240-hour transit, Hainan regional entry and the practical conditions for your trip.",
-    "homeSeoTitleZh": "加拿大来华签证与免签指南 2026 | 30天免签与240小时过境",
-    "homeSeoDescZh": "加拿大公民来华查询30天免签、240小时过境、海南区域免签及实际行程条件。",
+    "homeSeoTitleEn": "Do Canadians Need a Visa for China? | 30-Day Rules 2026",
+    "homeSeoDescEn": "Canadian ordinary-passport holders: check China’s 30-day visa-free conditions, covered purposes and December 31, 2026 policy expiry. Check your trip dates and compare transit routes.",
+    "homeSeoTitleZh": "加拿大护照去中国免签吗？2026年30天条件与期限",
+    "homeSeoDescZh": "加拿大普通护照符合条件可免签来华最长30天，现行政策至2026年12月31日。核对旅游、商务、探亲等事由、出行日期及材料，区分直接免签与过境路线。",
     "homeHeroQuestionEn": "Do Canadian citizens need a visa for China?",
     "homeHeroQuestionZh": "加拿大公民去中国需要签证吗？",
     "homeHeroAnswerEn": "Eligible Canadian ordinary-passport holders may use the current 30-day visa-free route and may also qualify for 240-hour transit when all transit conditions are met.",
     "homeHeroAnswerZh": "符合条件的加拿大普通护照持有人可适用当前30天免签，也可能在满足全部过境条件时适用240小时过境。",
-    "homeIntroEn": "Use the 30-day direct route for an ordinary China trip. If China is a transit point to a third country or region, assess the separate 240-hour route.",
-    "homeIntroZh": "普通赴华行程先判断30天直接免签；如果中国只是前往第三国或地区的过境点，再判断240小时过境。",
+    "homeIntroEn": "For a China-destination trip, first check the 30-day unilateral route, currently stated through December 31, 2026. Work and formal study need the appropriate visa. Use 240-hour transit only for a qualifying onward trip to a third country or region.",
+    "homeIntroZh": "以中国为目的地时，先核对30天单方面免签，现行政策至2026年12月31日。工作、正式学习等活动应办理相应签证；经中国前往第三国或地区时，再单独判断240小时过境。",
     "homeImportantNotesEn": [
       "Direct entry and transit are separate routes.",
       "Transit requires a qualifying onward itinerary.",
@@ -820,8 +832,8 @@
     ],
     "policySeo": {
       "unilateral": {
-        "titleEn": "Canada to China Visa-Free 30 Days | Canadian Passport Entry Rules",
-        "titleZh": "加拿大护照来华30天免签 | 入境条件与停留规则"
+        "titleEn": "Canada–China 30-Day Visa-Free Rules | Dates & Documents",
+        "titleZh": "加拿大来华30天免签细则｜天数计算、材料与有效期"
       },
       "transit": {
         "titleEn": "Canada China 240-Hour Transit Visa-Free | Canadian Passport Rules",

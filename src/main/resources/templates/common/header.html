@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <header th:fragment="site-header" class="site-header">
+    <a class="skip-link" href="#main-content" th:text="${lang=='en'?'Skip to main content':'跳至正文'}"></a>
     <div class="site-header-inner">
         <a class="site-logo" th:href="@{/(lang=${lang})}" aria-label="China Visa Free Guide">China Visa Free Guide</a>
         <button class="site-nav-toggle" type="button" aria-expanded="false" aria-controls="site-primary-nav">
@@ -46,6 +47,10 @@
     </div>
     <style>
         .site-header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .skip-link{position:fixed;left:12px;top:0;transform:translateY(-120%);padding:10px 16px;background:#064e3b;color:#fff;border-radius:0 0 8px 8px;z-index:1100}
+        .skip-link:focus{transform:translateY(0)}
+        a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #047857;outline-offset:3px}
+        @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
         .site-header-inner{max-width:1180px;margin:0 auto;min-height:62px;padding:0 18px;display:flex;align-items:center;gap:22px}
         .site-logo{font-weight:850;color:#064e3b;text-decoration:none;white-space:nowrap;font-size:16px}
         .site-nav{display:flex;align-items:center;gap:4px;flex:1}
@@ -69,6 +74,7 @@
         }
         @media(min-width:1101px){.site-nav{overflow:visible}}
     </style>
+    <noscript><style>@media(max-width:1100px){.site-header{position:static}.site-header-inner{flex-wrap:wrap}.site-nav{display:flex;position:static;width:100%;box-sizing:border-box}.site-nav-toggle{display:none}.home-route-tabs{position:static}}</style></noscript>
     <script>
         document.addEventListener('DOMContentLoaded',function(){
             var btn=document.querySelector('.site-nav-toggle');
@@ -78,6 +84,9 @@
                 var open=nav.classList.toggle('open');
                 btn.setAttribute('aria-expanded',open?'true':'false');
             });
+            function closeMenu(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+            document.addEventListener('keydown',function(event){if(event.key==='Escape'&&nav.classList.contains('open')){closeMenu();btn.focus();}});
+            document.addEventListener('click',function(event){if(!nav.contains(event.target)&&!btn.contains(event.target))closeMenu();});
             nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
         });
     </script>

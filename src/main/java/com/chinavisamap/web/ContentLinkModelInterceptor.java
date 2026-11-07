@@ -23,6 +23,7 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
     private final List<Map<String,Object>> articles;
     private final Map<String,Map<String,Object>> priorityContent;
     private final Map<String,String[]> countryNames = new LinkedHashMap<>();
+    private final Map<String,Set<String>> countryPolicyTypes = new LinkedHashMap<>();
 
     public ContentLinkModelInterceptor(CountryCodeResolver resolver, StructuredDataService structuredDataService, ObjectMapper mapper) {
         this.resolver = resolver;
@@ -42,6 +43,7 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
                 CountryDetail c = entry.getValue(); if (c == null) continue;
                 String code = resolver.routeCode(resolver.policyKey(entry.getKey()));
                 countryNames.put(code, new String[]{safe(c.getName()), safe(c.getNameZh())});
+                countryPolicyTypes.computeIfAbsent(code, key -> new LinkedHashSet<>()).add(c.getPolicyType());
             }
         } catch (Exception ignored) { }
     }
@@ -52,7 +54,19 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
     @SuppressWarnings("unchecked")
     public void postHandle(HttpServletRequest request,HttpServletResponse response,Object handler,ModelAndView mav){
         if(mav==null)return;
-        String uri=request.getRequestURI(); String lang="zh".equals(request.getParameter("lang"))?"zh":"en";
+        String uri=request.getRequestURI(); String lang="zh".equals(mav.getModel().get("lang"))?"zh":"en";
+        if (uri.startsWith("/articles/") || "/visa-guide".equals(uri)) {
+            List<Map<String,String>> choices = new ArrayList<>();
+            for (Map.Entry<String,String[]> country : countryNames.entrySet()) {
+                Map<String,String> choice = new LinkedHashMap<>();
+                choice.put("code", country.getKey());
+                choice.put("name", country.getValue()[0]);
+                choice.put("nameZh", country.getValue()[1]);
+                choices.add(choice);
+            }
+            choices.sort(Comparator.comparing(c -> c.get("zh".equals(lang) ? "nameZh" : "name"), String.CASE_INSENSITIVE_ORDER));
+            mav.addObject("checkerCountries", choices);
+        }
         if(uri.startsWith("/country/")){
             String[] parts=uri.split("/"); String code=parts.length>2?resolver.routeCode(resolver.policyKey(parts[2])):""; String type=parts.length>3?parts[3]:"";
             List<Map<String,Object>> countryRelated=relatedArticles(code,type);
@@ -126,6 +140,22 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
             mav.addObject("relatedCountryCodes",codes); Map<String,String> names=new LinkedHashMap<>();
             for(String c:codes){String[] n=countryNames.get(c);names.put(c,n==null?c:("zh".equals(lang)?n[1]:n[0]));}
             mav.addObject("relatedCountryNames",names);
+            if (article != null && !"none".equals(article.get("toolIntent"))) {
+                String primary = resolver.routeCode(resolver.policyKey(safe((String) article.get("primaryCountryCode"))));
+                if (codes.contains(primary) && countryNames.containsKey(primary)) {
+                    Set<String> types = countryPolicyTypes.getOrDefault(primary, Collections.emptySet());
+                    String topic = String.valueOf(article.getOrDefault("topicCluster", ""));
+                    String route = "transit".equals(topic) && types.contains("transit") ? "transit240"
+                            : "hainan".equals(topic) && types.contains("hainan") ? "hainan" : "auto";
+                    String anchor = "dates".equals(article.get("toolIntent")) && types.contains("unilateral")
+                            ? "stay-calculator" : "eligibility-checker";
+                    mav.addObject("articleCheckerUrl", "/country/" + primary + "?lang=" + lang
+                            + "&entryMode=" + route + ("transit240".equals(route) ? "&purpose=transit" : "") + "#" + anchor);
+                    mav.addObject("articlePrimaryCountryCode", primary);
+                    mav.addObject("articlePrimaryCountryName", names.get(primary));
+                    mav.addObject("articleCheckerRoute", route);
+                }
+            }
             mav.addObject("relatedArticles",relatedArticlesForArticle(article));
             mav.addObject("contentLinkLang",lang);
         }
@@ -174,6 +204,8 @@ public class ContentLinkModelInterceptor implements HandlerInterceptor {
 
     @SuppressWarnings("unchecked")
     private void rebuildStructuredData(ModelAndView mav,Map<String,Object> base,String lang){
+        Object verified = mav.getModel().get("lastVerified");
+        if (verified != null) base.put("lastVerified", verified);
         Object country=mav.getModel().get("detailCountry"),types=mav.getModel().get("availableTypes"),canonical=mav.getModel().get("canonicalUrl");
         if(!(country instanceof CountryDetail)||!(types instanceof List)||canonical==null)return;
         Map<String,CountryDetail> details=new LinkedHashMap<>(); Object policies=mav.getModel().get("availablePolicies");

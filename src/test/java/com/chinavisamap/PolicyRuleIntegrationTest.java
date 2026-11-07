@@ -22,6 +22,62 @@ class PolicyRuleIntegrationTest {
     @Autowired ObjectMapper mapper;
     @Autowired PolicyRuleEngine engine;
     @Autowired CountryCodeResolver resolver;
+    @Test void primaryArticleToolsUseExistingCountryAndTopicRelationships() throws Exception {
+        Map<String,String> routes=new LinkedHashMap<>();
+        routes.put("korea-china-direct-2026","/country/korea?lang=%s&entryMode=auto#stay-calculator");
+        routes.put("korea-china-purpose-2026","/country/korea?lang=%s&entryMode=auto#eligibility-checker");
+        routes.put("korea-china-transit-2026","/country/korea?lang=%s&entryMode=transit240&purpose=transit#eligibility-checker");
+        routes.put("korea-china-hainan-2026","/country/korea?lang=%s&entryMode=hainan#eligibility-checker");
+        routes.put("japan-china-transit-2026","/country/jp?lang=%s&entryMode=transit240&purpose=transit#eligibility-checker");
+        routes.put("thailand-china-agreement-2026","/country/thailand?lang=%s&entryMode=auto#eligibility-checker");
+        routes.put("usa-china-visa-decision-2026","/country/us?lang=%s&entryMode=auto#eligibility-checker");
+        for(String lang:Arrays.asList("en","zh")) for(Map.Entry<String,String> entry:routes.entrySet()) {
+            MvcResult page=mvc.perform(get("/articles/"+entry.getKey()).param("lang",lang)).andExpect(status().isOk()).andReturn();
+            assertEquals(String.format(entry.getValue(),lang),page.getModelAndView().getModel().get("articleCheckerUrl"));
+            String html=page.getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8);
+            assertTrue(html.contains("class=\"article-primary-tool\""));
+            mvc.perform(get(String.format(entry.getValue(),lang).split("#")[0])).andExpect(status().isOk());
+        }
+        MvcResult visa=mvc.perform(get("/articles/usa-china-regular-visa-2026")).andExpect(status().isOk()).andReturn();
+        assertEquals("none",visa.getModelAndView().getModel().get("articleToolIntent"));
+        assertNull(visa.getModelAndView().getModel().get("articleCheckerUrl"));
+        MvcResult generic=mvc.perform(get("/articles/hotel-booking-proof-china-visafree")).andExpect(status().isOk()).andReturn();
+        assertNull(generic.getModelAndView().getModel().get("articleCheckerUrl"));
+    }
+    @Test void policyHeroOpensTheMatchingCheckerAndKeepsAlternativesSecondary() throws Exception {
+        Map<String,String> routes=new LinkedHashMap<>();
+        routes.put("au/unilateral","direct");routes.put("us/transit","transit240");
+        routes.put("sg/mutual","direct");routes.put("us/hainan","hainan");
+        for(String lang:Arrays.asList("en","zh")) for(Map.Entry<String,String> route:routes.entrySet()) {
+            MvcResult page=mvc.perform(get("/country/"+route.getKey()).param("lang",lang)).andExpect(status().isOk()).andReturn();
+            Map<String,Object> model=page.getModelAndView().getModel();
+            String url=String.valueOf(model.get("checkerUrl"));
+            assertTrue(url.contains("entryMode="+route.getValue()));
+            MvcResult checker=mvc.perform(get(url.split("#")[0])).andExpect(status().isOk()).andReturn();
+            assertEquals(route.getValue(),checker.getModelAndView().getModel().get("selectedEntryMode"));
+            if("transit240".equals(route.getValue()))assertEquals("transit",checker.getModelAndView().getModel().get("selectedPurpose"));
+            String html=page.getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8);
+            String hero=html.substring(html.indexOf("<section class=\"pd-hero\">"),html.indexOf("</section>"));
+            assertEquals(1,hero.split("data-action=\"checker_open\"",-1).length-1);
+            assertTrue(hero.contains("data-action=\"calculator_open\"")==route.getKey().endsWith("unilateral"));
+            assertFalse(html.contains("class=\"pd-faq-a\""));
+            assertTrue(html.indexOf("Only connecting through China")>html.indexOf("Detailed rules") || "zh".equals(lang));
+        }
+    }
+    @Test void koreanTripsKeepDatePurposeTransitAndRegionalBoundaries() throws Exception {
+        Map<String,Object> t=trip("direct");t.put("days",30);
+        assertEquals("eligible",call("korea",t,false).get("status"));
+        assertEquals("2026-11-19",call("korea",t,true).get("latestDeparture"));
+        t.put("days",31);assertEquals("ineligible",call("korea",t,false).get("status"));
+        t.put("days",7);t.put("passportValid",false);assertEquals("passport_validity",call("korea",t,false).get("reason"));
+        t.put("passportValid",true);t.put("purpose","study");assertEquals("visa_purpose",call("korea",t,false).get("reason"));
+        t.put("purpose","study_tour");assertEquals("eligible",call("korea",t,false).get("status"));
+        t.put("entryDate","2027-01-01");assertEquals("policy_date_unconfirmed",call("korea",t,false).get("reason"));
+        t=trip("transit240");t.put("origin","KR");t.put("destination","KR");
+        assertEquals("not_third_country",call("korea",t,false).get("reason"));
+        t.put("destination","JP");assertEquals("port_area_unverified",call("korea",t,false).get("reason"));
+        assertEquals("hainan_conditions",call("korea",trip("hainan"),false).get("reason"));
+    }
     @Test void homepageStartsWithUniqueCanonicalNationalitiesAndWorksWithoutJavascript() throws Exception {
         for(String lang:Arrays.asList("en","zh")) {
             MvcResult page=mvc.perform(get("/").param("lang",lang)).andExpect(status().isOk()).andReturn();
@@ -31,7 +87,8 @@ class PolicyRuleIntegrationTest {
                 String code=String.valueOf(c.get("code"));
                 assertTrue(codes.add(code));
                 assertEquals(resolver.routeCode(resolver.policyKey(code)),code);
-                mvc.perform(get("/country/"+code).param("lang",lang)).andExpect(status().isOk());
+                MvcResult countryPage=mvc.perform(get("/country/"+code).param("lang",lang)).andExpect(status().isOk()).andReturn();
+                assertCountrySummaryNotRepeated(countryPage,code+":"+lang);
             }
             String html=page.getResponse().getContentAsString();
             assertTrue(html.contains("id=\"passport-country\""));
@@ -39,6 +96,30 @@ class PolicyRuleIntegrationTest {
             mvc.perform(get("/").param("keyword","australia").param("lang",lang))
                     .andExpect(status().isOk()).andExpect(model().attribute("searchHasResults",true));
         }
+    }
+    private void assertCountrySummaryNotRepeated(MvcResult page,String label) throws Exception {
+        Map<String,Object> model=page.getModelAndView().getModel();
+        String answer=String.valueOf(model.get("countryDecisionAnswer"));
+        String note=String.valueOf(model.get("countryDecisionText"));
+        assertFalse(answer.trim().isEmpty(),label);
+        assertFalse(note.trim().isEmpty(),label);
+        assertNotEquals(answer.replaceAll("\\s+",""),note.replaceAll("\\s+",""),label);
+        String html=page.getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8);
+        java.util.regex.Matcher main=java.util.regex.Pattern.compile("<p class=\"decision-answer\">(.*?)</p>").matcher(html);
+        assertTrue(main.find(),label);
+        String rendered=main.group(1);
+        assertEquals(1,html.split(java.util.regex.Pattern.quote(rendered),-1).length-1,label);
+        assertFalse(html.contains("class=\"footer-content-cluster\""),label);
+    }
+    @Test void ukraineAndMutualCountriesHaveOneConclusionAndActionableNotes() throws Exception {
+        for(String code:Arrays.asList("ukraine","us","philippines","my","sg","thailand","au")) {
+            for(String lang:Arrays.asList("en","zh")) {
+                MvcResult page=mvc.perform(get("/country/"+code).param("lang",lang)).andExpect(status().isOk()).andReturn();
+                assertCountrySummaryNotRepeated(page,code+":"+lang);
+            }
+        }
+        MvcResult result=mvc.perform(get("/country/ukraine").param("lang","zh")).andReturn();
+        assertTrue(String.valueOf(result.getModelAndView().getModel().get("countryDecisionText")).contains("第三国或地区"));
     }
     @Test void paginationHasItsOwnCanonicalButSearchAndEmptyVariantsStayNoindex() throws Exception {
         for(String lang:Arrays.asList("en","zh")) {
@@ -140,8 +221,11 @@ class PolicyRuleIntegrationTest {
         related=related.substring(0,related.indexOf("</section>"));
         assertTrue(related.contains("新西兰"),related);
         List<Map<String,Object>> articles=mapper.readValue(new org.springframework.core.io.ClassPathResource("articles.json").getInputStream(),List.class);
-        for(Map<String,Object> article:articles) for(String lang:Arrays.asList("en","zh"))
-            mvc.perform(get("/articles/"+article.get("id")).param("lang",lang)).andExpect(status().isOk());
+        for(Map<String,Object> article:articles) for(String lang:Arrays.asList("en","zh")) {
+            String html=mvc.perform(get("/articles/"+article.get("id")).param("lang",lang)).andExpect(status().isOk())
+                    .andReturn().getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8);
+            assertFalse(html.contains("class=\"footer-content-cluster\""),String.valueOf(article.get("id")));
+        }
     }
     @Test void allRecordedPolicyRoutesAndArticlesRender() throws Exception {
         for(String type:Arrays.asList("unilateral","mutual","transit","hainan")) {

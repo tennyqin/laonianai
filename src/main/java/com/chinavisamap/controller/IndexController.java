@@ -26,18 +26,18 @@ public class IndexController {
     private final CountryCodeResolver countryCodeResolver;
 
     public IndexController(SeoService seoService, StructuredDataService structuredDataService,
-                           CountryFlagService countryFlagService, CountryCodeResolver countryCodeResolver) {
+                           CountryFlagService countryFlagService, CountryCodeResolver countryCodeResolver, ObjectMapper mapper) {
         this.seoService = seoService;
         this.structuredDataService = structuredDataService;
         this.countryFlagService = countryFlagService;
         this.countryCodeResolver = countryCodeResolver;
         try {
-            allData.putAll(new ObjectMapper().readValue(
+            allData.putAll(mapper.readValue(
                     new ClassPathResource("data.json").getInputStream(),
                     new TypeReference<Map<String, Object>>() {}
             ));
-        } catch (Exception ignored) {
-            // Keep the application available even if the static data cannot be loaded.
+        } catch (Exception exception) {
+            throw new IllegalStateException("Failed to load required homepage data.json", exception);
         }
     }
 
@@ -63,6 +63,15 @@ public class IndexController {
                 searchAndSort((List<Map<String, Object>>) allData.get("hainanContinents"), "", currentLang));
         countries.sort(Comparator.comparing(c -> displayName(c, currentLang), String.CASE_INSENSITIVE_ORDER));
         model.addAttribute("checkerCountries", countries);
+        List<Map<String,Object>> featured = new ArrayList<>();
+        Object featuredCodes = allData.get("featuredCountryCodes");
+        if (featuredCodes instanceof List) {
+            for (Object raw : (List<?>) featuredCodes) {
+                String canonical = countryCodeResolver.routeCode(countryCodeResolver.policyKey(String.valueOf(raw)));
+                countries.stream().filter(c -> canonical.equals(c.get("code"))).findFirst().ifPresent(featured::add);
+            }
+        }
+        model.addAttribute("featuredCountries", featured);
 
         String siteName = String.valueOf(allData.getOrDefault("siteName", "China Visa Free Guide 2026"));
         String title = "zh".equals(currentLang)

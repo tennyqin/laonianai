@@ -45,8 +45,8 @@ public class SitemapController {
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">");
 
-        addMultilingualUrl(xml, emittedUrls, "/", "homepage", siteMetadataService.sitemapBaselineLastModified());
-        addMultilingualUrl(xml, emittedUrls, "/transit-check", "transit-check", siteMetadataService.contentLastModified());
+        addMultilingualUrl(xml, emittedUrls, "/", "homepage", siteMetadataService.pageLastModified("/"));
+        addMultilingualUrl(xml, emittedUrls, "/transit-check", "transit-check", siteMetadataService.pageLastModified("/transit-check"));
 
         Set<String> countryCodes = new TreeSet<>();
         addCanonicalCodes(countryCodes, unilateralMap.keySet());
@@ -54,7 +54,7 @@ public class SitemapController {
         addCanonicalCodes(countryCodes, transitMap.keySet());
         addCanonicalCodes(countryCodes, hainanMap.keySet());
         for (String code : countryCodes) {
-            addMultilingualUrl(xml, emittedUrls, "/country/" + code, "country", siteMetadataService.contentLastModified());
+            addMultilingualUrl(xml, emittedUrls, "/country/" + code, "country", siteMetadataService.pageLastModified("/country/" + code));
         }
 
         addCountryTypeUrls(xml, emittedUrls, countryCodes, unilateralMap, "unilateral");
@@ -71,8 +71,8 @@ public class SitemapController {
                 addMultilingualUrl(xml, emittedUrls, "/articles/" + id, "article", articleLastMod(article));
             }
         }
-        addMultilingualUrl(xml, emittedUrls, "/visa-guide", "visa-guide", siteMetadataService.sitemapBaselineLastModified());
-        addMultilingualUrl(xml, emittedUrls, "/about", "about", siteMetadataService.contentLastModified());
+        addMultilingualUrl(xml, emittedUrls, "/visa-guide", "visa-guide", siteMetadataService.pageLastModified("/visa-guide"));
+        addMultilingualUrl(xml, emittedUrls, "/about", "about", siteMetadataService.pageLastModified("/about"));
 
         xml.append("</urlset>");
         return ResponseEntity.ok()
@@ -89,8 +89,7 @@ public class SitemapController {
         for (String code : map.keySet()) {
             String canonicalCode = resolver.routeCode(resolver.policyKey(code));
             if (validCountryCodes.contains(canonicalCode)) {
-                // Shared policy-page presentation changed in this release as well.
-                String lastmod = siteMetadataService.contentLastModified();
+                String lastmod = siteMetadataService.pageLastModified("/country/" + canonicalCode + "/" + type);
                 addMultilingualUrl(xml, emittedUrls, "/country/" + canonicalCode + "/" + type, "country-detail", lastmod);
             }
         }

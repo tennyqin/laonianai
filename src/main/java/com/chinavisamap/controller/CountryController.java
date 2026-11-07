@@ -3,6 +3,7 @@ package com.chinavisamap.controller;
 import com.chinavisamap.entity.CountryDetail;
 import com.chinavisamap.entity.CountryPolicy;
 import com.chinavisamap.service.*;
+import com.chinavisamap.web.RedirectAttribution;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
@@ -18,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -64,20 +66,21 @@ public class CountryController {
 
     @GetMapping(value = "/country/{code}", params = "type")
     public ResponseEntity<Void> legacyCountryRedirect(@PathVariable String code, @RequestParam String type,
-                                                       @RequestParam(defaultValue = "en") String lang) {
+                                                       @RequestParam(defaultValue = "en") String lang,
+                                                       HttpServletRequest request) {
         CountryDetail detail = getCountryDetail(code, type);
         if (detail == null) {
             // Preserve old indexed unilateral URLs for countries whose old synthetic
             // policy record has been removed: redirect to the real country page.
             if ("unilateral".equalsIgnoreCase(type) && getAnyCountryDetail(code) != null) {
-                return redirectToCountryHome(code, lang);
+                return redirectToCountryHome(code, lang, request);
             }
             return ResponseEntity.notFound().build();
         }
         String location = UriComponentsBuilder.fromPath("/country/" + routeCode(code) + "/" + type)
                 .queryParam("lang", seoService.normalizeLang(lang)).build().encode().toUriString();
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create(location));
+        headers.setLocation(URI.create(RedirectAttribution.preserve(location, request)));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
@@ -107,8 +110,8 @@ public class CountryController {
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("availableTypes", types);
         model.addAttribute("countryExtraRoot", countryContent);
-        Map<String, Object> countryIntent = buildCountryIntent(pageCode, detailCountry, types, availablePoliciesFor(code, types), extra);
-        model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, extra));
+        Map<String, Object> countryIntent = buildCountryIntent(pageCode, detailCountry, types, availablePoliciesFor(code, types), countryContent);
+        model.addAttribute("countryProfile", buildCountryProfile(pageCode, detailCountry, countryContent));
         model.addAttribute("countryIntent", countryIntent);
         model.addAttribute("lastVerified", latestVerified(code, types, countryContent));
         model.addAttribute("countrySeoTitleEn", countryIntent.get("seoTitleEn"));
@@ -122,7 +125,7 @@ public class CountryController {
         model.addAttribute("routeCountText", "en".equals(normalizedLang)?types.size()+" listed routes — check conditions":types.size()+"条名单路径，请分别核对条件");
         model.addAttribute("directDecisionYes", hasDirectVisaFreeRoute(types, pageCode));
         model.addAttribute("countryDecisionTitle", buildCountryDecisionTitle(detailCountry, types, normalizedLang));
-        model.addAttribute("countryDecisionText", buildCountryDecisionText(detailCountry, types, normalizedLang));
+        model.addAttribute("countryDecisionText", buildCountryDecisionNote(types, normalizedLang));
         boolean currentUnilateral=ruleEngine.policyAvailableToday(pageCode,"unilateral");
         model.addAttribute("countryDecisionAnswer", currentUnilateral
                 ? (normalizedLang.equals("en")?"Eligible ordinary-passport holders can visit for up to 30 days under the current unilateral policy. Check your travel date and purpose below.":"符合条件的普通护照持有人可按当前单方面政策免签来华最长30天。请在下方按实际出行日期和目的检查。")
@@ -155,14 +158,15 @@ public class CountryController {
 
     @GetMapping("/country/{code}/{type}")
     public Object restCountryDetail(@PathVariable String code, @PathVariable String type,
-                                    @RequestParam(defaultValue = "en") String lang, Model model) {
+                                    @RequestParam(defaultValue = "en") String lang, Model model,
+                                    HttpServletRequest request) {
         String normalizedLang = seoService.normalizeLang(lang);
         CountryDetail detailCountry = getCountryDetail(code, type);
         if (detailCountry == null) {
             // A legacy synthetic unilateral route must never be presented as a real policy.
             // Keep the URL alive with a permanent redirect to the country decision page.
             if ("unilateral".equalsIgnoreCase(type) && getAnyCountryDetail(code) != null) {
-                return redirectView(code, normalizedLang);
+                return redirectView(code, normalizedLang, request);
             }
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Country policy not found");
         }
@@ -174,6 +178,7 @@ public class CountryController {
         CountryPolicy policy = buildCountryPolicy(pageCode, type, detailCountry, extra);
         Map<String,Object> policyIntent = buildPolicyIntent(pageCode, detailCountry, type, policy, rootExtra);
         Map<String,Object> schemaExtra = new LinkedHashMap<>(extra);
+        schemaExtra.put("lastVerified", policy.getLastVerified());
         schemaExtra.put("policySeoTitleEn", policyIntent.get("seoTitleEn"));
         schemaExtra.put("policySeoTitleZh", policyIntent.get("seoTitleZh"));
         schemaExtra.put("policySeoDescEn", policyIntent.get("seoDescEn"));
@@ -185,6 +190,7 @@ public class CountryController {
         model.addAttribute("policy", policy);
         model.addAttribute("code", pageCode);
         model.addAttribute("type", type);
+        model.addAttribute("agreementTermsVerified", Boolean.TRUE.equals(ruleEngine.rule(detailCountry).get("limitsVerified")));
         model.addAttribute("lang", normalizedLang);
         model.addAttribute("countryFlag", flagService.flag(pageCode));
         model.addAttribute("countryExtra", extra);
@@ -196,7 +202,9 @@ public class CountryController {
         model.addAttribute("policyDetails", buildPolicyDetails(code, availableTypes));
         model.addAttribute("policyNavItems", buildPolicyNavItems(pageCode, availableTypes, normalizedLang));
         String checkerMode="transit".equals(type)?"transit240":"hainan".equals(type)?"hainan":"direct";
-        model.addAttribute("checkerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&entryMode=" + checkerMode + "#eligibility-checker");
+        model.addAttribute("checkerMode", checkerMode);
+        model.addAttribute("checkerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&entryMode=" + checkerMode
+                + ("transit".equals(type) ? "&purpose=transit" : "") + "#eligibility-checker");
         model.addAttribute("calculatorUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&entryMode=direct#stay-calculator");
         model.addAttribute("calculatorAvailable", "unilateral".equals(type));
         model.addAttribute("transit24CheckerUrl", "/country/" + pageCode + "?lang=" + normalizedLang + "&purpose=transit&entryMode=transit24#eligibility-checker");
@@ -258,6 +266,32 @@ public class CountryController {
         return "en".equals(lang)
                 ? (direct ? n + " passport holders can enter China visa-free" : n + " passport holders: no general direct visa-free entry")
                 : (direct ? n + "护照可以直接免签进入中国" : n + "护照目前不能直接免签进入中国");
+    }
+
+    private String buildCountryDecisionNote(List<String> types, String lang) {
+        boolean zh = "zh".equals(lang);
+        if (types.contains("mutual")) {
+            return zh ? "请按具体协定核对护照类别、允许事由、单次及累计停留限制。"
+                    : "Check the agreement's passport categories, permitted purposes, and per-entry and cumulative stay limits.";
+        }
+        if (types.contains("unilateral")) {
+            return zh ? "政策有效期与个人获准停留期限不同；请按计划入境日期核对，并以边检实际准入为准。"
+                    : "The policy validity period differs from your permitted stay. Check your planned entry date and the period actually granted by immigration.";
+        }
+        if (types.contains("transit") && types.contains("hainan")) {
+            return zh ? "过境路径须核对前往第三国或地区的行程、口岸及活动区域；海南路径的活动范围限海南省内。"
+                    : "For transit, check the onward itinerary to a third country or region, ports and permitted areas. The Hainan route is limited to Hainan Province.";
+        }
+        if (types.contains("transit")) {
+            return zh ? "请核对前往第三国或地区的联程行程、适用口岸及允许活动区域。"
+                    : "Check the onward itinerary to a third country or region, eligible ports and permitted travel areas.";
+        }
+        if (types.contains("hainan")) {
+            return zh ? "海南路径的活动范围限海南省内；前往海南以外的中国大陆地区须另行核对入境资格。"
+                    : "The Hainan route is limited to Hainan Province. Check separate entry requirements for mainland destinations outside Hainan.";
+        }
+        return zh ? "请核对官方最新规定，或查看签证申请指南。"
+                : "Check current official requirements or the visa application guide.";
     }
 
     private String buildCountryDecisionText(CountryDetail country, List<String> types, String lang) {
@@ -419,23 +453,28 @@ public class CountryController {
             Map<String,Object> item = asMap(getCountryExtraItem(code, type));
             String value = string(item, "lastVerified");
             if (!isBlank(value) && value.compareTo(latest) > 0) latest = value;
+            CountryDetail detail = getCountryDetail(code, type);
+            if (detail != null) {
+                String verified = String.valueOf(ruleEngine.rule(detail).get("verifiedAsOf"));
+                if (verified.compareTo(latest) > 0) latest = verified;
+            }
         }
         return isBlank(latest) ? siteMetadataService.lastVerified() : latest;
     }
 
-    private ResponseEntity<Void> redirectToCountryHome(String code, String lang) {
+    private ResponseEntity<Void> redirectToCountryHome(String code, String lang, HttpServletRequest request) {
         String location = UriComponentsBuilder.fromPath("/country/" + routeCode(code))
                 .queryParam("lang", seoService.normalizeLang(lang)).build().encode().toUriString();
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create(location));
+        headers.setLocation(URI.create(RedirectAttribution.preserve(location, request)));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
-    private ResponseEntity<Void> redirectView(String code, String lang) {
+    private ResponseEntity<Void> redirectView(String code, String lang, HttpServletRequest request) {
         String location = UriComponentsBuilder.fromPath("/country/" + routeCode(code))
                 .queryParam("lang", lang).build().encode().toUriString();
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create(location));
+        headers.setLocation(URI.create(RedirectAttribution.preserve(location, request)));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 

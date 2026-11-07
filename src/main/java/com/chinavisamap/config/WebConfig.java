@@ -11,11 +11,11 @@ public class WebConfig implements WebMvcConfigurer {
     // 跨域配置
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOriginPatterns("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*")
-                .allowCredentials(true)
+        registry.addMapping("/api/eligibility/**")
+                .allowedOrigins("https://chinavisamap.com", "https://www.chinavisamap.com")
+                .allowedMethods("POST")
+                .allowedHeaders("Content-Type")
+                .allowCredentials(false)
                 .maxAge(3600);
     }
 

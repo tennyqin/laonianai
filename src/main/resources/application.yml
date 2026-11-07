@@ -1,3 +1,8 @@
+# Only these public hosts send production GA data. Keep analytics.enabled=false for previews.
+analytics:
+  enabled: true
+  allowed-hosts: chinavisamap.com,www.chinavisamap.com
+
 # ================= 核心服务器配置 =================
 server:
   port: 8080
@@ -66,7 +71,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
+        include: health,info
   endpoint:
     health:
       show-details: when_authorized

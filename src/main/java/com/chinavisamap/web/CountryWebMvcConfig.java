@@ -23,6 +23,6 @@ public class CountryWebMvcConfig implements WebMvcConfigurer {
 
         // CountryController remains the single source of truth for country/policy models.
         // The deterministic internal-link interceptor is layered on top afterwards.
-        registry.addInterceptor(contentLinkInterceptor).addPathPatterns("/country/**", "/articles/**");
+        registry.addInterceptor(contentLinkInterceptor).addPathPatterns("/country/**", "/articles/**", "/visa-guide");
     }
 }

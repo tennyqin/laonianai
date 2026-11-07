@@ -3086,10 +3086,10 @@
       "mutual",
       "hainan"
     ],
-    "homeSeoTitleEn": "Kazakhstan to China Visa 2026 | Mutual Visa Exemption & Entry Rules",
-    "homeSeoDescEn": "Kazakhstan citizens: check the China bilateral visa-exemption arrangement, passport conditions, stay limits and other entry options.",
-    "homeSeoTitleZh": "哈萨克斯坦来华签证2026 | 互免签证与入境规则",
-    "homeSeoDescZh": "哈萨克斯坦公民来华查询中外互免签证协定、护照条件、停留期限及其他入境路径。",
+    "homeSeoTitleEn": "Kazakhstan Passport to China: Visa-Free Agreement & Conditions",
+    "homeSeoDescEn": "Check China–Kazakhstan ordinary-passport visa exemption, agreement-specific stay and purpose limits, plus the separate Hainan route. Verify the bilateral terms before departure.",
+    "homeSeoTitleZh": "哈萨克斯坦护照去中国免签吗？互免协定与停留条件",
+    "homeSeoDescZh": "核对中国与哈萨克斯坦普通护照互免签证安排、协定适用事由和停留限制，区分全国互免与海南区域免签；出发前确认具体协定条款。",
     "homeHeroQuestionEn": "Can Kazakhstan citizens enter China without a visa?",
     "homeHeroQuestionZh": "哈萨克斯坦公民去中国可以免签吗？",
     "homeHeroAnswerEn": "Kazakhstan is covered by a China bilateral visa-exemption arrangement in the site data. The exact passport category, purpose and stay limit follow the applicable agreement, so travelers should check the agreement conditions rather than treating the route as a generic waiver.",
@@ -4682,16 +4682,16 @@
     "policyTypes": [
       "hainan"
     ],
-    "homeSeoTitleEn": "Philippines to China Visa 2026 | 240-Hour Transit & Hainan Options",
-    "homeSeoDescEn": "Philippines citizens: check China 240-hour visa-free transit, onward-ticket requirements and Hainan 30-day regional entry where applicable.",
-    "homeSeoTitleZh": "菲律宾来华签证2026 | 240小时过境与海南免签",
-    "homeSeoDescZh": "菲律宾公民来华查询240小时过境免签、联程行程要求及适用时的海南30天区域免签。",
+    "homeSeoTitleEn": "Philippine Passport to China: Visa Requirements & Hainan Entry",
+    "homeSeoDescEn": "Philippine ordinary passports are outside the 240-hour transit list. Check the Hainan 30-day regional route, general 24-hour transit conditions, or apply for the appropriate China visa.",
+    "homeSeoTitleZh": "菲律宾护照去中国需要签证吗？海南30天与过境条件",
+    "homeSeoDescZh": "菲律宾普通护照不在240小时过境免签名单中。核对海南30天区域免签、通用24小时过境的行程条件；其他赴中国大陆行程应按事由办理相应签证。",
     "homeHeroQuestionEn": "Can Philippines citizens enter China without a visa?",
     "homeHeroQuestionZh": "菲律宾公民去中国可以免签吗？",
-    "homeHeroAnswerEn": "Eligible ordinary-passport holders from Philippines are covered by China’s 240-hour visa-free transit policy. The traveler must be transiting to a third country or region with a qualifying onward itinerary and meet the other transit conditions.",
-    "homeHeroAnswerZh": "符合条件的菲律宾普通护照持有人适用中国240小时过境免签政策，但必须符合前往第三国或地区的过境行程、联程客票及其他适用条件。",
-    "homeIntroEn": "Start with the policy that matches your actual China itinerary. If your destination is Hainan, use its separate 30-day regional route. ",
-    "homeIntroZh": "先根据实际行程判断适用政策。如果目的地是海南，应查看独立的30天海南区域免签。",
+    "homeHeroAnswerEn": "Philippine ordinary-passport holders may qualify for the separate 30-day Hainan regional route. The Philippines is outside the unilateral and 240-hour transit lists; other mainland trips require an appropriate visa unless another exemption applies.",
+    "homeHeroAnswerZh": "菲律宾普通护照符合条件时可使用海南30天区域免签。菲律宾不在单方面免签和240小时过境名单中；其他中国大陆行程如无其他适用豁免，应办理相应签证。",
+    "homeIntroEn": "For a Hainan-only trip, check the regional 30-day rule. For a connection to a third country or region within 24 hours, assess the general transit conditions. Neither route permits unrestricted travel across mainland China.",
+    "homeIntroZh": "仅在海南活动时核对区域30天政策；24小时内经中国前往第三国或地区时，可核对通用过境条件。两者均不能理解为可在中国大陆无限制旅行。",
     "homeImportantNotesEn": [
       "Hainan visa-free entry is regional and does not create general visa-free access to mainland China outside Hainan.",
       "Final entry decisions are made under the rules in force on the date of travel."
@@ -4702,51 +4702,51 @@
     ],
     "homeCustomFaqsEn": [
       {
-        "q": "Can Philippines citizens use China 240-hour visa-free transit?",
-        "a": "Eligible ordinary-passport holders from Philippines are covered by China’s 240-hour visa-free transit policy. The traveler must be transiting to a third country or region with a qualifying onward itinerary and meet the other transit conditions."
+        "q": "Do Philippine passport holders need a visa for mainland China?",
+        "a": "Philippine ordinary-passport holders may qualify for the separate 30-day Hainan regional route. The Philippines is outside the unilateral and 240-hour transit lists; other mainland trips require an appropriate visa unless another exemption applies."
       },
       {
-        "q": "What does Philippines need for China 240-hour transit?",
-        "a": "The traveler needs an ordinary passport, a confirmed onward ticket with a date and itinerary to a third country or region, and must enter through an eligible port and stay within the permitted areas."
+        "q": "Can Philippine passport holders use 240-hour visa-free transit?",
+        "a": "No. The Philippines is outside the current 57-country nationality list. A confirmed onward ticket alone does not establish eligibility."
       },
       {
-        "q": "Can Philippines citizens use 240-hour transit for tourism in China?",
-        "a": "Tourism is a permitted activity during qualifying 240-hour transit stays. The traveler must still satisfy the transit itinerary and other policy conditions."
+        "q": "Can Philippine passport holders use 24-hour transit?",
+        "a": "General 24-hour transit is available to all nationalities subject to the required travel documents, confirmed onward ticket to a third country or region and restricted-area conditions. Leaving the port restricted area requires temporary entry permission."
       },
       {
-        "q": "Can Philippines citizens use Hainan visa-free entry?",
-        "a": "Eligible ordinary-passport holders may enter Hainan visa-free for up to 30 days under the separate regional policy, for covered short-term purposes. This route is limited to Hainan."
+        "q": "Does Hainan’s 30-day exemption allow travel to Shanghai or Beijing?",
+        "a": "No. This route is limited to Hainan. Travel elsewhere requires a separate applicable entry permission or visa."
       }
     ],
     "homeCustomFaqsZh": [
       {
-        "q": "菲律宾护照可以使用中国240小时过境免签吗？",
-        "a": "符合条件的菲律宾普通护照持有人适用中国240小时过境免签政策，但必须符合前往第三国或地区的过境行程、联程客票及其他适用条件。"
+        "q": "菲律宾护照去中国大陆需要签证吗？",
+        "a": "菲律宾普通护照符合条件时可使用海南30天区域免签。菲律宾不在单方面免签和240小时过境名单中；其他中国大陆行程如无其他适用豁免，应办理相应签证。"
       },
       {
-        "q": "菲律宾护照使用中国240小时过境免签需要什么？",
-        "a": "通常需要普通护照、确定日期及行程的前往第三国或地区联程客票，并从适用口岸入境，在规定区域内停留。"
+        "q": "菲律宾护照可以用240小时过境免签吗？",
+        "a": "不可以。菲律宾不在现行57国国籍名单中，仅持后续机票并不能满足这项资格。"
       },
       {
-        "q": "菲律宾公民可以利用240小时过境免签来中国旅游吗？",
-        "a": "可以，在符合过境行程及其他政策条件的情况下，停留期间可以从事旅游等允许的短期活动。"
+        "q": "菲律宾护照能用24小时过境吗？",
+        "a": "通用24小时过境面向所有国籍，但须符合旅行证件、已确认前往第三国或地区的联程客票及口岸限定区域等条件；离开限定区域须申请临时入境许可。"
       },
       {
-        "q": "菲律宾公民可以使用海南30天免签吗？",
-        "a": "符合条件的菲律宾普通护照持有人可按海南区域免签政策免签停留不超过30天，适用于规定的短期事由；该政策仅适用于海南省行政区域。"
+        "q": "海南30天免签能去上海、北京吗？",
+        "a": "不能凭海南区域免签直接前往海南以外地区；其他地区需要另有适用的入境许可或签证。"
       }
     ],
     "searchQuestionsEn": [
-      "Can Philippines citizens use China 240-hour visa-free transit?",
-      "What does Philippines need for China 240-hour transit?",
-      "Can Philippines citizens use 240-hour transit for tourism in China?",
-      "Can Philippines citizens use Hainan visa-free entry?"
+      "Do Philippine passport holders need a visa for mainland China?",
+      "Can Philippine passport holders use 240-hour visa-free transit?",
+      "Can Philippine passport holders use 24-hour transit?",
+      "Does Hainan’s 30-day exemption allow travel to Shanghai or Beijing?"
     ],
     "searchQuestionsZh": [
-      "菲律宾护照可以使用中国240小时过境免签吗？",
-      "菲律宾护照使用中国240小时过境免签需要什么？",
-      "菲律宾公民可以利用240小时过境免签来中国旅游吗？",
-      "菲律宾公民可以使用海南30天免签吗？"
+      "菲律宾护照去中国大陆需要签证吗？",
+      "菲律宾护照可以用240小时过境免签吗？",
+      "菲律宾护照能用24小时过境吗？",
+      "海南30天免签能去上海、北京吗？"
     ],
     "relatedCountryCodes": [
       "vietnam",
@@ -4754,8 +4754,8 @@
       "qatar",
       "kyrgyzstan"
     ],
-    "intentSummaryEn": "If the destination is Hainan, check the separate 30-day regional visa-free route.",
-    "intentSummaryZh": "如果目的地是海南，再判断独立的30天区域免签政策。"
+    "intentSummaryEn": "Hainan regional entry and general 24-hour transit have different purposes and geographic limits. Philippine ordinary-passport holders cannot use the 240-hour route based on nationality.",
+    "intentSummaryZh": "海南区域入境与通用24小时过境的事由及活动范围不同。菲律宾普通护照不满足240小时过境的国籍名单条件。"
   },
   "pl": {
     "policyTypes": [

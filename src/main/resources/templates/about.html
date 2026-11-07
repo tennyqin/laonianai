@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${lang}">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title th:text="${lang=='en'?'About ChinaVisaMap | Policy Sources & Verification':'关于 ChinaVisaMap｜政策来源与核验方法'}"></title>
+<meta name="description" th:content="${lang=='en'?'Understand our official sources, policy screening limits, update dates and how to report a correction.':'了解本站官方来源、政策筛查边界、更新日期及纠错方式。'}">
+<link rel="canonical" th:href="${canonicalUrl}"><link rel="alternate" hreflang="en" th:href="${hreflang['en']}"><link rel="alternate" hreflang="zh" th:href="${hreflang['zh']}"><link rel="alternate" hreflang="x-default" th:href="${hreflang['x-default']}">
+<link rel="stylesheet" href="/css/index.css?20261107-review"><link rel="stylesheet" href="/css/footer.css?20260906">
+<div th:replace="~{common/ga :: google-analytics}"></div>
+<style>.methodology{max-width:820px;line-height:1.8}.methodology h1{line-height:1.3}.methodology section{padding:20px;margin:18px 0;background:white;border:1px solid #d1d5db;border-radius:14px}.methodology a{color:#047857;overflow-wrap:anywhere}</style>
+</head>
+<body><div th:replace="~{common/header :: site-header}"></div>
+<main class="container methodology" id="main-content" tabindex="-1">
+<h1 th:text="${lang=='en'?'Our sources and verification approach':'政策来源与核验方法'}"></h1>
+<p th:text="${lang=='en'?'ChinaVisaMap is an independent information site for foreign travelers entering mainland China. It is not a government website, embassy or immigration authority.':'ChinaVisaMap 是面向持外国护照进入中国大陆旅客的独立信息网站，不是政府网站、使领馆或移民管理机关。'}"></p>
+<section><h2 th:text="${lang=='en'?'Start with the official policy':'以官方政策为依据'}"></h2>
+<ul><li><a href="https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/" th:text="${lang=='en'?'MFA: unilateral visa-free entry FAQ':'外交部：单方面免签常见问题'}"></a></li>
+<li><a href="https://cs.mfa.gov.cn/lh/lhqz_149493/list/202607/t20260713_11981384.html" th:text="${lang=='en'?'MFA: bilateral visa exemption agreements':'外交部：互免签证协定一览表'}"></a></li>
+<li><a href="https://www.nia.gov.cn/n741440/n741577/c1731205/content.html" th:text="${lang=='en'?'NIA: visa-free transit policies':'国家移民管理局：过境免签政策'}"></a></li>
+<li><a href="https://www.nia.gov.cn/n741440/n741577/c1699641/content.html" th:text="${lang=='en'?'NIA: Hainan visa-free entry':'国家移民管理局：海南免签政策'}"></a></li></ul>
+<p th:text="${lang=='en'?'Bilateral rules must be checked against the specific agreement and the responsible Chinese embassy. Passport validity, permitted purposes and cumulative stays are not interchangeable between policies.':'双边规则须核对具体协定及中国驻相关国家使领馆说明；不同政策的护照有效期、适用事由和累计停留条件不能互相套用。'}"></p></section>
+<section><h2 th:text="${lang=='en'?'What the checker can and cannot confirm':'检查器的能力与边界'}"></h2>
+<p th:text="${lang=='en'?'We screen the recorded nationality, document type, purpose, dates and basic itinerary. A matching result is not permission to enter. Immigration authorities decide admission.':'本站筛查记录中的国籍、证件类型、事由、日期与基础行程。基础条件匹配不等于入境许可，最终准入由主管机关决定。'}"></p>
+<p th:text="${lang=='en'?'Port eligibility, permitted travel areas, temporary entry permission and unverified bilateral terms remain explicit checks. We do not turn missing evidence into an eligible result. The date calculator supports verified unilateral counting rules, not every bilateral or transit policy.':'口岸、活动区域、临时入境许可及未完整核实的双边条款会明确列为待核实事项。缺少依据不会被判为符合资格。日期计算支持已核实的单方面免签计时规则，不通用于所有互免或过境政策。'}"></p></section>
+<section><h2 th:text="${lang=='en'?'Dates and corrections':'日期与纠错'}"></h2>
+<p><span th:text="${lang=='en'?'Site policy data verification date: ':'站点政策数据核验日期：'}"></span><time th:text="${lastVerified}"></time></p>
+<p th:text="${lang=='en'?'The November 1, 2026 review covers the MFA/NIA nationality lists and published core unilateral, transit and Hainan conditions, plus the linked Thailand and Malaysia stay clauses. A bilateral list check does not verify every agreement clause; individual transit ports and permitted areas still need confirmation.':'2026年11月1日复核范围为外交部、移民局国籍名单及公开的单方面免签、过境、海南核心条件，以及所列泰国、马来西亚协定停留条款。互免名单核验不代表全部协定条款均已核验；具体过境口岸和活动区域仍须确认。'}"></p>
+<p th:text="${lang=='en'?'An article update date describes that article; it does not extend a policy or mean every linked rule was rechecked that day. Consult the dated source for your route and recheck before travel.':'文章修改日期仅说明该文章的修改，不代表政策自动续期，也不代表当天重新核验了所有关联规则。请查看具体路径的有日期来源，出行前再次确认。'}"></p>
+<p th:text="${lang=='en'?'To report a correction, use Contact Webmaster below and include the page URL, disputed statement and an official source. Do not send passport numbers or other identity documents.':'如发现错误，请通过页脚“联系站长”提供页面地址、待纠正表述和官方来源；无需提供护照号码或身份证件。'}"></p></section>
+<a th:href="@{/(lang=${lang})}" th:text="${lang=='en'?'Check my entry options →':'查询我的入境路径 →'}"></a>
+</main><div th:replace="~{common/footer :: footer}"></div></body></html>

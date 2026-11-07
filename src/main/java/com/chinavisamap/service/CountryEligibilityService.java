@@ -31,7 +31,7 @@ public class CountryEligibilityService {
         String normalized = resolver.policyKey(countryCode);
         List<Map<String, Object>> rules = buildPolicies(policies);
         Map<String, Object> root = new LinkedHashMap<>();
-        root.put("version", "2026-10-17");
+        root.put("version", ruleEngine.version());
         root.put("todayChina", ruleEngine.today());
         root.put("countryCode", resolver.routeCode(normalized));
         root.put("policySource", "unilateral.json / mutual.json / transit.json / hainan.json");

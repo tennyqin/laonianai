@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Map;
+import java.time.LocalDate;
 
 /**
  * Single source for site-level verification/update metadata.
@@ -41,6 +42,17 @@ public class SiteMetadataService {
     public String sitemapBaselineLastModified() {
         String value = text("siteSitemapBaselineLastModified");
         return value.isEmpty() ? "2026-09-16" : value;
+    }
+
+    public String pageLastModified(String path) {
+        Object pages = metadata.get("pageContentLastModified");
+        Object value = pages instanceof Map ? ((Map<?, ?>)pages).get(path) : null;
+        String date = value == null ? sitemapBaselineLastModified() : String.valueOf(value).trim();
+        try {
+            return LocalDate.parse(date).toString();
+        } catch (RuntimeException exception) {
+            throw new IllegalStateException("Invalid content modification date for " + path, exception);
+        }
     }
 
     private String text(String key) {

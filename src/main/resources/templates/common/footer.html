@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="footer" class="footer">
-    <div th:if="${relatedArticles != null and !relatedArticles.isEmpty()}" class="footer-content-cluster">
-        <strong th:text="${lang=='en'?'Related China travel guides':'相关来华旅行指南'}"></strong>
-        <div class="footer-link-grid"><a th:each="art:${relatedArticles}" th:href="@{/articles/{id}(id=${art.id},lang=${lang})}" th:text="${lang=='en'?art.titleEn:art.titleZh}"></a></div>
-    </div>
-    <div th:if="${relatedCountryNames != null and !relatedCountryNames.isEmpty()}" class="footer-content-cluster">
+    <div th:if="${relatedCountryNames != null and !relatedCountryNames.isEmpty() and article == null and detailCountry == null}" class="footer-content-cluster">
         <strong th:text="${lang=='en'?'Related country visa guides':'相关国家签证指南'}"></strong>
         <div class="footer-link-grid"><a th:each="entry:${relatedCountryNames}" th:href="@{/country/{code}(code=${entry.key},lang=${lang})}" th:text="${entry.value}"></a></div>
     </div>
@@ -19,20 +15,6 @@
     <script>(function(){
         var link=document.getElementById('contact-link');
         if(link){link.addEventListener('click',function(e){e.preventDefault();window.location.href='mailto:'+'tennyqin1988'+'@'+'gmail.com';});}
-
-        // Shared FAQ interaction: keeps FAQ usable on every page, including dynamically rendered country pages.
-        document.querySelectorAll('.faq-q').forEach(function(q){
-            if(q.dataset.faqBound==='1') return; q.dataset.faqBound='1';
-            function toggleFaq(){var item=q.closest('.faq-item');if(!item)return;var open=item.classList.toggle('open');q.setAttribute('aria-expanded',open?'true':'false');var icon=q.querySelector('.faq-toggle');if(icon)icon.textContent=open?'−':'+';}
-            q.addEventListener('click',toggleFaq);
-            q.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleFaq();}});
-        });
-        document.querySelectorAll('.pd-faq-q').forEach(function(q){
-            if(q.dataset.faqBound==='1') return; q.dataset.faqBound='1';
-            function togglePolicyFaq(){var item=q.closest('.pd-faq');if(!item)return;var open=item.classList.toggle('open');q.setAttribute('aria-expanded',open?'true':'false');}
-            q.setAttribute('aria-expanded','false'); q.addEventListener('click',togglePolicyFaq);
-            q.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();togglePolicyFaq();}});
-        });
 
         // The eligibility checker uses compact machine values internally. Never expose those
         // values directly to users, especially on Chinese pages.

@@ -25,6 +25,7 @@ public class PolicyRuleEngine {
         } catch(Exception e) { throw new IllegalStateException("Cannot load required policy screening data",e); }
     }
     public String today() { return LocalDate.now(ZoneId.of("Asia/Shanghai")).toString(); }
+    public String version() { return text(data.get("version")); }
     public boolean countryExists(String code) { String k=resolver.policyKey(code); return policies.values().stream().anyMatch(m->m.containsKey(k)); }
     public Map<String,Object> rule(CountryDetail p) {
         Map<String,Object> r=new LinkedHashMap<>(map(map(data.get("defaults")).get(p.getPolicyType())));

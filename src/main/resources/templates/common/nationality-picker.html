@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="picker(formId, selectId, task, action)">
+    <form class="nationality-picker" th:id="${formId}" action="/entry-options" method="get"
+          th:attr="data-action=${action},data-tool-task=${task}">
+        <input type="hidden" name="lang" th:value="${lang}">
+        <input type="hidden" name="task" th:value="${task}">
+        <label th:for="${selectId}" th:text="${lang=='en'?'Passport nationality':'护照国籍'}"></label>
+        <select th:id="${selectId}" name="country" required>
+            <option value="" th:text="${lang=='en'?'Choose nationality':'请选择国籍'}"></option>
+            <option th:each="c:${checkerCountries}" th:value="${c.code}" th:text="${lang=='en'?c.name:c.nameZh}"></option>
+            <option value="other" th:text="${lang=='en'?'Not listed — check 24-hour transit':'国籍不在名单 — 查看24小时过境'}"></option>
+        </select>
+        <button type="submit" class="search-btn" th:text="${task=='dates'?(lang=='en'?'Check my counting rule →':'核对我的停留计时规则 →'):(lang=='en'?'Check my entry options →':'查询我的入境路径 →')}"></button>
+    </form>
+    <style>.nationality-picker{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0}.nationality-picker label{font-weight:650}.nationality-picker select{flex:1;min-width:170px;max-width:100%;padding:12px;background:#fff;border:1px solid #94a3b8;border-radius:8px;font:inherit;font-size:16px;box-sizing:border-box}.nationality-picker button{min-height:46px;white-space:normal}@media(max-width:640px){.nationality-picker{align-items:stretch;flex-direction:column}.nationality-picker select{width:100%;min-width:0}.nationality-picker button{width:100%}}</style>
+</th:block>
+</html>

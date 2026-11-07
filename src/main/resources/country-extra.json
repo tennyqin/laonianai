@@ -433,9 +433,9 @@
     "priority": 5,
     "tier": "A",
     "homeSeoTitleEn": "Malaysia to China Visa Guide 2026 | Visa-Free & Entry Rules",
-    "homeSeoDescEn": "Malaysian citizens traveling to China: check visa-free arrangements, permitted purposes, stay limits and entry conditions.",
+    "homeSeoDescEn": "Malaysian citizens: check the China-Malaysia visa-exemption agreement, stay conditions, Hainan regional entry and transit alternatives.",
     "homeSeoTitleZh": "马来西亚公民来华签证与免签指南 2026",
-    "homeSeoDescZh": "马来西亚公民来华免签安排、允许目的、停留期限及入境条件。",
+    "homeSeoDescZh": "马来西亚公民来华查询中马互免签证、停留条件、海南区域免签及过境替代路径。",
     "homeHeroQuestionEn": "Can Malaysian citizens enter China without a visa?",
     "homeHeroQuestionZh": "马来西亚公民去中国可以免签吗？",
     "homeHeroAnswerEn": "Malaysian citizens may qualify for the applicable China visa-exemption arrangement when the passport, purpose and stay conditions are satisfied.",
@@ -1701,14 +1701,14 @@
     "priority": 999,
     "tier": "C",
     "routeCode": "kazakhstan",
-    "homeSeoTitleEn": "Kazakhstan to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
-    "homeSeoDescEn": "Kazakhstan citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
-    "homeSeoTitleZh": "哈萨克斯坦来华签证与免签指南 2026 | 资格查询与入境规则",
-    "homeSeoDescZh": "哈萨克斯坦公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeSeoTitleEn": "Kazakhstan Passport to China: Visa-Free Agreement & Conditions",
+    "homeSeoDescEn": "Check China–Kazakhstan ordinary-passport visa exemption, agreement-specific stay and purpose limits, plus the separate Hainan route. Verify the bilateral terms before departure.",
+    "homeSeoTitleZh": "哈萨克斯坦护照去中国免签吗？互免协定与停留条件",
+    "homeSeoDescZh": "核对中国与哈萨克斯坦普通护照互免签证安排、协定适用事由和停留限制，区分全国互免与海南区域免签；出发前确认具体协定条款。",
     "homeHeroQuestionEn": "Can Kazakhstan citizens enter China without a visa?",
     "homeHeroQuestionZh": "哈萨克斯坦公民去中国可以免签吗？",
-    "homeHeroAnswerEn": "Kazakhstan citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",
-    "homeHeroAnswerZh": "哈萨克斯坦公民应根据适用的双边互免签证协定核对护照、事由和停留条件。",
+    "homeHeroAnswerEn": "Kazakhstan is covered by a China bilateral visa-exemption arrangement in the site data. The exact passport category, purpose and stay limit follow the applicable agreement, so travelers should check the agreement conditions rather than treating the route as a generic waiver.",
+    "homeHeroAnswerZh": "哈萨克斯坦适用中国与该国的双边互免签证安排。具体护照类别、出行事由和停留期限以适用协定为准，不应把该政策简单理解为无条件通用免签。",
     "relatedCountryCodes": [
       "uae",
       "azerbaijan",
@@ -1721,7 +1721,45 @@
     "hainan": {
       "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
       "lastVerified": "2026-10-17"
-    }
+    },
+    "homeIntroEn": "Start with the policy that matches your actual China itinerary. If your destination is Hainan, use its separate 30-day regional route. For bilateral exemption routes, check the agreement conditions for your passport category. ",
+    "homeIntroZh": "先根据实际行程判断适用政策。如果目的地是海南，应查看独立的30天海南区域免签。如果适用双边互免签证，应按具体护照类别核对协定条件。",
+    "homeCustomFaqsEn": [
+      {
+        "q": "Do Kazakhstan passport holders need a visa for China?",
+        "a": "No — Kazakhstan is covered by a China bilateral visa-exemption arrangement in the site data. The exact passport category, purpose and stay limit follow the applicable agreement, so travelers should check the agreement conditions rather than treating the route as a generic waiver."
+      },
+      {
+        "q": "How long can Kazakhstan citizens stay in China without a visa?",
+        "a": "The maximum visa-free stay follows the applicable China–Kazakhstan bilateral agreement and the relevant passport category. Check the agreement details before departure."
+      },
+      {
+        "q": "What passport conditions apply to Kazakhstan citizens traveling to China?",
+        "a": "Passport category, purpose, stay calculation and other limits follow the applicable bilateral agreement; the agreement should be checked for the exact conditions."
+      },
+      {
+        "q": "Can Kazakhstan citizens use Hainan visa-free entry?",
+        "a": "Eligible ordinary-passport holders may enter Hainan visa-free for up to 30 days under the separate regional policy, for covered short-term purposes. This route is limited to Hainan."
+      }
+    ],
+    "homeCustomFaqsZh": [
+      {
+        "q": "哈萨克斯坦护照去中国免签吗？",
+        "a": "哈萨克斯坦适用中国与该国的双边互免签证安排。具体护照类别、出行事由和停留期限以适用协定为准，不应把该政策简单理解为无条件通用免签。"
+      },
+      {
+        "q": "哈萨克斯坦公民免签来华可以停留多久？",
+        "a": "最长免签停留期限以中国与该国适用的双边互免签证协定及具体护照类别为准，出发前应核对协定原文。"
+      },
+      {
+        "q": "哈萨克斯坦护照来中国需要满足什么条件？",
+        "a": "护照类别、出行事由、停留计算及其他限制以适用的双边互免签证协定为准，应按具体护照类别核对。"
+      },
+      {
+        "q": "哈萨克斯坦公民可以使用海南30天免签吗？",
+        "a": "符合条件的哈萨克斯坦普通护照持有人可按海南区域免签政策免签停留不超过30天，适用于规定的短期事由；该政策仅适用于海南省行政区域。"
+      }
+    ]
   },
   "kuwait": {
     "priority": 999,
@@ -2364,14 +2402,14 @@
     "priority": 999,
     "tier": "C",
     "routeCode": "philippines",
-    "homeSeoTitleEn": "Philippines to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
-    "homeSeoDescEn": "Philippines citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
-    "homeSeoTitleZh": "菲律宾来华签证与免签指南 2026 | 资格查询与入境规则",
-    "homeSeoDescZh": "菲律宾公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeSeoTitleEn": "Philippine Passport to China: Visa Requirements & Hainan Entry",
+    "homeSeoDescEn": "Philippine ordinary passports are outside the 240-hour transit list. Check the Hainan 30-day regional route, general 24-hour transit conditions, or apply for the appropriate China visa.",
+    "homeSeoTitleZh": "菲律宾护照去中国需要签证吗？海南30天与过境条件",
+    "homeSeoDescZh": "菲律宾普通护照不在240小时过境免签名单中。核对海南30天区域免签、通用24小时过境的行程条件；其他赴中国大陆行程应按事由办理相应签证。",
     "homeHeroQuestionEn": "Can Philippines citizens enter China without a visa?",
     "homeHeroQuestionZh": "菲律宾公民去中国可以免签吗？",
-    "homeHeroAnswerEn": "Philippines citizens may use the Hainan 30-day regional visa-free route when the ordinary-passport and purpose conditions are met.",
-    "homeHeroAnswerZh": "菲律宾公民符合普通护照及事由条件时，可使用海南30天区域免签路径。",
+    "homeHeroAnswerEn": "Philippine ordinary-passport holders may qualify for the separate 30-day Hainan regional route. The Philippines is outside the unilateral and 240-hour transit lists; other mainland trips require an appropriate visa unless another exemption applies.",
+    "homeHeroAnswerZh": "菲律宾普通护照符合条件时可使用海南30天区域免签。菲律宾不在单方面免签和240小时过境名单中；其他中国大陆行程如无其他适用豁免，应办理相应签证。",
     "relatedCountryCodes": [
       "al",
       "argentina",
@@ -2381,7 +2419,45 @@
     "hainan": {
       "officialSource": "https://www.nia.gov.cn/n741440/n741577/c1699641/content.html",
       "lastVerified": "2026-10-17"
-    }
+    },
+    "homeIntroEn": "For a Hainan-only trip, check the regional 30-day rule. For a connection to a third country or region within 24 hours, assess the general transit conditions. Neither route permits unrestricted travel across mainland China.",
+    "homeIntroZh": "仅在海南活动时核对区域30天政策；24小时内经中国前往第三国或地区时，可核对通用过境条件。两者均不能理解为可在中国大陆无限制旅行。",
+    "homeCustomFaqsEn": [
+      {
+        "q": "Do Philippine passport holders need a visa for mainland China?",
+        "a": "Philippine ordinary-passport holders may qualify for the separate 30-day Hainan regional route. The Philippines is outside the unilateral and 240-hour transit lists; other mainland trips require an appropriate visa unless another exemption applies."
+      },
+      {
+        "q": "Can Philippine passport holders use 240-hour visa-free transit?",
+        "a": "No. The Philippines is outside the current 57-country nationality list. A confirmed onward ticket alone does not establish eligibility."
+      },
+      {
+        "q": "Can Philippine passport holders use 24-hour transit?",
+        "a": "General 24-hour transit is available to all nationalities subject to the required travel documents, confirmed onward ticket to a third country or region and restricted-area conditions. Leaving the port restricted area requires temporary entry permission."
+      },
+      {
+        "q": "Does Hainan’s 30-day exemption allow travel to Shanghai or Beijing?",
+        "a": "No. This route is limited to Hainan. Travel elsewhere requires a separate applicable entry permission or visa."
+      }
+    ],
+    "homeCustomFaqsZh": [
+      {
+        "q": "菲律宾护照去中国大陆需要签证吗？",
+        "a": "菲律宾普通护照符合条件时可使用海南30天区域免签。菲律宾不在单方面免签和240小时过境名单中；其他中国大陆行程如无其他适用豁免，应办理相应签证。"
+      },
+      {
+        "q": "菲律宾护照可以用240小时过境免签吗？",
+        "a": "不可以。菲律宾不在现行57国国籍名单中，仅持后续机票并不能满足这项资格。"
+      },
+      {
+        "q": "菲律宾护照能用24小时过境吗？",
+        "a": "通用24小时过境面向所有国籍，但须符合旅行证件、已确认前往第三国或地区的联程客票及口岸限定区域等条件；离开限定区域须申请临时入境许可。"
+      },
+      {
+        "q": "海南30天免签能去上海、北京吗？",
+        "a": "不能凭海南区域免签直接前往海南以外地区；其他地区需要另有适用的入境许可或签证。"
+      }
+    ]
   },
   "portugal": {
     "priority": 999,
@@ -2972,9 +3048,9 @@
     "tier": "A",
     "routeCode": "thailand",
     "homeSeoTitleEn": "Thailand to China Visa Guide 2026 | Visa-Free Eligibility & Entry Rules",
-    "homeSeoDescEn": "Thailand citizens: check China visa-free eligibility, 30-day entry, 240-hour transit, Hainan options and visa requirements.",
+    "homeSeoDescEn": "Thai ordinary-passport holders: check China visa-free entry for up to 30 days per visit and 90 days in any 180 days, permitted purposes and the 240-hour exclusion.",
     "homeSeoTitleZh": "泰国来华签证与免签指南 2026 | 资格查询与入境规则",
-    "homeSeoDescZh": "泰国公民查询来华免签资格、30天免签、240小时过境、海南免签及签证要求。",
+    "homeSeoDescZh": "泰国普通护照来中国，符合协定的单次免签不超过30天，每180日累计不超过90天。核对适用事由、累计额度与海南路径；泰国不在240小时名单内。",
     "homeHeroQuestionEn": "Can Thailand citizens enter China without a visa?",
     "homeHeroQuestionZh": "泰国公民去中国可以免签吗？",
     "homeHeroAnswerEn": "Thailand citizens should use the bilateral visa-exemption route when their passport, purpose and stay meet the applicable agreement.",

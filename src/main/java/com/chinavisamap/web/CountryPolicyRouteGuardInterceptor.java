@@ -37,7 +37,7 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
                     StringBuilder location = new StringBuilder("/country/").append(canonicalCode).append('/').append(type);
                     location.append("?lang=").append(lang);
                     response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-                    response.setHeader("Location", location.toString());
+                    response.setHeader("Location", RedirectAttribution.preserve(location.toString(), request));
                     return false;
                 }
             }
@@ -51,7 +51,7 @@ public class CountryPolicyRouteGuardInterceptor implements HandlerInterceptor {
         if (java.util.Arrays.asList("auto","direct","transit24","transit240","hainan").contains(mode)) location.append("&entryMode=").append(mode);
         if ("transit".equals(request.getParameter("purpose"))) location.append("&purpose=transit");
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-        response.setHeader("Location", location.toString());
+        response.setHeader("Location", RedirectAttribution.preserve(location.toString(), request));
         return false;
     }
 }

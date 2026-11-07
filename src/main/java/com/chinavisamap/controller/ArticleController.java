@@ -107,7 +107,7 @@ public class ArticleController {
             articleList.sort((a, b) ->
                     text(b, "publishAt").compareTo(text(a, "publishAt")));
         } catch (Exception e) {
-            articleList = Collections.emptyList();
+            throw new IllegalStateException("Failed to load required articles.json", e);
         }
     }
 

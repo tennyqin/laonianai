@@ -58,6 +58,7 @@ public class StructuredDataService {
         webpage.put("description", description);
         webpage.put("inLanguage", lang);
         webpage.put("isPartOf", Collections.singletonMap("@id", BASE_URL + "/#website"));
+        webpage.put("dateModified", siteMetadataService.pageLastModified("/"));
         items.add(webpage);
 
         graph.put("@context", "https://schema.org");
@@ -99,7 +100,7 @@ public class StructuredDataService {
         webpage.put("name", title);
         webpage.put("description", description);
         webpage.put("inLanguage", lang);
-        webpage.put("dateModified", verifiedDate(extra));
+        webpage.put("dateModified", siteMetadataService.pageLastModified("/country/" + canonicalRoute + "/" + detail.getPolicyType()));
         Map<String, Object> about = new LinkedHashMap<>();
         about.put("@type", "Country");
         about.put("name", name);
@@ -144,7 +145,7 @@ public class StructuredDataService {
         page.put("name", title);
         page.put("description", description);
         page.put("inLanguage", lang);
-        page.put("dateModified", verifiedDate(extra));
+        page.put("dateModified", siteMetadataService.pageLastModified("/country/" + canonicalRoute));
         Map<String, Object> about = new LinkedHashMap<>();
         about.put("@type", "Country");
         about.put("name", name);
@@ -237,14 +238,6 @@ public class StructuredDataService {
         graph.put("@context", "https://schema.org");
         graph.put("@graph", Arrays.asList(data, breadcrumb));
         return toJson(graph);
-    }
-
-    private String verifiedDate(Map<String,Object> extra){
-        if(extra!=null){
-            String value=stringValue(extra.get("lastVerified"));
-            if(!isBlank(value)) return value;
-        }
-        return siteMetadataService.lastVerified();
     }
 
     private String canonicalCountryRoute(String code) {

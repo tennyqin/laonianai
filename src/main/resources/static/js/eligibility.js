@@ -3,11 +3,14 @@
     var page = window.ChinaVisaPage || {}, zh = page.lang === 'zh';
     var byId = function (id) { return document.getElementById(id); };
     var mode = byId('entryMode'), revision = 0, started = false, busy = false, needsItinerary = false;
+    var completedRevision = {check: -1, calculate: -1};
     var previousHours = false, durations = {days: '7', hours: '12'};
     if (!mode) return;
     function tr(en, cn) { return zh ? cn : en; }
     function track(name, extra) {
-        if (typeof window.visaTrack === 'function') window.visaTrack(name, Object.assign({ country_code: page.code, route: mode.value, language: page.lang }, extra || {}));
+        try {
+            if (typeof window.visaTrack === 'function') window.visaTrack(name, Object.assign({ country_code: page.code, route: mode.value, language: page.lang }, extra || {}));
+        } catch (ignored) { /* A tracking failure must not affect the checker. */ }
     }
     function showFields() {
         var transit = mode.value === 'transit240' || mode.value === 'transit24' || (mode.value === 'auto' && needsItinerary);
@@ -70,8 +73,10 @@
     async function submit(calculate) {
         if (busy) return;
         if (byId('nationality')) { if(!byId('nationality').reportValidity())return; page.code=byId('nationality').value; }
-        if (!byId('entryDate').reportValidity() || !byId('days').reportValidity()) return;
+        if (!byId('entryDate').reportValidity() || !byId('days').reportValidity()
+                || (mode.value !== 'transit24' && !byId('departureDate').reportValidity())) return;
         var target = byId(calculate ? 'calculator-result' : 'check-result'), current = revision, data = inputData();
+        if (calculate) track('date_calculation_start');
         var controller = new AbortController(), timeout = window.setTimeout(function(){controller.abort();},20000);
         busy = true; byId('check-btn').disabled = true; if(byId('calculate-btn'))byId('calculate-btn').disabled = true;
         target.style.display = 'block'; target.className = 'result'; target.textContent = tr('Checking…', '正在核验…');
@@ -84,11 +89,18 @@
             render(reply, target);
             if(reply.needsItinerary){needsItinerary=true;showFields();addText(target,'p',tr('Add the countries or regions immediately before and after China, confirm your onward ticket, then check again. For a short airside connection, select the 24-hour option.', '请补充紧邻中国前后的国家或地区并确认联程客票，然后再次检查。如只是短时口岸内中转，请选择24小时选项。'));byId('origin').focus();}
             track(calculate ? 'date_calculation_result' : 'checker_result', { result_status: reply.status, result_reason: reply.reason });
-            if (calculate && reply.latestDeparture) track('date_calculation_complete', { result_status: reply.status });
+            if (calculate && reply.latestDeparture && completedRevision.calculate !== current) {
+                completedRevision.calculate = current;
+                track('date_calculation_complete', { result_status: reply.status });
+            }
             // A useful screening can also find an ineligible trip or specific checks
             // still required. Keep success separate from the historical eligible event.
-            if (!calculate && reply.status !== 'invalid' && !reply.needsItinerary) track('checker_screening_complete', { result_status: reply.status, result_reason: reply.reason });
-            if (!calculate && reply.status === 'eligible') track('checker_complete', { result_status: reply.status });
+            if (!calculate && reply.status !== 'invalid' && !reply.needsItinerary
+                    && !['passport_validity','onward_required'].includes(reply.reason) && completedRevision.check !== current) {
+                completedRevision.check = current;
+                track('checker_screening_complete', { result_status: reply.status, result_reason: reply.reason });
+                if (reply.status === 'eligible') track('checker_complete', { result_status: reply.status });
+            }
             if (!calculate && reply.status === 'pending') track('checker_pending', { result_status: reply.status, result_reason: reply.reason });
         } catch (error) {
             if (current !== revision) return;
@@ -115,4 +127,13 @@
     if (byId('calculate-btn')) byId('calculate-btn').addEventListener('click', function () { submit(true); });
     var hashTarget = window.location.hash === '#stay-calculator' ? byId('stay-calculator') : window.location.hash === '#eligibility-checker' ? byId('eligibility-checker') : null;
     if (hashTarget) hashTarget.scrollIntoView({ block: 'start' });
+    var checker = byId('eligibility-checker');
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            if (entries.some(function (entry) { return entry.isIntersecting; })) {
+                track('checker_view'); observer.disconnect();
+            }
+        });
+        observer.observe(checker);
+    }
 }());

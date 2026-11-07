@@ -1,18 +1,18 @@
 {
   "siteName": "China Visa Free Guide 2026",
-  "siteTitle": "China Visa-Free Entry Checker 2026 | Passport & Transit Rules",
-  "siteTitleZh": "外国护照入境中国免签查询2026｜停留天数与过境条件",
-  "siteDesc": "Check China entry options for your passport nationality, travel dates and purpose. Compare direct visa-free entry, bilateral agreements, 24/240-hour transit and Hainan rules.",
-  "siteDescZh": "按外国护照国籍、出行日期与事由查询入境中国大陆的适用路径，区分直接免签、双边互免、24/240小时过境与海南免签，核对停留天数和官方依据。",
-  "lastUpdate": "Updated: October 17, 2026 | Core lists checked against MFA/NIA sources; bilateral stay clauses require agreement-specific checks",
-  "lastUpdateZh": "更新：2026年10月17日｜已核对外交部、移民局主要名单；互免停留条款仍须按具体协定核验",
-  "siteDataLastVerified": "2026-10-17",
-  "siteContentLastModified": "2026-10-17",
-  "siteSitemapBaselineLastModified": "2026-10-17",
-  "heroTitle": "Check your visa-free entry options for China",
-  "heroTitleZh": "查询你的来华免签路径",
-  "heroDesc": "Start with your passport nationality, then check the conditions for your actual trip.",
-  "heroDescZh": "从护照国籍开始，按你的实际行程核对适用条件。",
+  "siteTitle": "China Visa-Free Entry 2026 | 30-Day & 240-Hour Rules",
+  "siteTitleZh": "中国免签查询2026｜按护照国籍查30天免签与240小时过境",
+  "siteDesc": "Check China visa-free entry by passport nationality. Compare 30-day visits, bilateral agreements, 240-hour transit and Hainan, with stay limits and official sources.",
+  "siteDescZh": "按外国护照国籍查询来中国大陆的免签条件，对比30天单方面免签、双边互免、240小时过境与海南免签，核对停留天数、政策期限和官方依据。",
+  "lastUpdate": "Checked: November 1, 2026 | MFA/NIA core lists and published terms; other bilateral clauses and individual ports require separate checks",
+  "lastUpdateZh": "核验：2026年11月1日｜已复核外交部、移民局核心名单及公开条款；其他双边细则与具体口岸须另行核对",
+  "siteDataLastVerified": "2026-11-01",
+  "siteContentLastModified": "2026-11-07",
+  "siteSitemapBaselineLastModified": "2026-11-01",
+  "heroTitle": "Check China visa-free entry by passport",
+  "heroTitleZh": "按护照国籍查询中国免签条件",
+  "heroDesc": "Choose your passport nationality, then check the stay limit, travel purpose and route for your trip.",
+  "heroDescZh": "先选护照国籍，再按实际行程核对停留天数、出行事由和入境路径。",
   "unilateralTitle": "Unilateral 30-Day Visa-Free (50 Countries)",
   "unilateralTitleZh": "单方面免签（50国）",
   "unilateralDesc": "Ordinary passport holders from 50 countries may enter China visa-free for up to 30 days for covered short-term purposes. Brunei has no stated expiry date; Russia is currently valid through Dec 31, 2027; the other 48 countries are currently stated through Dec 31, 2026.",
@@ -1421,5 +1421,21 @@
       "titleEn": "Does my transit itinerary qualify?",
       "titleZh": "我的过境路线符合条件吗？"
     }
-  ]
+  ],
+  "featuredCountryCodes": [
+    "us",
+    "au",
+    "gb",
+    "jp",
+    "canada",
+    "korea",
+    "indonesia",
+    "france"
+  ],
+  "pageContentLastModified": {
+    "/": "2026-11-07",
+    "/country/thailand": "2026-11-07",
+    "/country/my": "2026-11-07",
+    "/transit-check": "2026-11-07"
+  }
 }
