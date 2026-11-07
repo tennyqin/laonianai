@@ -47,7 +47,7 @@
     document.addEventListener('click',function(e){
         var a=e.target.closest ? e.target.closest('a') : null;if(!a)return;
         var action=a.dataset.action;
-        if(!action){try{var u=new URL(a.href);if(u.protocol==='https:' && /(^|\.)(nia\.gov\.cn|mfa\.gov\.cn|china-embassy\.gov\.cn|china-consulate\.gov\.cn)$/.test(u.hostname))action='official_source_click';}catch(ignored){}}
+        if(!action){try{var u=new URL(a.href);if(u.protocol==='https:' && (u.hostname==='gov.cn' || u.hostname==='www.gov.cn' || /(^|\.)(nia\.gov\.cn|mfa\.gov\.cn|china-embassy\.gov\.cn|china-consulate\.gov\.cn)$/.test(u.hostname)))action='official_source_click';}catch(ignored){}}
         if(!action && a.closest('#next-steps, #next-step-guides'))action='next_step_click';
         if(action){
             var values={};

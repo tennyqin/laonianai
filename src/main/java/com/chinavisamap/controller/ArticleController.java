@@ -32,19 +32,35 @@ public class ArticleController {
 
     static {
         List<Map<String, String>> temp = new ArrayList<>();
-        temp.add(category("Visa-Free Tips", "免签政策提示"));
-        temp.add(category("China Life & Apps", "中国生活与APP"));
-        temp.add(category("Travel Customs", "旅行风俗文化"));
-        temp.add(category("Border-Inspection Pitfalls", "边检出入境踩坑"));
-        temp.add(category("Country Visa Guides", "国家签证指南"));
+        temp.add(category("visa-free-tips", "Visa-Free Tips", "免签政策提示"));
+        temp.add(category("china-life-apps", "China Life & Apps", "中国生活与APP"));
+        temp.add(category("travel-customs", "Travel Customs", "旅行风俗文化"));
+        temp.add(category("border-inspection-pitfalls", "Border-Inspection Pitfalls", "边检出入境踩坑"));
+        temp.add(category("country-visa-guides", "Country Visa Guides", "国家签证指南"));
         ALL_CATEGORIES = Collections.unmodifiableList(temp);
     }
 
-    private static Map<String, String> category(String en, String zh) {
+    private static Map<String, String> category(String id, String en, String zh) {
         Map<String, String> result = new LinkedHashMap<>();
+        result.put("id", id);
         result.put("en", en);
         result.put("zh", zh);
         return result;
+    }
+
+    private static Map<String, String> findCategory(String value) {
+        String key = categoryKey(value);
+        if (key.isEmpty()) return null;
+        for (Map<String, String> category : ALL_CATEGORIES) {
+            for (String alias : category.values()) {
+                if (key.equals(categoryKey(alias))) return category;
+            }
+        }
+        return null;
+    }
+
+    private static String categoryKey(String value) {
+        return StringUtils.deleteWhitespace(StringUtils.defaultString(value)).toLowerCase(Locale.ROOT);
     }
 
     public ArticleController(ObjectMapper objectMapper,
@@ -80,6 +96,9 @@ public class ArticleController {
             DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             for (Map<String, Object> art : articleList) {
+                Map<String, String> articleCategory = findCategory(text(art, "categoryEn"));
+                if (articleCategory == null) articleCategory = findCategory(text(art, "categoryZh"));
+                art.put("categoryId", articleCategory == null ? "" : articleCategory.get("id"));
                 String publishAtRaw = text(art, "publishAt");
                 if (StringUtils.isNotBlank(publishAtRaw)) {
                     try {
@@ -123,6 +142,9 @@ public class ArticleController {
         final String currentLang = seoService.normalizeLang(lang);
         final int currentPage = page == null ? 1 : Math.max(page, 1);
         final int currentSize = size == null ? 10 : Math.min(Math.max(size, 1), 50);
+        final Map<String, String> selectedCategory = findCategory(category);
+        final String currentCategory = StringUtils.isBlank(category) ? null
+                : selectedCategory == null ? category.trim() : selectedCategory.get("id");
 
         model.addAttribute("canonicalUrl", seoService.canonical("/articles", currentLang));
         model.addAttribute("hreflang", seoService.hreflang("/articles"));
@@ -136,10 +158,9 @@ public class ArticleController {
         List<Map<String, Object>> source = new ArrayList<>(articleList);
 
         if (StringUtils.isNotBlank(category)) {
-            final String catParam = category.trim();
             source = source.stream()
-                    .filter(art -> catParam.equalsIgnoreCase(text(art, "categoryEn"))
-                            || catParam.equalsIgnoreCase(text(art, "categoryZh")))
+                    .filter(art -> selectedCategory != null
+                            && selectedCategory.get("id").equals(text(art, "categoryId")))
                     .collect(Collectors.toList());
         }
 
@@ -191,7 +212,9 @@ public class ArticleController {
 
         model.addAttribute("lang", currentLang);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("category", category);
+        model.addAttribute("category", currentCategory);
+        model.addAttribute("categoryLabel", selectedCategory == null ? currentCategory
+                : selectedCategory.get(currentLang.equals("zh") ? "zh" : "en"));
         model.addAttribute("allCategories", ALL_CATEGORIES);
         model.addAttribute("page", currentPage);
         model.addAttribute("size", currentSize);

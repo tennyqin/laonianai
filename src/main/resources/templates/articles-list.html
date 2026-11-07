@@ -62,8 +62,8 @@
         </a>
         <th:block th:each="cat : ${allCategories}">
             <a class="cat-tag"
-               th:classappend="${ (lang == 'en' ? cat.en : cat.zh) == category ? 'active' : ''}"
-               th:href="@{/articles(lang=${lang},keyword=${keyword},category=${lang == 'en' ? cat.en : cat.zh})}">
+               th:classappend="${cat.id == category ? 'active' : ''}"
+               th:href="@{/articles(lang=${lang},keyword=${keyword},category=${cat.id})}">
                 [[${lang == 'en' ? cat.en : cat.zh}]]
             </a>
         </th:block>
@@ -73,7 +73,7 @@
     <div th:if="${category != null || keyword != null}" style="margin-bottom:16px;font-size:14px;color:#555;">
         <span th:if="${keyword != null and keyword != ''}" th:text="${(lang=='en' ? 'Keyword: ' : '关键词：') + keyword}"></span>
         <span th:if="${category != null and keyword != null}"> | </span>
-        <span th:if="${category != null}" th:text="${(lang=='en' ? 'Category: ' : '分类：') + category}"></span>
+        <span th:if="${category != null}" th:text="${(lang=='en' ? 'Category: ' : '分类：') + categoryLabel}"></span>
         <a th:href="@{/articles(lang=${lang})}" style="margin-left:8px;color:#059669;" th:text="${lang=='en'?'Clear filters':'清除筛选'}"></a>
     </div>
 
